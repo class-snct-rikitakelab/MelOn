@@ -19,7 +19,8 @@ class MelOn extends PhaserGame{
         // This game can run even if the users change the focus such as tab on their browser.
         this.game.stage.disableVisibilityChange = true;
 
-        
+
+        console.log("Create Objects start!");        
         // ========== Model ===========
         this.stationery = new Stationery(this.game, new CONSTANTS.Stationery);
         
@@ -29,6 +30,7 @@ class MelOn extends PhaserGame{
         this.eraser = new StationeryButton(this.game, new CONSTANTS.Eraser, { stationery: this.stationery });
 
         // ========== Other ===========
+        console.log("Load Complete!");
     }
 
     protected update() {

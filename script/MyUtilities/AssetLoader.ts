@@ -36,11 +36,14 @@ class AssetLoader {
         var loader = game.load;
         // this.preloadBar(game);
 
+        console.log("Load images start!");
         this.loadImages(loader);
+        console.log("Load images complete!");
         
         // this.loadSpriteSheets(loader);
 
         this.loadAudios(loader);
+        console.log("Load audios complete!");
     }
 
     // I can not understand about preloadBar!
