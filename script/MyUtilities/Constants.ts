@@ -10,8 +10,7 @@ namespace CONSTANTS {
         width: number = 600;
         height: number = 350;
         renderer: string = "score";
-        imageAddress: string = "../assets/image/";
-        soundAddress: string = "../assets/sound/";
+        imageAddress: string = "storage/assets/image/";
     }
 
     export interface Model {

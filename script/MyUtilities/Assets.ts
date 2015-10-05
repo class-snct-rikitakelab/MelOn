@@ -2,7 +2,7 @@
 
 class MelOnAssets extends AssetLoader {
     protected images: { address: string, assets: [string, string][] } = {
-        address: "../assets/image/",
+        address: "storage/assets/image/",
         assets: [
             // background
             ["background", "background/background.png"],
@@ -15,7 +15,7 @@ class MelOnAssets extends AssetLoader {
     }
 
     protected audio: { address: string, assets: [string, string[]][] } = {
-        address: "../assets/sound/",
+        address: "storage/assets/sound/",
         assets: [
             // piano
             ["pianoA2", ["piano/pianoA2.mp3", ]],

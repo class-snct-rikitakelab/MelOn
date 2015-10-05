@@ -1,7 +1,5 @@
-assets/
 bin/
-declaration/
-lib/
 obj/
+storage/
 *.csproj*
 web*.config

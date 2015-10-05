@@ -3,9 +3,9 @@
 // <reference path=""/>
 
 // Declaration type files of libraries.
-/// <reference path="../../declaration/phaser.d.ts"/>
-/// <reference path="../../declaration/jquery.d.ts"/>
-/// <reference path="../../declaration/jqueryui.d.ts"/>
+/// <reference path="../storage/declaration/phaser.d.ts"/>
+/// <reference path="../storage/declaration/jquery.d.ts"/>
+/// <reference path="../storage/declaration/jqueryui.d.ts"/>
 
 // MyUtility
 /// <reference path="MyUtilities/AssetLoader.ts"/>

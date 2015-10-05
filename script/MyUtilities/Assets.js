@@ -9,7 +9,7 @@ var MelOnAssets = (function (_super) {
     function MelOnAssets() {
         _super.apply(this, arguments);
         this.images = {
-            address: "../assets/image/",
+            address: "storage/assets/image/",
             assets: [
                 // background
                 ["background", "background/background.png"],
@@ -20,7 +20,7 @@ var MelOnAssets = (function (_super) {
             ],
         };
         this.audio = {
-            address: "../assets/sound/",
+            address: "storage/assets/sound/",
             assets: [
                 // piano
                 ["pianoA2", ["piano/pianoA2.mp3",]],

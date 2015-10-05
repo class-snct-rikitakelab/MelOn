@@ -30,7 +30,7 @@ class Stationery extends Model {
     // What is called registerObserver. 
     onChangeStationery(handler: () => any): JQuery {
         // Set the handler (function which is called when the "trigger" method is called) by jQuery.
-                // This return value can remove the event handling. Like this => returnJQValue.off(); 
+        // This return value can remove the event handling. Like this => returnJQValue.off(); 
         return this.$.bind(this.constants.events["changeStationery"], handler);
     }
 }

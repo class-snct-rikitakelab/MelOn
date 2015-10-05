@@ -15,8 +15,7 @@ var CONSTANTS;
             this.width = 600;
             this.height = 350;
             this.renderer = "score";
-            this.imageAddress = "../assets/image/";
-            this.soundAddress = "../assets/sound/";
+            this.imageAddress = "storage/assets/image/";
         }
         return Game;
     })();
