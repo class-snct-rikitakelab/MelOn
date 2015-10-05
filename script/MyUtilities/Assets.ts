@@ -4,6 +4,9 @@ class MelOnAssets extends AssetLoader {
     protected images: { address: string, assets: [string, string][] } = {
         address: "storage/assets/image/",
         assets: [
+            // game
+            ["preloadBar", "game/preloadBar.png"],
+            
             // background
             ["background", "background/background.png"],
 

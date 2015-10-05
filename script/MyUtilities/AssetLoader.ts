@@ -34,26 +34,13 @@ class AssetLoader {
 
     load(game: Phaser.Game) {
         var loader = game.load;
-        // this.preloadBar(game);
-        alert("Load Images Started!");
         this.loadImages(loader);
-        alert("Load Images Completed! Load Audio Started!");
-        // this.loadSpriteSheets(loader);
         this.loadAudios(loader);
-        alert("Load Audios Completed! Game Create Started!");
+        //this.preloadBar(game);
     }
 
     // I can not understand about preloadBar!
-    /*
-    private preloadBar(game: Phaser.Game) {
-        game.load.image("preloadBar", "assets/image/preloadBar.png");
-        game.cache.addImage("preloadBar", "assets/image/preloadBar.png", {});
-        var preloadBar = game.add.sprite(400, 100, "preloadBar");
-        preloadBar.pivot.x = preloadBar.width / 2;
-        preloadBar.pivot.y = preloadBar.height / 2;
-        game.load.setPreloadSprite(preloadBar);
-    }
-    */
+   
 
     private loadImages(loader: Phaser.Loader) {
         this.images.assets.forEach((asset: string[]) => {
