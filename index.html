@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>MelOn - Free Making Music Mode</title>
+    <link rel="stylesheet" href="css/FreeMakingMusic.css" type="text/css" />
+    <script type="text/javascript" src="../lib/phaser.min.js"></script>
+    <script type="text/javascript" src="../lib/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="ImportJSFiles.js"></script>
+    <script type="text/javascript" src="script/main.js"></script>
+
+    <style type="text/css">
+        #contents {
+            position: relative; /*This is needed for children which have "position absolute"*/
+            margin: 0 auto;     /*Centering holizontally*/
+            width: 900px;       /*This is needed for centering*/
+            height: 500px;
+        }
+
+        #score {
+            position: absolute;
+            width: 600px;
+            height: 350px;
+            top: 75px;
+            left: 150px;
+        }
+
+        .stationery{
+            position: absolute;
+            border:none;
+            border-radius: 11px;
+            overflow:hidden
+        }
+
+        #pencil {
+            width: 110px;
+            height: 60px;
+            top: 9px;          /*Use top, left, bottom, and right to adjust absolute elements*/
+            left: 150px;
+        }
+
+        #eraser {
+            width: 110px;
+            height: 60px;
+            top: 10px;          /*Use top, left, bottom, and right to adjust absolute elements*/
+            left: 273px;
+            right: 513px;
+        }
+
+        .buttonImage {
+            position: absolute;
+            top:0%;
+            left: 0%;
+            width: 100%;
+            height: 100%;
+        }
+
+    </style>
+
+</head>
+<body>
+    <h1>MelOn Free Making Music Mode</h1>
+
+    <div id="contents">
+        <button id="pencil" class="stationery">button</button>
+        <button id="eraser" class="stationery">eraser</button>
+        <div id="score"></div>
+    </div>
+
+</body>
+</html>
