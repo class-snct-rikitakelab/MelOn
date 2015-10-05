@@ -35,15 +35,12 @@ class AssetLoader {
     load(game: Phaser.Game) {
         var loader = game.load;
         // this.preloadBar(game);
-
-        alert("Load images start!");
+        alert("Load Images Started!");
         this.loadImages(loader);
-        alert("Load images complete!");
-        
+        alert("Load Images Completed! Load Audio Started!");
         // this.loadSpriteSheets(loader);
-
         this.loadAudios(loader);
-        alert("Load audios complete!");
+        alert("Load Audios Completed! Game Create Started!");
     }
 
     // I can not understand about preloadBar!

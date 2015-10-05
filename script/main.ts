@@ -14,13 +14,13 @@ class MelOn extends PhaserGame{
         // =========== Setting game ==========
 
         // Start phisics system.
+        alert("Physics System Started!"); 
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
         
         // This game can run even if the users change the focus such as tab on their browser.
         this.game.stage.disableVisibilityChange = true;
-
-
-        alert("Create Objects start!");        
+       
+        alert("Objects Create Started!");
         // ========== Model ===========
         this.stationery = new Stationery(this.game, new CONSTANTS.Stationery);
         
@@ -30,7 +30,7 @@ class MelOn extends PhaserGame{
         this.eraser = new StationeryButton(this.game, new CONSTANTS.Eraser, { stationery: this.stationery });
 
         // ========== Other ===========
-        alert("Load Complete!");
+        alert("Load Completed!");
     }
 
     protected update() {
