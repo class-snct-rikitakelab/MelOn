@@ -19,7 +19,7 @@ var MelOn = (function (_super) {
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
         // This game can run even if the users change the focus such as tab on their browser.
         this.game.stage.disableVisibilityChange = true;
-        console.log("Create Objects start!");
+        alert("Create Objects start!");
         // ========== Model ===========
         this.stationery = new Stationery(this.game, new CONSTANTS.Stationery);
         // ========== View ==========
@@ -27,7 +27,7 @@ var MelOn = (function (_super) {
         this.pencil = new StationeryButton(this.game, new CONSTANTS.Pencil, { stationery: this.stationery });
         this.eraser = new StationeryButton(this.game, new CONSTANTS.Eraser, { stationery: this.stationery });
         // ========== Other ===========
-        console.log("Load Complete!");
+        alert("Load Complete!");
     };
     MelOn.prototype.update = function () {
     };

@@ -20,7 +20,7 @@ class MelOn extends PhaserGame{
         this.game.stage.disableVisibilityChange = true;
 
 
-        console.log("Create Objects start!");        
+        alert("Create Objects start!");        
         // ========== Model ===========
         this.stationery = new Stationery(this.game, new CONSTANTS.Stationery);
         
@@ -30,7 +30,7 @@ class MelOn extends PhaserGame{
         this.eraser = new StationeryButton(this.game, new CONSTANTS.Eraser, { stationery: this.stationery });
 
         // ========== Other ===========
-        console.log("Load Complete!");
+        alert("Load Complete!");
     }
 
     protected update() {
