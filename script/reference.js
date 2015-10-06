@@ -20,6 +20,7 @@
 // Model
 /// <reference path="Model/Stationery.ts"/>
 // View
+/// <reference path="View/Score.ts"/>
 /// <reference path="View/MeasureSheet.ts"/>
 /// <reference path="View/StationeryButton.ts"/>
 // Main

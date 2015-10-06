@@ -6,7 +6,7 @@
 // Shusei Komatsu decided to name the roles "Model" and "View" so that we can add "Controller" when it is needed later.
 
 class Main extends Phaser.State {
-    private MEASURE: CONSTANTS.Measure;
+    private SCORE: CONSTANTS.Score;
     private stationery: Stationery;
     private score: Phaser.Group;
     private pencil: StationeryButton;
@@ -14,11 +14,11 @@ class Main extends Phaser.State {
 
     init() {
         // Get Measure constants.
-        this.MEASURE = new CONSTANTS.Measure;
+        this.SCORE = new CONSTANTS.Score;
 
         // Set camera avairable zone.
-        var scoreWidth: number = this.MEASURE.width * this.MEASURE.measureNum;
-        var scoreHeight: number = this.MEASURE.height * this.MEASURE.pitchNum;
+        var scoreWidth: number = this.SCORE.width * this.SCORE.measureNum;
+        var scoreHeight: number = this.SCORE.height * this.SCORE.pitchNum;
         this.camera.bounds.setTo(0, 0, scoreWidth, scoreHeight);
 
         // For display fps.
@@ -31,7 +31,7 @@ class Main extends Phaser.State {
         
         // ========== View ==========
         this.score = this.game.add.group();
-        _.times(this.MEASURE.measureNum, (n: number) => {
+        _.times(this.SCORE.measureNum, (n: number) => {
             this.score.add(new MeasureSheet(this.game, new CONSTANTS.MeasureSheet, n, {}))
         });
 

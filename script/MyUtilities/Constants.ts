@@ -9,9 +9,6 @@ namespace CONSTANTS {
     export class Measure {
         width: number = 300;
         height: number = 50;
-        displayMeasureNum: number = 2;
-        displayPitchNum: number = 7;
-        measureNum: number = 4;
         minNote: number = 8 // of a whole note
         pitch: Array<string> = [
             "C2", "D2", "E2", "F2", "G2", "A2", "B2",
@@ -19,6 +16,12 @@ namespace CONSTANTS {
             "C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5"
         ];
         pitchNum = this.pitch.length;
+    }
+
+    export class Score extends Measure{
+        displayMeasureNum: number = 2;
+        displayPitchNum: number = 7;
+        measureNum: number = 4;
     }
 
     export class Game {

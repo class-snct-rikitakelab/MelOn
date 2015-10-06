@@ -14,9 +14,6 @@ var CONSTANTS;
         function Measure() {
             this.width = 300;
             this.height = 50;
-            this.displayMeasureNum = 2;
-            this.displayPitchNum = 7;
-            this.measureNum = 4;
             this.minNote = 8; // of a whole note
             this.pitch = [
                 "C2", "D2", "E2", "F2", "G2", "A2", "B2",
@@ -28,6 +25,17 @@ var CONSTANTS;
         return Measure;
     })();
     CONSTANTS.Measure = Measure;
+    var Score = (function (_super) {
+        __extends(Score, _super);
+        function Score() {
+            _super.apply(this, arguments);
+            this.displayMeasureNum = 2;
+            this.displayPitchNum = 7;
+            this.measureNum = 4;
+        }
+        return Score;
+    })(Measure);
+    CONSTANTS.Score = Score;
     var Game = (function () {
         function Game() {
             //measure: CONSTANTS.Measure = new CONSTANTS.Measure();

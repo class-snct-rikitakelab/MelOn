@@ -15,10 +15,10 @@ var Main = (function (_super) {
     }
     Main.prototype.init = function () {
         // Get Measure constants.
-        this.MEASURE = new CONSTANTS.Measure;
+        this.SCORE = new CONSTANTS.Score;
         // Set camera avairable zone.
-        var scoreWidth = this.MEASURE.width * this.MEASURE.measureNum;
-        var scoreHeight = this.MEASURE.height * this.MEASURE.pitchNum;
+        var scoreWidth = this.SCORE.width * this.SCORE.measureNum;
+        var scoreHeight = this.SCORE.height * this.SCORE.pitchNum;
         this.camera.bounds.setTo(0, 0, scoreWidth, scoreHeight);
         // For display fps.
         this.time.advancedTiming = true;
@@ -29,7 +29,7 @@ var Main = (function (_super) {
         this.stationery = new Stationery(this.game, new CONSTANTS.Stationery);
         // ========== View ==========
         this.score = this.game.add.group();
-        _.times(this.MEASURE.measureNum, function (n) {
+        _.times(this.SCORE.measureNum, function (n) {
             _this.score.add(new MeasureSheet(_this.game, new CONSTANTS.MeasureSheet, n, {}));
         });
         this.pencil = new StationeryButton(this.game, new CONSTANTS.Pencil, { stationery: this.stationery });
