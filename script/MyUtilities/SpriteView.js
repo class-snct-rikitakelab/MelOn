@@ -4,9 +4,9 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var SpriteObject = (function (_super) {
-    __extends(SpriteObject, _super);
-    function SpriteObject(game, constants, models) {
+var SpriteView = (function (_super) {
+    __extends(SpriteView, _super);
+    function SpriteView(game, constants, models) {
         _super.call(this, game, constants.x, constants.y, constants.images[constants.initImage]);
         this.models = models;
         game.world.add(this);
@@ -15,30 +15,30 @@ var SpriteObject = (function (_super) {
         this.setFrameAnimation();
         this.setPhysical(constants);
     }
-    SpriteObject.prototype.setSize = function (width, height) {
+    SpriteView.prototype.setSize = function (width, height) {
         this.width = width;
         this.height = height;
     };
-    SpriteObject.prototype.setPosition = function (x, y) {
+    SpriteView.prototype.setPosition = function (x, y) {
         this.x = x;
         this.y = y;
     };
-    SpriteObject.prototype.update = function () {
+    SpriteView.prototype.update = function () {
         // override!
     };
-    SpriteObject.prototype.onCollide = function (partner) {
+    SpriteView.prototype.onCollide = function (partner) {
         // override!
     };
-    SpriteObject.prototype.onOverlap = function (partner) {
+    SpriteView.prototype.onOverlap = function (partner) {
         // override!
     };
-    SpriteObject.prototype.setFrameAnimation = function () {
+    SpriteView.prototype.setFrameAnimation = function () {
         // override!
         // This is recommended to imprement in child class not using constants.
     };
-    SpriteObject.prototype.setPhysical = function (constants) {
+    SpriteView.prototype.setPhysical = function (constants) {
         // override!
     };
-    return SpriteObject;
+    return SpriteView;
 })(Phaser.Sprite);
-//# sourceMappingURL=SpriteObject.js.map
+//# sourceMappingURL=SpriteView.js.map

@@ -45,7 +45,7 @@ namespace CONSTANTS {
         };
     }
 
-    export interface SpriteObject {
+    export interface SpriteView {
         width: number;
         height: number;
         x: number;
@@ -54,7 +54,7 @@ namespace CONSTANTS {
         images: { [name: string]: string };
     }
 
-    export class PreloadBar implements SpriteObject{
+    export class PreloadBar implements SpriteView{
         width = 300;
         height = 50;
         x = new CONSTANTS.Game().width / 2;
@@ -65,7 +65,7 @@ namespace CONSTANTS {
         }
     }
 
-    export class Background implements SpriteObject {
+    export class Background implements SpriteView {
         width = new Game().width;
         height = new Game().height;
         x = 0;
@@ -76,7 +76,7 @@ namespace CONSTANTS {
         };
     }
 
-    export class MeasureSheet implements SpriteObject {
+    export class MeasureSheet implements SpriteView {
         measure: CONSTANTS.Measure = new CONSTANTS.Measure();
         width = this.measure.width;
         height = this.measure.height * this.measure.pitchNum;
@@ -88,11 +88,11 @@ namespace CONSTANTS {
         } 
     }
 
-    export interface DOMObject {
+    export interface DOMView {
         selector: string;
     }
 
-    export class StationeryButton implements DOMObject {
+    export class StationeryButton implements DOMView {
         selector: string;
         name: string;
         protected imageAddress: string = new CONSTANTS.Game().imageAddress + "stationeryButton/";
@@ -102,7 +102,7 @@ namespace CONSTANTS {
         images: { [name: string]: string };
     }
 
-    export class Pencil extends StationeryButton{
+    export class Pencil extends StationeryButton {
         selector: string = "#pencil";
         name: string = "pencil";
         images: { [name: string]: string } = {
@@ -111,7 +111,7 @@ namespace CONSTANTS {
         }
     }
 
-    export class Eraser extends StationeryButton{
+    export class Eraser extends StationeryButton {
         selector: string = "#eraser";
         name: string = "eraser";
         images: { [name: string]: string } = {

@@ -2,7 +2,7 @@
 
 // This class is one of View (Concrete Observer).
 
-class StationeryButton extends DOMObject {
+class StationeryButton extends DOMView {
     private stationery: Stationery; // Observer(View) can watch Subject(Model).
     private onImage: JQuery;
     private offImage: JQuery;

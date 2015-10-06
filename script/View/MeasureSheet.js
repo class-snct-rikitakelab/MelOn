@@ -13,5 +13,5 @@ var MeasureSheet = (function (_super) {
         this.setPosition(this.width * measureNumber, 0);
     }
     return MeasureSheet;
-})(SpriteObject);
+})(SpriteView);
 //# sourceMappingURL=MeasureSheet.js.map

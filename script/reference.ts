@@ -17,8 +17,8 @@
 /// <reference path="MyUtilities/Constants.ts"/>
 /// <reference path="MyUtilities/ContactManager.ts"/>
 /// <reference path="MyUtilities/Model.ts"/>
-/// <reference path="MyUtilities/SpriteObject.ts"/>
-/// <reference path="MyUtilities/DOMObject.ts"/>
+/// <reference path="MyUtilities/SpriteView.ts"/>
+/// <reference path="MyUtilities/DOMView.ts"/>
 
 // Model
 /// <reference path="Model/Stationery.ts"/>

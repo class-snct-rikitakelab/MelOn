@@ -26,8 +26,9 @@ var SCRIPT_MAP = {
         "Boot.js",
         "ContactManager.js",
         "Model.js",
-        "SpriteObject.js",
-        "DOMObject.js",
+        "SpriteView.js",
+        "GroupView.js",
+        "DOMView.js",
         "MyPhaserGame.js",
 	],
 

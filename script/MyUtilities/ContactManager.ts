@@ -43,12 +43,12 @@ class ContactManager extends Phaser.Physics.Arcade{
         });
     }
 
-    private onCollide(sprite1: SpriteObject, sprite2: SpriteObject) {
+    private onCollide(sprite1: SpriteView, sprite2: SpriteView) {
         sprite1.onCollide(sprite2);
         sprite2.onCollide(sprite1);
     }
 
-    private onOverlap(sprite1: SpriteObject, sprite2: SpriteObject) {
+    private onOverlap(sprite1: SpriteView, sprite2: SpriteView) {
         sprite1.onOverlap(sprite2);
         sprite2.onOverlap(sprite1);
     }

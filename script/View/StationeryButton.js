@@ -60,5 +60,5 @@ var StationeryButton = (function (_super) {
         this.stationery.changeStationery(this.constants.name);
     };
     return StationeryButton;
-})(DOMObject);
+})(DOMView);
 //# sourceMappingURL=StationeryButton.js.map

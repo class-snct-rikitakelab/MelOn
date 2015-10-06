@@ -1,10 +1,10 @@
 ﻿/// <reference path="../reference.ts"/>
 
-class SpriteObject extends Phaser.Sprite {
+class SpriteView extends Phaser.Sprite {
 
     protected jq: JQuery;
 
-    constructor(game: Phaser.Game, constants: CONSTANTS.SpriteObject, protected models?: Object) {
+    constructor(game: Phaser.Game, constants: CONSTANTS.SpriteView, protected models: Object) {
         super(game, constants.x, constants.y, constants.images[constants.initImage]);
         game.world.add(this);
         this.jq = $(this);
@@ -27,11 +27,11 @@ class SpriteObject extends Phaser.Sprite {
         // override!
     }
 
-    public onCollide(partner?: SpriteObject) {
+    public onCollide(partner?: SpriteView) {
         // override!
     }
 
-    public onOverlap(partner?: SpriteObject) {
+    public onOverlap(partner?: SpriteView) {
         // override!
     }
 
@@ -40,7 +40,7 @@ class SpriteObject extends Phaser.Sprite {
         // This is recommended to imprement in child class not using constants.
     }
 
-    protected setPhysical(constants: CONSTANTS.SpriteObject) {
+    protected setPhysical(constants: CONSTANTS.SpriteView) {
         // override!
     }
 }
