@@ -2,9 +2,10 @@
 // Write all TypeScript Files to use in this software.
 // <reference path=""/>
 // Declaration type files of libraries.
-/// <reference path="../storage/declaration/phaser.d.ts"/>
 /// <reference path="../storage/declaration/jquery.d.ts"/>
 /// <reference path="../storage/declaration/jqueryui.d.ts"/>
+/// <reference path="../storage/declaration/phaser.d.ts"/>
+/// <reference path="../storage/declaration/underscore.d.ts"/>
 // MyUtility
 /// <reference path="MyUtilities/AssetLoader.ts"/>
 /// <reference path="MyUtilities/Assets.ts"/>

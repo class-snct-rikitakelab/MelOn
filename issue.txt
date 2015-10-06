@@ -1,0 +1,97 @@
+CoffeeじゃなくてやっぱTypeScript。だって型欲しいじゃん？
+ネックなのはコンパイル時間だけど…論文にコンパイル時間のことを書くのはやめよう。
+
+AtomでTypeScriptオートコンパイル
+atom-typescriptがntypescriptを発見できず、使えない。オートコンパイルできないならいらん！
+
+TypeScriptを使うためVisualStudio2015を導入。
+動かなくなったらキャンセル⇒PC再起動⇒変更と削除で修正⇒いつかどうにかなる。
+
+補完がSublimeより効く！
+デバッグモードでブレークポイントとかおける！
+色々便利！
+でも複雑
+ソリューションエクスプローラーとか分からない…
+
+jsファイルをTSで読み込むには、型定義ファイルなるものが必要で、tmlibを直接使うことはできない。有名なのはある。jQueryとか。
+
+TypeScriptに対応している唯一のゲームエンジン、Phaserを発見！
+チュートリアル、APIドキュメント、人気など、enchantすら上回る！
+問題は英語…勉強になるし良いじゃん！
+
+クラス⇒typescript
+型⇒typescript
+DOM⇒jQuery
+Ajax⇒jQuery
+音⇒Phaser
+ゲーム⇒Phaser
+
+あとはソース分割開発ができるかどうか…
+
+JavaScriptの理由
+ブラウザのレンダリングが速くなってきた
+コンパイル・ビルドが少ない
+よりコアにクロスプラットフォーム
+Webバックエンド（Node.jsなど）との親和性が高い
+http://qiita.com/hp0me/items/1c8d099bacbb5e068081#back-to-html5-javascript
+
+PhaserはPixi.jsを内包している。
+Pixiスゲー！http://ics-web.jp/lab/archives/201
+
+Haxeとかいうのもあったけど、JQueryとか他のライブラリとか使うなら、やっぱTypeScript
+
+Phaserは、公式サイトのVS解説にはないけど、GitHubからPhaserに入っているもう2つのdtsファイルを持ってこないといけない。
+
+referenceって、2つのソースが両方リファレンスし合ったらどうなるんだろうと思ってやってみた
+けど、これってあくまで名前の参照だから、実際の実行順序はHTMLでのJS取り込みによる。
+
+TSでvarを使わないかと言うとそうでもないみたい…？
+型が付けられるのはメンバとか引数とか返り値とか。
+関数内のローカル変数には型が付かないみたい…でも一旦型が入ってしまえば推論で…
+とかじゃなくて、単純に変数を宣言するのはvar、メンバにvarはいらない、ただそれだけ。
+
+HTMLデザイナ使いたい！！！でも出てこない！！！なぜ！！！
+
+補完とか型とか自動で表示してくれてスゲー！
+
+HTMLデザイナの使い方分かった！！！
+ソリューションにあれば、HTMLファイルを右クリックして、ファイルを開くアプリケーションの選択をクリック⇒HTML（Webフォーム)エディタを選択すると、左下に「デザイン」ってのが出てくるから押す。できる。
+
+jqueryuiなどのプラグインをTSで使うときは、プラグインの中のリファレンスがちゃんとjQueryを参照しているか注意しよう。
+
+もしかしてVSで自動コンパイルできるのってnode.jsが導入されてて、typescriptのコンパイル環境が整っているおかげ？VSはこれを使っている？
+
+9/30
+MelOnサーバ立てよう
+いきなりサーバにログインできない
+秘密鍵はコピペしたらchmod 0600 fuurin.pem.keyとすれば動く。
+http://blog.ruedap.com/2011/04/04/mac-ssh-key-copy-error
+
+ログイン機能自己流でやってたけど、勉強した方がよくね？
+
+10/5
+S3マウント　http://recipe.kc-cloud.jp/archives/970
+力武先生にアクセスキーIDとシークレットアクセスキーをもらおう！
+マウント成功！しかしディレクトリが見えない…　⇒　S3FS-C (CloudPack)なるものが必要
+http://qiita.com/tarr1124/items/a2426d626f775019ece9
+に従ってみる。
+↑をやったあとに、
+$ cd /usr/local/src
+$ git clone https://github.com/leo-project/s3fs-c.git
+$ cd s3fs-c/
+$ ./configure
+$ make
+$ make install
+あとは、/usr/local/src/s3fs-c/src/s3fs つまり、s3fs-cのコマンドをs3fsの代わりに使うことで、ディレクトリが見えるマウントが可能になる。
+sudo /usr/local/src/s3fs-c/src/s3fs melon.storage /var/www/html/MelOn/ -o allow_other
+
+git ignore使おう
+http://www.omakase.org/misc/gitignore.html
+
+storageフォルダをgit管理下から外して、サーバ側にも同名のstorageフォルダを作成。
+サーバ側のstorageにはS3をマウント。素材類はstorageに手動で保存しようね★
+git管理下に置かれているファイルは、.gitignoreに書いていないもの、GitHubに上がっているもの。
+
+ついにMelOnの開発環境が整った。しかし、どうもアセットのロードが終わってからcreate関数が呼ばれるまでの間が長い。
+gameのpreload関数は、ロードが終わった後キャッシュにアセットを入れる作業がある。
+おそらくこれが原因。

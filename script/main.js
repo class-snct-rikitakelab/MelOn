@@ -18,8 +18,8 @@ var Main = (function (_super) {
         this.stationery = new Stationery(this.game, new CONSTANTS.Stationery);
         // ========== View ==========
         this.score = this.game.add.group();
-        var MEASURE = new CONSTANTS.Measure();
-        for (var i = 0; i < MEASURE.measureNum; ++i)
+        var measureNum = new CONSTANTS.Measure().measureNum;
+        for (var i = 0; i < measureNum; ++i)
             this.score.add(new MeasureSheet(this.game, new CONSTANTS.MeasureSheet, i, {}));
         this.pencil = new StationeryButton(this.game, new CONSTANTS.Pencil, { stationery: this.stationery });
         this.eraser = new StationeryButton(this.game, new CONSTANTS.Eraser, { stationery: this.stationery });
