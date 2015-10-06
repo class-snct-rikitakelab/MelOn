@@ -10,7 +10,7 @@ var SpriteView = (function (_super) {
         _super.call(this, game, constants.x, constants.y, constants.images[constants.initImage]);
         this.models = models;
         game.world.add(this);
-        this.jq = $(this);
+        this.$ = $(this);
         this.setSize(constants.width, constants.height);
         this.setFrameAnimation();
         this.setPhysical(constants);

@@ -38,11 +38,9 @@ var CONSTANTS;
     CONSTANTS.Score = Score;
     var Game = (function () {
         function Game() {
-            //measure: CONSTANTS.Measure = new CONSTANTS.Measure();
-            this.width = 600;
-            this.height = 350;
-            //width: number = this.measure.width * this.measure.displayMeasureNum;
-            //height: number = this.measure.height * this.measure.displayPitchNum;
+            this.measure = new CONSTANTS.Score();
+            this.width = this.measure.width * this.measure.displayMeasureNum;
+            this.height = this.measure.height * this.measure.displayPitchNum;
             this.renderer = "score";
             this.imageAddress = "storage/assets/image/";
         }
@@ -87,11 +85,12 @@ var CONSTANTS;
         return Background;
     })();
     CONSTANTS.Background = Background;
-    var MeasureSheet = (function () {
+    var MeasureSheet = (function (_super) {
+        __extends(MeasureSheet, _super);
         function MeasureSheet() {
-            this.measure = new CONSTANTS.Measure();
-            this.width = this.measure.width;
-            this.height = this.measure.height * this.measure.pitchNum;
+            _super.apply(this, arguments);
+            this.width = this.width;
+            this.height = this.height * this.pitchNum;
             this.x = 0; // Set it later.
             this.y = 0;
             this.initImage = "score";
@@ -100,8 +99,16 @@ var CONSTANTS;
             };
         }
         return MeasureSheet;
-    })();
+    })(Measure);
     CONSTANTS.MeasureSheet = MeasureSheet;
+    var ScoreSheet = (function (_super) {
+        __extends(ScoreSheet, _super);
+        function ScoreSheet() {
+            _super.apply(this, arguments);
+        }
+        return ScoreSheet;
+    })(CONSTANTS.Score);
+    CONSTANTS.ScoreSheet = ScoreSheet;
     var StationeryButton = (function () {
         function StationeryButton() {
             this.imageAddress = new CONSTANTS.Game().imageAddress + "stationeryButton/";

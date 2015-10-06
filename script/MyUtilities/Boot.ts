@@ -22,6 +22,9 @@ class Boot extends Phaser.State {
         // Phaser will automatically pause if the browser tab the game is in loses focus. You can disable that here:
         this.stage.disableVisibilityChange = true;
 
+        // For display fps.
+        this.time.advancedTiming = true;
+
         // Start asset loading.
         this.game.state.start('Preloader', true, false, this.assets);
     }

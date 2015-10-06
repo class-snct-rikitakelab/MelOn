@@ -6,35 +6,17 @@
 // Shusei Komatsu decided to name the roles "Model" and "View" so that we can add "Controller" when it is needed later.
 
 class Main extends Phaser.State {
-    private SCORE: CONSTANTS.Score;
     private stationery: Stationery;
-    private score: Phaser.Group;
+    private scoreSheet: ScoreSheet;
     private pencil: StationeryButton;
     private eraser: StationeryButton;
-
-    init() {
-        // Get Measure constants.
-        this.SCORE = new CONSTANTS.Score;
-
-        // Set camera avairable zone.
-        var scoreWidth: number = this.SCORE.width * this.SCORE.measureNum;
-        var scoreHeight: number = this.SCORE.height * this.SCORE.pitchNum;
-        this.camera.bounds.setTo(0, 0, scoreWidth, scoreHeight);
-
-        // For display fps.
-        this.time.advancedTiming = true;
-    }
-
+    
     create() {
         // ========== Model ===========
         this.stationery = new Stationery(this.game, new CONSTANTS.Stationery);
         
         // ========== View ==========
-        this.score = this.game.add.group();
-        _.times(this.SCORE.measureNum, (n: number) => {
-            this.score.add(new MeasureSheet(this.game, new CONSTANTS.MeasureSheet, n, {}))
-        });
-
+        this.scoreSheet = new ScoreSheet(this.game, new CONSTANTS.ScoreSheet);
         this.pencil = new StationeryButton(this.game, new CONSTANTS.Pencil, { stationery: this.stationery });
         this.eraser = new StationeryButton(this.game, new CONSTANTS.Eraser, { stationery: this.stationery });
     }
@@ -46,7 +28,7 @@ class Main extends Phaser.State {
     render() {
         // For debug. In render method, all values are always updated.
         // this.game.debug.text(this.stationery.getStationery, 100, 100, "black");
-        // this.game.debug.cameraInfo(this.camera, 0, 0, "brack");
+        // this.game.debug.cameraInfo(this.camera, 0, 0, "blue");
         this.game.debug.text(this.time.fps + 'fps', 5, 20);
     }
 }

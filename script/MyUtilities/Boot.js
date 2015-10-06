@@ -24,6 +24,8 @@ var Boot = (function (_super) {
         // This game can run even if the users change the focus such as tab on their browser.
         // Phaser will automatically pause if the browser tab the game is in loses focus. You can disable that here:
         this.stage.disableVisibilityChange = true;
+        // For display fps.
+        this.time.advancedTiming = true;
         // Start asset loading.
         this.game.state.start('Preloader', true, false, this.assets);
     };

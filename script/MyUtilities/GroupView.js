@@ -6,8 +6,11 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var GroupView = (function (_super) {
     __extends(GroupView, _super);
-    function GroupView(game) {
+    function GroupView(game, constants, models) {
         _super.call(this, game);
+        this.models = models;
+        game.world.add(this);
+        this.$ = $(this);
     }
     return GroupView;
 })(Phaser.Group);

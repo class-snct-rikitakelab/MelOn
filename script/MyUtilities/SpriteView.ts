@@ -2,12 +2,12 @@
 
 class SpriteView extends Phaser.Sprite {
 
-    protected jq: JQuery;
+    protected $: JQuery;
 
-    constructor(game: Phaser.Game, constants: CONSTANTS.SpriteView, protected models: Object) {
+    constructor(game: Phaser.Game, constants: CONSTANTS.SpriteView, protected models?: Object) {
         super(game, constants.x, constants.y, constants.images[constants.initImage]);
         game.world.add(this);
-        this.jq = $(this);
+        this.$ = $(this);
         this.setSize(constants.width, constants.height);
         this.setFrameAnimation();
         this.setPhysical(constants);

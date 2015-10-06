@@ -18,14 +18,14 @@
 /// <reference path="MyUtilities/ContactManager.ts"/>
 /// <reference path="MyUtilities/Model.ts"/>
 /// <reference path="MyUtilities/SpriteView.ts"/>
+/// <reference path="MyUtilities/GroupView.ts"/>
 /// <reference path="MyUtilities/DOMView.ts"/>
 
 // Model
 /// <reference path="Model/Stationery.ts"/>
 
 // View
-/// <reference path="View/Score.ts"/>
-/// <reference path="View/MeasureSheet.ts"/>
+/// <reference path="View/ScoreSheet.ts"/>
 /// <reference path="View/StationeryButton.ts"/>
 
 // Main

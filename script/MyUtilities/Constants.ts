@@ -25,14 +25,16 @@ namespace CONSTANTS {
     }
 
     export class Game {
-        //measure: CONSTANTS.Measure = new CONSTANTS.Measure();
-        width: number = 600;
-        height: number = 350;
-        //width: number = this.measure.width * this.measure.displayMeasureNum;
-        //height: number = this.measure.height * this.measure.displayPitchNum;
+        measure: CONSTANTS.Score = new CONSTANTS.Score();
+        width: number = this.measure.width * this.measure.displayMeasureNum;
+        height: number = this.measure.height * this.measure.displayPitchNum;
         renderer: string = "score";
         imageAddress: string = "storage/assets/image/";
     }
+
+
+
+
 
     export interface Model {
         events: { [name: string]: string };
@@ -44,6 +46,10 @@ namespace CONSTANTS {
             changeStationery: "changeStationery",
         };
     }
+
+
+
+
 
     export interface SpriteView {
         width: number;
@@ -76,10 +82,9 @@ namespace CONSTANTS {
         };
     }
 
-    export class MeasureSheet implements SpriteView {
-        measure: CONSTANTS.Measure = new CONSTANTS.Measure();
-        width = this.measure.width;
-        height = this.measure.height * this.measure.pitchNum;
+    export class MeasureSheet extends Measure implements SpriteView {
+        width = this.width;
+        height = this.height * this.pitchNum;
         x = 0;  // Set it later.
         y = 0;
         initImage = "score";
@@ -87,6 +92,20 @@ namespace CONSTANTS {
             score: "score",
         } 
     }
+
+
+
+
+
+    export interface GroupView {
+    }
+
+    export class ScoreSheet extends CONSTANTS.Score implements GroupView {
+    }
+
+
+
+
 
     export interface DOMView {
         selector: string;

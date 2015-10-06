@@ -13,25 +13,11 @@ var Main = (function (_super) {
     function Main() {
         _super.apply(this, arguments);
     }
-    Main.prototype.init = function () {
-        // Get Measure constants.
-        this.SCORE = new CONSTANTS.Score;
-        // Set camera avairable zone.
-        var scoreWidth = this.SCORE.width * this.SCORE.measureNum;
-        var scoreHeight = this.SCORE.height * this.SCORE.pitchNum;
-        this.camera.bounds.setTo(0, 0, scoreWidth, scoreHeight);
-        // For display fps.
-        this.time.advancedTiming = true;
-    };
     Main.prototype.create = function () {
-        var _this = this;
         // ========== Model ===========
         this.stationery = new Stationery(this.game, new CONSTANTS.Stationery);
         // ========== View ==========
-        this.score = this.game.add.group();
-        _.times(this.SCORE.measureNum, function (n) {
-            _this.score.add(new MeasureSheet(_this.game, new CONSTANTS.MeasureSheet, n, {}));
-        });
+        this.scoreSheet = new ScoreSheet(this.game, new CONSTANTS.ScoreSheet);
         this.pencil = new StationeryButton(this.game, new CONSTANTS.Pencil, { stationery: this.stationery });
         this.eraser = new StationeryButton(this.game, new CONSTANTS.Eraser, { stationery: this.stationery });
     };
@@ -41,7 +27,7 @@ var Main = (function (_super) {
     Main.prototype.render = function () {
         // For debug. In render method, all values are always updated.
         // this.game.debug.text(this.stationery.getStationery, 100, 100, "black");
-        // this.game.debug.cameraInfo(this.camera, 0, 0, "brack");
+        // this.game.debug.cameraInfo(this.camera, 0, 0, "blue");
         this.game.debug.text(this.time.fps + 'fps', 5, 20);
     };
     return Main;

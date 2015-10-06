@@ -37,7 +37,7 @@ var SCRIPT_MAP = {
     ],
 
     View: [
-        "MeasureSheet.js",
+        "ScoreSheet.js",
         "StationeryButton.js",
 	],
 };

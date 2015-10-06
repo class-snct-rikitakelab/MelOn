@@ -8,7 +8,7 @@ class DOMView {
 
     // DOMObjects have reference of their models. 
     // This is object. So it's recommended to get each model in child classes.
-    constructor(protected game: Phaser.Game, constants: CONSTANTS.DOMView, protected models: Object) {
+    constructor(protected game: Phaser.Game, constants: CONSTANTS.DOMView, protected models?: Object) {
         // DOMObjects have their own Element of jQuery by using selector.
         this.$ = $(constants.selector);
     }
