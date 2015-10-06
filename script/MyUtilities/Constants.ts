@@ -11,13 +11,14 @@ namespace CONSTANTS {
         height: number = 50;
         displayMeasureNum: number = 2;
         displayPitchNum: number = 7;
-        measureNum: number = 20;
+        measureNum: number = 4;
         minNote: number = 8 // of a whole note
         pitch: Array<string> = [
             "C2", "D2", "E2", "F2", "G2", "A2", "B2",
             "C3", "D3", "E3", "F3", "G3", "A3", "B3",
             "C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5"
         ];
+        pitchNum = this.pitch.length;
     }
 
     export class Game {
@@ -75,7 +76,7 @@ namespace CONSTANTS {
     export class MeasureSheet implements SpriteObject {
         measure: CONSTANTS.Measure = new CONSTANTS.Measure();
         width = this.measure.width;
-        height = this.measure.height * this.measure.pitch.length;
+        height = this.measure.height * this.measure.pitchNum;
         x = 0;  // Set it later.
         y = 0;
         initImage = "score";
