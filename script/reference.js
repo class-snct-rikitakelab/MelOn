@@ -8,7 +8,9 @@
 // MyUtility
 /// <reference path="MyUtilities/AssetLoader.ts"/>
 /// <reference path="MyUtilities/Assets.ts"/>
-/// <reference path="MyUtilities/PhaserGame.ts"/>
+/// <reference path="MyUtilities/Preloader.ts" />
+/// <reference path="MyUtilities/Boot.ts"/>
+/// <reference path="MyUtilities/MyPhaserGame.ts"/>
 /// <reference path="MyUtilities/Constants.ts"/>
 /// <reference path="MyUtilities/ContactManager.ts"/>
 /// <reference path="MyUtilities/Model.ts"/>

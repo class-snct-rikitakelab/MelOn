@@ -11,8 +11,6 @@ var MelOnAssets = (function (_super) {
         this.images = {
             address: "storage/assets/image/",
             assets: [
-                // game
-                ["preloadBar", "game/preloadBar.png"],
                 // background
                 ["background", "background/background.png"],
                 // score
@@ -21,7 +19,7 @@ var MelOnAssets = (function (_super) {
                 ["score", "score/score.png"],
             ],
         };
-        this.audio = {
+        this.audios = {
             address: "storage/assets/sound/",
             assets: [
                 // piano
@@ -51,6 +49,13 @@ var MelOnAssets = (function (_super) {
                 ["MelOn", ["se/MelOn!.mp3",]],
                 ["tamb", ["se/tamb.mp3",]],
             ]
+        };
+        this.preloadImages = {
+            address: "storage/assets/image/",
+            assets: [
+                // preloadBar
+                ["preloadBar", "game/preloadBar.png"],
+            ],
         };
     }
     return MelOnAssets;

@@ -4,9 +4,6 @@ class MelOnAssets extends AssetLoader {
     protected images: { address: string, assets: [string, string][] } = {
         address: "storage/assets/image/",
         assets: [
-            // game
-            ["preloadBar", "game/preloadBar.png"],
-            
             // background
             ["background", "background/background.png"],
 
@@ -17,7 +14,7 @@ class MelOnAssets extends AssetLoader {
         ],
     }
 
-    protected audio: { address: string, assets: [string, string[]][] } = {
+    protected audios: { address: string, assets: [string, string[]][] } = {
         address: "storage/assets/sound/",
         assets: [
             // piano
@@ -48,5 +45,13 @@ class MelOnAssets extends AssetLoader {
             ["MelOn", ["se/MelOn!.mp3", ]],
             ["tamb", ["se/tamb.mp3", ]],
         ]
+    }
+
+    protected preloadImages: { address: string, assets: [string, string][] } = {
+        address: "storage/assets/image/",
+        assets: [
+            // preloadBar
+            ["preloadBar", "game/preloadBar.png"],
+        ],
     }
 }

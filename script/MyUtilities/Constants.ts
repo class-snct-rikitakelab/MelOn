@@ -6,7 +6,7 @@
 // If we don't use export, we can hide the classes.
 
 namespace CONSTANTS {
-    export class Game{
+    export class Game {
         width: number = 600;
         height: number = 350;
         renderer: string = "score";
@@ -31,6 +31,17 @@ namespace CONSTANTS {
         y: number;
         initImage: string;
         images: { [name: string]: string };
+    }
+
+    export class PreloadBar implements SpriteObject{
+        width = 300;
+        height = 50;
+        x = new CONSTANTS.Game().width / 2;
+        y = new CONSTANTS.Game().height / 2;
+        initImage = "preloadBar";
+        images: { [name: string]: string } = {
+            preloadBar: "preloadBar"
+        }
     }
 
     export class Background implements SpriteObject {

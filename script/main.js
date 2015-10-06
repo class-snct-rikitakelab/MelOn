@@ -8,41 +8,29 @@ var __extends = (this && this.__extends) || function (d, b) {
 // This program runs on Model-View pattern (Observer pattern, Publisher/Subscriber pattern).
 // This pattern is effective for "When A Then B" problem.
 // Shusei Komatsu decided to name the roles "Model" and "View" so that we can add "Controller" when it is needed later.
-var MelOn = (function (_super) {
-    __extends(MelOn, _super);
-    function MelOn() {
+var Main = (function (_super) {
+    __extends(Main, _super);
+    function Main() {
         _super.apply(this, arguments);
     }
-    MelOn.prototype.create = function () {
-        // =========== Setting game ==========
-        var preloadBar = this.game.add.sprite(400, 50, "preloadBar");
-        preloadBar.pivot.x = preloadBar.width / 2;
-        preloadBar.pivot.y = preloadBar.height / 2;
-        this.game.load.setPreloadSprite(preloadBar);
-        // Start phisics system.
-        this.game.physics.startSystem(Phaser.Physics.ARCADE);
-        // This game can run even if the users change the focus such as tab on their browser.
-        this.game.stage.disableVisibilityChange = true;
+    Main.prototype.create = function () {
         // ========== Model ===========
         this.stationery = new Stationery(this.game, new CONSTANTS.Stationery);
         // ========== View ==========
         new SpriteObject(this.game, new CONSTANTS.Background);
         this.pencil = new StationeryButton(this.game, new CONSTANTS.Pencil, { stationery: this.stationery });
         this.eraser = new StationeryButton(this.game, new CONSTANTS.Eraser, { stationery: this.stationery });
-        // ========== Other ===========
     };
-    MelOn.prototype.preloadBar = function (game) {
+    Main.prototype.update = function () {
     };
-    MelOn.prototype.update = function () {
-    };
-    MelOn.prototype.render = function () {
+    Main.prototype.render = function () {
         // For debug. In render method, all values are always updated.
         this.game.debug.text(this.stationery.getStationery, 100, 100, "black");
     };
-    return MelOn;
-})(PhaserGame);
+    return Main;
+})(Phaser.State);
 // Do it after loading HTML, and use jQuery
 window.onload = function () {
-    $(function () { new MelOn(new MelOnAssets, new CONSTANTS.Game); });
+    $(function () { new MyPhaserGame(new MelOnAssets, new CONSTANTS.Game); });
 };
 //# sourceMappingURL=main.js.map

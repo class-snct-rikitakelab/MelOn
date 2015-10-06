@@ -19,37 +19,58 @@ var AssetLoader = (function () {
                 ["", "", 0, 0]
             ]
         };
-        this.audio = {
+        this.audios = {
+            address: "",
+            assets: [
+                ["", []]
+            ]
+        };
+        this.preloadImages = {
+            address: "",
+            assets: [
+                ["", ""]
+            ],
+        };
+        this.preloadSpritesheets = {
+            address: "",
+            assets: [
+                ["", "", 0, 0]
+            ]
+        };
+        this.preloadAudios = {
             address: "",
             assets: [
                 ["", []]
             ]
         };
     }
-    AssetLoader.prototype.load = function (game) {
-        var loader = game.load;
-        this.loadImages(loader);
-        this.loadAudios(loader);
-        //this.preloadBar(game);
+    AssetLoader.prototype.load = function (loader) {
+        this.loadImages(loader, this.images);
+        // this.loadSpriteSheets(loader, this.spritesheets);
+        this.loadAudios(loader, this.audios);
     };
-    // I can not understand about preloadBar!
-    AssetLoader.prototype.loadImages = function (loader) {
+    AssetLoader.prototype.preload = function (loader) {
+        this.loadImages(loader, this.preloadImages);
+        // this.loadSpriteSheets(loader, this.preloadSpritesheets);
+        // this.loadAudios(loader, this.preloadAudios);
+    };
+    AssetLoader.prototype.loadImages = function (loader, images) {
         var _this = this;
-        this.images.assets.forEach(function (asset) {
-            loader.image(asset[_this.enum.KEY], _this.images.address + asset[_this.enum.FILE_NAME]);
+        images.assets.forEach(function (asset) {
+            loader.image(asset[_this.enum.KEY], images.address + asset[_this.enum.FILE_NAME]);
         });
     };
-    AssetLoader.prototype.loadSpriteSheets = function (loader) {
+    AssetLoader.prototype.loadSpriteSheets = function (loader, spritesheets) {
         var _this = this;
-        this.spritesheets.assets.forEach(function (asset) {
-            loader.spritesheet(asset[_this.enum.KEY], _this.spritesheets.address + asset[_this.enum.FILE_NAME], asset[_this.enum.FRAME_WIDTH], asset[_this.enum.FRAME_HEIGHT]);
+        spritesheets.assets.forEach(function (asset) {
+            loader.spritesheet(asset[_this.enum.KEY], spritesheets.address + asset[_this.enum.FILE_NAME], asset[_this.enum.FRAME_WIDTH], asset[_this.enum.FRAME_HEIGHT]);
         });
     };
-    AssetLoader.prototype.loadAudios = function (loader) {
+    AssetLoader.prototype.loadAudios = function (loader, audios) {
         var _this = this;
-        this.audio.assets.forEach(function (asset) {
+        audios.assets.forEach(function (asset) {
             asset[_this.enum.FILE_NAME] = asset[_this.enum.FILE_NAME].map(function (value) {
-                return _this.audio.address + value;
+                return audios.address + value;
             });
             loader.audio(asset[_this.enum.KEY], asset[_this.enum.FILE_NAME]);
         });

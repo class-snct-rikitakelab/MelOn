@@ -30,6 +30,20 @@ var CONSTANTS;
         return Stationery;
     })();
     CONSTANTS.Stationery = Stationery;
+    var PreloadBar = (function () {
+        function PreloadBar() {
+            this.width = 300;
+            this.height = 50;
+            this.x = new CONSTANTS.Game().width / 2;
+            this.y = new CONSTANTS.Game().height / 2;
+            this.initImage = "preloadBar";
+            this.images = {
+                preloadBar: "preloadBar"
+            };
+        }
+        return PreloadBar;
+    })();
+    CONSTANTS.PreloadBar = PreloadBar;
     var Background = (function () {
         function Background() {
             this.width = new Game().width;
