@@ -47,6 +47,12 @@ var CONSTANTS;
         return Game;
     })();
     CONSTANTS.Game = Game;
+    var Music = (function () {
+        function Music() {
+        }
+        return Music;
+    })();
+    CONSTANTS.Music = Music;
     var Stationery = (function () {
         function Stationery() {
             this.initStationery = new Pencil().name;

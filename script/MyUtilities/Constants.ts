@@ -40,6 +40,10 @@ namespace CONSTANTS {
         events: { [name: string]: string };
     }
 
+    export class Music implements Model {
+        events: { [name: string]: string };
+    }
+
     export class Stationery implements Model {
         initStationery: string = new Pencil().name;
         events: { [name: string]: string } = {

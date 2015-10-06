@@ -22,11 +22,13 @@
 /// <reference path="MyUtilities/DOMView.ts"/>
 
 // Model
+/// <reference path="Model/Music.ts"/>
 /// <reference path="Model/Stationery.ts"/>
 
 // View
 /// <reference path="View/Note.ts"/>
 /// <reference path="View/Notes.ts"/>
+/// <reference path="View/MeasureSheet.ts"/>
 /// <reference path="View/ScoreSheet.ts"/>
 /// <reference path="View/StationeryButton.ts"/>
 
