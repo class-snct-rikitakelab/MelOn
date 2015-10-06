@@ -21,6 +21,8 @@
 // Model
 /// <reference path="Model/Stationery.ts"/>
 // View
+/// <reference path="View/Note.ts"/>
+/// <reference path="View/Notes.ts"/>
 /// <reference path="View/ScoreSheet.ts"/>
 /// <reference path="View/StationeryButton.ts"/>
 // Main

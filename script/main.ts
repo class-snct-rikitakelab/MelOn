@@ -8,6 +8,7 @@
 class Main extends Phaser.State {
     private stationery: Stationery;
     private scoreSheet: ScoreSheet;
+    private notes: Notes;
     private pencil: StationeryButton;
     private eraser: StationeryButton;
     
@@ -16,20 +17,20 @@ class Main extends Phaser.State {
         this.stationery = new Stationery(this.game, new CONSTANTS.Stationery);
         
         // ========== View ==========
+        this.notes = new Notes(this.game, new CONSTANTS.Notes);
         this.scoreSheet = new ScoreSheet(this.game, new CONSTANTS.ScoreSheet);
         this.pencil = new StationeryButton(this.game, new CONSTANTS.Pencil, { stationery: this.stationery });
         this.eraser = new StationeryButton(this.game, new CONSTANTS.Eraser, { stationery: this.stationery });
     }
 
     update() {
-        this.camera.x += 1;
     }
 
     render() {
         // For debug. In render method, all values are always updated.
         // this.game.debug.text(this.stationery.getStationery, 100, 100, "black");
-        // this.game.debug.cameraInfo(this.camera, 0, 0, "blue");
-        this.game.debug.text(this.time.fps + 'fps', 5, 20);
+        this.game.debug.cameraInfo(this.camera, 10, 20, "blue");
+        //this.game.debug.text(this.time.fps + 'fps', 5, 20);
     }
 }
 

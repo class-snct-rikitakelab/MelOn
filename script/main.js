@@ -17,18 +17,18 @@ var Main = (function (_super) {
         // ========== Model ===========
         this.stationery = new Stationery(this.game, new CONSTANTS.Stationery);
         // ========== View ==========
+        this.notes = new Notes(this.game, new CONSTANTS.Notes);
         this.scoreSheet = new ScoreSheet(this.game, new CONSTANTS.ScoreSheet);
         this.pencil = new StationeryButton(this.game, new CONSTANTS.Pencil, { stationery: this.stationery });
         this.eraser = new StationeryButton(this.game, new CONSTANTS.Eraser, { stationery: this.stationery });
     };
     Main.prototype.update = function () {
-        this.camera.x += 1;
     };
     Main.prototype.render = function () {
         // For debug. In render method, all values are always updated.
         // this.game.debug.text(this.stationery.getStationery, 100, 100, "black");
-        // this.game.debug.cameraInfo(this.camera, 0, 0, "blue");
-        this.game.debug.text(this.time.fps + 'fps', 5, 20);
+        this.game.debug.cameraInfo(this.camera, 10, 20, "blue");
+        //this.game.debug.text(this.time.fps + 'fps', 5, 20);
     };
     return Main;
 })(Phaser.State);

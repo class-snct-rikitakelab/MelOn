@@ -91,7 +91,7 @@ var CONSTANTS;
             _super.apply(this, arguments);
             this.width = this.width;
             this.height = this.height * this.pitchNum;
-            this.x = 0; // Set it later.
+            this.x = 0; // Set them later.
             this.y = 0;
             this.initImage = "score";
             this.images = {
@@ -101,6 +101,21 @@ var CONSTANTS;
         return MeasureSheet;
     })(Measure);
     CONSTANTS.MeasureSheet = MeasureSheet;
+    var Note = (function (_super) {
+        __extends(Note, _super);
+        function Note() {
+            _super.apply(this, arguments);
+            this.width = this.width / this.minNote;
+            this.x = 0; // Set them later
+            this.y = 0;
+            this.initImage = "note";
+            this.images = {
+                note: "note",
+            };
+        }
+        return Note;
+    })(CONSTANTS.Measure);
+    CONSTANTS.Note = Note;
     var ScoreSheet = (function (_super) {
         __extends(ScoreSheet, _super);
         function ScoreSheet() {
@@ -109,6 +124,14 @@ var CONSTANTS;
         return ScoreSheet;
     })(CONSTANTS.Score);
     CONSTANTS.ScoreSheet = ScoreSheet;
+    var Notes = (function (_super) {
+        __extends(Notes, _super);
+        function Notes() {
+            _super.apply(this, arguments);
+        }
+        return Notes;
+    })(CONSTANTS.Score);
+    CONSTANTS.Notes = Notes;
     var StationeryButton = (function () {
         function StationeryButton() {
             this.imageAddress = new CONSTANTS.Game().imageAddress + "stationeryButton/";

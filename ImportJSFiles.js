@@ -37,6 +37,8 @@ var SCRIPT_MAP = {
     ],
 
     View: [
+        "Note.js",
+        "Notes.js",
         "ScoreSheet.js",
         "StationeryButton.js",
 	],

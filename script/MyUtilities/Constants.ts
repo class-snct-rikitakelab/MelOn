@@ -85,7 +85,7 @@ namespace CONSTANTS {
     export class MeasureSheet extends Measure implements SpriteView {
         width = this.width;
         height = this.height * this.pitchNum;
-        x = 0;  // Set it later.
+        x = 0;  // Set them later.
         y = 0;
         initImage = "score";
         images: { [name: string]: string } = {
@@ -93,6 +93,15 @@ namespace CONSTANTS {
         } 
     }
 
+    export class Note extends CONSTANTS.Measure implements SpriteView {
+        width = this.width / this.minNote;
+        x = 0; // Set them later
+        y = 0;
+        initImage = "note";
+        images: { [name: string]: string } = {
+            note: "note",
+        }
+    }
 
 
 
@@ -101,6 +110,9 @@ namespace CONSTANTS {
     }
 
     export class ScoreSheet extends CONSTANTS.Score implements GroupView {
+    }
+
+    export class Notes extends CONSTANTS.Score implements GroupView {
     }
 
 
