@@ -10,10 +10,30 @@ var __extends = (this && this.__extends) || function (d, b) {
 // If we don't use export, we can hide the classes.
 var CONSTANTS;
 (function (CONSTANTS) {
+    var Measure = (function () {
+        function Measure() {
+            this.width = 300;
+            this.height = 50;
+            this.displayMeasureNum = 2;
+            this.displayPitchNum = 7;
+            this.measureNum = 20;
+            this.minNote = 8; // of a whole note
+            this.pitch = [
+                "C2", "D2", "E2", "F2", "G2", "A2", "B2",
+                "C3", "D3", "E3", "F3", "G3", "A3", "B3",
+                "C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5"
+            ];
+        }
+        return Measure;
+    })();
+    CONSTANTS.Measure = Measure;
     var Game = (function () {
         function Game() {
+            //measure: CONSTANTS.Measure = new CONSTANTS.Measure();
             this.width = 600;
             this.height = 350;
+            //width: number = this.measure.width * this.measure.displayMeasureNum;
+            //height: number = this.measure.height * this.measure.displayPitchNum;
             this.renderer = "score";
             this.imageAddress = "storage/assets/image/";
         }
@@ -58,6 +78,21 @@ var CONSTANTS;
         return Background;
     })();
     CONSTANTS.Background = Background;
+    var MeasureSheet = (function () {
+        function MeasureSheet() {
+            this.measure = new CONSTANTS.Measure();
+            this.width = this.measure.width;
+            this.height = this.measure.height * this.measure.pitch.length;
+            this.x = 0; // Set it later.
+            this.y = 0;
+            this.initImage = "score";
+            this.images = {
+                score: "score",
+            };
+        }
+        return MeasureSheet;
+    })();
+    CONSTANTS.MeasureSheet = MeasureSheet;
     var StationeryButton = (function () {
         function StationeryButton() {
             this.imageAddress = new CONSTANTS.Game().imageAddress + "stationeryButton/";

@@ -13,6 +13,8 @@ var Preloader = (function (_super) {
         this.assets = assets;
     };
     Preloader.prototype.preload = function () {
+        // Create background of Loading Scene
+        new SpriteObject(this.game, new CONSTANTS.Background);
         // Set-up our preloader sprite
         this.createPreloadBar(new CONSTANTS.PreloadBar);
         // Load Assets

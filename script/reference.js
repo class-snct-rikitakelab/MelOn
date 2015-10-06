@@ -19,6 +19,7 @@
 // Model
 /// <reference path="Model/Stationery.ts"/>
 // View
+/// <reference path="View/MeasureSheet.ts"/>
 /// <reference path="View/StationeryButton.ts"/>
 // Main
 /// <reference path="main.ts"/> 

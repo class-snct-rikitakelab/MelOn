@@ -11,8 +11,6 @@ var MelOnAssets = (function (_super) {
         this.images = {
             address: "storage/assets/image/",
             assets: [
-                // background
-                ["background", "background/background.png"],
                 // score
                 ["playBar", "score/playBar.png"],
                 ["note", "score/note.png"],
@@ -55,6 +53,8 @@ var MelOnAssets = (function (_super) {
             assets: [
                 // preloadBar
                 ["preloadBar", "game/preloadBar.png"],
+                // background
+                ["background", "background/background.png"],
             ],
         };
     }

@@ -7,6 +7,7 @@
 
 class Main extends Phaser.State {
     private stationery: Stationery;
+    private score: Phaser.Group;
     private pencil: StationeryButton;
     private eraser: StationeryButton;
 
@@ -15,9 +16,13 @@ class Main extends Phaser.State {
         this.stationery = new Stationery(this.game, new CONSTANTS.Stationery);
         
         // ========== View ==========
-        new SpriteObject(this.game, new CONSTANTS.Background);
+        this.score = this.game.add.group();
+        var MEASURE = new CONSTANTS.Measure();
+        for (var i = 0; i < MEASURE.measureNum; ++i) this.score.add( new MeasureSheet(this.game, new CONSTANTS.MeasureSheet, i, {}) );
+
         this.pencil = new StationeryButton(this.game, new CONSTANTS.Pencil, { stationery: this.stationery });
         this.eraser = new StationeryButton(this.game, new CONSTANTS.Eraser, { stationery: this.stationery });
+        
     }
 
     update() {

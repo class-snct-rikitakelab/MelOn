@@ -6,9 +6,26 @@
 // If we don't use export, we can hide the classes.
 
 namespace CONSTANTS {
+    export class Measure {
+        width: number = 300;
+        height: number = 50;
+        displayMeasureNum: number = 2;
+        displayPitchNum: number = 7;
+        measureNum: number = 20;
+        minNote: number = 8 // of a whole note
+        pitch: Array<string> = [
+            "C2", "D2", "E2", "F2", "G2", "A2", "B2",
+            "C3", "D3", "E3", "F3", "G3", "A3", "B3",
+            "C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5"
+        ];
+    }
+
     export class Game {
+        //measure: CONSTANTS.Measure = new CONSTANTS.Measure();
         width: number = 600;
         height: number = 350;
+        //width: number = this.measure.width * this.measure.displayMeasureNum;
+        //height: number = this.measure.height * this.measure.displayPitchNum;
         renderer: string = "score";
         imageAddress: string = "storage/assets/image/";
     }
@@ -53,6 +70,18 @@ namespace CONSTANTS {
         images: { [name: string]: string } = {
             background: "background",
         };
+    }
+
+    export class MeasureSheet implements SpriteObject {
+        measure: CONSTANTS.Measure = new CONSTANTS.Measure();
+        width = this.measure.width;
+        height = this.measure.height * this.measure.pitch.length;
+        x = 0;  // Set it later.
+        y = 0;
+        initImage = "score";
+        images: { [name: string]: string } = {
+            score: "score",
+        } 
     }
 
     export interface DOMObject {

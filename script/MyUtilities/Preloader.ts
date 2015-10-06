@@ -10,6 +10,9 @@ class Preloader extends Phaser.State {
     }
 
     preload() {
+        // Create background of Loading Scene
+        new SpriteObject(this.game, new CONSTANTS.Background);
+
         // Set-up our preloader sprite
         this.createPreloadBar(new CONSTANTS.PreloadBar);
  
