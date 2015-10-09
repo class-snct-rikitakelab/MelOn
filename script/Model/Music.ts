@@ -7,16 +7,17 @@ class Music extends Model {
     // Arrays as an Object
     private note;
     private music;
+    public text: string;
 
     constructor(game: Phaser.Game, constants: CONSTANTS.Music) {
         super(game, constants);
     }
 
     write(measure: number, position: number, pitch: string) {
-        console.log("Write " + measure, position, pitch);
+        this.text = "Write " + measure.toString() + position.toString() + pitch;
     }
 
     erase(measure: number, position: number, pitch: string) {
-        console.log("Erase " + measure, position, pitch);
+        this.text = "Erase " + measure.toString() + position.toString() + pitch;
     }
 }

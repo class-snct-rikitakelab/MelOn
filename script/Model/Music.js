@@ -10,10 +10,10 @@ var Music = (function (_super) {
         _super.call(this, game, constants);
     }
     Music.prototype.write = function (measure, position, pitch) {
-        console.log("Write " + measure, position, pitch);
+        this.text = "Write " + measure.toString() + position.toString() + pitch;
     };
     Music.prototype.erase = function (measure, position, pitch) {
-        console.log("Erase " + measure, position, pitch);
+        this.text = "Erase " + measure.toString() + position.toString() + pitch;
     };
     return Music;
 })(Model);
