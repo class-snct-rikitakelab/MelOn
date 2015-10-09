@@ -1,33 +1,19 @@
 ﻿/// <reference path="../reference.ts"/>
 
-// We have to consider order... due to JavaScript codes.
+// We have to consider order inside each class due to JavaScript codes.
 // By using clesses in namespace, we can set inheritable constants!
 // And by using interface, it will be safe for the parent class of child classes.
 // If we don't use export, we can hide the classes.
 
 namespace CONSTANTS {
-    export class Measure {
-        width: number = 300;
-        height: number = 50;
-        minNote: number = 8 // of a whole note
-        pitch: Array<string> = [
-            "C2", "D2", "E2", "F2", "G2", "A2", "B2",
-            "C3", "D3", "E3", "F3", "G3", "A3", "B3",
-            "C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5"
-        ];
-        pitchNum = this.pitch.length;
-    }
-
-    export class Score extends Measure{
-        displayMeasureNum: number = 2;
-        displayPitchNum: number = 7;
-        measureNum: number = 4;
-    }
+    
+    //
+    // ========== Game Constants ==========
+    //
 
     export class Game {
-        measure: CONSTANTS.Score = new CONSTANTS.Score();
-        width: number = this.measure.width * this.measure.displayMeasureNum;
-        height: number = this.measure.height * this.measure.displayPitchNum;
+        width: number = new MeasureSheet().width * new ScoreSheet().displayMeasureNum;
+        height: number = new Note().height * new ScoreSheet().displayPitchNum;
         renderer: string = "score";
         imageAddress: string = "storage/assets/image/";
     }
@@ -36,24 +22,43 @@ namespace CONSTANTS {
 
 
 
+    //
+    // ========== Model ==========
+    //
+
     export interface Model {
         events: { [name: string]: string };
     }
 
     export class Music implements Model {
         events: { [name: string]: string };
+        minNote: number = 8;
+        pitch: Array<string> = [ "C5",
+            "B4", "A4", "G4", "F4", "E4", "D4", "C4",
+            "B3", "A3", "G3", "F3", "E3", "D3", "C3",
+            "B2", "A2", "G2", "F2", "E2", "D2", "C2",
+        ];
+        pitchNum = this.pitch.length;
+        writeStationery: string = new Stationery().writeStationery;
+        eraseStationery: string = new Stationery().eraseStationery;
     }
 
     export class Stationery implements Model {
-        initStationery: string = new Pencil().name;
         events: { [name: string]: string } = {
             changeStationery: "changeStationery",
         };
+        writeStationery: string = "pencil";
+        eraseStationery: string = "eraser";
+        initStationery: string = this.writeStationery;
     }
 
 
 
 
+
+    //
+    // ========== Sprite View ==========
+    //
 
     export interface SpriteView {
         width: number;
@@ -65,10 +70,10 @@ namespace CONSTANTS {
     }
 
     export class PreloadBar implements SpriteView{
-        width = 300;
-        height = 50;
-        x = new CONSTANTS.Game().width / 2;
-        y = new CONSTANTS.Game().height / 2;
+        width = new MeasureSheet().width;
+        height = new Note().height;
+        x = new Game().width / 2;
+        y = new Game().height / 2;
         initImage = "preloadBar";
         images: { [name: string]: string } = {
             preloadBar: "preloadBar"
@@ -86,20 +91,10 @@ namespace CONSTANTS {
         };
     }
 
-    export class MeasureSheet extends Measure implements SpriteView {
-        width = this.width;
-        height = this.height * this.pitchNum;
-        x = 0;  // Set them later.
-        y = 0;
-        initImage = "score";
-        images: { [name: string]: string } = {
-            score: "score",
-        } 
-    }
-
-    export class Note extends CONSTANTS.Measure implements SpriteView {
-        width = this.width / this.minNote;
-        x = 0; // Set them later
+    export class Note extends Music implements SpriteView {
+        width = new MeasureSheet().width / this.minNote;
+        height = new MeasureSheet().height / this.pitchNum;
+        x = 0;
         y = 0;
         initImage = "note";
         images: { [name: string]: string } = {
@@ -107,21 +102,46 @@ namespace CONSTANTS {
         }
     }
 
+    export class MeasureSheet extends Music implements SpriteView {
+        width = 320;
+        height = 50 * this.pitchNum;
+        x = 0;
+        y = 0;
+        initImage = "score";
+        images: { [name: string]: string } = {
+            score: "score",
+        }
+        noteWidth: number = this.width / this.minNote;
+        noteHeight: number = 50;
+    }
 
 
+
+
+
+    //
+    // ========== Group View ==========
+    //
 
     export interface GroupView {
     }
 
-    export class ScoreSheet extends CONSTANTS.Score implements GroupView {
+    export class ScoreSheet extends MeasureSheet implements GroupView {
+        displayMeasureNum: number = 2;
+        displayPitchNum: number = 7;
+        measureNum: number = 4;
     }
 
-    export class Notes extends CONSTANTS.Score implements GroupView {
+    export class Notes extends Note implements GroupView {
     }
 
 
 
 
+
+    //
+    // ========== DOM View ==========
+    //
 
     export interface DOMView {
         selector: string;
@@ -130,7 +150,7 @@ namespace CONSTANTS {
     export class StationeryButton implements DOMView {
         selector: string;
         name: string;
-        protected imageAddress: string = new CONSTANTS.Game().imageAddress + "stationeryButton/";
+        protected imageAddress: string = new Game().imageAddress + "stationeryButton/";
         class: { [name: string]: string } = {
             buttonImage: "buttonImage",
         };
@@ -139,7 +159,7 @@ namespace CONSTANTS {
 
     export class Pencil extends StationeryButton {
         selector: string = "#pencil";
-        name: string = "pencil";
+        name: string = new Stationery().writeStationery;
         images: { [name: string]: string } = {
             onImage: this.imageAddress + "pencilOn.png",
             offImage: this.imageAddress + "pencilOff.png",
@@ -148,7 +168,7 @@ namespace CONSTANTS {
 
     export class Eraser extends StationeryButton {
         selector: string = "#eraser";
-        name: string = "eraser";
+        name: string = new Stationery().eraseStationery;
         images: { [name: string]: string } = {
             onImage: this.imageAddress + "eraserOn.png",
             offImage: this.imageAddress + "eraserOff.png",

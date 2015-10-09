@@ -1,7 +1,23 @@
 ﻿/// <reference path="../reference.ts"/>
 
 class MeasureSheet extends SpriteView {
-    constructor(game: Phaser.Game, private constants: CONSTANTS.MeasureSheet, models?: Object) {
-        super(game, constants);
+
+    private music: Music = this.models["music"];
+    private stationery: Stationery = this.models["stationery"];
+
+    constructor(game: Phaser.Game, private constants: CONSTANTS.MeasureSheet, private measure: number, models: Object) {
+        super(game, constants, models);
+        this.setPosition(this.constants.width * this.measure, 0);
+        
+        this.inputEnabled = true;
+        this.input.useHandCursor = true;
+        this.events.onInputDown.add((self, point) => { this.touchMeasure(point) }, this);
+    }
+
+    private touchMeasure(point: Phaser.Pointer) {
+        var position: number = Math.floor(this.input.pointerX(point.id) / this.constants.noteWidth);
+        var pitch: string = this.constants.pitch[Math.floor(this.input.pointerY(point.id) / this.constants.noteHeight)];
+        if (this.stationery.getStationery === this.constants.writeStationery) this.music.write(this.measure, position, pitch);
+        if (this.stationery.getStationery === this.constants.eraseStationery) this.music.erase(this.measure, position, pitch);
     }
 }

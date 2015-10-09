@@ -9,6 +9,12 @@ var Music = (function (_super) {
     function Music(game, constants) {
         _super.call(this, game, constants);
     }
+    Music.prototype.write = function (measure, position, pitch) {
+        console.log("Write " + measure, position, pitch);
+    };
+    Music.prototype.erase = function (measure, position, pitch) {
+        console.log("Erase " + measure, position, pitch);
+    };
     return Music;
 })(Model);
 //# sourceMappingURL=Music.js.map

@@ -4,7 +4,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-// In main class, just declare the models and views.
+// In main class, just declare the models and views. We can find dependences of Models and Views
 // This program runs on Model-View pattern (Observer pattern, Publisher/Subscriber pattern).
 // This pattern is effective for "When A Then B" problem.
 // Shusei Komatsu decided to name the roles "Model" and "View" so that we can add "Controller" when it is needed later.
@@ -24,12 +24,18 @@ var Main = (function (_super) {
         this.eraser = new StationeryButton(this.game, new CONSTANTS.Eraser, { stationery: this.stationery });
     };
     Main.prototype.update = function () {
+        /*
+        if (this.camera.atLimit.y && this.camera.y === 0) this.camera.x += 10;
+        if (this.camera.atLimit.x && this.camera.x !== 0) this.camera.y += 10;
+        if (this.camera.atLimit.y && this.camera.y !== 0) this.camera.x -= 10;
+        if (this.camera.atLimit.x && this.camera.x === 0) this.camera.y -= 10;
+        */
     };
     Main.prototype.render = function () {
         // For debug. In render method, all values are always updated.
-        // this.game.debug.text(this.stationery.getStationery, 100, 100, "black");
+        this.game.debug.text(this.time.fps + 'fps', 5, 20);
+        this.game.debug.text(this.stationery.getStationery, 100, 100, "black");
         // this.game.debug.cameraInfo(this.camera, 10, 20, "blue");
-        // this.game.debug.text(this.time.fps + 'fps', 5, 20);
     };
     return Main;
 })(Phaser.State);

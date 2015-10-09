@@ -6,8 +6,8 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var Note = (function (_super) {
     __extends(Note, _super);
-    function Note(game, constants, model) {
-        _super.call(this, game, constants);
+    function Note(game, constants, models) {
+        _super.call(this, game, constants, models);
         this.constants = constants;
     }
     return Note;

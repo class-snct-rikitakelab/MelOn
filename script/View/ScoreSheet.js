@@ -10,14 +10,12 @@ var ScoreSheet = (function (_super) {
         var _this = this;
         _super.call(this, game, constants, models);
         this.constants = constants;
-        this.measureNum = 0;
         _.times(this.constants.measureNum, function () { _this.addMeasure(); });
         // Set camera avairable zone.
-        this.game.camera.bounds.height = constants.height * constants.pitchNum;
+        this.game.camera.bounds.height = this.constants.height;
     }
     ScoreSheet.prototype.addMeasure = function () {
-        this.add(new SpriteView(this.game, new CONSTANTS.MeasureSheet))
-            .setPosition(this.constants.width * (this.children.length - 1), 0);
+        this.add(new MeasureSheet(this.game, new CONSTANTS.MeasureSheet, this.children.length, this.models));
         this.game.camera.bounds.width = this.constants.width * this.children.length;
     };
     ScoreSheet.prototype.reduceMeasure = function () {
