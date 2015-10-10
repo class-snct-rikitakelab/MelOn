@@ -6,10 +6,22 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var Note = (function (_super) {
     __extends(Note, _super);
-    function Note(game, constants, models) {
+    function Note(game, constants, models, x, y) {
         _super.call(this, game, constants, models);
         this.constants = constants;
+        this.music = this.models["music"];
+        this.stationery = this.models["stationery"];
+        this.setPosition(x, y);
+        this.setInput();
     }
+    Note.prototype.setInput = function () {
+        var _this = this;
+        this.inputEnabled = true;
+        this.events.onInputDown.add(function () { _this.touchNote(); });
+    };
+    Note.prototype.touchNote = function () {
+        console.log("Note was clicked!");
+    };
     return Note;
 })(SpriteView);
 //# sourceMappingURL=Note.js.map

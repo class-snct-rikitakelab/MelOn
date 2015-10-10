@@ -31,7 +31,10 @@ namespace CONSTANTS {
     }
 
     export class Music implements Model {
-        events: { [name: string]: string };
+        events: { [name: string]: string } = {
+            write: "write",
+            erase: "erase",
+        };
         minNote: number = 8;
         pitch: Array<string> = [ "C5",
             "B4", "A4", "G4", "F4", "E4", "D4", "C4",
@@ -132,7 +135,7 @@ namespace CONSTANTS {
         measureNum: number = 4;
     }
 
-    export class Notes extends Note implements GroupView {
+    export class Notes extends MeasureSheet implements GroupView {
     }
 
 

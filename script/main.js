@@ -18,8 +18,8 @@ var Main = (function (_super) {
         this.music = new Music(this.game, new CONSTANTS.Music);
         this.stationery = new Stationery(this.game, new CONSTANTS.Stationery);
         // ========== View ==========
-        this.notes = new Notes(this.game, new CONSTANTS.Notes, { music: this.music });
         this.scoreSheet = new ScoreSheet(this.game, new CONSTANTS.ScoreSheet, { music: this.music, stationery: this.stationery });
+        this.notes = new Notes(this.game, new CONSTANTS.Notes, { music: this.music, stationery: this.stationery });
         this.pencil = new StationeryButton(this.game, new CONSTANTS.Pencil, { stationery: this.stationery });
         this.eraser = new StationeryButton(this.game, new CONSTANTS.Eraser, { stationery: this.stationery });
     };
@@ -34,7 +34,7 @@ var Main = (function (_super) {
     Main.prototype.render = function () {
         // For debug. In render method, all values are always updated.
         this.game.debug.text(this.time.fps + 'fps', 5, 20);
-        this.game.debug.text(this.music.text, 100, 100, "black");
+        // this.game.debug.text(this.music.text, 100, 100, "black");
         // this.game.debug.cameraInfo(this.camera, 10, 20, "blue");
     };
     return Main;

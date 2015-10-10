@@ -7,8 +7,22 @@ var __extends = (this && this.__extends) || function (d, b) {
 var Notes = (function (_super) {
     __extends(Notes, _super);
     function Notes(game, constants, models) {
+        var _this = this;
         _super.call(this, game, constants, models);
+        this.constants = constants;
+        this.music = this.models["music"];
+        this.stationery = this.models["stationery"];
+        this.music.onWrite(function () { _this.addNote(); });
+        this.music.onErase(function () { _this.deleteNote(); });
     }
+    Notes.prototype.addNote = function () {
+        var noteData = this.music.getSelectedNoteData;
+        var x = noteData.measure * this.constants.width + noteData.position * this.constants.noteWidth;
+        var y = this.constants.pitch.indexOf(noteData.pitch) * this.constants.noteHeight;
+        var note = this.add(new Note(this.game, new CONSTANTS.Note, this.models, x, y));
+    };
+    Notes.prototype.deleteNote = function () {
+    };
     return Notes;
 })(GroupView);
 //# sourceMappingURL=Notes.js.map

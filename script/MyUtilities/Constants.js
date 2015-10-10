@@ -25,6 +25,10 @@ var CONSTANTS;
     CONSTANTS.Game = Game;
     var Music = (function () {
         function Music() {
+            this.events = {
+                write: "write",
+                erase: "erase",
+            };
             this.minNote = 8;
             this.pitch = ["C5",
                 "B4", "A4", "G4", "F4", "E4", "D4", "C4",
@@ -129,7 +133,7 @@ var CONSTANTS;
             _super.apply(this, arguments);
         }
         return Notes;
-    })(Note);
+    })(MeasureSheet);
     CONSTANTS.Notes = Notes;
     var StationeryButton = (function () {
         function StationeryButton() {
