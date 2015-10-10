@@ -13,6 +13,9 @@ var Music = (function (_super) {
         this.noteIndex = 0; // 有限だが、9千兆くらいまで数えられる
         this.selectedNoteIndex = null;
     }
+    Music.prototype.select = function (index) {
+        this.selectedNoteIndex = index;
+    };
     Object.defineProperty(Music.prototype, "getSelectedNoteIndex", {
         get: function () {
             return this.selectedNoteIndex;
@@ -20,7 +23,7 @@ var Music = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Music.prototype, "getSelectedNoteData", {
+    Object.defineProperty(Music.prototype, "getSelectedNote", {
         get: function () {
             var _this = this;
             // Caution : _.findLastIndex is added to declaration file by Shusei Komatsu.
@@ -31,7 +34,7 @@ var Music = (function (_super) {
         configurable: true
     });
     Music.prototype.write = function (pitch, measure, position, extension) {
-        if (extension === void 0) { extension = 0; }
+        if (extension === void 0) { extension = 1; }
         var index = this.selectedNoteIndex = this.noteIndex++;
         this.music.push({ index: index, pitch: pitch, measure: measure, position: position, extension: extension });
         this.$.triggerHandler(this.constants.events["write"]);
@@ -41,17 +44,28 @@ var Music = (function (_super) {
         this.$.triggerHandler(this.constants.events["erase"]);
         this.refreshSelect();
     };
-    Music.prototype.select = function (index) {
-        this.selectedNoteIndex = index;
+    Music.prototype.changeExtension = function (addedExtension) {
+        this.getSelectedNote.extension += addedExtension;
+        if (this.getSelectedNote.extension + addedExtension < 1) {
+            this.getSelectedNote.extension = 1;
+        }
+        this.$.triggerHandler(this.constants.events["extension"]);
     };
     Music.prototype.refreshSelect = function () {
         this.selectedNoteIndex = null;
+        this.$.triggerHandler(this.constants.events["refresh"]);
     };
     Music.prototype.onWrite = function (handler) {
         return this.$.bind(this.constants.events["write"], handler);
     };
     Music.prototype.onErase = function (handler) {
         return this.$.bind(this.constants.events["erase"], handler);
+    };
+    Music.prototype.onChangeExtension = function (handler) {
+        return this.$.bind(this.constants.events["extension"], handler);
+    };
+    Music.prototype.onRefrechSelect = function (handler) {
+        return this.$.bind(this.constants.events["refresh"], handler);
     };
     return Music;
 })(Model);

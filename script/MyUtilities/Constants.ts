@@ -34,6 +34,8 @@ namespace CONSTANTS {
         events: { [name: string]: string } = {
             write: "write",
             erase: "erase",
+            refresh: "refresh",
+            extension: "extension",
         };
         minNote: number = 8;
         pitch: Array<string> = [ "C5",

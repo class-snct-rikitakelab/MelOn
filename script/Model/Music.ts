@@ -17,17 +17,23 @@ class Music extends Model {
         super(game, constants); 
     }
 
+    select(index: number) {
+        this.selectedNoteIndex = index;
+    }
+
     get getSelectedNoteIndex(): number {
         return this.selectedNoteIndex;
     }
 
-    get getSelectedNoteData(): NoteData{
+    get getSelectedNote(): NoteData{
         // Caution : _.findLastIndex is added to declaration file by Shusei Komatsu.
         var index = _.findLastIndex(this.music, (note: NoteData) => { return note.index == this.selectedNoteIndex });
         return this.music[index];
     }
 
-    write(pitch: string, measure: number, position: number, extension: number = 0) {
+
+
+    write(pitch: string, measure: number, position: number, extension: number = 1) {
         var index = this.selectedNoteIndex = this.noteIndex++;
         this.music.push({index, pitch, measure, position, extension});
         this.$.triggerHandler(this.constants.events["write"]);
@@ -39,13 +45,18 @@ class Music extends Model {
         this.refreshSelect();
     }
 
-    select(index: number) {
-        this.selectedNoteIndex = index;
+    changeExtension(addedExtension: number) {
+        this.getSelectedNote.extension += addedExtension;
+        if (this.getSelectedNote.extension + addedExtension < 1) { this.getSelectedNote.extension = 1; }
+        this.$.triggerHandler(this.constants.events["extension"]);
     }
 
     refreshSelect() {
         this.selectedNoteIndex = null;
+        this.$.triggerHandler(this.constants.events["refresh"]);
     }
+
+
 
     onWrite(handler: () => any): JQuery {
         return this.$.bind(this.constants.events["write"], handler);
@@ -53,5 +64,13 @@ class Music extends Model {
 
     onErase(handler: () => any): JQuery {
         return this.$.bind(this.constants.events["erase"], handler);
+    }
+
+    onChangeExtension(handler: () => any): JQuery {
+        return this.$.bind(this.constants.events["extension"], handler);
+    }
+
+    onRefrechSelect(handler: () => any): JQuery {
+        return this.$.bind(this.constants.events["refresh"], handler);
     }
 }

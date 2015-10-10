@@ -28,6 +28,8 @@ var CONSTANTS;
             this.events = {
                 write: "write",
                 erase: "erase",
+                refresh: "refresh",
+                extension: "extension",
             };
             this.minNote = 8;
             this.pitch = ["C5",

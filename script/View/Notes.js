@@ -13,18 +13,24 @@ var Notes = (function (_super) {
         this.music = this.models["music"];
         this.stationery = this.models["stationery"];
         this.music.onWrite(function () { _this.addNote(); });
+        this.music.onRefrechSelect(function () { _this.refreshNote(); });
     }
     Notes.prototype.addNote = function () {
-        var noteData = this.music.getSelectedNoteData;
-        var x = noteData.measure * this.constants.width + noteData.position * this.constants.noteWidth;
-        var y = this.constants.pitch.indexOf(noteData.pitch) * this.constants.noteHeight;
+        var note = this.music.getSelectedNote;
+        var x = note.measure * this.constants.width + note.position * this.constants.noteWidth;
+        var y = this.constants.pitch.indexOf(note.pitch) * this.constants.noteHeight;
         this.selectedNote = this.add(new Note(this.game, new CONSTANTS.Note, this.models, x, y));
     };
     Notes.prototype.select = function (index) {
+        var childIndex = _.findLastIndex(this.children, function (note) { return note.getIndex == index; });
+        this.selectedNote = this.getChildAt(childIndex);
+    };
+    Notes.prototype.refreshNote = function () {
+        this.selectedNote = null;
     };
     Notes.prototype.update = function () {
-        var selectedNoteIndex;
-        if (_.isNumber(selectedNoteIndex)) {
+        if (this.selectedNote) {
+            this.selectedNote.update();
         }
     };
     return Notes;

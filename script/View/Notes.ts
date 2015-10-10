@@ -13,22 +13,26 @@ class Notes extends GroupView {
         this.stationery = this.models["stationery"];
         
         this.music.onWrite(() => { this.addNote(); });
+        this.music.onRefrechSelect(() => { this.refreshNote(); });
     }
 
     addNote() {
-        var noteData: NoteData = this.music.getSelectedNoteData;
-        var x: number = noteData.measure * this.constants.width + noteData.position * this.constants.noteWidth;
-        var y: number = this.constants.pitch.indexOf(noteData.pitch) * this.constants.noteHeight;
+        var note: NoteData = this.music.getSelectedNote;
+        var x: number = note.measure * this.constants.width + note.position * this.constants.noteWidth;
+        var y: number = this.constants.pitch.indexOf(note.pitch) * this.constants.noteHeight;
         this.selectedNote = this.add(new Note(this.game, new CONSTANTS.Note, this.models, x, y));
     }
 
     select(index: number) {
+        var childIndex = _.findLastIndex(this.children, (note: Note) => { return note.getIndex == index })
+        this.selectedNote = <Note> this.getChildAt(childIndex);
+    }
+
+    refreshNote() {
+        this.selectedNote = null;
     }
 
     update() {
-        var selectedNoteIndex
-        if (_.isNumber(selectedNoteIndex)) {
-            // update only selected note
-        }
+        if (this.selectedNote) { this.selectedNote.update(); }
     }
 }
