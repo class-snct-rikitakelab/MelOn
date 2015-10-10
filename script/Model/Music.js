@@ -11,17 +11,21 @@ var Music = (function (_super) {
         this.constants = constants;
         this.music = [];
         this.noteIndex = 0; // 有限だが、9千兆くらいまで数えられる
+        this.selectedNoteIndex = NaN;
     }
     Object.defineProperty(Music.prototype, "getSelectedNoteIndex", {
         get: function () {
-            return this.noteIndex;
+            return this.selectedNoteIndex;
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(Music.prototype, "getSelectedNoteData", {
         get: function () {
-            return this.music[this.selectedNoteIndex];
+            var _this = this;
+            // Caution : _.findLastIndex is added to declaration file by Shusei Komatsu.
+            var index = _.findLastIndex(this.music, function (note) { return note.index == _this.selectedNoteIndex; });
+            return this.music[index];
         },
         enumerable: true,
         configurable: true
@@ -32,15 +36,16 @@ var Music = (function (_super) {
         this.music.push({ index: index, pitch: pitch, measure: measure, position: position, extension: extension });
         this.$.triggerHandler(this.constants.events["write"]);
     };
-    Music.prototype.erase = function (index) {
-        this.music.splice(index, 1);
+    Music.prototype.erase = function () {
+        this.music.splice(this.selectedNoteIndex, 1);
         this.$.triggerHandler(this.constants.events["erase"]);
+        this.refreshSelect();
     };
     Music.prototype.select = function (index) {
         this.selectedNoteIndex = index;
     };
     Music.prototype.refreshSelect = function () {
-        this.selectedNoteIndex = null;
+        this.selectedNoteIndex = NaN;
     };
     Music.prototype.onWrite = function (handler) {
         return this.$.bind(this.constants.events["write"], handler);

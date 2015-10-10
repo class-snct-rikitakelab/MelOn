@@ -12,11 +12,15 @@ class ScoreSheet extends GroupView {
 
     addMeasure() {
         this.add(new MeasureSheet(this.game, new CONSTANTS.MeasureSheet, this.children.length, this.models));
-        this.game.camera.bounds.width = this.constants.width * this.children.length;
+        this.updateCameraWidth();
     }
 
     reduceMeasure() {
         this.children.pop();
+        this.updateCameraWidth();
+    }
+
+    updateCameraWidth() {
         this.game.camera.bounds.width = this.constants.width * this.children.length;
     }
 }

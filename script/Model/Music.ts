@@ -11,29 +11,32 @@ interface NoteData {
 class Music extends Model {
     private music: Array<NoteData> = [];
     private noteIndex: number = 0; // 有限だが、9千兆くらいまで数えられる
-    private selectedNoteIndex: number;
+    private selectedNoteIndex: number = NaN;
 
     constructor(game: Phaser.Game, private constants: CONSTANTS.Music) {
         super(game, constants); 
     }
 
     get getSelectedNoteIndex(): number {
-        return this.noteIndex;
+        return this.selectedNoteIndex;
     }
 
     get getSelectedNoteData(): NoteData{
-        return this.music[this.selectedNoteIndex];
+        // Caution : _.findLastIndex is added to declaration file by Shusei Komatsu.
+        var index = _.findLastIndex(this.music, (note: NoteData) => { return note.index == this.selectedNoteIndex });
+        return this.music[index];
     }
 
     write(pitch: string, measure: number, position: number, extension: number = 0) {
-        let index = this.selectedNoteIndex = this.noteIndex++;
+        var index = this.selectedNoteIndex = this.noteIndex++;
         this.music.push({index, pitch, measure, position, extension});
         this.$.triggerHandler(this.constants.events["write"]);
     }
 
-    erase(index: number) {
-        this.music.splice(index, 1);
+    erase() {
+        this.music.splice(this.selectedNoteIndex, 1);
         this.$.triggerHandler(this.constants.events["erase"]);
+        this.refreshSelect();
     }
 
     select(index: number) {
@@ -41,7 +44,7 @@ class Music extends Model {
     }
 
     refreshSelect() {
-        this.selectedNoteIndex = null;
+        this.selectedNoteIndex = NaN;
     }
 
     onWrite(handler: () => any): JQuery {

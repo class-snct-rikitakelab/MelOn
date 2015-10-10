@@ -34,7 +34,7 @@ var Main = (function (_super) {
     Main.prototype.render = function () {
         // For debug. In render method, all values are always updated.
         this.game.debug.text(this.time.fps + 'fps', 5, 20);
-        // this.game.debug.text(this.music.text, 100, 100, "black");
+        this.game.debug.text(this.music.getSelectedNoteIndex.toString(), 100, 100, "black");
         // this.game.debug.cameraInfo(this.camera, 10, 20, "blue");
     };
     return Main;

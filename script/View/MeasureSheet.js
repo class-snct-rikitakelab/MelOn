@@ -17,6 +17,7 @@ var MeasureSheet = (function (_super) {
         this.inputEnabled = true;
         this.input.useHandCursor = true;
         this.events.onInputDown.add(function (self, point) { _this.touchMeasure(point); }, this);
+        this.events.onInputUp.add(function () { _this.music.refreshSelect(); });
     }
     MeasureSheet.prototype.touchMeasure = function (point) {
         var position = Math.floor(this.input.pointerX(point.id) / this.constants.noteWidth);

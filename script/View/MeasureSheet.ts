@@ -12,6 +12,7 @@ class MeasureSheet extends SpriteView {
         this.inputEnabled = true;
         this.input.useHandCursor = true;
         this.events.onInputDown.add((self, point) => { this.touchMeasure(point) }, this);
+        this.events.onInputUp.add(() => { this.music.refreshSelect(); });
     }
 
     private touchMeasure(point: Phaser.Pointer) {

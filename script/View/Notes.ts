@@ -12,16 +12,12 @@ class Notes extends GroupView {
         this.stationery = this.models["stationery"];
         
         this.music.onWrite(() => { this.addNote(); });
-        this.music.onErase(() => { this.deleteNote(); });
     }
 
     addNote() {
         var noteData: NoteData = this.music.getSelectedNoteData;
         var x: number = noteData.measure * this.constants.width + noteData.position * this.constants.noteWidth;
         var y: number = this.constants.pitch.indexOf(noteData.pitch) * this.constants.noteHeight;
-        var note: Note = this.add(new Note(this.game, new CONSTANTS.Note, this.models, x, y));
-    }
-
-    deleteNote() {
+        this.add(new Note(this.game, new CONSTANTS.Note, this.models, x, y));
     }
 }

@@ -16,10 +16,13 @@ var ScoreSheet = (function (_super) {
     }
     ScoreSheet.prototype.addMeasure = function () {
         this.add(new MeasureSheet(this.game, new CONSTANTS.MeasureSheet, this.children.length, this.models));
-        this.game.camera.bounds.width = this.constants.width * this.children.length;
+        this.updateCameraWidth();
     };
     ScoreSheet.prototype.reduceMeasure = function () {
         this.children.pop();
+        this.updateCameraWidth();
+    };
+    ScoreSheet.prototype.updateCameraWidth = function () {
         this.game.camera.bounds.width = this.constants.width * this.children.length;
     };
     return ScoreSheet;

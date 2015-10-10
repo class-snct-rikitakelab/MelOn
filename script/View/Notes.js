@@ -13,15 +13,12 @@ var Notes = (function (_super) {
         this.music = this.models["music"];
         this.stationery = this.models["stationery"];
         this.music.onWrite(function () { _this.addNote(); });
-        this.music.onErase(function () { _this.deleteNote(); });
     }
     Notes.prototype.addNote = function () {
         var noteData = this.music.getSelectedNoteData;
         var x = noteData.measure * this.constants.width + noteData.position * this.constants.noteWidth;
         var y = this.constants.pitch.indexOf(noteData.pitch) * this.constants.noteHeight;
-        var note = this.add(new Note(this.game, new CONSTANTS.Note, this.models, x, y));
-    };
-    Notes.prototype.deleteNote = function () {
+        this.add(new Note(this.game, new CONSTANTS.Note, this.models, x, y));
     };
     return Notes;
 })(GroupView);
