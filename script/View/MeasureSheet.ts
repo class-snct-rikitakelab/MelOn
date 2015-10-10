@@ -8,7 +8,10 @@ class MeasureSheet extends SpriteView {
     constructor(game: Phaser.Game, private constants: CONSTANTS.MeasureSheet, private measure: number, models: Object) {
         super(game, constants, models);
         this.setPosition(this.constants.width * this.measure, 0);
-        
+        this.setInput();
+    }
+
+    private setInput() {
         this.inputEnabled = true;
         this.input.useHandCursor = true;
         this.events.onInputDown.add((self, point) => { this.touchMeasure(point) }, this);

@@ -18,7 +18,14 @@ var Notes = (function (_super) {
         var noteData = this.music.getSelectedNoteData;
         var x = noteData.measure * this.constants.width + noteData.position * this.constants.noteWidth;
         var y = this.constants.pitch.indexOf(noteData.pitch) * this.constants.noteHeight;
-        this.add(new Note(this.game, new CONSTANTS.Note, this.models, x, y));
+        this.selectedNote = this.add(new Note(this.game, new CONSTANTS.Note, this.models, x, y));
+    };
+    Notes.prototype.select = function (index) {
+    };
+    Notes.prototype.update = function () {
+        var selectedNoteIndex;
+        if (_.isNumber(selectedNoteIndex)) {
+        }
     };
     return Notes;
 })(GroupView);

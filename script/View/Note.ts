@@ -17,6 +17,10 @@ class Note extends SpriteView {
         this.setInput();
     }
 
+    get getIndex(): number {
+        return this.index;
+    }
+
     private setInput() {
         this.inputEnabled = true;
         this.input.useHandCursor = true;
@@ -35,5 +39,10 @@ class Note extends SpriteView {
     }
 
     private moveStart() {
+    }
+
+    update() {
+        // Get pointer
+        // change size depends on pointer
     }
 }

@@ -11,7 +11,7 @@ interface NoteData {
 class Music extends Model {
     private music: Array<NoteData> = [];
     private noteIndex: number = 0; // 有限だが、9千兆くらいまで数えられる
-    private selectedNoteIndex: number = NaN;
+    private selectedNoteIndex: number = null;
 
     constructor(game: Phaser.Game, private constants: CONSTANTS.Music) {
         super(game, constants); 
@@ -44,7 +44,7 @@ class Music extends Model {
     }
 
     refreshSelect() {
-        this.selectedNoteIndex = NaN;
+        this.selectedNoteIndex = null;
     }
 
     onWrite(handler: () => any): JQuery {

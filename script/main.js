@@ -24,17 +24,12 @@ var Main = (function (_super) {
         this.eraser = new StationeryButton(this.game, new CONSTANTS.Eraser, { stationery: this.stationery });
     };
     Main.prototype.update = function () {
-        /*
-        if (this.camera.atLimit.y && this.camera.y === 0) this.camera.x += 10;
-        if (this.camera.atLimit.x && this.camera.x !== 0) this.camera.y += 10;
-        if (this.camera.atLimit.y && this.camera.y !== 0) this.camera.x -= 10;
-        if (this.camera.atLimit.x && this.camera.x === 0) this.camera.y -= 10;
-        */
+        this.notes.update();
     };
     Main.prototype.render = function () {
         // For debug. In render method, all values are always updated.
         this.game.debug.text(this.time.fps + 'fps', 5, 20);
-        this.game.debug.text(this.music.getSelectedNoteIndex.toString(), 100, 100, "black");
+        //this.game.debug.text("", 100, 100, "black");
         // this.game.debug.cameraInfo(this.camera, 10, 20, "blue");
     };
     return Main;
@@ -43,4 +38,10 @@ var Main = (function (_super) {
 window.onload = function () {
     $(function () { new MyPhaserGame(new MelOnAssets, new CONSTANTS.Game); });
 };
+/*
+if (this.camera.atLimit.y && this.camera.y === 0) this.camera.x += 10;
+if (this.camera.atLimit.x && this.camera.x !== 0) this.camera.y += 10;
+if (this.camera.atLimit.y && this.camera.y !== 0) this.camera.x -= 10;
+if (this.camera.atLimit.x && this.camera.x === 0) this.camera.y -= 10;
+*/ 
 //# sourceMappingURL=main.js.map

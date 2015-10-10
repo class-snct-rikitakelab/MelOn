@@ -11,7 +11,7 @@ var Music = (function (_super) {
         this.constants = constants;
         this.music = [];
         this.noteIndex = 0; // 有限だが、9千兆くらいまで数えられる
-        this.selectedNoteIndex = NaN;
+        this.selectedNoteIndex = null;
     }
     Object.defineProperty(Music.prototype, "getSelectedNoteIndex", {
         get: function () {
@@ -45,7 +45,7 @@ var Music = (function (_super) {
         this.selectedNoteIndex = index;
     };
     Music.prototype.refreshSelect = function () {
-        this.selectedNoteIndex = NaN;
+        this.selectedNoteIndex = null;
     };
     Music.prototype.onWrite = function (handler) {
         return this.$.bind(this.constants.events["write"], handler);

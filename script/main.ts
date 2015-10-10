@@ -26,18 +26,13 @@ class Main extends Phaser.State {
     }
 
     update() {
-        /*
-        if (this.camera.atLimit.y && this.camera.y === 0) this.camera.x += 10;
-        if (this.camera.atLimit.x && this.camera.x !== 0) this.camera.y += 10;
-        if (this.camera.atLimit.y && this.camera.y !== 0) this.camera.x -= 10;
-        if (this.camera.atLimit.x && this.camera.x === 0) this.camera.y -= 10;
-        */
+        this.notes.update();
     }
 
     render() {
         // For debug. In render method, all values are always updated.
         this.game.debug.text(this.time.fps + 'fps', 5, 20);
-        this.game.debug.text(this.music.getSelectedNoteIndex.toString(), 100, 100, "black");
+        //this.game.debug.text("", 100, 100, "black");
         // this.game.debug.cameraInfo(this.camera, 10, 20, "blue");
         
     }
@@ -47,3 +42,12 @@ class Main extends Phaser.State {
 window.onload = () => {
     $(() => { new MyPhaserGame(new MelOnAssets, new CONSTANTS.Game); });
 }
+
+
+
+/*
+if (this.camera.atLimit.y && this.camera.y === 0) this.camera.x += 10;
+if (this.camera.atLimit.x && this.camera.x !== 0) this.camera.y += 10;
+if (this.camera.atLimit.y && this.camera.y !== 0) this.camera.x -= 10;
+if (this.camera.atLimit.x && this.camera.x === 0) this.camera.y -= 10;
+*/

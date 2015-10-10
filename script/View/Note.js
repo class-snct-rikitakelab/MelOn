@@ -17,6 +17,13 @@ var Note = (function (_super) {
         this.setPosition(x, y);
         this.setInput();
     }
+    Object.defineProperty(Note.prototype, "getIndex", {
+        get: function () {
+            return this.index;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Note.prototype.setInput = function () {
         var _this = this;
         this.inputEnabled = true;
@@ -37,6 +44,10 @@ var Note = (function (_super) {
         this.music.erase();
     };
     Note.prototype.moveStart = function () {
+    };
+    Note.prototype.update = function () {
+        // Get pointer
+        // change size depends on pointer
     };
     return Note;
 })(SpriteView);
