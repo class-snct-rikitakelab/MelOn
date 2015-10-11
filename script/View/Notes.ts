@@ -11,7 +11,7 @@ class Notes extends GroupView {
 
         this.music = this.models["music"];
         this.stationery = this.models["stationery"];
-        
+
         this.music.onWrite(() => { this.addNote(); });
         this.music.onRefrechSelect(() => { this.refreshNote(); });
     }
@@ -33,6 +33,8 @@ class Notes extends GroupView {
     }
 
     update() {
-        if (this.selectedNote) { this.selectedNote.update(); }
+        if (this.selectedNote) {
+            this.selectedNote.update();
+        }
     }
 }

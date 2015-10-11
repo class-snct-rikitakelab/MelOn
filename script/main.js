@@ -25,11 +25,12 @@ var Main = (function (_super) {
     };
     Main.prototype.update = function () {
         this.notes.update();
+        this.game.physics.arcade.overlap(this.notes, function () { console.log("overlap"); });
     };
     Main.prototype.render = function () {
         // For debug. In render method, all values are always updated.
         this.game.debug.text(this.time.fps + 'fps', 5, 20);
-        //this.game.debug.text("", 100, 100, "black");
+        // this.game.debug.text("", 100, 100, "black");
         // this.game.debug.cameraInfo(this.camera, 10, 20, "blue");
     };
     return Main;

@@ -21,6 +21,12 @@ class Music extends Model {
         this.selectedNoteIndex = index;
     }
 
+    checkCollision(index: number): boolean {
+        return -1 != _.findLastIndex(this.music, (note: NoteData) => {
+            return true;
+        });
+    }
+
     get getSelectedNoteIndex(): number {
         return this.selectedNoteIndex;
     }
@@ -47,7 +53,7 @@ class Music extends Model {
 
     changeExtension(addedExtension: number) {
         this.getSelectedNote.extension += addedExtension;
-        if (this.getSelectedNote.extension + addedExtension < 1) { this.getSelectedNote.extension = 1; }
+        if (this.getSelectedNote.extension + addedExtension < 1) { this.getSelectedNote.extension = 1;}
         this.$.triggerHandler(this.constants.events["extension"]);
     }
 

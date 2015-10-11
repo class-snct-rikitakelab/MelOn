@@ -13,7 +13,7 @@ var SpriteView = (function (_super) {
         this.$ = $(this);
         this.setSize(constants.width, constants.height);
         this.setFrameAnimation();
-        this.setPhysical(constants);
+        this.setPhysical();
     }
     SpriteView.prototype.setSize = function (width, height) {
         this.width = width;
@@ -36,7 +36,7 @@ var SpriteView = (function (_super) {
         // override!
         // This is recommended to imprement in child class not using constants.
     };
-    SpriteView.prototype.setPhysical = function (constants) {
+    SpriteView.prototype.setPhysical = function () {
         // override!
     };
     return SpriteView;

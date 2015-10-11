@@ -10,7 +10,7 @@ class SpriteView extends Phaser.Sprite {
         this.$ = $(this);
         this.setSize(constants.width, constants.height);
         this.setFrameAnimation();
-        this.setPhysical(constants);
+        this.setPhysical();
     }
 
     public setSize(width: number, height: number): void {
@@ -40,7 +40,7 @@ class SpriteView extends Phaser.Sprite {
         // This is recommended to imprement in child class not using constants.
     }
 
-    protected setPhysical(constants: CONSTANTS.SpriteView) {
+    protected setPhysical() {
         // override!
     }
 }

@@ -16,6 +16,11 @@ var Music = (function (_super) {
     Music.prototype.select = function (index) {
         this.selectedNoteIndex = index;
     };
+    Music.prototype.checkCollision = function (index) {
+        return -1 != _.findLastIndex(this.music, function (note) {
+            return true;
+        });
+    };
     Object.defineProperty(Music.prototype, "getSelectedNoteIndex", {
         get: function () {
             return this.selectedNoteIndex;

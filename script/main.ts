@@ -27,12 +27,13 @@ class Main extends Phaser.State {
 
     update() {
         this.notes.update();
+        this.game.physics.arcade.overlap(this.notes, () => { console.log("overlap") });
     }
 
     render() {
         // For debug. In render method, all values are always updated.
         this.game.debug.text(this.time.fps + 'fps', 5, 20);
-        //this.game.debug.text("", 100, 100, "black");
+        // this.game.debug.text("", 100, 100, "black");
         // this.game.debug.cameraInfo(this.camera, 10, 20, "blue");
         
     }
