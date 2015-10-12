@@ -11,7 +11,7 @@ class ScoreSheet extends GroupView {
     }
 
     addMeasure() {
-        this.add(new MeasureSheet(this.game, new CONSTANTS.MeasureSheet, this.children.length, this.models));
+        this.add(new MeasureSheet(this.game, new CONSTANTS.MeasureSheet, this.models, this.children.length));
         this.updateCameraWidth();
     }
 

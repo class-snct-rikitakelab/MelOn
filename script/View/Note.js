@@ -6,68 +6,63 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var Note = (function (_super) {
     __extends(Note, _super);
-    function Note(game, constants, models, x, y) {
+    function Note(game, constants, models, data) {
         var _this = this;
         _super.call(this, game, constants, models);
         this.constants = constants;
-        this.isStreching = true;
-        this.isMoving = false;
+        this.data = data;
         this.pointer = this.game.device.touch ? this.game.input.pointer1 : this.game.input.activePointer;
         this.music = this.models["music"];
         this.stationery = this.models["stationery"];
-        this.index = this.music.getSelectedNoteIndex;
         this.music.onChangeExtension(function () { _this.changeExtension(); });
-        this.setPosition(x, y);
-        this.setInput();
+        this.setPosition(data.start * constants.width, constants.pitch.indexOf(data.pitch) * constants.height);
     }
-    Note.prototype.setInput = function () {
-        var _this = this;
-        this.inputEnabled = true;
-        this.input.useHandCursor = true;
-        this.events.onInputDown.add(function () { _this.touchNote(); });
-    };
-    Object.defineProperty(Note.prototype, "getIndex", {
+    Object.defineProperty(Note.prototype, "getNoteData", {
         get: function () {
-            return this.index;
+            return this.data;
         },
         enumerable: true,
         configurable: true
     });
+    Note.prototype.setInput = function () {
+        var _this = this;
+        this.inputEnabled = true;
+        this.input.useHandCursor = true;
+        this.events.onInputUp.add(function () { _this.music.refresh(); });
+        this.events.onInputDown.add(function () { _this.touchNote(); });
+        this.events.onInputOver.add(function () {
+            if (_this.stationery.getStationery === _this.constants.eraseStationery && _this.pointer.isDown)
+                _this.erase();
+        });
+    };
     Note.prototype.touchNote = function () {
-        this.music.select(this.index);
-        if (this.stationery.getStationery === this.constants.eraseStationery) {
+        this.music.select(this.data);
+        if (this.stationery.getStationery === this.constants.eraseStationery)
             this.erase();
-        }
-        if (this.stationery.getStationery === this.constants.writeStationery) {
-            this.moveStart();
-        }
     };
     Note.prototype.erase = function () {
+        this.music.erase(this.data);
         this.destroy();
-        this.music.erase();
-    };
-    Note.prototype.moveStart = function () {
     };
     Note.prototype.changeExtension = function () {
-        if (this.music.getSelectedNoteIndex === this.index) {
-            this.setSize(this.constants.width * this.music.getSelectedNote.extension, this.height);
-        }
+        if (this.music.getSelectedNote === this.data)
+            this.width = this.constants.width * (this.music.getSelectedNote.extension + 1);
     };
     Note.prototype.update = function () {
         this.lengthenNote();
         this.shortenNote();
     };
     Note.prototype.lengthenNote = function () {
+        var _this = this;
         var juttingOut = this.pointer.x - (this.x + this.width);
-        if (juttingOut > 0) {
-            this.music.changeExtension(Math.ceil(juttingOut / this.constants.width));
-        }
+        if (juttingOut > 0)
+            _.times(Math.ceil(juttingOut / this.constants.width), function () { _this.music.lengthen(); });
     };
     Note.prototype.shortenNote = function () {
-        var juttingIn = this.pointer.x - (this.x + this.width - this.constants.width);
-        if (juttingIn < 0) {
-            this.music.changeExtension(Math.floor(juttingIn / this.constants.width));
-        }
+        var _this = this;
+        var juttingIn = this.x + this.width - this.pointer.x;
+        if (juttingIn > 0)
+            _.times(Math.floor(juttingIn / this.constants.width), function () { _this.music.shorten(); });
     };
     return Note;
 })(SpriteView);

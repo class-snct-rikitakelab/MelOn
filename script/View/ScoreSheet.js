@@ -15,7 +15,7 @@ var ScoreSheet = (function (_super) {
         this.game.camera.bounds.height = this.constants.height;
     }
     ScoreSheet.prototype.addMeasure = function () {
-        this.add(new MeasureSheet(this.game, new CONSTANTS.MeasureSheet, this.children.length, this.models));
+        this.add(new MeasureSheet(this.game, new CONSTANTS.MeasureSheet, this.models, this.children.length));
         this.updateCameraWidth();
     };
     ScoreSheet.prototype.reduceMeasure = function () {

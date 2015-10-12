@@ -27,7 +27,6 @@ class Main extends Phaser.State {
 
     update() {
         this.notes.update();
-        this.game.physics.arcade.overlap(this.notes, () => { console.log("overlap") });
     }
 
     render() {

@@ -26,12 +26,13 @@ var CONSTANTS;
     var Music = (function () {
         function Music() {
             this.events = {
+                select: "select",
+                refresh: "refresh",
                 write: "write",
                 erase: "erase",
-                refresh: "refresh",
                 extension: "extension",
             };
-            this.minNote = 8;
+            this.unitNote = 8;
             this.pitch = ["C5",
                 "B4", "A4", "G4", "F4", "E4", "D4", "C4",
                 "B3", "A3", "G3", "F3", "E3", "D3", "C3",
@@ -88,7 +89,7 @@ var CONSTANTS;
         __extends(Note, _super);
         function Note() {
             _super.apply(this, arguments);
-            this.width = new MeasureSheet().width / this.minNote;
+            this.width = new MeasureSheet().width / this.unitNote;
             this.height = new MeasureSheet().height / this.pitchNum;
             this.x = 0;
             this.y = 0;
@@ -112,7 +113,7 @@ var CONSTANTS;
             this.images = {
                 score: "score",
             };
-            this.noteWidth = this.width / this.minNote;
+            this.noteWidth = this.width / this.unitNote;
             this.noteHeight = 50;
         }
         return MeasureSheet;

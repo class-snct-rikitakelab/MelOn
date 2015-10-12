@@ -32,12 +32,13 @@ namespace CONSTANTS {
 
     export class Music implements Model {
         events: { [name: string]: string } = {
+            select: "select",
+            refresh: "refresh",
             write: "write",
             erase: "erase",
-            refresh: "refresh",
             extension: "extension",
         };
-        minNote: number = 8;
+        unitNote: number = 8;
         pitch: Array<string> = [ "C5",
             "B4", "A4", "G4", "F4", "E4", "D4", "C4",
             "B3", "A3", "G3", "F3", "E3", "D3", "C3",
@@ -97,7 +98,7 @@ namespace CONSTANTS {
     }
 
     export class Note extends Music implements SpriteView {
-        width = new MeasureSheet().width / this.minNote;
+        width = new MeasureSheet().width / this.unitNote;
         height = new MeasureSheet().height / this.pitchNum;
         x = 0;
         y = 0;
@@ -116,7 +117,7 @@ namespace CONSTANTS {
         images: { [name: string]: string } = {
             score: "score",
         }
-        noteWidth: number = this.width / this.minNote;
+        noteWidth: number = this.width / this.unitNote;
         noteHeight: number = 50;
     }
 

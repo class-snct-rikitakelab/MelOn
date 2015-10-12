@@ -14,6 +14,7 @@ var SpriteView = (function (_super) {
         this.setSize(constants.width, constants.height);
         this.setFrameAnimation();
         this.setPhysical();
+        this.setInput();
     }
     SpriteView.prototype.setSize = function (width, height) {
         this.width = width;
@@ -37,6 +38,9 @@ var SpriteView = (function (_super) {
         // This is recommended to imprement in child class not using constants.
     };
     SpriteView.prototype.setPhysical = function () {
+        // override!
+    };
+    SpriteView.prototype.setInput = function () {
         // override!
     };
     return SpriteView;

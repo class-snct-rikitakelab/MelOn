@@ -1,82 +1,67 @@
 ﻿/// <reference path="../reference.ts"/>
 
 interface NoteData {
-    index: number;
     pitch: string;
-    measure: number;
-    position: number;
+    unitNote: number;
+    start: number;
     extension: number;
 }
 
 class Music extends Model {
-    private music: Array<NoteData> = [];
-    private noteIndex: number = 0; // 有限だが、9千兆くらいまで数えられる
-    private selectedNoteIndex: number = null;
+    private music: { [pitch: string]: NoteData[] };
+    private selectedNote: NoteData = null;
 
     constructor(game: Phaser.Game, private constants: CONSTANTS.Music) {
-        super(game, constants); 
+        super(game, constants);
+        this.music = <any>_.object(this.constants.pitch, _.times(this.constants.pitchNum, () => { return [] }));
     }
 
-    select(index: number) {
-        this.selectedNoteIndex = index;
+    checkExist(pitch: string, unitNote: number, point: number): boolean {
+        return this.music[pitch].some((note: NoteData) => { return note.start <= point && point <= note.start + note.extension; });
     }
 
-    checkCollision(index: number): boolean {
-        return -1 != _.findLastIndex(this.music, (note: NoteData) => {
-            return true;
-        });
+    get getSelectedNote(): NoteData {
+        return this.selectedNote;
     }
 
-    get getSelectedNoteIndex(): number {
-        return this.selectedNoteIndex;
+    select(noteData: NoteData) {
+        this.selectedNote = noteData;
+        this.$.triggerHandler(this.constants.events["select"]);
     }
 
-    get getSelectedNote(): NoteData{
-        // Caution : _.findLastIndex is added to declaration file by Shusei Komatsu.
-        var index = _.findLastIndex(this.music, (note: NoteData) => { return note.index == this.selectedNoteIndex });
-        return this.music[index];
-    }
-
-
-
-    write(pitch: string, measure: number, position: number, extension: number = 1) {
-        var index = this.selectedNoteIndex = this.noteIndex++;
-        this.music.push({index, pitch, measure, position, extension});
-        this.$.triggerHandler(this.constants.events["write"]);
-    }
-
-    erase() {
-        this.music.splice(this.selectedNoteIndex, 1);
-        this.$.triggerHandler(this.constants.events["erase"]);
-        this.refreshSelect();
-    }
-
-    changeExtension(addedExtension: number) {
-        this.getSelectedNote.extension += addedExtension;
-        if (this.getSelectedNote.extension + addedExtension < 1) { this.getSelectedNote.extension = 1;}
-        this.$.triggerHandler(this.constants.events["extension"]);
-    }
-
-    refreshSelect() {
-        this.selectedNoteIndex = null;
+    refresh() {
+        this.selectedNote = null;
         this.$.triggerHandler(this.constants.events["refresh"]);
     }
 
-
-
-    onWrite(handler: () => any): JQuery {
-        return this.$.bind(this.constants.events["write"], handler);
+    write(pitch: string, measure: number, unitNote: number, position: number, extension: number = 0) {
+        var start = measure * unitNote + position;
+        this.select(this.music[pitch][this.music[pitch].push({ pitch, unitNote, start, extension }) - 1]);
+        this.$.triggerHandler(this.constants.events["write"]);
     }
 
-    onErase(handler: () => any): JQuery {
-        return this.$.bind(this.constants.events["erase"], handler);
+    erase(noteData: NoteData) {
+        this.music[noteData.pitch].splice(this.music[noteData.pitch].indexOf(noteData), 1);
+        this.$.triggerHandler(this.constants.events["erase"]);
     }
 
-    onChangeExtension(handler: () => any): JQuery {
-        return this.$.bind(this.constants.events["extension"], handler);
+    lengthen() {
+        var note: NoteData = this.getSelectedNote;
+        if (this.checkExist(note.pitch, note.unitNote, note.start + note.extension + 1)) return;
+        note.extension++;
+        this.$.triggerHandler(this.constants.events["extension"]);
     }
 
-    onRefrechSelect(handler: () => any): JQuery {
-        return this.$.bind(this.constants.events["refresh"], handler);
+    shorten() {
+        var note: NoteData = this.getSelectedNote;
+        note.extension--;
+        if (note.extension < 0) note.extension = 0;
+        this.$.triggerHandler(this.constants.events["extension"]);
     }
+
+    onSelect(handler: () => any): JQuery { return this.$.bind(this.constants.events["select"], handler); }
+    onRefresh(handler: () => any): JQuery { return this.$.bind(this.constants.events["refresh"], handler); }
+    onWrite(handler: () => any): JQuery { return this.$.bind(this.constants.events["write"], handler); }
+    onErase(handler: () => any): JQuery { return this.$.bind(this.constants.events["erase"], handler); }
+    onChangeExtension(handler: () => any): JQuery { return this.$.bind(this.constants.events["extension"], handler); }
 }

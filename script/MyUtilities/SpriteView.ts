@@ -11,6 +11,7 @@ class SpriteView extends Phaser.Sprite {
         this.setSize(constants.width, constants.height);
         this.setFrameAnimation();
         this.setPhysical();
+        this.setInput();
     }
 
     public setSize(width: number, height: number): void {
@@ -41,6 +42,10 @@ class SpriteView extends Phaser.Sprite {
     }
 
     protected setPhysical() {
+        // override!
+    }
+
+    protected setInput() {
         // override!
     }
 }

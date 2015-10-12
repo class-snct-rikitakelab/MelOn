@@ -25,7 +25,6 @@ var Main = (function (_super) {
     };
     Main.prototype.update = function () {
         this.notes.update();
-        this.game.physics.arcade.overlap(this.notes, function () { console.log("overlap"); });
     };
     Main.prototype.render = function () {
         // For debug. In render method, all values are always updated.
