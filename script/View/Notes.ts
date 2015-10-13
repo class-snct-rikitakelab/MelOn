@@ -5,7 +5,7 @@ class Notes extends GroupView {
     private music: Music = this.models["music"];
     private stationery: Stationery = this.models["stationery"];
     private noteOverlapManager: NoteOverlapManager = this.models["noteOverlapManager"];
-    public selectedNote: Note = null;
+    private selectedNote: Note = null;
 
     constructor(game: Phaser.Game, private constants: CONSTANTS.Notes, models: Object) {
         super(game, constants, models);
