@@ -54,4 +54,60 @@ var ContactManager = (function (_super) {
     };
     return ContactManager;
 })(Phaser.Physics.Arcade);
+// OverlapManager: this class can detect "offOverlap".
+var OverlapManager = (function (_super) {
+    __extends(OverlapManager, _super);
+    function OverlapManager(game) {
+        _super.call(this, game);
+        this.overlapObjects = [];
+    }
+    OverlapManager.prototype.add = function (obj1, obj2, once) {
+        if (once === void 0) { once = false; }
+        this.overlapObjects.push({ object1: obj1, object2: obj2, count: 0, once: once, before: false });
+    };
+    OverlapManager.prototype.checkAllOverlap = function () {
+        var _this = this;
+        this.overlapObjects.forEach(function (data) {
+            var isOverlap = _this.checkOverlap(data);
+            if (data.before && !isOverlap)
+                _this.offOverlap(data);
+            data.before = isOverlap;
+        });
+    };
+    OverlapManager.prototype.checkOverlap = function (data) {
+        var overlap = this.overlap(data.object1, data.object2);
+        if (overlap && (!data.once || data.count < 1))
+            this.onOverlap(data);
+        return overlap;
+    };
+    OverlapManager.prototype.onOverlap = function (data) {
+        data.count++;
+        data.object1.onOverlap(data.object2);
+        data.object2.onOverlap(data.object1);
+    };
+    OverlapManager.prototype.offOverlap = function (data) {
+        data.count = 0;
+        data.object1.offOverlap(data.object2);
+        data.object2.offOverlap(data.object1);
+    };
+    return OverlapManager;
+})(Phaser.Physics.Arcade);
+// NoteOverlapManager : this class can set musicPlayBar and Notes. Exclusively for this software...
+var NoteOverlapManager = (function (_super) {
+    __extends(NoteOverlapManager, _super);
+    function NoteOverlapManager(game) {
+        _super.call(this, game);
+    }
+    NoteOverlapManager.prototype.setMusicPlayBar = function (musicPlayBar) {
+        this.musicPlayBar = musicPlayBar;
+    };
+    NoteOverlapManager.prototype.addNote = function (note) {
+        this.add(this.musicPlayBar, note, true);
+    };
+    NoteOverlapManager.prototype.removeNote = function (note) {
+        var remove = _.find(this.overlapObjects, function (object) { return object.object2 === note; });
+        this.overlapObjects = _.without(this.overlapObjects, remove);
+    };
+    return NoteOverlapManager;
+})(OverlapManager);
 //# sourceMappingURL=ContactManager.js.map

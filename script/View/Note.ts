@@ -2,9 +2,11 @@
 
 class Note extends SpriteView {
     
-    private pointer: Phaser.Pointer = this.game.device.touch ? this.game.input.pointer1 : this.game.input.activePointer;
     private music: Music = this.models["music"];
     private stationery: Stationery = this.models["stationery"];
+    private instrument: Instrument = this.models["instrument"];
+    private pointer: Phaser.Pointer = this.game.device.touch ? this.game.input.pointer1 : this.game.input.activePointer;
+    private sound: Phaser.Sound;
 
     constructor(game: Phaser.Game, private constants: CONSTANTS.Note, models: Object, private data: NoteData) {
         super(game, constants, models);
@@ -12,8 +14,8 @@ class Note extends SpriteView {
         this.setPosition(data.start * constants.width, constants.pitch.indexOf(data.pitch) * constants.height);
     }
 
-    get getNoteData(): NoteData {
-        return this.data;
+    protected setPhysical() {
+        this.game.physics.enable(this);
     }
 
     protected setInput() {
@@ -26,12 +28,17 @@ class Note extends SpriteView {
         });
     }
 
+    get getNoteData(): NoteData {
+        return this.data;
+    }
+
     private touchNote() {
         this.music.select(this.data);
         if (this.stationery.getStationery === this.constants.eraseStationery) this.erase();
     }
 
     private erase() {
+        this.music.select(this.data);
         this.music.erase(this.data);
         this.destroy();
     }
@@ -40,18 +47,26 @@ class Note extends SpriteView {
         if (this.music.getSelectedNote === this.data) this.width = this.constants.width * (this.music.getSelectedNote.extension + 1);
     }
 
+    onOverlap() {
+        this.sound = this.game.sound.play(this.instrument.getInstrument + this.data.pitch);
+    }
+
+    offOverlap() {
+        this.sound.fadeOut(100);
+    }
+
     update() {
         this.lengthenNote();
         this.shortenNote();
     }
 
     private lengthenNote() {
-        var juttingOut = this.pointer.x - ( this.x + this.width );
-        if (juttingOut > 0) _.times(Math.ceil(juttingOut / this.constants.width), () => { this.music.lengthen(); });
+        var juttingOut = (this.pointer.x + this.game.camera.x) - ( this.x + this.width );
+        if (juttingOut > 0) _.times(Math.ceil(juttingOut / this.constants.width), () => { this.music.lengthen(this.data); });
     }
 
     private shortenNote() {
-        var juttingIn = this.x + this.width - this.pointer.x;
-        if (juttingIn > 0) _.times(Math.floor(juttingIn / this.constants.width), () => { this.music.shorten(); });
+        var juttingIn = (this.x + this.width) - (this.pointer.x + this.game.camera.x);
+        if (juttingIn > 0) _.times(Math.floor(juttingIn / this.constants.width), () => { this.music.shorten(this.data); });
     }
 }

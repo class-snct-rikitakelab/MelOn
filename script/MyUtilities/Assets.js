@@ -12,7 +12,7 @@ var MelOnAssets = (function (_super) {
             address: "storage/assets/image/",
             assets: [
                 // score
-                ["playBar", "score/playBar.png"],
+                ["musicPlayBar", "score/playBar.png"],
                 ["note", "score/note.png"],
                 ["score", "score/score.png"],
             ],

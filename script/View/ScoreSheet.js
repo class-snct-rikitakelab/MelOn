@@ -11,19 +11,23 @@ var ScoreSheet = (function (_super) {
         _super.call(this, game, constants, models);
         this.constants = constants;
         _.times(this.constants.measureNum, function () { _this.addMeasure(); });
-        // Set camera avairable zone.
-        this.game.camera.bounds.height = this.constants.height;
+        this.updateScoreHeight();
     }
     ScoreSheet.prototype.addMeasure = function () {
         this.add(new MeasureSheet(this.game, new CONSTANTS.MeasureSheet, this.models, this.children.length));
-        this.updateCameraWidth();
+        this.updateScoreWidth();
     };
     ScoreSheet.prototype.reduceMeasure = function () {
         this.children.pop();
-        this.updateCameraWidth();
+        this.updateScoreWidth();
     };
-    ScoreSheet.prototype.updateCameraWidth = function () {
+    ScoreSheet.prototype.updateScoreWidth = function () {
         this.game.camera.bounds.width = this.constants.width * this.children.length;
+        this.game.world.bounds.width = this.constants.width * this.children.length;
+    };
+    ScoreSheet.prototype.updateScoreHeight = function () {
+        this.game.camera.bounds.height = this.constants.height;
+        this.game.world.bounds.height = this.constants.height;
     };
     return ScoreSheet;
 })(GroupView);

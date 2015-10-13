@@ -57,6 +57,31 @@ var CONSTANTS;
         return Stationery;
     })();
     CONSTANTS.Stationery = Stationery;
+    var Instrument = (function () {
+        function Instrument() {
+            this.events = {
+                changeInstrument: "changeInstrument",
+            };
+            this.pitch = new Music().pitch;
+            this.pitchNum = this.pitch.length;
+            this.initInstrument = 0;
+            this.instruments = [
+                "piano",
+            ];
+        }
+        return Instrument;
+    })();
+    CONSTANTS.Instrument = Instrument;
+    var MusicPlayer = (function () {
+        function MusicPlayer() {
+            this.events = {
+                play: "play",
+                stop: "stop",
+            };
+        }
+        return MusicPlayer;
+    })();
+    CONSTANTS.MusicPlayer = MusicPlayer;
     var PreloadBar = (function () {
         function PreloadBar() {
             this.width = new MeasureSheet().width;
@@ -119,6 +144,22 @@ var CONSTANTS;
         return MeasureSheet;
     })(Music);
     CONSTANTS.MeasureSheet = MeasureSheet;
+    var MusicPlayBar = (function (_super) {
+        __extends(MusicPlayBar, _super);
+        function MusicPlayBar() {
+            _super.apply(this, arguments);
+            this.width = 10;
+            this.height = new MeasureSheet().height;
+            this.x = 0;
+            this.y = 0;
+            this.initImage = "bar";
+            this.images = {
+                bar: "musicPlayBar",
+            };
+        }
+        return MusicPlayBar;
+    })(Music);
+    CONSTANTS.MusicPlayBar = MusicPlayBar;
     var ScoreSheet = (function (_super) {
         __extends(ScoreSheet, _super);
         function ScoreSheet() {
@@ -144,6 +185,8 @@ var CONSTANTS;
             this.class = {
                 buttonImage: "buttonImage",
             };
+            this.onColor = "red";
+            this.offColor = "blue";
         }
         return StationeryButton;
     })();
@@ -155,8 +198,7 @@ var CONSTANTS;
             this.selector = "#pencil";
             this.name = new Stationery().writeStationery;
             this.images = {
-                onImage: this.imageAddress + "pencilOn.png",
-                offImage: this.imageAddress + "pencilOff.png",
+                image: this.imageAddress + "pencil.png",
             };
         }
         return Pencil;
@@ -169,12 +211,26 @@ var CONSTANTS;
             this.selector = "#eraser";
             this.name = new Stationery().eraseStationery;
             this.images = {
-                onImage: this.imageAddress + "eraserOn.png",
-                offImage: this.imageAddress + "eraserOff.png",
+                image: this.imageAddress + "eraser.png",
             };
         }
         return Eraser;
     })(StationeryButton);
     CONSTANTS.Eraser = Eraser;
+    var PlayButton = (function () {
+        function PlayButton() {
+            this.selector = "#play";
+            this.class = {
+                buttonImage: "buttonImage",
+            };
+            this.images = {
+                image: new Game().imageAddress + "playButton/playButton.png",
+            };
+            this.onColor = "orange";
+            this.offColor = "green";
+        }
+        return PlayButton;
+    })();
+    CONSTANTS.PlayButton = PlayButton;
 })(CONSTANTS || (CONSTANTS = {}));
 //# sourceMappingURL=Constants.js.map

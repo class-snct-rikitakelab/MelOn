@@ -14,22 +14,32 @@ var Main = (function (_super) {
         _super.apply(this, arguments);
     }
     Main.prototype.create = function () {
-        // ========== Model ===========
+        this.createModel();
+        this.createView();
+    };
+    Main.prototype.createModel = function () {
         this.music = new Music(this.game, new CONSTANTS.Music);
         this.stationery = new Stationery(this.game, new CONSTANTS.Stationery);
-        // ========== View ==========
+        this.instrument = new Instrument(this.game, new CONSTANTS.Instrument);
+        this.musicPlayer = new MusicPlayer(this.game, new CONSTANTS.MusicPlayer);
+        this.noteOverlapManager = new NoteOverlapManager(this.game); // Manager as a Model.
+    };
+    Main.prototype.createView = function () {
         this.scoreSheet = new ScoreSheet(this.game, new CONSTANTS.ScoreSheet, { music: this.music, stationery: this.stationery });
-        this.notes = new Notes(this.game, new CONSTANTS.Notes, { music: this.music, stationery: this.stationery });
+        this.notes = new Notes(this.game, new CONSTANTS.Notes, { music: this.music, stationery: this.stationery, instrument: this.instrument, noteOverlapManager: this.noteOverlapManager });
+        this.musicPlayBar = new MusicPlayBar(this.game, new CONSTANTS.MusicPlayBar, { instrument: this.instrument, musicPlayer: this.musicPlayer, noteOverlapManager: this.noteOverlapManager });
         this.pencil = new StationeryButton(this.game, new CONSTANTS.Pencil, { stationery: this.stationery });
         this.eraser = new StationeryButton(this.game, new CONSTANTS.Eraser, { stationery: this.stationery });
+        this.playButton = new PlayButton(this.game, new CONSTANTS.PlayButton, { musicPlayer: this.musicPlayer });
     };
     Main.prototype.update = function () {
+        this.noteOverlapManager.checkAllOverlap();
         this.notes.update();
     };
     Main.prototype.render = function () {
         // For debug. In render method, all values are always updated.
         this.game.debug.text(this.time.fps + 'fps', 5, 20);
-        // this.game.debug.text("", 100, 100, "black");
+        // this.game.debug.text(this.notes.selectedNote ? "select": "unselect", 100, 100, "black");
         // this.game.debug.cameraInfo(this.camera, 10, 20, "blue");
     };
     return Main;
@@ -38,10 +48,4 @@ var Main = (function (_super) {
 window.onload = function () {
     $(function () { new MyPhaserGame(new MelOnAssets, new CONSTANTS.Game); });
 };
-/*
-if (this.camera.atLimit.y && this.camera.y === 0) this.camera.x += 10;
-if (this.camera.atLimit.x && this.camera.x !== 0) this.camera.y += 10;
-if (this.camera.atLimit.y && this.camera.y !== 0) this.camera.x -= 10;
-if (this.camera.atLimit.x && this.camera.x === 0) this.camera.y -= 10;
-*/ 
 //# sourceMappingURL=main.js.map

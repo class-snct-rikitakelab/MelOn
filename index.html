@@ -28,34 +28,39 @@
             left: 150px;
         }
 
+       .buttonImage {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            width: 80%;
+            height: 80%;
+        }
+
         .stationery{
             position: absolute;
-            border:none;
             border-radius: 11px;
-            overflow:hidden
+            width: 110px;
+            height: 60px;
+            top: 10px;          /*Use top, left, bottom, and right to adjust absolute elements*/
         }
 
         #pencil {
-            width: 110px;
-            height: 60px;
-            top: 9px;          /*Use top, left, bottom, and right to adjust absolute elements*/
             left: 150px;
         }
 
         #eraser {
-            width: 110px;
-            height: 60px;
-            top: 10px;          /*Use top, left, bottom, and right to adjust absolute elements*/
-            left: 273px;
-            right: 513px;
+            left: 283px;
         }
 
-        .buttonImage {
+        #play {
             position: absolute;
-            top:0%;
-            left: 0%;
-            width: 100%;
-            height: 100%;
+            border-radius: 100%;
+            width: 100px;
+            height: 70px;
+            left: 418px;
         }
 
     </style>
@@ -67,6 +72,7 @@
     <div id="contents">
         <div id="pencil" class="stationery"></div>
         <div id="eraser" class="stationery"></div>
+        <div id="play"></div>
         <div id="score"></div>
     </div>
 

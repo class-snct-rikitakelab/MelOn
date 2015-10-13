@@ -11,7 +11,27 @@ var GroupView = (function (_super) {
         this.models = models;
         game.world.add(this);
         this.$ = $(this);
+        this.setPhysical();
+        this.setInput();
     }
+    GroupView.prototype.update = function () {
+        // override!
+    };
+    GroupView.prototype.onCollide = function (partner) {
+        // override!
+    };
+    GroupView.prototype.onOverlap = function (partner) {
+        // override!
+    };
+    GroupView.prototype.offOverlap = function (partner) {
+        // override!
+    };
+    GroupView.prototype.setPhysical = function () {
+        // override!
+    };
+    GroupView.prototype.setInput = function () {
+        // override!
+    };
     return GroupView;
 })(Phaser.Group);
 //# sourceMappingURL=GroupView.js.map

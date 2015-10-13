@@ -35,6 +35,8 @@ var SCRIPT_MAP = {
     Model: [
         "Music.js",
         "Stationery.js",
+        "Instrument.js",
+        "MusicPlayer.js"
     ],
 
     View: [
@@ -42,7 +44,9 @@ var SCRIPT_MAP = {
         "Notes.js",
         "MeasureSheet.js",
         "ScoreSheet.js",
+        "MusicPlayBar.js",
         "StationeryButton.js",
+        "PlayButton.js",
 	],
 };
 

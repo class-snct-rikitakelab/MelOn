@@ -23,7 +23,9 @@
 
 // Model
 /// <reference path="Model/Music.ts"/>
+/// <reference path="Model/MusicPlayer.ts"/>
 /// <reference path="Model/Stationery.ts"/>
+/// <reference path="Model/Instrument.ts"/>
 
 // View
 /// <reference path="View/Note.ts"/>
@@ -31,6 +33,7 @@
 /// <reference path="View/MeasureSheet.ts"/>
 /// <reference path="View/ScoreSheet.ts"/>
 /// <reference path="View/StationeryButton.ts"/>
+/// <reference path="View/PlayButton.ts"/>
 
 // Main
 /// <reference path="main.ts"/>

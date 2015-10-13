@@ -39,7 +39,7 @@ namespace CONSTANTS {
             extension: "extension",
         };
         unitNote: number = 8;
-        pitch: Array<string> = [ "C5",
+        pitch: string[] = [ "C5",
             "B4", "A4", "G4", "F4", "E4", "D4", "C4",
             "B3", "A3", "G3", "F3", "E3", "D3", "C3",
             "B2", "A2", "G2", "F2", "E2", "D2", "C2",
@@ -56,6 +56,25 @@ namespace CONSTANTS {
         writeStationery: string = "pencil";
         eraseStationery: string = "eraser";
         initStationery: string = this.writeStationery;
+    }
+
+    export class Instrument implements Model {
+        events: { [name: string]: string } = {
+            changeInstrument: "changeInstrument",
+        };
+        pitch: string[] = new Music().pitch;
+        pitchNum: number = this.pitch.length;
+        initInstrument: number = 0;
+        instruments: string[] = [
+            "piano",
+        ]
+    }
+
+    export class MusicPlayer implements Model {
+        events: { [name: string]: string } = {
+            play: "play",
+            stop: "stop",
+        };
     }
 
 
@@ -121,6 +140,17 @@ namespace CONSTANTS {
         noteHeight: number = 50;
     }
 
+    export class MusicPlayBar extends Music implements SpriteView {
+        width = 10;
+        height = new MeasureSheet().height;
+        x = 0;
+        y = 0;
+        initImage = "bar";
+        images: { [name: string]: string } = {
+            bar: "musicPlayBar",
+        }
+    }
+
 
 
 
@@ -154,30 +184,42 @@ namespace CONSTANTS {
     }
 
     export class StationeryButton implements DOMView {
-        selector: string;
+        selector;
         name: string;
         protected imageAddress: string = new Game().imageAddress + "stationeryButton/";
         class: { [name: string]: string } = {
             buttonImage: "buttonImage",
         };
         images: { [name: string]: string };
+        onColor: string = "red";
+        offColor: string = "blue";
     }
 
     export class Pencil extends StationeryButton {
-        selector: string = "#pencil";
-        name: string = new Stationery().writeStationery;
+        selector = "#pencil";
+        name = new Stationery().writeStationery;
         images: { [name: string]: string } = {
-            onImage: this.imageAddress + "pencilOn.png",
-            offImage: this.imageAddress + "pencilOff.png",
+            image: this.imageAddress + "pencil.png",
         }
     }
 
     export class Eraser extends StationeryButton {
-        selector: string = "#eraser";
-        name: string = new Stationery().eraseStationery;
+        selector = "#eraser";
+        name = new Stationery().eraseStationery;
         images: { [name: string]: string } = {
-            onImage: this.imageAddress + "eraserOn.png",
-            offImage: this.imageAddress + "eraserOff.png",
+            image: this.imageAddress + "eraser.png",
         }
+    }
+
+    export class PlayButton implements DOMView {
+        selector = "#play";
+        class: { [name: string]: string } = {
+            buttonImage: "buttonImage",
+        };
+        images: { [name: string]: string } = {
+            image: new Game().imageAddress + "playButton/playButton.png",
+        }
+        onColor: string = "orange";
+        offColor: string = "green";
     }
 }

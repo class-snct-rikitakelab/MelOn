@@ -12,13 +12,15 @@ var Notes = (function (_super) {
         this.constants = constants;
         this.music = this.models["music"];
         this.stationery = this.models["stationery"];
+        this.noteOverlapManager = this.models["noteOverlapManager"];
         this.selectedNote = null;
         this.music.onSelect(function () { _this.select(); });
         this.music.onRefresh(function () { _this.refreshSelect(); });
         this.music.onWrite(function () { _this.addNote(); });
+        this.music.onErase(function () { _this.removeNote(); });
     }
-    Notes.prototype.addNote = function () {
-        this.selectedNote = this.add(new Note(this.game, new CONSTANTS.Note, this.models, this.music.getSelectedNote));
+    Notes.prototype.setPhysical = function () {
+        this.game.physics.arcade.enable(this, true);
     };
     Notes.prototype.select = function () {
         var _this = this;
@@ -26,6 +28,13 @@ var Notes = (function (_super) {
     };
     Notes.prototype.refreshSelect = function () {
         this.selectedNote = null;
+    };
+    Notes.prototype.addNote = function () {
+        this.selectedNote = this.add(new Note(this.game, new CONSTANTS.Note, this.models, this.music.getSelectedNote));
+        this.noteOverlapManager.addNote(this.selectedNote);
+    };
+    Notes.prototype.removeNote = function () {
+        this.noteOverlapManager.removeNote(this.selectedNote);
     };
     Notes.prototype.update = function () {
         if (this.selectedNote)

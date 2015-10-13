@@ -12,8 +12,8 @@ var StationeryButton = (function (_super) {
         // game and models will be set in this instance by super class ( DOMObject ).
         _super.call(this, game, constants, models);
         this.constants = constants;
-        // Make all DOM images in advanse.
-        this.loadImages();
+        // Make DOM image in advanse.
+        this.loadImage();
         // Get stationery model.
         this.stationery = models["stationery"];
         // These two below settings are needed for jQuery event process.
@@ -25,34 +25,23 @@ var StationeryButton = (function (_super) {
         // Set initial Image.
         this.changeImage();
     }
-    StationeryButton.prototype.loadImages = function () {
-        // At first, empty the DOM elements inside this button.
-        this.$.empty();
+    StationeryButton.prototype.loadImage = function () {
         // Get the on and off image of this button. 
         // "src" is url of these images.
         // They can have class of CSS as well. 
-        this.onImage = $("<img />")
-            .attr("src", this.constants.images["onImage"])
-            .addClass(this.constants.class["buttonImage"]);
-        this.offImage = $("<img />")
-            .attr("src", this.constants.images["offImage"])
+        this.image = $("<img />")
+            .attr("src", this.constants.images["image"])
             .addClass(this.constants.class["buttonImage"]);
         // Create these above images inside this button element.
-        this.$.append(this.onImage);
-        this.$.append(this.offImage);
+        this.$.append(this.image);
     };
     StationeryButton.prototype.changeImage = function () {
         // Change image of this button depends on stationery.
         if (this.stationery.getStationery === this.constants.name) {
-            this.swapImage(true);
+            this.$.css("background-color", this.constants.onColor);
             return; // Use early "return" rather than "else".
         }
-        this.swapImage(false);
-    };
-    StationeryButton.prototype.swapImage = function (on) {
-        // "opacity" property means how the element is "not" clear.
-        this.onImage.css("opacity", on ? 1 : 0);
-        this.offImage.css("opacity", on ? 0 : 1);
+        this.$.css("background-color", this.constants.offColor);
     };
     StationeryButton.prototype.changeStationery = function () {
         // Set the stationery of this button. 

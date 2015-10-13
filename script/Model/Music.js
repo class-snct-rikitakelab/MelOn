@@ -22,33 +22,30 @@ var Music = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Music.prototype.select = function (noteData) {
-        this.selectedNote = noteData;
+    Music.prototype.select = function (note) {
+        this.selectedNote = note;
         this.$.triggerHandler(this.constants.events["select"]);
     };
     Music.prototype.refresh = function () {
         this.selectedNote = null;
         this.$.triggerHandler(this.constants.events["refresh"]);
     };
-    Music.prototype.write = function (pitch, measure, unitNote, position, extension) {
-        if (extension === void 0) { extension = 0; }
-        var start = measure * unitNote + position;
-        this.select(this.music[pitch][this.music[pitch].push({ pitch: pitch, unitNote: unitNote, start: start, extension: extension }) - 1]);
+    Music.prototype.write = function (note) {
+        this.select(this.music[note.pitch][this.music[note.pitch].push(note) - 1]);
         this.$.triggerHandler(this.constants.events["write"]);
     };
-    Music.prototype.erase = function (noteData) {
-        this.music[noteData.pitch].splice(this.music[noteData.pitch].indexOf(noteData), 1);
+    Music.prototype.erase = function (note) {
+        this.music[note.pitch].splice(this.music[note.pitch].indexOf(note), 1);
+        this.refresh();
         this.$.triggerHandler(this.constants.events["erase"]);
     };
-    Music.prototype.lengthen = function () {
-        var note = this.getSelectedNote;
+    Music.prototype.lengthen = function (note) {
         if (this.checkExist(note.pitch, note.unitNote, note.start + note.extension + 1))
             return;
         note.extension++;
         this.$.triggerHandler(this.constants.events["extension"]);
     };
-    Music.prototype.shorten = function () {
-        var note = this.getSelectedNote;
+    Music.prototype.shorten = function (note) {
         note.extension--;
         if (note.extension < 0)
             note.extension = 0;

@@ -4,7 +4,7 @@ class SpriteView extends Phaser.Sprite {
 
     protected $: JQuery;
 
-    constructor(game: Phaser.Game, constants: CONSTANTS.SpriteView, protected models?: Object) {
+    constructor(game: Phaser.Game, constants: CONSTANTS.SpriteView, protected models: Object) {
         super(game, constants.x, constants.y, constants.images[constants.initImage]);
         game.world.add(this);
         this.$ = $(this);
@@ -33,6 +33,10 @@ class SpriteView extends Phaser.Sprite {
     }
 
     public onOverlap(partner?: SpriteView) {
+        // override!
+    }
+
+    public offOverlap(partner?: SpriteView) {
         // override!
     }
 

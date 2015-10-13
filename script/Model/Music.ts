@@ -24,8 +24,8 @@ class Music extends Model {
         return this.selectedNote;
     }
 
-    select(noteData: NoteData) {
-        this.selectedNote = noteData;
+    select(note: NoteData) {
+        this.selectedNote = note;
         this.$.triggerHandler(this.constants.events["select"]);
     }
 
@@ -34,26 +34,24 @@ class Music extends Model {
         this.$.triggerHandler(this.constants.events["refresh"]);
     }
 
-    write(pitch: string, measure: number, unitNote: number, position: number, extension: number = 0) {
-        var start = measure * unitNote + position;
-        this.select(this.music[pitch][this.music[pitch].push({ pitch, unitNote, start, extension }) - 1]);
+    write(note: NoteData) {
+        this.select(this.music[note.pitch][this.music[note.pitch].push(note) - 1]);
         this.$.triggerHandler(this.constants.events["write"]);
     }
 
-    erase(noteData: NoteData) {
-        this.music[noteData.pitch].splice(this.music[noteData.pitch].indexOf(noteData), 1);
+    erase(note: NoteData) {
+        this.music[note.pitch].splice(this.music[note.pitch].indexOf(note), 1);
+        this.refresh();
         this.$.triggerHandler(this.constants.events["erase"]);
     }
 
-    lengthen() {
-        var note: NoteData = this.getSelectedNote;
+    lengthen(note: NoteData) {
         if (this.checkExist(note.pitch, note.unitNote, note.start + note.extension + 1)) return;
         note.extension++;
         this.$.triggerHandler(this.constants.events["extension"]);
     }
 
-    shorten() {
-        var note: NoteData = this.getSelectedNote;
+    shorten(note: NoteData) {
         note.extension--;
         if (note.extension < 0) note.extension = 0;
         this.$.triggerHandler(this.constants.events["extension"]);

@@ -6,33 +6,52 @@
 // Shusei Komatsu decided to name the roles "Model" and "View" so that we can add "Controller" when it is needed later.
 
 class Main extends Phaser.State {
+    // ========== Model ==========
     private music: Music;
     private stationery: Stationery;
+    private instrument: Instrument;
+    private musicPlayer: MusicPlayer;
+    private noteOverlapManager: NoteOverlapManager;
+
+    // ========== View ==========
     private scoreSheet: ScoreSheet;
     private notes: Notes;
+    private musicPlayBar: MusicPlayBar;
     private pencil: StationeryButton;
     private eraser: StationeryButton;
+    private playButton: PlayButton;
     
     create() {
-        // ========== Model ===========
+        this.createModel();
+        this.createView(); 
+    }
+
+    private createModel() {
         this.music = new Music(this.game, new CONSTANTS.Music);
         this.stationery = new Stationery(this.game, new CONSTANTS.Stationery);
-        
-        // ========== View ==========
+        this.instrument = new Instrument(this.game, new CONSTANTS.Instrument);
+        this.musicPlayer = new MusicPlayer(this.game, new CONSTANTS.MusicPlayer);
+        this.noteOverlapManager = new NoteOverlapManager(this.game); // Manager as a Model.
+    }
+
+    private createView() {
         this.scoreSheet = new ScoreSheet(this.game, new CONSTANTS.ScoreSheet, { music: this.music, stationery: this.stationery });
-        this.notes = new Notes(this.game, new CONSTANTS.Notes, { music: this.music, stationery: this.stationery });
+        this.notes = new Notes(this.game, new CONSTANTS.Notes, { music: this.music, stationery: this.stationery, instrument: this.instrument, noteOverlapManager: this.noteOverlapManager });
+        this.musicPlayBar = new MusicPlayBar(this.game, new CONSTANTS.MusicPlayBar, { instrument: this.instrument, musicPlayer: this.musicPlayer, noteOverlapManager: this.noteOverlapManager });
         this.pencil = new StationeryButton(this.game, new CONSTANTS.Pencil, { stationery: this.stationery });
         this.eraser = new StationeryButton(this.game, new CONSTANTS.Eraser, { stationery: this.stationery });
+        this.playButton = new PlayButton(this.game, new CONSTANTS.PlayButton, { musicPlayer: this.musicPlayer });
     }
 
     update() {
+        this.noteOverlapManager.checkAllOverlap();
         this.notes.update();
     }
 
     render() {
         // For debug. In render method, all values are always updated.
         this.game.debug.text(this.time.fps + 'fps', 5, 20);
-        // this.game.debug.text("", 100, 100, "black");
+        // this.game.debug.text(this.notes.selectedNote ? "select": "unselect", 100, 100, "black");
         // this.game.debug.cameraInfo(this.camera, 10, 20, "blue");
         
     }
@@ -42,12 +61,3 @@ class Main extends Phaser.State {
 window.onload = () => {
     $(() => { new MyPhaserGame(new MelOnAssets, new CONSTANTS.Game); });
 }
-
-
-
-/*
-if (this.camera.atLimit.y && this.camera.y === 0) this.camera.x += 10;
-if (this.camera.atLimit.x && this.camera.x !== 0) this.camera.y += 10;
-if (this.camera.atLimit.y && this.camera.y !== 0) this.camera.x -= 10;
-if (this.camera.atLimit.x && this.camera.x === 0) this.camera.y -= 10;
-*/

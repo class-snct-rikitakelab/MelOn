@@ -4,15 +4,14 @@
 
 class StationeryButton extends DOMView {
     private stationery: Stationery; // Observer(View) can watch Subject(Model).
-    private onImage: JQuery;
-    private offImage: JQuery;
+    private image: JQuery;
 
-    constructor(game: Phaser.Game, private constants: CONSTANTS.StationeryButton, models?: Object) {
+    constructor(game: Phaser.Game, private constants: CONSTANTS.StationeryButton, models: Object) {
         // game and models will be set in this instance by super class ( DOMObject ).
         super(game, constants, models);
 
-        // Make all DOM images in advanse.
-        this.loadImages();
+        // Make DOM image in advanse.
+        this.loadImage();
 
         // Get stationery model.
         this.stationery = models["stationery"];
@@ -24,44 +23,31 @@ class StationeryButton extends DOMView {
         this.stationery.onChangeStationery(() => { this.changeImage(); });
 
         // This function will be executed when this button is pushed.
-        this.$.click(() => { this.changeStationery(); });
+        this.$.click(() => { this.changeStationery();});
 
         // Set initial Image.
         this.changeImage();
     }
     
-    private loadImages(): void {
-        // At first, empty the DOM elements inside this button.
-        this.$.empty();
-        
+    private loadImage(): void {
         // Get the on and off image of this button. 
         // "src" is url of these images.
         // They can have class of CSS as well. 
-        this.onImage = $("<img />")
-            .attr("src", this.constants.images["onImage"])
-            .addClass(this.constants.class["buttonImage"]);
-        this.offImage = $("<img />")
-            .attr("src", this.constants.images["offImage"])
+        this.image = $("<img />")
+            .attr("src", this.constants.images["image"])
             .addClass(this.constants.class["buttonImage"]);
 
         // Create these above images inside this button element.
-        this.$.append(this.onImage);
-        this.$.append(this.offImage);
+        this.$.append(this.image);
     }
 
     private changeImage(): void {
         // Change image of this button depends on stationery.
         if (this.stationery.getStationery === this.constants.name) {
-            this.swapImage(true);
+            this.$.css("background-color", this.constants.onColor);
             return;     // Use early "return" rather than "else".
         }
-        this.swapImage(false);
-    }
-
-    private swapImage(on: boolean): void {
-        // "opacity" property means how the element is "not" clear.
-        this.onImage.css("opacity", on ? 1 : 0);
-        this.offImage.css("opacity", on ? 0 : 1);
+        this.$.css("background-color", this.constants.offColor);
     }
 
     private changeStationery(): void {

@@ -33,6 +33,9 @@ var SpriteView = (function (_super) {
     SpriteView.prototype.onOverlap = function (partner) {
         // override!
     };
+    SpriteView.prototype.offOverlap = function (partner) {
+        // override!
+    };
     SpriteView.prototype.setFrameAnimation = function () {
         // override!
         // This is recommended to imprement in child class not using constants.
