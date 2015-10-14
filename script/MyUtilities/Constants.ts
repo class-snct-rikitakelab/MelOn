@@ -36,9 +36,11 @@ namespace CONSTANTS {
             refresh: "refresh",
             write: "write",
             erase: "erase",
+            move: "move",
             extension: "extension",
         };
         unitNote: number = 8;
+        measureNum: number = 4;
         pitch: string[] = [ "C5",
             "B4", "A4", "G4", "F4", "E4", "D4", "C4",
             "B3", "A3", "G3", "F3", "E3", "D3", "C3",
@@ -125,6 +127,7 @@ namespace CONSTANTS {
         images: { [name: string]: string } = {
             note: "note",
         }
+        fadeTime: number = 100;
     }
 
     export class MeasureSheet extends Music implements SpriteView {
@@ -165,7 +168,6 @@ namespace CONSTANTS {
     export class ScoreSheet extends MeasureSheet implements GroupView {
         displayMeasureNum: number = 2;
         displayPitchNum: number = 7;
-        measureNum: number = 4;
     }
 
     export class Notes extends MeasureSheet implements GroupView {

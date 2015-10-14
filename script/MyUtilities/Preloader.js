@@ -24,6 +24,8 @@ var Preloader = (function (_super) {
         // Preload bar animation when the load finished.
         var tween = this.add.tween(this.preloadBar).to({ alpha: 0 }, 1000, Phaser.Easing.Linear.None, true);
         tween.onComplete.add(this.start, this);
+        // this.game.sound.onSoundDecode.add(() => { console.log("decode"); });
+        // this.game.sound.setDecodedCallback
     };
     Preloader.prototype.createPreloadBar = function (constants) {
         this.preloadBar = this.add.sprite(constants.x, constants.y, constants.images[constants.initImage]);

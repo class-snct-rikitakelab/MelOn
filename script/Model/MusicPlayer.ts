@@ -19,6 +19,7 @@ class MusicPlayer extends Model {
 
     stop() {
         this.playing = false;
+        this.game.sound.stopAll();
         this.$.triggerHandler(this.constants.events["stop"]);
     }
 

@@ -30,9 +30,11 @@ var CONSTANTS;
                 refresh: "refresh",
                 write: "write",
                 erase: "erase",
+                move: "move",
                 extension: "extension",
             };
             this.unitNote = 8;
+            this.measureNum = 4;
             this.pitch = ["C5",
                 "B4", "A4", "G4", "F4", "E4", "D4", "C4",
                 "B3", "A3", "G3", "F3", "E3", "D3", "C3",
@@ -122,6 +124,7 @@ var CONSTANTS;
             this.images = {
                 note: "note",
             };
+            this.fadeTime = 100;
         }
         return Note;
     })(Music);
@@ -166,7 +169,6 @@ var CONSTANTS;
             _super.apply(this, arguments);
             this.displayMeasureNum = 2;
             this.displayPitchNum = 7;
-            this.measureNum = 4;
         }
         return ScoreSheet;
     })(MeasureSheet);

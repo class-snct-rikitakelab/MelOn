@@ -24,6 +24,7 @@ var MusicPlayer = (function (_super) {
     };
     MusicPlayer.prototype.stop = function () {
         this.playing = false;
+        this.game.sound.stopAll();
         this.$.triggerHandler(this.constants.events["stop"]);
     };
     MusicPlayer.prototype.togglePlayingState = function () {

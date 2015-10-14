@@ -19,14 +19,14 @@ var Main = (function (_super) {
     };
     Main.prototype.createModel = function () {
         this.music = new Music(this.game, new CONSTANTS.Music);
-        this.stationery = new Stationery(this.game, new CONSTANTS.Stationery);
-        this.instrument = new Instrument(this.game, new CONSTANTS.Instrument);
         this.musicPlayer = new MusicPlayer(this.game, new CONSTANTS.MusicPlayer);
+        this.instrument = new Instrument(this.game, new CONSTANTS.Instrument);
+        this.stationery = new Stationery(this.game, new CONSTANTS.Stationery);
         this.noteOverlapManager = new NoteOverlapManager(this.game); // Manager as a Model.
     };
     Main.prototype.createView = function () {
         this.scoreSheet = new ScoreSheet(this.game, new CONSTANTS.ScoreSheet, { music: this.music, stationery: this.stationery });
-        this.notes = new Notes(this.game, new CONSTANTS.Notes, { music: this.music, stationery: this.stationery, instrument: this.instrument, noteOverlapManager: this.noteOverlapManager });
+        this.notes = new Notes(this.game, new CONSTANTS.Notes, { music: this.music, musicPlayer: this.musicPlayer, instrument: this.instrument, stationery: this.stationery, noteOverlapManager: this.noteOverlapManager });
         this.musicPlayBar = new MusicPlayBar(this.game, new CONSTANTS.MusicPlayBar, { instrument: this.instrument, musicPlayer: this.musicPlayer, noteOverlapManager: this.noteOverlapManager });
         this.pencil = new StationeryButton(this.game, new CONSTANTS.Pencil, { stationery: this.stationery });
         this.eraser = new StationeryButton(this.game, new CONSTANTS.Eraser, { stationery: this.stationery });
