@@ -18,8 +18,8 @@ class Music extends Model {
     onMove: Phaser.Signal = new Phaser.Signal();
     onChangeExtension: Phaser.Signal = new Phaser.Signal();
 
-    constructor(game: Phaser.Game, private constants: CONSTANTS.Music) {
-        super(game, constants);
+    constructor(private constants: CONSTANTS.Music) {
+        super(constants);
         this.music = <any>_.object(this.constants.pitch, _.times(this.constants.pitchNum, () => { return [] }));
     }
 

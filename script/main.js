@@ -12,19 +12,14 @@ var Main = (function (_super) {
     __extends(Main, _super);
     function Main() {
         _super.apply(this, arguments);
+        // ========== Model ==========
+        this.music = new Music(new CONSTANTS.Music);
+        this.stationery = new Stationery(new CONSTANTS.Stationery);
+        this.instrument = new Instrument(new CONSTANTS.Instrument);
+        this.musicPlayer = new MusicPlayer(new CONSTANTS.MusicPlayer);
     }
     Main.prototype.create = function () {
-        this.createModel();
-        this.createView();
-    };
-    Main.prototype.createModel = function () {
-        this.music = new Music(this.game, new CONSTANTS.Music);
-        this.musicPlayer = new MusicPlayer(this.game, new CONSTANTS.MusicPlayer);
-        this.instrument = new Instrument(this.game, new CONSTANTS.Instrument);
-        this.stationery = new Stationery(this.game, new CONSTANTS.Stationery);
-        this.noteOverlapManager = new NoteOverlapManager(this.game); // Manager as a Model.
-    };
-    Main.prototype.createView = function () {
+        this.noteOverlapManager = new NoteOverlapManager(this.game);
         this.scoreSheet = new ScoreSheet(this.game, new CONSTANTS.ScoreSheet, { music: this.music, stationery: this.stationery });
         this.notes = new Notes(this.game, new CONSTANTS.Notes, { music: this.music, musicPlayer: this.musicPlayer, instrument: this.instrument, stationery: this.stationery, noteOverlapManager: this.noteOverlapManager });
         this.musicPlayBar = new MusicPlayBar(this.game, new CONSTANTS.MusicPlayBar, { instrument: this.instrument, musicPlayer: this.musicPlayer, noteOverlapManager: this.noteOverlapManager });

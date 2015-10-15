@@ -2,15 +2,14 @@
 
 class PlayButton extends DOMView {
 
-    private musicPlayer: MusicPlayer;
+    private musicPlayer: MusicPlayer = this.models["musicPlayer"];
     private image: JQuery;
 
     constructor(game: Phaser.Game, private constants: CONSTANTS.PlayButton, models: Object) {
         super(game, constants, models);
         this.loadImage();
-        this.musicPlayer = models["musicPlayer"];
         this.musicPlayer.onPlay.add(() => { this.changeImage(true); });
-        this.musicPlayer.onStop.add(() => { this.changeImage(false); });
+        this.musicPlayer.onStop.add(() => { this.changeImage(false); this.game.sound.stopAll(); });
         this.$.click(() => { this.changePlayingState(); });
         this.changeImage(false);
     }

@@ -7,8 +7,8 @@ var __extends = (this && this.__extends) || function (d, b) {
 // This class is one of Model(Concrete Subject)
 var Stationery = (function (_super) {
     __extends(Stationery, _super);
-    function Stationery(game, constants) {
-        _super.call(this, game, constants);
+    function Stationery(constants) {
+        _super.call(this, constants);
         this.constants = constants;
         this.onChangeStationery = new Phaser.Signal();
         // Set initial stationery name.

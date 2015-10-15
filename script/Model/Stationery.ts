@@ -8,8 +8,8 @@ class Stationery extends Model {
 
     onChangeStationery: Phaser.Signal = new Phaser.Signal();
 
-    constructor(game: Phaser.Game, private constants: CONSTANTS.Stationery) {
-        super(game, constants);
+    constructor(private constants: CONSTANTS.Stationery) {
+        super(constants);
 
         // Set initial stationery name.
         this.stationery = this.constants.initStationery;

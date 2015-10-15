@@ -5,8 +5,8 @@ class Instrument extends Model{
 
     onChangeInstrument: Phaser.Signal = new Phaser.Signal();
 
-    constructor(game: Phaser.Game, private constants: CONSTANTS.Instrument) {
-        super(game, constants);
+    constructor(private constants: CONSTANTS.Instrument) {
+        super(constants);
         this.changeInstrument(this.constants.instruments[this.constants.initInstrument]);
     }
 

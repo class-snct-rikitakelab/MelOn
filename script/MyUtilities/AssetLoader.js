@@ -1,78 +1,57 @@
 /// <reference path="../reference.ts"/>
 var AssetLoader = (function () {
     function AssetLoader() {
+        this.addresses = {
+            images: "",
+            spriteSheets: "",
+            audios: "",
+            preloadImages: "",
+            preloadSpriteSheets: "",
+            preloadAudios: "",
+        };
         this.enum = {
             KEY: 0,
-            FILE_NAME: 1,
+            FILE: 1,
             FRAME_WIDTH: 2,
             FRAME_HEIGHT: 3,
         };
-        this.images = {
-            address: "",
-            assets: [
-                ["", ""]
-            ],
-        };
-        this.spritesheets = {
-            address: "",
-            assets: [
-                ["", "", 0, 0]
-            ]
-        };
-        this.audios = {
-            address: "",
-            assets: [
-                ["", []]
-            ]
-        };
-        this.preloadImages = {
-            address: "",
-            assets: [
-                ["", ""]
-            ],
-        };
-        this.preloadSpritesheets = {
-            address: "",
-            assets: [
-                ["", "", 0, 0]
-            ]
-        };
-        this.preloadAudios = {
-            address: "",
-            assets: [
-                ["", []]
-            ]
-        };
     }
     AssetLoader.prototype.load = function (loader) {
-        this.loadImages(loader, this.images);
-        // this.loadSpriteSheets(loader, this.spritesheets);
-        this.loadAudios(loader, this.audios);
+        loader.baseURL = this.baseURL + "/";
+        this.loadImages(loader, this.images, this.addresses.images);
+        this.loadSpriteSheets(loader, this.spriteSheets, this.addresses.spriteSheets);
+        this.loadAudios(loader, this.audios, this.addresses.audios);
     };
     AssetLoader.prototype.preload = function (loader) {
-        this.loadImages(loader, this.preloadImages);
-        // this.loadSpriteSheets(loader, this.preloadSpritesheets);
-        // this.loadAudios(loader, this.preloadAudios);
+        loader.baseURL = this.baseURL + "/";
+        this.loadImages(loader, this.preloadImages, this.addresses.preloadImages);
+        this.loadSpriteSheets(loader, this.preloadSpriteSheets, this.addresses.preloadSpriteSheets);
+        this.loadAudios(loader, this.preloadAudios, this.addresses.preloadAudios);
     };
-    AssetLoader.prototype.loadImages = function (loader, images) {
+    AssetLoader.prototype.loadImages = function (loader, images, base) {
         var _this = this;
-        images.assets.forEach(function (asset) {
-            loader.image(asset[_this.enum.KEY], images.address + asset[_this.enum.FILE_NAME]);
-        });
-    };
-    AssetLoader.prototype.loadSpriteSheets = function (loader, spritesheets) {
-        var _this = this;
-        spritesheets.assets.forEach(function (asset) {
-            loader.spritesheet(asset[_this.enum.KEY], spritesheets.address + asset[_this.enum.FILE_NAME], asset[_this.enum.FRAME_WIDTH], asset[_this.enum.FRAME_HEIGHT]);
-        });
-    };
-    AssetLoader.prototype.loadAudios = function (loader, audios) {
-        var _this = this;
-        audios.assets.forEach(function (asset) {
-            asset[_this.enum.FILE_NAME] = asset[_this.enum.FILE_NAME].map(function (value) {
-                return audios.address + value;
+        _.each(images, function (assets, name) {
+            _.each(assets, function (asset) {
+                loader.image(asset[_this.enum.KEY], base + "/" + name + "/" + asset[_this.enum.FILE]);
             });
-            loader.audio(asset[_this.enum.KEY], asset[_this.enum.FILE_NAME]);
+        });
+    };
+    AssetLoader.prototype.loadSpriteSheets = function (loader, spritesheets, base) {
+        var _this = this;
+        _.each(spritesheets, function (assets, name) {
+            _.each(assets, function (asset) {
+                loader.spritesheet(asset[_this.enum.KEY], base + "/" + name + "/" + asset[_this.enum.FILE], asset[_this.enum.FRAME_WIDTH], asset[_this.enum.FRAME_HEIGHT]);
+            });
+        });
+    };
+    AssetLoader.prototype.loadAudios = function (loader, audios, base) {
+        var _this = this;
+        _.each(audios, function (assets, name) {
+            _.each(assets, function (asset) {
+                _.each(asset[_this.enum.FILE], function (value) {
+                    loader.audio(asset[_this.enum.KEY], base + "/" + name + "/" + value);
+                });
+            });
         });
     };
     return AssetLoader;

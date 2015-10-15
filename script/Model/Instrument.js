@@ -6,8 +6,8 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var Instrument = (function (_super) {
     __extends(Instrument, _super);
-    function Instrument(game, constants) {
-        _super.call(this, game, constants);
+    function Instrument(constants) {
+        _super.call(this, constants);
         this.constants = constants;
         this.onChangeInstrument = new Phaser.Signal();
         this.changeInstrument(this.constants.instruments[this.constants.initInstrument]);

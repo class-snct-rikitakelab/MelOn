@@ -7,13 +7,13 @@
 
 class Main extends Phaser.State {
     // ========== Model ==========
-    private music: Music;
-    private stationery: Stationery;
-    private instrument: Instrument;
-    private musicPlayer: MusicPlayer;
-    private noteOverlapManager: NoteOverlapManager;
+    private music: Music = new Music(new CONSTANTS.Music);
+    private stationery: Stationery = new Stationery(new CONSTANTS.Stationery);
+    private instrument: Instrument = new Instrument(new CONSTANTS.Instrument);
+    private musicPlayer: MusicPlayer = new MusicPlayer(new CONSTANTS.MusicPlayer);
 
     // ========== View ==========
+    private noteOverlapManager: NoteOverlapManager; // View Manager is middle of Model and View ?
     private scoreSheet: ScoreSheet;
     private notes: Notes;
     private musicPlayBar: MusicPlayBar;
@@ -22,19 +22,7 @@ class Main extends Phaser.State {
     private playButton: PlayButton;
     
     create() {
-        this.createModel();
-        this.createView(); 
-    }
-
-    private createModel() {
-        this.music = new Music(this.game, new CONSTANTS.Music);
-        this.musicPlayer = new MusicPlayer(this.game, new CONSTANTS.MusicPlayer);
-        this.instrument = new Instrument(this.game, new CONSTANTS.Instrument);
-        this.stationery = new Stationery(this.game, new CONSTANTS.Stationery);
-        this.noteOverlapManager = new NoteOverlapManager(this.game); // Manager as a Model.
-    }
-
-    private createView() {
+        this.noteOverlapManager = new NoteOverlapManager(this.game);
         this.scoreSheet = new ScoreSheet(this.game, new CONSTANTS.ScoreSheet, { music: this.music, stationery: this.stationery });
         this.notes = new Notes(this.game, new CONSTANTS.Notes, { music: this.music, musicPlayer: this.musicPlayer, instrument: this.instrument, stationery: this.stationery, noteOverlapManager: this.noteOverlapManager });
         this.musicPlayBar = new MusicPlayBar(this.game, new CONSTANTS.MusicPlayBar, { instrument: this.instrument, musicPlayer: this.musicPlayer, noteOverlapManager: this.noteOverlapManager });

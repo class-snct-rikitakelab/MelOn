@@ -10,10 +10,10 @@ var PlayButton = (function (_super) {
         var _this = this;
         _super.call(this, game, constants, models);
         this.constants = constants;
+        this.musicPlayer = this.models["musicPlayer"];
         this.loadImage();
-        this.musicPlayer = models["musicPlayer"];
         this.musicPlayer.onPlay.add(function () { _this.changeImage(true); });
-        this.musicPlayer.onStop.add(function () { _this.changeImage(false); });
+        this.musicPlayer.onStop.add(function () { _this.changeImage(false); _this.game.sound.stopAll(); });
         this.$.click(function () { _this.changePlayingState(); });
         this.changeImage(false);
     }

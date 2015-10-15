@@ -6,8 +6,8 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var MusicPlayer = (function (_super) {
     __extends(MusicPlayer, _super);
-    function MusicPlayer(game, constants) {
-        _super.call(this, game, constants);
+    function MusicPlayer(constants) {
+        _super.call(this, constants);
         this.constants = constants;
         this.playing = false;
         this.onPlay = new Phaser.Signal();
@@ -26,7 +26,6 @@ var MusicPlayer = (function (_super) {
     };
     MusicPlayer.prototype.stop = function () {
         this.playing = false;
-        this.game.sound.stopAll();
         this.onStop.dispatch();
     };
     MusicPlayer.prototype.togglePlayingState = function () {

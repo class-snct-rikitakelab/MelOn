@@ -7,8 +7,8 @@ class MusicPlayer extends Model {
     onPlay: Phaser.Signal = new Phaser.Signal();
     onStop: Phaser.Signal = new Phaser.Signal();
 
-    constructor(game: Phaser.Game, private constants: CONSTANTS.MusicPlayer) {
-        super(game, constants);
+    constructor(private constants: CONSTANTS.MusicPlayer) {
+        super(constants);
     }
 
     get isPlaying(): boolean {
@@ -22,7 +22,6 @@ class MusicPlayer extends Model {
 
     stop() {
         this.playing = false;
-        this.game.sound.stopAll();
         this.onStop.dispatch();
     }
 

@@ -6,8 +6,8 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var Music = (function (_super) {
     __extends(Music, _super);
-    function Music(game, constants) {
-        _super.call(this, game, constants);
+    function Music(constants) {
+        _super.call(this, constants);
         this.constants = constants;
         this.selectedNote = null;
         this.onSelect = new Phaser.Signal();
