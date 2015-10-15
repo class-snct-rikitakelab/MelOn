@@ -10,6 +10,7 @@ var Stationery = (function (_super) {
     function Stationery(game, constants) {
         _super.call(this, game, constants);
         this.constants = constants;
+        this.onChangeStationery = new Phaser.Signal();
         // Set initial stationery name.
         this.stationery = this.constants.initStationery;
     }
@@ -22,18 +23,27 @@ var Stationery = (function (_super) {
         configurable: true
     });
     Stationery.prototype.changeStationery = function (name) {
-        // Change the stationery name.
         this.stationery = name;
-        // It doesn't work by trigger method. Because trigger causes recursion.
-        // But triggerHandler doesn't cause recursion. This method execute the handler only once.
-        this.$.triggerHandler(this.constants.events["changeStationery"]);
-    };
-    // What is called registerObserver. 
-    Stationery.prototype.onChangeStationery = function (handler) {
-        // Set the handler (function which is called when the "trigger" method is called) by jQuery.
-        // This return value can remove the event handling. Like this => returnJQValue.off(); 
-        return this.$.bind(this.constants.events["changeStationery"], handler);
+        this.onChangeStationery.dispatch();
     };
     return Stationery;
 })(Model);
+// JQuery
+/*
+changeStationery(name: string) {
+    // Change the stationery name.
+    this.stationery = name;
+
+    // It doesn't work by trigger method. Because trigger causes recursion.
+    // But triggerHandler doesn't cause recursion. This method execute the handler only once.
+    this.$.triggerHandler(this.constants.events["changeStationery"]);
+}
+
+// What is called registerObserver.
+onChangeStationery(handler: () => any): JQuery {
+    // Set the handler (function which is called when the "trigger" method is called) by jQuery.
+    // This return value can remove the event handling. Like this => returnJQValue.off();
+    return this.$.bind(this.constants.events["changeStationery"], handler);
+}
+*/ 
 //# sourceMappingURL=Stationery.js.map

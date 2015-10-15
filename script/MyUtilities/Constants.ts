@@ -27,18 +27,9 @@ namespace CONSTANTS {
     //
 
     export interface Model {
-        events: { [name: string]: string };
     }
 
     export class Music implements Model {
-        events: { [name: string]: string } = {
-            select: "select",
-            refresh: "refresh",
-            write: "write",
-            erase: "erase",
-            move: "move",
-            extension: "extension",
-        };
         unitNote: number = 8;
         measureNum: number = 4;
         pitch: string[] = [ "C5",
@@ -52,18 +43,12 @@ namespace CONSTANTS {
     }
 
     export class Stationery implements Model {
-        events: { [name: string]: string } = {
-            changeStationery: "changeStationery",
-        };
         writeStationery: string = "pencil";
         eraseStationery: string = "eraser";
         initStationery: string = this.writeStationery;
     }
 
     export class Instrument implements Model {
-        events: { [name: string]: string } = {
-            changeInstrument: "changeInstrument",
-        };
         pitch: string[] = new Music().pitch;
         pitchNum: number = this.pitch.length;
         initInstrument: number = 0;
@@ -73,10 +58,6 @@ namespace CONSTANTS {
     }
 
     export class MusicPlayer implements Model {
-        events: { [name: string]: string } = {
-            play: "play",
-            stop: "stop",
-        };
     }
 
 

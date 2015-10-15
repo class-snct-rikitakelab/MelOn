@@ -9,8 +9,8 @@ class PlayButton extends DOMView {
         super(game, constants, models);
         this.loadImage();
         this.musicPlayer = models["musicPlayer"];
-        this.musicPlayer.onPlay(() => { this.changeImage(true); });
-        this.musicPlayer.onStop(() => { this.changeImage(false); });
+        this.musicPlayer.onPlay.add(() => { this.changeImage(true); });
+        this.musicPlayer.onStop.add(() => { this.changeImage(false); });
         this.$.click(() => { this.changePlayingState(); });
         this.changeImage(false);
     }

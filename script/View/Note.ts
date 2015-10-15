@@ -14,9 +14,9 @@ class Note extends SpriteView {
 
     constructor(game: Phaser.Game, private constants: CONSTANTS.Note, models: Object, private data: NoteData) {
         super(game, constants, models);
-        this.music.onRefresh(() => { this.refresh(); });
-        this.music.onMove(() => { this.movePosition(); });
-        this.music.onChangeExtension(() => { this.changeExtension(); });
+        this.music.onRefresh.add(() => { this.refresh(); });
+        this.music.onMove.add(() => { this.movePosition(); });
+        this.music.onChangeExtension.add(() => { this.changeExtension(); });
         this.setPosition(data.start * constants.width, constants.pitch.indexOf(data.pitch) * constants.height);
     }
 

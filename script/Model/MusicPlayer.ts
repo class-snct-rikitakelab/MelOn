@@ -4,6 +4,9 @@ class MusicPlayer extends Model {
 
     private playing: boolean = false;
 
+    onPlay: Phaser.Signal = new Phaser.Signal();
+    onStop: Phaser.Signal = new Phaser.Signal();
+
     constructor(game: Phaser.Game, private constants: CONSTANTS.MusicPlayer) {
         super(game, constants);
     }
@@ -14,19 +17,16 @@ class MusicPlayer extends Model {
 
     play() {
         this.playing = true;
-        this.$.triggerHandler(this.constants.events["play"]);
+        this.onPlay.dispatch();
     }
 
     stop() {
         this.playing = false;
         this.game.sound.stopAll();
-        this.$.triggerHandler(this.constants.events["stop"]);
+        this.onStop.dispatch();
     }
 
     togglePlayingState() {
         this.playing ? this.stop() : this.play();
     }
-
-    onPlay(handler: () => any): JQuery { return this.$.bind(this.constants.events["play"], handler); }
-    onStop(handler: () => any): JQuery { return this.$.bind(this.constants.events["stop"], handler); }
 }

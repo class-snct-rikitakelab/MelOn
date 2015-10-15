@@ -20,7 +20,7 @@ class StationeryButton extends DOMView {
         // The important thing is using arrow function.
 
         // This function will be executed when the stationery is changed. What is called notify method.
-        this.stationery.onChangeStationery(() => { this.changeImage(); });
+        this.stationery.onChangeStationery.add(() => { this.changeImage(); });
 
         // This function will be executed when this button is pushed.
         this.$.click(() => { this.changeStationery();});

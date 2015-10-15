@@ -19,9 +19,9 @@ var Note = (function (_super) {
         this.isStreching = true;
         this.isMoving = false;
         this.touchPosition = null;
-        this.music.onRefresh(function () { _this.refresh(); });
-        this.music.onMove(function () { _this.movePosition(); });
-        this.music.onChangeExtension(function () { _this.changeExtension(); });
+        this.music.onRefresh.add(function () { _this.refresh(); });
+        this.music.onMove.add(function () { _this.movePosition(); });
+        this.music.onChangeExtension.add(function () { _this.changeExtension(); });
         this.setPosition(data.start * constants.width, constants.pitch.indexOf(data.pitch) * constants.height);
     }
     Note.prototype.setPhysical = function () {

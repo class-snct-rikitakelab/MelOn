@@ -9,6 +9,7 @@ var Instrument = (function (_super) {
     function Instrument(game, constants) {
         _super.call(this, game, constants);
         this.constants = constants;
+        this.onChangeInstrument = new Phaser.Signal();
         this.changeInstrument(this.constants.instruments[this.constants.initInstrument]);
     }
     Object.defineProperty(Instrument.prototype, "getInstrument", {
@@ -20,9 +21,8 @@ var Instrument = (function (_super) {
     });
     Instrument.prototype.changeInstrument = function (instrument) {
         this.instrument = instrument;
-        this.$.triggerHandler(this.constants.events["changeInstrument"]);
+        this.onChangeInstrument.dispatch();
     };
-    Instrument.prototype.onChangeInstrument = function (handler) { return this.$.bind(this.constants.events["changeInstrument"], handler); };
     return Instrument;
 })(Model);
 //# sourceMappingURL=Instrument.js.map

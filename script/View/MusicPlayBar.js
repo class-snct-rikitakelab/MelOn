@@ -13,8 +13,8 @@ var MusicPlayBar = (function (_super) {
         this.musicPlayer = this.models["musicPlayer"];
         this.instrument = this.models["instrument"];
         this.noteOverlapManager = this.models["noteOverlapManager"];
-        this.musicPlayer.onStop(function () { _this.musicStop(); });
-        this.musicPlayer.onPlay(function () { _this.musicPlay(); });
+        this.musicPlayer.onStop.add(function () { _this.musicStop(); });
+        this.musicPlayer.onPlay.add(function () { _this.musicPlay(); });
         this.noteOverlapManager.setMusicPlayBar(this);
         this.anchor.setTo(1.0, 0.0);
     }

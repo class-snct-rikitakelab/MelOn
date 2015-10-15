@@ -10,7 +10,13 @@ interface NoteData {
 class Music extends Model {
     private music: { [pitch: string]: NoteData[] };
     private selectedNote: NoteData = null;
-    onHoge: Phaser.Signal = new Phaser.Signal();
+
+    onSelect: Phaser.Signal = new Phaser.Signal();
+    onRefresh: Phaser.Signal = new Phaser.Signal();
+    onWrite: Phaser.Signal = new Phaser.Signal();
+    onErase: Phaser.Signal = new Phaser.Signal();
+    onMove: Phaser.Signal = new Phaser.Signal();
+    onChangeExtension: Phaser.Signal = new Phaser.Signal();
 
     constructor(game: Phaser.Game, private constants: CONSTANTS.Music) {
         super(game, constants);
@@ -27,23 +33,23 @@ class Music extends Model {
 
     select(note: NoteData) {
         this.selectedNote = note;
-        this.$.triggerHandler(this.constants.events["select"]);
+        this.onSelect.dispatch();
     }
 
     refresh() {
         this.selectedNote = null;
-        this.$.triggerHandler(this.constants.events["refresh"]);
+        this.onRefresh.dispatch();
     }
 
     write(note: NoteData) {
         this.select(this.music[note.pitch][this.music[note.pitch].push(note) - 1]);
-        this.$.triggerHandler(this.constants.events["write"]);
+        this.onWrite.dispatch();
     }
 
     erase(note: NoteData) {
         this.music[note.pitch].splice(this.music[note.pitch].indexOf(note), 1);
         this.refresh();
-        this.$.triggerHandler(this.constants.events["erase"]);
+        this.onErase.dispatch();
     }
 
     moveHorizontally(note: NoteData, right: boolean) {
@@ -51,7 +57,7 @@ class Music extends Model {
         if (checkPosition < 0 || checkPosition > note.unitNote * this.constants.measureNum) return;
         if (this.checkExist(note.pitch, note.unitNote, checkPosition)) return;
         note.start += right ? 1 : -1;
-        this.$.triggerHandler(this.constants.events["move"]);
+        this.onMove.dispatch();
     }
 
     moveVertically(note: NoteData, up: boolean) {
@@ -62,25 +68,18 @@ class Music extends Model {
         this.music[note.pitch].splice(this.music[note.pitch].indexOf(note), 1);
         note.pitch = destination;
         this.music[note.pitch].push(note);
-        this.$.triggerHandler(this.constants.events["move"]);
+        this.onMove.dispatch();
     }
 
     lengthen(note: NoteData) {
         if (this.checkExist(note.pitch, note.unitNote, note.start + note.extension + 1)) return;
         note.extension++;
-        this.$.triggerHandler(this.constants.events["extension"]);
+        this.onChangeExtension.dispatch();
     }
 
     shorten(note: NoteData) {
         note.extension--;
         if (note.extension < 0) note.extension = 0;
-        this.$.triggerHandler(this.constants.events["extension"]);
+        this.onChangeExtension.dispatch();
     }
-
-    onSelect(handler: () => any): JQuery { return this.$.bind(this.constants.events["select"], handler); }
-    onRefresh(handler: () => any): JQuery { return this.$.bind(this.constants.events["refresh"], handler); }
-    onWrite(handler: () => any): JQuery { return this.$.bind(this.constants.events["write"], handler); }
-    onErase(handler: () => any): JQuery { return this.$.bind(this.constants.events["erase"], handler); }
-    onMove(handler: () => any): JQuery { return this.$.bind(this.constants.events["move"], handler); }
-    onChangeExtension(handler: () => any): JQuery { return this.$.bind(this.constants.events["extension"], handler); }
 }

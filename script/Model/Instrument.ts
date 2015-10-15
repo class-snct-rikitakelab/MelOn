@@ -3,6 +3,8 @@
 class Instrument extends Model{
     private instrument: string;
 
+    onChangeInstrument: Phaser.Signal = new Phaser.Signal();
+
     constructor(game: Phaser.Game, private constants: CONSTANTS.Instrument) {
         super(game, constants);
         this.changeInstrument(this.constants.instruments[this.constants.initInstrument]);
@@ -14,8 +16,6 @@ class Instrument extends Model{
 
     changeInstrument(instrument: string) {
         this.instrument = instrument;
-        this.$.triggerHandler(this.constants.events["changeInstrument"]);
+        this.onChangeInstrument.dispatch();
     }
-
-    onChangeInstrument(handler: () => any): JQuery { return this.$.bind(this.constants.events["changeInstrument"], handler); }
 }

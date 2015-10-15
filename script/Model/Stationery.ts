@@ -6,6 +6,8 @@ class Stationery extends Model {
     // This is essence of this Model class.
     private stationery: string;
 
+    onChangeStationery: Phaser.Signal = new Phaser.Signal();
+
     constructor(game: Phaser.Game, private constants: CONSTANTS.Stationery) {
         super(game, constants);
 
@@ -19,18 +21,26 @@ class Stationery extends Model {
     }
 
     changeStationery(name: string) {
-        // Change the stationery name.
         this.stationery = name;
-
-        // It doesn't work by trigger method. Because trigger causes recursion.
-        // But triggerHandler doesn't cause recursion. This method execute the handler only once.
-        this.$.triggerHandler(this.constants.events["changeStationery"]);
-    }
-
-    // What is called registerObserver. 
-    onChangeStationery(handler: () => any): JQuery {
-        // Set the handler (function which is called when the "trigger" method is called) by jQuery.
-        // This return value can remove the event handling. Like this => returnJQValue.off(); 
-        return this.$.bind(this.constants.events["changeStationery"], handler);
+        this.onChangeStationery.dispatch();
     }
 }
+
+// JQuery
+/*
+changeStationery(name: string) {
+    // Change the stationery name.
+    this.stationery = name;
+
+    // It doesn't work by trigger method. Because trigger causes recursion.
+    // But triggerHandler doesn't cause recursion. This method execute the handler only once.
+    this.$.triggerHandler(this.constants.events["changeStationery"]);
+}
+
+// What is called registerObserver. 
+onChangeStationery(handler: () => any): JQuery {
+    // Set the handler (function which is called when the "trigger" method is called) by jQuery.
+    // This return value can remove the event handling. Like this => returnJQValue.off(); 
+    return this.$.bind(this.constants.events["changeStationery"], handler);
+}
+*/

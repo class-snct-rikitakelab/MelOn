@@ -10,10 +10,10 @@ class Notes extends GroupView {
     constructor(game: Phaser.Game, private constants: CONSTANTS.Notes, models: Object) {
         super(game, constants, models);
 
-        this.music.onSelect(() => { this.select(); });
-        this.music.onRefresh(() => { this.refreshSelect(); });
-        this.music.onWrite(() => { this.addNote(); });
-        this.music.onErase(() => { this.removeNote(); });
+        this.music.onSelect.add(() => { this.select(); });
+        this.music.onRefresh.add(() => { this.refreshSelect(); });
+        this.music.onWrite.add(() => { this.addNote(); });
+        this.music.onErase.add(() => { this.removeNote(); });
     }
 
     setPhysical() {

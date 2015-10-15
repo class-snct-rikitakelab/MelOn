@@ -10,7 +10,12 @@ var Music = (function (_super) {
         _super.call(this, game, constants);
         this.constants = constants;
         this.selectedNote = null;
-        this.onHoge = new Phaser.Signal();
+        this.onSelect = new Phaser.Signal();
+        this.onRefresh = new Phaser.Signal();
+        this.onWrite = new Phaser.Signal();
+        this.onErase = new Phaser.Signal();
+        this.onMove = new Phaser.Signal();
+        this.onChangeExtension = new Phaser.Signal();
         this.music = _.object(this.constants.pitch, _.times(this.constants.pitchNum, function () { return []; }));
     }
     Music.prototype.checkExist = function (pitch, unitNote, point) {
@@ -25,20 +30,20 @@ var Music = (function (_super) {
     });
     Music.prototype.select = function (note) {
         this.selectedNote = note;
-        this.$.triggerHandler(this.constants.events["select"]);
+        this.onSelect.dispatch();
     };
     Music.prototype.refresh = function () {
         this.selectedNote = null;
-        this.$.triggerHandler(this.constants.events["refresh"]);
+        this.onRefresh.dispatch();
     };
     Music.prototype.write = function (note) {
         this.select(this.music[note.pitch][this.music[note.pitch].push(note) - 1]);
-        this.$.triggerHandler(this.constants.events["write"]);
+        this.onWrite.dispatch();
     };
     Music.prototype.erase = function (note) {
         this.music[note.pitch].splice(this.music[note.pitch].indexOf(note), 1);
         this.refresh();
-        this.$.triggerHandler(this.constants.events["erase"]);
+        this.onErase.dispatch();
     };
     Music.prototype.moveHorizontally = function (note, right) {
         var checkPosition = note.start + (right ? note.extension + 1 : -1);
@@ -47,7 +52,7 @@ var Music = (function (_super) {
         if (this.checkExist(note.pitch, note.unitNote, checkPosition))
             return;
         note.start += right ? 1 : -1;
-        this.$.triggerHandler(this.constants.events["move"]);
+        this.onMove.dispatch();
     };
     Music.prototype.moveVertically = function (note, up) {
         var destination = this.constants.pitch[this.constants.pitch.indexOf(note.pitch) - (up ? 1 : -1)];
@@ -59,26 +64,20 @@ var Music = (function (_super) {
         this.music[note.pitch].splice(this.music[note.pitch].indexOf(note), 1);
         note.pitch = destination;
         this.music[note.pitch].push(note);
-        this.$.triggerHandler(this.constants.events["move"]);
+        this.onMove.dispatch();
     };
     Music.prototype.lengthen = function (note) {
         if (this.checkExist(note.pitch, note.unitNote, note.start + note.extension + 1))
             return;
         note.extension++;
-        this.$.triggerHandler(this.constants.events["extension"]);
+        this.onChangeExtension.dispatch();
     };
     Music.prototype.shorten = function (note) {
         note.extension--;
         if (note.extension < 0)
             note.extension = 0;
-        this.$.triggerHandler(this.constants.events["extension"]);
+        this.onChangeExtension.dispatch();
     };
-    Music.prototype.onSelect = function (handler) { return this.$.bind(this.constants.events["select"], handler); };
-    Music.prototype.onRefresh = function (handler) { return this.$.bind(this.constants.events["refresh"], handler); };
-    Music.prototype.onWrite = function (handler) { return this.$.bind(this.constants.events["write"], handler); };
-    Music.prototype.onErase = function (handler) { return this.$.bind(this.constants.events["erase"], handler); };
-    Music.prototype.onMove = function (handler) { return this.$.bind(this.constants.events["move"], handler); };
-    Music.prototype.onChangeExtension = function (handler) { return this.$.bind(this.constants.events["extension"], handler); };
     return Music;
 })(Model);
 //# sourceMappingURL=Music.js.map

@@ -12,8 +12,8 @@ var PlayButton = (function (_super) {
         this.constants = constants;
         this.loadImage();
         this.musicPlayer = models["musicPlayer"];
-        this.musicPlayer.onPlay(function () { _this.changeImage(true); });
-        this.musicPlayer.onStop(function () { _this.changeImage(false); });
+        this.musicPlayer.onPlay.add(function () { _this.changeImage(true); });
+        this.musicPlayer.onStop.add(function () { _this.changeImage(false); });
         this.$.click(function () { _this.changePlayingState(); });
         this.changeImage(false);
     }

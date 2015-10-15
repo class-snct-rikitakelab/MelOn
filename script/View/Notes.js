@@ -14,10 +14,10 @@ var Notes = (function (_super) {
         this.stationery = this.models["stationery"];
         this.noteOverlapManager = this.models["noteOverlapManager"];
         this.selectedNote = null;
-        this.music.onSelect(function () { _this.select(); });
-        this.music.onRefresh(function () { _this.refreshSelect(); });
-        this.music.onWrite(function () { _this.addNote(); });
-        this.music.onErase(function () { _this.removeNote(); });
+        this.music.onSelect.add(function () { _this.select(); });
+        this.music.onRefresh.add(function () { _this.refreshSelect(); });
+        this.music.onWrite.add(function () { _this.addNote(); });
+        this.music.onErase.add(function () { _this.removeNote(); });
     }
     Notes.prototype.setPhysical = function () {
         this.game.physics.arcade.enable(this, true);

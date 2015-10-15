@@ -10,6 +10,8 @@ var MusicPlayer = (function (_super) {
         _super.call(this, game, constants);
         this.constants = constants;
         this.playing = false;
+        this.onPlay = new Phaser.Signal();
+        this.onStop = new Phaser.Signal();
     }
     Object.defineProperty(MusicPlayer.prototype, "isPlaying", {
         get: function () {
@@ -20,18 +22,16 @@ var MusicPlayer = (function (_super) {
     });
     MusicPlayer.prototype.play = function () {
         this.playing = true;
-        this.$.triggerHandler(this.constants.events["play"]);
+        this.onPlay.dispatch();
     };
     MusicPlayer.prototype.stop = function () {
         this.playing = false;
         this.game.sound.stopAll();
-        this.$.triggerHandler(this.constants.events["stop"]);
+        this.onStop.dispatch();
     };
     MusicPlayer.prototype.togglePlayingState = function () {
         this.playing ? this.stop() : this.play();
     };
-    MusicPlayer.prototype.onPlay = function (handler) { return this.$.bind(this.constants.events["play"], handler); };
-    MusicPlayer.prototype.onStop = function (handler) { return this.$.bind(this.constants.events["stop"], handler); };
     return MusicPlayer;
 })(Model);
 //# sourceMappingURL=MusicPlayer.js.map

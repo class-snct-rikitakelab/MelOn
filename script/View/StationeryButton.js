@@ -19,7 +19,7 @@ var StationeryButton = (function (_super) {
         // These two below settings are needed for jQuery event process.
         // The important thing is using arrow function.
         // This function will be executed when the stationery is changed. What is called notify method.
-        this.stationery.onChangeStationery(function () { _this.changeImage(); });
+        this.stationery.onChangeStationery.add(function () { _this.changeImage(); });
         // This function will be executed when this button is pushed.
         this.$.click(function () { _this.changeStationery(); });
         // Set initial Image.

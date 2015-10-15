@@ -25,14 +25,6 @@ var CONSTANTS;
     CONSTANTS.Game = Game;
     var Music = (function () {
         function Music() {
-            this.events = {
-                select: "select",
-                refresh: "refresh",
-                write: "write",
-                erase: "erase",
-                move: "move",
-                extension: "extension",
-            };
             this.unitNote = 8;
             this.measureNum = 4;
             this.pitch = ["C5",
@@ -49,9 +41,6 @@ var CONSTANTS;
     CONSTANTS.Music = Music;
     var Stationery = (function () {
         function Stationery() {
-            this.events = {
-                changeStationery: "changeStationery",
-            };
             this.writeStationery = "pencil";
             this.eraseStationery = "eraser";
             this.initStationery = this.writeStationery;
@@ -61,9 +50,6 @@ var CONSTANTS;
     CONSTANTS.Stationery = Stationery;
     var Instrument = (function () {
         function Instrument() {
-            this.events = {
-                changeInstrument: "changeInstrument",
-            };
             this.pitch = new Music().pitch;
             this.pitchNum = this.pitch.length;
             this.initInstrument = 0;
@@ -76,10 +62,6 @@ var CONSTANTS;
     CONSTANTS.Instrument = Instrument;
     var MusicPlayer = (function () {
         function MusicPlayer() {
-            this.events = {
-                play: "play",
-                stop: "stop",
-            };
         }
         return MusicPlayer;
     })();

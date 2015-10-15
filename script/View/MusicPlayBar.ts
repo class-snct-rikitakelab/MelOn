@@ -8,8 +8,8 @@ class MusicPlayBar extends SpriteView {
 
     constructor(game: Phaser.Game, private constants: CONSTANTS.MusicPlayBar, models: Object) {
         super(game, constants, models);
-        this.musicPlayer.onStop(() => { this.musicStop(); });
-        this.musicPlayer.onPlay(() => { this.musicPlay(); });
+        this.musicPlayer.onStop.add(() => { this.musicStop(); });
+        this.musicPlayer.onPlay.add(() => { this.musicPlay(); });
         this.noteOverlapManager.setMusicPlayBar(this);
         this.anchor.setTo(1.0, 0.0);
     }
