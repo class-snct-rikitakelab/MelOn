@@ -133,6 +133,7 @@ namespace CONSTANTS {
         images: { [name: string]: string } = {
             bar: "musicPlayBar",
         }
+        playSpeed: number = 150;
     }
 
 
@@ -178,7 +179,7 @@ namespace CONSTANTS {
         offColor: string = "blue";
     }
 
-    export class Pencil extends StationeryButton {
+    export class Pencil extends StationeryButton{
         selector = "#pencil";
         name = new Stationery().writeStationery;
         images: { [name: string]: string } = {
@@ -204,5 +205,51 @@ namespace CONSTANTS {
         }
         onColor: string = "orange";
         offColor: string = "green";
+    }
+
+    export class ScrollButton implements DOMView {
+        selector;
+        direction: string;
+        protected imageAddress: string = new Game().imageAddress + "scrollButton/";
+        class: { [name: string]: string } = {
+            buttonImage: "buttonImage",
+        };
+        images: { [name: string]: string };
+        speed: number = 4;
+        noteHeight: number = new MeasureSheet().noteHeight;
+        pitch: string[] = new Music().pitch;
+        initPitch: string = "C4"; // is the highest in display!
+    }
+
+    export class UpButton extends ScrollButton {
+        selector = "#up";
+        direction = "up";
+        images: { [name: string]: string } = {
+            image: this.imageAddress + "up.png",
+        };
+    }
+
+    export class DownButton extends ScrollButton {
+        selector = "#down";
+        direction = "down";
+        images: { [name: string]: string } = {
+            image: this.imageAddress + "down.png",
+        };
+    }
+
+    export class RightButton extends ScrollButton {
+        selector = "#right";
+        direction = "right";
+        images: { [name: string]: string } = {
+            image: this.imageAddress + "right.png",
+        };
+    }
+
+    export class LeftButton extends ScrollButton {
+        selector = "#left";
+        direction = "left";
+        images: { [name: string]: string } = {
+            image: this.imageAddress + "left.png",
+        };
     }
 }

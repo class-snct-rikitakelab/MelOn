@@ -12,10 +12,9 @@ var StationeryButton = (function (_super) {
         // game and models will be set in this instance by super class ( DOMObject ).
         _super.call(this, game, constants, models);
         this.constants = constants;
+        this.stationery = this.models["stationery"]; // Observer(View) can watch Subject(Model).
         // Make DOM image in advanse.
         this.loadImage();
-        // Get stationery model.
-        this.stationery = models["stationery"];
         // These two below settings are needed for jQuery event process.
         // The important thing is using arrow function.
         // This function will be executed when the stationery is changed. What is called notify method.

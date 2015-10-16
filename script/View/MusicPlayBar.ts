@@ -24,11 +24,12 @@ class MusicPlayBar extends SpriteView {
     }
 
     private musicPlay() {
-        this.game.camera.follow(this);
-        this.body.velocity.x = 100;
+        this.body.velocity.x = this.constants.playSpeed;
+        this.x = 0;
     }
 
     update() {
         if (this.x >= this.game.world.width) this.musicPlayer.stop();
+        if (this.musicPlayer.isPlaying) this.game.camera.focusOnXY(this.x, this.game.camera.y + this.game.camera.view.halfHeight);
     }
 }

@@ -47,6 +47,7 @@ var SCRIPT_MAP = {
         "MusicPlayBar.js",
         "StationeryButton.js",
         "PlayButton.js",
+        "ScrollButton.js",
 	],
 };
 

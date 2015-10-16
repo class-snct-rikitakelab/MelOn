@@ -141,6 +141,7 @@ var CONSTANTS;
             this.images = {
                 bar: "musicPlayBar",
             };
+            this.playSpeed = 150;
         }
         return MusicPlayBar;
     })(Music);
@@ -216,5 +217,71 @@ var CONSTANTS;
         return PlayButton;
     })();
     CONSTANTS.PlayButton = PlayButton;
+    var ScrollButton = (function () {
+        function ScrollButton() {
+            this.imageAddress = new Game().imageAddress + "scrollButton/";
+            this.class = {
+                buttonImage: "buttonImage",
+            };
+            this.speed = 4;
+            this.noteHeight = new MeasureSheet().noteHeight;
+            this.pitch = new Music().pitch;
+            this.initPitch = "C4"; // is the highest in display!
+        }
+        return ScrollButton;
+    })();
+    CONSTANTS.ScrollButton = ScrollButton;
+    var UpButton = (function (_super) {
+        __extends(UpButton, _super);
+        function UpButton() {
+            _super.apply(this, arguments);
+            this.selector = "#up";
+            this.direction = "up";
+            this.images = {
+                image: this.imageAddress + "up.png",
+            };
+        }
+        return UpButton;
+    })(ScrollButton);
+    CONSTANTS.UpButton = UpButton;
+    var DownButton = (function (_super) {
+        __extends(DownButton, _super);
+        function DownButton() {
+            _super.apply(this, arguments);
+            this.selector = "#down";
+            this.direction = "down";
+            this.images = {
+                image: this.imageAddress + "down.png",
+            };
+        }
+        return DownButton;
+    })(ScrollButton);
+    CONSTANTS.DownButton = DownButton;
+    var RightButton = (function (_super) {
+        __extends(RightButton, _super);
+        function RightButton() {
+            _super.apply(this, arguments);
+            this.selector = "#right";
+            this.direction = "right";
+            this.images = {
+                image: this.imageAddress + "right.png",
+            };
+        }
+        return RightButton;
+    })(ScrollButton);
+    CONSTANTS.RightButton = RightButton;
+    var LeftButton = (function (_super) {
+        __extends(LeftButton, _super);
+        function LeftButton() {
+            _super.apply(this, arguments);
+            this.selector = "#left";
+            this.direction = "left";
+            this.images = {
+                image: this.imageAddress + "left.png",
+            };
+        }
+        return LeftButton;
+    })(ScrollButton);
+    CONSTANTS.LeftButton = LeftButton;
 })(CONSTANTS || (CONSTANTS = {}));
 //# sourceMappingURL=Constants.js.map

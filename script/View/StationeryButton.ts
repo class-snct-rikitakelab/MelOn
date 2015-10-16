@@ -3,7 +3,7 @@
 // This class is one of View (Concrete Observer).
 
 class StationeryButton extends DOMView {
-    private stationery: Stationery; // Observer(View) can watch Subject(Model).
+    private stationery: Stationery = this.models["stationery"]; // Observer(View) can watch Subject(Model).
     private image: JQuery;
 
     constructor(game: Phaser.Game, private constants: CONSTANTS.StationeryButton, models: Object) {
@@ -12,9 +12,6 @@ class StationeryButton extends DOMView {
 
         // Make DOM image in advanse.
         this.loadImage();
-
-        // Get stationery model.
-        this.stationery = models["stationery"];
         
         // These two below settings are needed for jQuery event process.
         // The important thing is using arrow function.

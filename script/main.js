@@ -26,10 +26,18 @@ var Main = (function (_super) {
         this.pencil = new StationeryButton(this.game, new CONSTANTS.Pencil, { stationery: this.stationery });
         this.eraser = new StationeryButton(this.game, new CONSTANTS.Eraser, { stationery: this.stationery });
         this.playButton = new PlayButton(this.game, new CONSTANTS.PlayButton, { musicPlayer: this.musicPlayer });
+        this.upButton = new ScrollButton(this.game, new CONSTANTS.UpButton, {});
+        this.downButton = new ScrollButton(this.game, new CONSTANTS.DownButton, {});
+        this.rightButton = new ScrollButton(this.game, new CONSTANTS.RightButton, {});
+        this.leftButton = new ScrollButton(this.game, new CONSTANTS.LeftButton, {});
     };
     Main.prototype.update = function () {
         this.noteOverlapManager.checkAllOverlap();
         this.notes.update();
+        this.upButton.update();
+        this.downButton.update();
+        this.rightButton.update();
+        this.leftButton.update();
     };
     Main.prototype.render = function () {
         // For debug. In render method, all values are always updated.
