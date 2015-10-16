@@ -149,7 +149,7 @@ namespace CONSTANTS {
 
     export class ScoreSheet extends MeasureSheet implements GroupView {
         displayMeasureNum: number = 2;
-        displayPitchNum: number = 7;
+        displayPitchNum: number = 8;
     }
 
     export class Notes extends MeasureSheet implements GroupView {

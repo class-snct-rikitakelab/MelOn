@@ -151,7 +151,7 @@ var CONSTANTS;
         function ScoreSheet() {
             _super.apply(this, arguments);
             this.displayMeasureNum = 2;
-            this.displayPitchNum = 7;
+            this.displayPitchNum = 8;
         }
         return ScoreSheet;
     })(MeasureSheet);
