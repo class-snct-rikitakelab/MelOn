@@ -23,6 +23,7 @@ var Note = (function (_super) {
         this.music.onMove.add(function () { _this.movePosition(); });
         this.music.onChangeExtension.add(function () { _this.changeExtension(); });
         this.setPosition(data.start * constants.width, constants.pitch.indexOf(data.pitch) * constants.height);
+        this.sampleSound();
     }
     Note.prototype.setPhysical = function () {
         this.game.physics.enable(this);
@@ -47,6 +48,7 @@ var Note = (function (_super) {
     });
     Note.prototype.touchNote = function () {
         this.music.select(this.data);
+        this.sampleSound();
         if (this.stationery.getStationery === this.constants.writeStationery)
             this.startMoving();
         if (this.stationery.getStationery === this.constants.eraseStationery)
@@ -63,9 +65,11 @@ var Note = (function (_super) {
     };
     Note.prototype.movePosition = function () {
         if (this.music.getSelectedNote === this.data) {
-            console.log(this.data);
             this.x = this.data.start * this.constants.width;
-            this.y = this.constants.pitch.indexOf(this.data.pitch) * this.constants.height;
+            if (this.y != this.constants.pitch.indexOf(this.data.pitch) * this.constants.height) {
+                this.y = this.constants.pitch.indexOf(this.data.pitch) * this.constants.height;
+                this.sampleSound();
+            }
         }
     };
     Note.prototype.changeExtension = function () {
@@ -77,13 +81,17 @@ var Note = (function (_super) {
         this.music.erase(this.data);
         this.destroy();
     };
+    Note.prototype.sampleSound = function () {
+        this.sound = this.game.sound.play(this.instrument.getInstrument + this.data.pitch);
+        this.sound.fadeOut(this.constants.sampleDuration);
+    };
     Note.prototype.onOverlap = function () {
         if (this.musicPlayer.isPlaying)
             this.sound = this.game.sound.play(this.instrument.getInstrument + this.data.pitch);
     };
     Note.prototype.offOverlap = function () {
         if (this.sound && this.sound.isPlaying)
-            this.sound.fadeOut(this.constants.fadeTime);
+            this.sound.fadeOut(this.constants.fadeDuration);
     };
     Note.prototype.update = function () {
         if (this.isMoving)

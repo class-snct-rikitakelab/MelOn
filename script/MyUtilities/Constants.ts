@@ -108,7 +108,8 @@ namespace CONSTANTS {
         images: { [name: string]: string } = {
             note: "note",
         }
-        fadeTime: number = 100;
+        sampleDuration: number = 700;   // ms
+        fadeDuration: number = 100;      // ms
     }
 
     export class MeasureSheet extends Music implements SpriteView {
@@ -133,7 +134,7 @@ namespace CONSTANTS {
         images: { [name: string]: string } = {
             bar: "musicPlayBar",
         }
-        playSpeed: number = 150;
+        playSpeed: number = 150;    // in Phaser Speed
     }
 
 
@@ -215,7 +216,7 @@ namespace CONSTANTS {
             buttonImage: "buttonImage",
         };
         images: { [name: string]: string };
-        speed: number = 4;
+        speed: number = 4; // px per frame
         noteHeight: number = new MeasureSheet().noteHeight;
         pitch: string[] = new Music().pitch;
         initPitch: string = "C4"; // is the highest in display!

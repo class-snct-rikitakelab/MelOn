@@ -106,7 +106,8 @@ var CONSTANTS;
             this.images = {
                 note: "note",
             };
-            this.fadeTime = 100;
+            this.sampleDuration = 700; // ms
+            this.fadeDuration = 100; // ms
         }
         return Note;
     })(Music);
@@ -141,7 +142,7 @@ var CONSTANTS;
             this.images = {
                 bar: "musicPlayBar",
             };
-            this.playSpeed = 150;
+            this.playSpeed = 150; // in Phaser Speed
         }
         return MusicPlayBar;
     })(Music);
@@ -223,7 +224,7 @@ var CONSTANTS;
             this.class = {
                 buttonImage: "buttonImage",
             };
-            this.speed = 4;
+            this.speed = 4; // px per frame
             this.noteHeight = new MeasureSheet().noteHeight;
             this.pitch = new Music().pitch;
             this.initPitch = "C4"; // is the highest in display!

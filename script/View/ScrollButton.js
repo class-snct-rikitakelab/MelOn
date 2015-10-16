@@ -14,6 +14,7 @@ var ScrollButton = (function (_super) {
         this.loadImage();
         this.$.mousedown(function () { _this.isPushed = true; });
         this.$.mouseup(function () { _this.isPushed = false; });
+        this.$.mouseleave(function () { _this.isPushed = false; });
         this.initCamera();
     }
     ScrollButton.prototype.loadImage = function () {
