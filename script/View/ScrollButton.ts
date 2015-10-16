@@ -11,6 +11,7 @@ class ScrollButton extends DOMView {
         this.$.mousedown(() => { this.isPushed = true; });
         this.$.mouseup(() => { this.isPushed = false; });
         this.$.mouseleave(() => { this.isPushed = false; });
+        this.$.on("contextmenu", () => { return false; });
         this.initCamera();
     }
 

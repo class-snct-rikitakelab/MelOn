@@ -21,6 +21,7 @@ var StationeryButton = (function (_super) {
         this.stationery.onChangeStationery.add(function () { _this.changeImage(); });
         // This function will be executed when this button is pushed.
         this.$.click(function () { _this.changeStationery(); });
+        this.$.on("contextmenu", function () { return false; });
         // Set initial Image.
         this.changeImage();
     }

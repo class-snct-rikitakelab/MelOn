@@ -15,6 +15,7 @@ var PlayButton = (function (_super) {
         this.musicPlayer.onPlay.add(function () { _this.changeImage(true); });
         this.musicPlayer.onStop.add(function () { _this.changeImage(false); _this.game.sound.stopAll(); });
         this.$.click(function () { _this.changePlayingState(); });
+        this.$.on("contextmenu", function () { return false; });
         this.changeImage(false);
     }
     PlayButton.prototype.loadImage = function () {

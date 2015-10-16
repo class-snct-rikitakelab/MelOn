@@ -20,7 +20,8 @@ class StationeryButton extends DOMView {
         this.stationery.onChangeStationery.add(() => { this.changeImage(); });
 
         // This function will be executed when this button is pushed.
-        this.$.click(() => { this.changeStationery();});
+        this.$.click(() => { this.changeStationery(); });
+        this.$.on("contextmenu", () => { return false; });
 
         // Set initial Image.
         this.changeImage();
