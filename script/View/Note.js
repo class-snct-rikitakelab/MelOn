@@ -33,7 +33,7 @@ var Note = (function (_super) {
         this.inputEnabled = true;
         this.input.useHandCursor = true;
         this.events.onInputUp.add(function () { _this.music.refresh(); });
-        this.events.onInputDown.add(function () { _this.touchNote(); });
+        this.events.onInputDown.add(function (self, pointer) { _this.touchNote(pointer); });
         this.events.onInputOver.add(function () {
             if (_this.stationery.getStationery === _this.constants.eraseStationery && _this.pointer.isDown)
                 _this.erase();
@@ -46,9 +46,10 @@ var Note = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Note.prototype.touchNote = function () {
+    Note.prototype.touchNote = function (pointer) {
+        if (pointer.rightButton.isDown)
+            return;
         this.music.select(this.data);
-        this.sampleSound();
         if (this.stationery.getStationery === this.constants.writeStationery)
             this.startMoving();
         if (this.stationery.getStationery === this.constants.eraseStationery)
@@ -61,7 +62,9 @@ var Note = (function (_super) {
     };
     Note.prototype.startMoving = function () {
         this.isMoving = true;
+        this.isStreching = false;
         this.touchPosition = Math.floor(((this.pointer.x + this.game.camera.x) - this.x) / this.constants.width);
+        this.sampleSound();
     };
     Note.prototype.movePosition = function () {
         if (this.music.getSelectedNote === this.data) {

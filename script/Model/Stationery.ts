@@ -5,7 +5,6 @@
 class Stationery extends Model {
     // This is essence of this Model class.
     private stationery: string;
-
     onChangeStationery: Phaser.Signal = new Phaser.Signal();
 
     constructor(private constants: CONSTANTS.Stationery) {

@@ -12,6 +12,7 @@ var StationeryButton = (function (_super) {
         // game and models will be set in this instance by super class ( DOMObject ).
         _super.call(this, game, constants, models);
         this.constants = constants;
+        this.pointer = this.game.device.touch ? this.game.input.pointer1 : this.game.input.activePointer;
         this.stationery = this.models["stationery"]; // Observer(View) can watch Subject(Model).
         // Make DOM image in advanse.
         this.loadImage();
@@ -19,6 +20,7 @@ var StationeryButton = (function (_super) {
         // The important thing is using arrow function.
         // This function will be executed when the stationery is changed. What is called notify method.
         this.stationery.onChangeStationery.add(function () { _this.changeImage(); });
+        this.rightEvent = this.pointer.rightButton.onDown.add(function () { _this.toggleStationery(); });
         // This function will be executed when this button is pushed.
         this.$.click(function () { _this.changeStationery(); });
         this.$.on("contextmenu", function () { return false; });
@@ -47,6 +49,10 @@ var StationeryButton = (function (_super) {
         // Set the stationery of this button. 
         // This method causes trigger of functions which were set by "onChangeStationery".
         this.stationery.changeStationery(this.constants.name);
+    };
+    StationeryButton.prototype.toggleStationery = function () {
+        if ((this.rightEvent.callCount + 1) % this.constants.stationeryNum === this.constants.index)
+            this.changeStationery();
     };
     return StationeryButton;
 })(DOMView);

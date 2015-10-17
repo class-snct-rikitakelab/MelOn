@@ -29,7 +29,7 @@ class Note extends SpriteView {
         this.inputEnabled = true;
         this.input.useHandCursor = true;
         this.events.onInputUp.add(() => { this.music.refresh(); });
-        this.events.onInputDown.add(() => { this.touchNote(); });
+        this.events.onInputDown.add((self, pointer: Phaser.Pointer) => { this.touchNote(pointer); });
         this.events.onInputOver.add(() => {
             if (this.stationery.getStationery === this.constants.eraseStationery && this.pointer.isDown) this.erase();
         });
@@ -39,9 +39,9 @@ class Note extends SpriteView {
         return this.data;
     }
 
-    private touchNote() {
+    private touchNote(pointer: Phaser.Pointer) {
+        if (pointer.rightButton.isDown) return;
         this.music.select(this.data);
-        this.sampleSound();
         if (this.stationery.getStationery === this.constants.writeStationery) this.startMoving();
         if (this.stationery.getStationery === this.constants.eraseStationery) this.erase();
     }
@@ -54,7 +54,9 @@ class Note extends SpriteView {
 
     private startMoving() {
         this.isMoving = true;
-        this.touchPosition = Math.floor( ((this.pointer.x + this.game.camera.x) - this.x) / this.constants.width );
+        this.isStreching = false;
+        this.touchPosition = Math.floor(((this.pointer.x + this.game.camera.x) - this.x) / this.constants.width);
+        this.sampleSound();
     }
 
     private movePosition() {

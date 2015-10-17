@@ -45,6 +45,7 @@ namespace CONSTANTS {
     export class Stationery implements Model {
         writeStationery: string = "pencil";
         eraseStationery: string = "eraser";
+        stationeryNum: number = 2;
         initStationery: string = this.writeStationery;
     }
 
@@ -114,7 +115,7 @@ namespace CONSTANTS {
 
     export class MeasureSheet extends Music implements SpriteView {
         width = 320;
-        height = 50 * this.pitchNum;
+        height = 45 * this.pitchNum;
         x = 0;
         y = 0;
         initImage = "score";
@@ -122,7 +123,7 @@ namespace CONSTANTS {
             score: "score",
         }
         noteWidth: number = this.width / this.unitNote;
-        noteHeight: number = 50;
+        noteHeight: number = this.height / this.pitchNum;
     }
 
     export class MusicPlayBar extends Music implements SpriteView {
@@ -171,6 +172,8 @@ namespace CONSTANTS {
     export class StationeryButton implements DOMView {
         selector;
         name: string;
+        index: number;
+        stationeryNum: number = new Stationery().stationeryNum;
         protected imageAddress: string = new Game().imageAddress + "stationeryButton/";
         class: { [name: string]: string } = {
             buttonImage: "buttonImage",
@@ -183,6 +186,7 @@ namespace CONSTANTS {
     export class Pencil extends StationeryButton{
         selector = "#pencil";
         name = new Stationery().writeStationery;
+        index = 0;
         images: { [name: string]: string } = {
             image: this.imageAddress + "pencil.png",
         }
@@ -191,6 +195,7 @@ namespace CONSTANTS {
     export class Eraser extends StationeryButton {
         selector = "#eraser";
         name = new Stationery().eraseStationery;
+        index = 1;
         images: { [name: string]: string } = {
             image: this.imageAddress + "eraser.png",
         }

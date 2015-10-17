@@ -14,11 +14,12 @@ class MeasureSheet extends SpriteView {
     protected setInput() {
         this.inputEnabled = true;
         this.input.useHandCursor = true;
-        this.events.onInputDown.add(() => { this.createNote() });
+        this.events.onInputDown.add((self, pointer:Phaser.Pointer) => { this.createNote(pointer);});
         this.events.onInputUp.add(() => { this.music.refresh(); });
     }
 
-    private createNote() {
+    private createNote(pointer: Phaser.Pointer) {
+        if (pointer.rightButton.isDown) return;
         var start: number = Math.floor( (this.pointer.x + this.game.camera.x) / this.constants.noteWidth);
         var pitch: string = this.constants.pitch[Math.floor( (this.pointer.y + this.game.camera.y) / this.constants.noteHeight )];
         if (this.stationery.getStationery === this.constants.writeStationery)

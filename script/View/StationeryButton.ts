@@ -3,6 +3,8 @@
 // This class is one of View (Concrete Observer).
 
 class StationeryButton extends DOMView {
+    private pointer: Phaser.Pointer = this.game.device.touch ? this.game.input.pointer1 : this.game.input.activePointer;
+    private rightEvent: Phaser.SignalBinding;
     private stationery: Stationery = this.models["stationery"]; // Observer(View) can watch Subject(Model).
     private image: JQuery;
 
@@ -18,6 +20,7 @@ class StationeryButton extends DOMView {
 
         // This function will be executed when the stationery is changed. What is called notify method.
         this.stationery.onChangeStationery.add(() => { this.changeImage(); });
+        this.rightEvent = this.pointer.rightButton.onDown.add(() => { this.toggleStationery(); });
 
         // This function will be executed when this button is pushed.
         this.$.click(() => { this.changeStationery(); });
@@ -52,5 +55,10 @@ class StationeryButton extends DOMView {
         // Set the stationery of this button. 
         // This method causes trigger of functions which were set by "onChangeStationery".
         this.stationery.changeStationery(this.constants.name);
+    }
+
+    private toggleStationery(): void {
+        if ((this.rightEvent.callCount + 1) % this.constants.stationeryNum === this.constants.index)
+            this.changeStationery();
     }
 }

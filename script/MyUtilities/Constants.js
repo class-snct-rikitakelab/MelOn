@@ -43,6 +43,7 @@ var CONSTANTS;
         function Stationery() {
             this.writeStationery = "pencil";
             this.eraseStationery = "eraser";
+            this.stationeryNum = 2;
             this.initStationery = this.writeStationery;
         }
         return Stationery;
@@ -117,7 +118,7 @@ var CONSTANTS;
         function MeasureSheet() {
             _super.apply(this, arguments);
             this.width = 320;
-            this.height = 50 * this.pitchNum;
+            this.height = 45 * this.pitchNum;
             this.x = 0;
             this.y = 0;
             this.initImage = "score";
@@ -125,7 +126,7 @@ var CONSTANTS;
                 score: "score",
             };
             this.noteWidth = this.width / this.unitNote;
-            this.noteHeight = 50;
+            this.noteHeight = this.height / this.pitchNum;
         }
         return MeasureSheet;
     })(Music);
@@ -167,6 +168,7 @@ var CONSTANTS;
     CONSTANTS.Notes = Notes;
     var StationeryButton = (function () {
         function StationeryButton() {
+            this.stationeryNum = new Stationery().stationeryNum;
             this.imageAddress = new Game().imageAddress + "stationeryButton/";
             this.class = {
                 buttonImage: "buttonImage",
@@ -183,6 +185,7 @@ var CONSTANTS;
             _super.apply(this, arguments);
             this.selector = "#pencil";
             this.name = new Stationery().writeStationery;
+            this.index = 0;
             this.images = {
                 image: this.imageAddress + "pencil.png",
             };
@@ -196,6 +199,7 @@ var CONSTANTS;
             _super.apply(this, arguments);
             this.selector = "#eraser";
             this.name = new Stationery().eraseStationery;
+            this.index = 1;
             this.images = {
                 image: this.imageAddress + "eraser.png",
             };

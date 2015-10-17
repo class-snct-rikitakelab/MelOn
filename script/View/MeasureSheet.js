@@ -19,10 +19,12 @@ var MeasureSheet = (function (_super) {
         var _this = this;
         this.inputEnabled = true;
         this.input.useHandCursor = true;
-        this.events.onInputDown.add(function () { _this.createNote(); });
+        this.events.onInputDown.add(function (self, pointer) { _this.createNote(pointer); });
         this.events.onInputUp.add(function () { _this.music.refresh(); });
     };
-    MeasureSheet.prototype.createNote = function () {
+    MeasureSheet.prototype.createNote = function (pointer) {
+        if (pointer.rightButton.isDown)
+            return;
         var start = Math.floor((this.pointer.x + this.game.camera.x) / this.constants.noteWidth);
         var pitch = this.constants.pitch[Math.floor((this.pointer.y + this.game.camera.y) / this.constants.noteHeight)];
         if (this.stationery.getStationery === this.constants.writeStationery)
