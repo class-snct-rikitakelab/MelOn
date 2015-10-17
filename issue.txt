@@ -64,7 +64,7 @@ jqueryuiなどのプラグインをTSで使うときは、プラグインの中のリファレンスがちゃんと
 9/30
 MelOnサーバ立てよう
 いきなりサーバにログインできない
-秘密鍵はコピペしたらchmod 0600 fuurin.pem.keyとすれば動く。
+秘密鍵はコピペしたらchmod 0600 fuurin_key.pemとすれば動く。
 http://blog.ruedap.com/2011/04/04/mac-ssh-key-copy-error
 
 ログイン機能自己流でやってたけど、勉強した方がよくね？
