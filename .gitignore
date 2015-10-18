@@ -1,5 +1,5 @@
 obj/
 storage/
 privatekey/
-*.csproj*
+*.csproj**
 web*.config

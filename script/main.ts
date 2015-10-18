@@ -24,6 +24,8 @@ class Main extends Phaser.State {
     private downButton: ScrollButton;
     private rightButton: ScrollButton;
     private leftButton: ScrollButton;
+    private saveButton: SaveButton;
+    private loadButton: LoadButton;
     
     create() {
         this.noteOverlapManager = new NoteOverlapManager(this.game);
@@ -37,6 +39,8 @@ class Main extends Phaser.State {
         this.downButton = new ScrollButton(this.game, new CONSTANTS.DownButton, {});
         this.rightButton = new ScrollButton(this.game, new CONSTANTS.RightButton, {});
         this.leftButton = new ScrollButton(this.game, new CONSTANTS.LeftButton, {});
+        this.saveButton = new SaveButton(this.game, new CONSTANTS.SaveButton, { music: this.music, });
+        this.loadButton = new LoadButton(this.game, new CONSTANTS.LoadButton, { music: this.music, });
     }
 
     update() {

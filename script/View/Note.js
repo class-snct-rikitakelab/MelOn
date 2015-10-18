@@ -19,6 +19,7 @@ var Note = (function (_super) {
         this.isStreching = true;
         this.isMoving = false;
         this.touchPosition = null;
+        this.music.onEraseAll.add(function () { _this.erase(); });
         this.music.onRefresh.add(function () { _this.refresh(); });
         this.music.onMove.add(function () { _this.movePosition(); });
         this.music.onChangeExtension.add(function () { _this.changeExtension(); });

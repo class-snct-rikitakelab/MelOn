@@ -30,6 +30,8 @@ var Main = (function (_super) {
         this.downButton = new ScrollButton(this.game, new CONSTANTS.DownButton, {});
         this.rightButton = new ScrollButton(this.game, new CONSTANTS.RightButton, {});
         this.leftButton = new ScrollButton(this.game, new CONSTANTS.LeftButton, {});
+        this.saveButton = new SaveButton(this.game, new CONSTANTS.SaveButton, { music: this.music, });
+        this.loadButton = new LoadButton(this.game, new CONSTANTS.LoadButton, { music: this.music, });
     };
     Main.prototype.update = function () {
         this.noteOverlapManager.checkAllOverlap();

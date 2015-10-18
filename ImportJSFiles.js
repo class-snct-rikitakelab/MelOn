@@ -48,6 +48,8 @@ var SCRIPT_MAP = {
         "StationeryButton.js",
         "PlayButton.js",
         "ScrollButton.js",
+        "SaveButton.js",
+        "LoadButton.js",
 	],
 };
 

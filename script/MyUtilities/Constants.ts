@@ -135,7 +135,7 @@ namespace CONSTANTS {
         images: { [name: string]: string } = {
             bar: "musicPlayBar",
         }
-        playSpeed: number = 150;    // in Phaser Speed
+        playSpeed: number = 120;    // in Phaser Speed
     }
 
 
@@ -257,5 +257,13 @@ namespace CONSTANTS {
         images: { [name: string]: string } = {
             image: this.imageAddress + "left.png",
         };
+    }
+
+    export class SaveButton implements DOMView {
+        selector = "#save";
+    }
+
+    export class LoadButton implements DOMView {
+        selector = "#load";
     }
 }

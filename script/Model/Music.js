@@ -14,6 +14,7 @@ var Music = (function (_super) {
         this.onRefresh = new Phaser.Signal();
         this.onWrite = new Phaser.Signal();
         this.onErase = new Phaser.Signal();
+        this.onEraseAll = new Phaser.Signal();
         this.onMove = new Phaser.Signal();
         this.onChangeExtension = new Phaser.Signal();
         this.music = _.object(this.constants.pitch, _.times(this.constants.pitchNum, function () { return []; }));
@@ -24,6 +25,13 @@ var Music = (function (_super) {
     Object.defineProperty(Music.prototype, "getSelectedNote", {
         get: function () {
             return this.selectedNote;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Music.prototype, "getMusic", {
+        get: function () {
+            return this.music;
         },
         enumerable: true,
         configurable: true
@@ -44,6 +52,9 @@ var Music = (function (_super) {
         this.music[note.pitch].splice(this.music[note.pitch].indexOf(note), 1);
         this.refresh();
         this.onErase.dispatch();
+    };
+    Music.prototype.eraseAll = function () {
+        this.onEraseAll.dispatch();
     };
     Music.prototype.moveHorizontally = function (note, right) {
         var checkPosition = note.start + (right ? note.extension + 1 : -1);

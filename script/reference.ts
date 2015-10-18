@@ -34,7 +34,9 @@
 /// <reference path="View/ScoreSheet.ts"/>
 /// <reference path="View/StationeryButton.ts"/>
 /// <reference path="View/PlayButton.ts"/>
-/// <reference path="View/scrollButton.ts"/>
+/// <reference path="View/ScrollButton.ts"/>
+/// <reference path="View/SaveButton.ts"/>
+/// <reference path="View/LoadButton.ts"/>
 
 // Main
 /// <reference path="main.ts"/>

@@ -143,7 +143,7 @@ var CONSTANTS;
             this.images = {
                 bar: "musicPlayBar",
             };
-            this.playSpeed = 150; // in Phaser Speed
+            this.playSpeed = 120; // in Phaser Speed
         }
         return MusicPlayBar;
     })(Music);
@@ -288,5 +288,19 @@ var CONSTANTS;
         return LeftButton;
     })(ScrollButton);
     CONSTANTS.LeftButton = LeftButton;
+    var SaveButton = (function () {
+        function SaveButton() {
+            this.selector = "#save";
+        }
+        return SaveButton;
+    })();
+    CONSTANTS.SaveButton = SaveButton;
+    var LoadButton = (function () {
+        function LoadButton() {
+            this.selector = "#load";
+        }
+        return LoadButton;
+    })();
+    CONSTANTS.LoadButton = LoadButton;
 })(CONSTANTS || (CONSTANTS = {}));
 //# sourceMappingURL=Constants.js.map

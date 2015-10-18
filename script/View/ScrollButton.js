@@ -47,4 +47,4 @@ var ScrollButton = (function (_super) {
     };
     return ScrollButton;
 })(DOMView);
-//# sourceMappingURL=scrollButton.js.map
+//# sourceMappingURL=ScrollButton.js.map

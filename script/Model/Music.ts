@@ -15,6 +15,7 @@ class Music extends Model {
     onRefresh: Phaser.Signal = new Phaser.Signal();
     onWrite: Phaser.Signal = new Phaser.Signal();
     onErase: Phaser.Signal = new Phaser.Signal();
+    onEraseAll: Phaser.Signal = new Phaser.Signal();
     onMove: Phaser.Signal = new Phaser.Signal();
     onChangeExtension: Phaser.Signal = new Phaser.Signal();
 
@@ -29,6 +30,10 @@ class Music extends Model {
 
     get getSelectedNote(): NoteData {
         return this.selectedNote;
+    }
+
+    get getMusic(): { [pitch: string]: NoteData[] } {
+        return this.music;
     }
 
     select(note: NoteData) {
@@ -50,6 +55,10 @@ class Music extends Model {
         this.music[note.pitch].splice(this.music[note.pitch].indexOf(note), 1);
         this.refresh();
         this.onErase.dispatch();
+    }
+
+    eraseAll() {
+        this.onEraseAll.dispatch();
     }
 
     moveHorizontally(note: NoteData, right: boolean) {
