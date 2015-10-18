@@ -68,13 +68,13 @@ var Note = (function (_super) {
         this.sampleSound();
     };
     Note.prototype.movePosition = function () {
-        if (this.music.getSelectedNote === this.data) {
-            this.x = this.data.start * this.constants.width;
-            if (this.y != this.constants.pitch.indexOf(this.data.pitch) * this.constants.height) {
-                this.y = this.constants.pitch.indexOf(this.data.pitch) * this.constants.height;
-                this.sampleSound();
-            }
-        }
+        if (this.music.getSelectedNote !== this.data)
+            return;
+        this.x = this.data.start * this.constants.width;
+        if (this.y == this.constants.pitch.indexOf(this.data.pitch) * this.constants.height)
+            return;
+        this.y = this.constants.pitch.indexOf(this.data.pitch) * this.constants.height;
+        this.sampleSound();
     };
     Note.prototype.changeExtension = function () {
         if (this.music.getSelectedNote === this.data)

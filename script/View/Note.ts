@@ -61,13 +61,11 @@ class Note extends SpriteView {
     }
 
     private movePosition() {
-        if (this.music.getSelectedNote === this.data) {
-            this.x = this.data.start * this.constants.width;
-            if (this.y != this.constants.pitch.indexOf(this.data.pitch) * this.constants.height) {
-                this.y = this.constants.pitch.indexOf(this.data.pitch) * this.constants.height;
-                this.sampleSound();
-            }
-        }
+        if (this.music.getSelectedNote !== this.data) return;
+        this.x = this.data.start * this.constants.width;
+        if (this.y == this.constants.pitch.indexOf(this.data.pitch) * this.constants.height) return;
+        this.y = this.constants.pitch.indexOf(this.data.pitch) * this.constants.height;
+        this.sampleSound();
     }
 
     private changeExtension() {
