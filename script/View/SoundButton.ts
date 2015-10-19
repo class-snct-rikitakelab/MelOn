@@ -12,12 +12,18 @@ class SoundButton extends DOMView {
     }
 
     private setView() {
+        var text: JQuery = this.setText();
         this.$ = $("#" + this.pitch)
             .css("height", this.constants.height)
             .css("width", this.constants.width)
-            .css("top", this.constants.height * this.constants.pitch.indexOf(this.pitch))
+            .css("top", this.constants.border + this.constants.pitchTop * this.constants.pitch.indexOf(this.pitch))
             .css("background-color", "blue")
-            .addClass(this.constants.selector);
+            .addClass(this.constants.selector)
+            .append(text);
+    }
+
+    private setText(): JQuery {
+        return $("<div>" + this.constants.pitchText[this.constants.language][this.constants.pitch.indexOf(this.pitch)] + "</div>");
     }
 
     private ring() {

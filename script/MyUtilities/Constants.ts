@@ -16,6 +16,7 @@ namespace CONSTANTS {
         height: number = new Note().height * new ScoreSheet().displayPitchNum;
         renderer: string = "score";
         imageAddress: string = "storage/assets/image/";
+        language: string = "Finnish";
     }
 
 
@@ -110,7 +111,7 @@ namespace CONSTANTS {
             note: "note",
         }
         ringDuration: number = 700;   // ms
-        fadeDuration: number = 100;      // ms
+        fadeDuration: number = 100;   // ms
     }
 
     export class MeasureSheet extends Music implements SpriteView {
@@ -129,6 +130,7 @@ namespace CONSTANTS {
     export class MusicPlayBar extends Music implements SpriteView {
         width = 10;
         height = new MeasureSheet().height;
+        beatWidth: number = new MeasureSheet().width / 4;
         x = 0;
         y = 0;
         initImage = "bar";
@@ -275,9 +277,17 @@ namespace CONSTANTS {
 
     export class SoundButton implements DOMView {
         selector = "soundButton";
+        border: number = 2;
         width: number = new MeasureSheet().noteHeight;
-        height: number = this.width;
+        height: number = this.width - this.border * 2;
+        pitchTop: number = this.width;
         ringDuration: number = new Note().ringDuration;
         pitch: string[] = new Music().pitch;
+        language: string = new Game().language;
+        pitchText = {
+            English: ["C", "B", "A", "G", "F", "E", "D", "C", "B", "A", "G", "F", "E", "D", "C", "B", "A", "G", "F", "E", "D", "C"],
+            Japanese: ["ド", "シ", "ラ", "ソ", "ファ", "ミ", "レ", "ド", "シ", "ラ", "ソ", "ファ", "ミ", "レ", "ド", "シ", "ラ", "ソ", "ファ", "ミ", "レ", "ド"],
+            Finnish: ["DO", "TI", "LA", "SO", "FA", "MI", "RE", "DO", "TI", "LA", "SO", "FA", "MI", "RE", "DO", "TI", "LA", "SO", "FA", "MI", "RE", "DO"],
+        }
     }
 }

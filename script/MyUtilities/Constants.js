@@ -19,6 +19,7 @@ var CONSTANTS;
             this.height = new Note().height * new ScoreSheet().displayPitchNum;
             this.renderer = "score";
             this.imageAddress = "storage/assets/image/";
+            this.language = "Finnish";
         }
         return Game;
     })();
@@ -137,6 +138,7 @@ var CONSTANTS;
             _super.apply(this, arguments);
             this.width = 10;
             this.height = new MeasureSheet().height;
+            this.beatWidth = new MeasureSheet().width / 4;
             this.x = 0;
             this.y = 0;
             this.initImage = "bar";
@@ -314,10 +316,18 @@ var CONSTANTS;
     var SoundButton = (function () {
         function SoundButton() {
             this.selector = "soundButton";
+            this.border = 2;
             this.width = new MeasureSheet().noteHeight;
-            this.height = this.width;
+            this.height = this.width - this.border * 2;
+            this.pitchTop = this.width;
             this.ringDuration = new Note().ringDuration;
             this.pitch = new Music().pitch;
+            this.language = new Game().language;
+            this.pitchText = {
+                English: ["C", "B", "A", "G", "F", "E", "D", "C", "B", "A", "G", "F", "E", "D", "C", "B", "A", "G", "F", "E", "D", "C"],
+                Japanese: ["ド", "シ", "ラ", "ソ", "ファ", "ミ", "レ", "ド", "シ", "ラ", "ソ", "ファ", "ミ", "レ", "ド", "シ", "ラ", "ソ", "ファ", "ミ", "レ", "ド"],
+                Finnish: ["DO", "TI", "LA", "SO", "FA", "MI", "RE", "DO", "TI", "LA", "SO", "FA", "MI", "RE", "DO", "TI", "LA", "SO", "FA", "MI", "RE", "DO"],
+            };
         }
         return SoundButton;
     })();
