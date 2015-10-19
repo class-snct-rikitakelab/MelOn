@@ -32,6 +32,7 @@ var Main = (function (_super) {
         this.leftButton = new ScrollButton(this.game, new CONSTANTS.LeftButton, {});
         this.saveButton = new SaveButton(this.game, new CONSTANTS.SaveButton, { music: this.music, });
         this.loadButton = new LoadButton(this.game, new CONSTANTS.LoadButton, { music: this.music, });
+        this.soundButtonContainer = new SoundButtonContainer(this.game, new CONSTANTS.SoundButtonContainer, { instrument: this.instrument });
     };
     Main.prototype.update = function () {
         this.noteOverlapManager.checkAllOverlap();
@@ -40,10 +41,11 @@ var Main = (function (_super) {
         this.downButton.update();
         this.rightButton.update();
         this.leftButton.update();
+        this.soundButtonContainer.update();
     };
     Main.prototype.render = function () {
         // For debug. In render method, all values are always updated.
-        this.game.debug.text(this.time.fps + 'fps', 5, 20);
+        // this.game.debug.text(this.time.fps + 'fps', 5, 20);
         // this.game.debug.text(this.notes.selectedNote ? "select": "unselect", 100, 100, "black");
         // this.game.debug.cameraInfo(this.camera, 10, 20, "blue");
     };

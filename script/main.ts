@@ -26,6 +26,7 @@ class Main extends Phaser.State {
     private leftButton: ScrollButton;
     private saveButton: SaveButton;
     private loadButton: LoadButton;
+    private soundButtonContainer: SoundButtonContainer;
     
     create() {
         this.noteOverlapManager = new NoteOverlapManager(this.game);
@@ -41,6 +42,7 @@ class Main extends Phaser.State {
         this.leftButton = new ScrollButton(this.game, new CONSTANTS.LeftButton, {});
         this.saveButton = new SaveButton(this.game, new CONSTANTS.SaveButton, { music: this.music, });
         this.loadButton = new LoadButton(this.game, new CONSTANTS.LoadButton, { music: this.music, });
+        this.soundButtonContainer = new SoundButtonContainer(this.game, new CONSTANTS.SoundButtonContainer, { instrument: this.instrument });
     }
 
     update() {
@@ -50,14 +52,14 @@ class Main extends Phaser.State {
         this.downButton.update();
         this.rightButton.update();
         this.leftButton.update();
+        this.soundButtonContainer.update();
     }
 
     render() {
         // For debug. In render method, all values are always updated.
-        this.game.debug.text(this.time.fps + 'fps', 5, 20);
+        // this.game.debug.text(this.time.fps + 'fps', 5, 20);
         // this.game.debug.text(this.notes.selectedNote ? "select": "unselect", 100, 100, "black");
         // this.game.debug.cameraInfo(this.camera, 10, 20, "blue");
-        
     }
 }
 

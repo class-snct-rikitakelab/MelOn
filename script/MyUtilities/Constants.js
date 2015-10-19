@@ -26,7 +26,7 @@ var CONSTANTS;
     var Music = (function () {
         function Music() {
             this.unitNote = 8;
-            this.measureNum = 4;
+            this.measureNum = 8;
             this.pitch = ["C5",
                 "B4", "A4", "G4", "F4", "E4", "D4", "C4",
                 "B3", "A3", "G3", "F3", "E3", "D3", "C3",
@@ -107,7 +107,7 @@ var CONSTANTS;
             this.images = {
                 note: "note",
             };
-            this.sampleDuration = 700; // ms
+            this.ringDuration = 700; // ms
             this.fadeDuration = 100; // ms
         }
         return Note;
@@ -302,5 +302,25 @@ var CONSTANTS;
         return LoadButton;
     })();
     CONSTANTS.LoadButton = LoadButton;
+    var SoundButtonContainer = (function () {
+        function SoundButtonContainer() {
+            this.selector = "#soundButtonContainer";
+            this.height = new MeasureSheet().noteHeight * new ScoreSheet().displayPitchNum;
+            this.pitch = new Music().pitch;
+        }
+        return SoundButtonContainer;
+    })();
+    CONSTANTS.SoundButtonContainer = SoundButtonContainer;
+    var SoundButton = (function () {
+        function SoundButton() {
+            this.selector = "soundButton";
+            this.width = new MeasureSheet().noteHeight;
+            this.height = this.width;
+            this.ringDuration = new Note().ringDuration;
+            this.pitch = new Music().pitch;
+        }
+        return SoundButton;
+    })();
+    CONSTANTS.SoundButton = SoundButton;
 })(CONSTANTS || (CONSTANTS = {}));
 //# sourceMappingURL=Constants.js.map

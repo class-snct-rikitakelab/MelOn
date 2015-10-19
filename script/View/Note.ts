@@ -19,7 +19,7 @@ class Note extends SpriteView {
         this.music.onMove.add(() => { this.movePosition(); });
         this.music.onChangeExtension.add(() => { this.changeExtension(); });
         this.setPosition(data.start * constants.width, constants.pitch.indexOf(data.pitch) * constants.height);
-        this.sampleSound();
+        this.ring();
     }
 
     protected setPhysical() {
@@ -57,7 +57,7 @@ class Note extends SpriteView {
         this.isMoving = true;
         this.isStreching = false;
         this.touchPosition = Math.floor(((this.pointer.x + this.game.camera.x) - this.x) / this.constants.width);
-        this.sampleSound();
+        this.ring();
     }
 
     private movePosition() {
@@ -65,7 +65,7 @@ class Note extends SpriteView {
         this.x = this.data.start * this.constants.width;
         if (this.y == this.constants.pitch.indexOf(this.data.pitch) * this.constants.height) return;
         this.y = this.constants.pitch.indexOf(this.data.pitch) * this.constants.height;
-        this.sampleSound();
+        this.ring();
     }
 
     private changeExtension() {
@@ -78,9 +78,9 @@ class Note extends SpriteView {
         this.destroy();
     }
 
-    private sampleSound() {
+    private ring() {
         this.sound = this.game.sound.play(this.instrument.getInstrument + this.data.pitch);
-        this.sound.fadeOut(this.constants.sampleDuration);
+        this.sound.fadeOut(this.constants.ringDuration);
     }
 
     onOverlap() {

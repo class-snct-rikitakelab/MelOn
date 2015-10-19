@@ -31,7 +31,7 @@ namespace CONSTANTS {
 
     export class Music implements Model {
         unitNote: number = 8;
-        measureNum: number = 4;
+        measureNum: number = 8;
         pitch: string[] = [ "C5",
             "B4", "A4", "G4", "F4", "E4", "D4", "C4",
             "B3", "A3", "G3", "F3", "E3", "D3", "C3",
@@ -109,7 +109,7 @@ namespace CONSTANTS {
         images: { [name: string]: string } = {
             note: "note",
         }
-        sampleDuration: number = 700;   // ms
+        ringDuration: number = 700;   // ms
         fadeDuration: number = 100;      // ms
     }
 
@@ -265,5 +265,19 @@ namespace CONSTANTS {
 
     export class LoadButton implements DOMView {
         selector = "#load";
+    }
+
+    export class SoundButtonContainer implements DOMView {
+        selector = "#soundButtonContainer";
+        height: number = new MeasureSheet().noteHeight * new ScoreSheet().displayPitchNum;
+        pitch: string[] = new Music().pitch;
+    }
+
+    export class SoundButton implements DOMView {
+        selector = "soundButton";
+        width: number = new MeasureSheet().noteHeight;
+        height: number = this.width;
+        ringDuration: number = new Note().ringDuration;
+        pitch: string[] = new Music().pitch;
     }
 }

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/FreeMakingMusic.css" type="text/css" />
     <script type="text/javascript" src="storage/lib/phaser.js"></script>
     <script type="text/javascript" src="storage/lib/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="storage/lib/jquery-ui-1.10.3.custom.min.js"></script>
     <script type="text/javascript" src="storage/lib/underscore.js"></script>
     <script type="text/javascript" src="ImportJSFiles.js"></script>
     <script type="text/javascript" src="script/main.js"></script>
@@ -18,13 +19,16 @@
             margin: 0 auto;     /*Centering holizontally*/
             width: 900px;       /*This is needed for centering*/
             height: 500px;
+            -moz-user-select: none;
+            -webkit-user-drag: none;
+            user-select: none;
         }
 
         #score {
             position: absolute;
             width: 640px;
-            height: 350px;
-            top: 75px;
+            height: 360px;
+            top: 80px;
             left: 150px;
             border-radius: 20px;
         }
@@ -53,7 +57,7 @@
         }
 
         #eraser {
-            left: 283px;
+            left: 285px;
         }
 
         #play {
@@ -73,12 +77,12 @@
 
         #up{
             top: 10px;
-            left: 70px;
+            left: 75px;
         }
 
         #down {
             top: 450px;
-            left: 70px;
+            left: 75px;
         }
 
         #left {
@@ -109,13 +113,45 @@
             left: 310px;
         }
 
+        #soundButtonMask {
+            position: absolute;
+            overflow: hidden;
+            width: 45px;
+            height: 360px;
+            top: 80px;
+            left: 82px;
+        }
+
+        #soundButtonContainer{
+            position: absolute;
+            width: 45px;
+            top: 0;
+        }
+
+        .soundButton {
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: auto;
+            border-radius: 100%;
+        }
+
+        .soundButton :first-child {
+           position: absolute;
+           top:0;
+           left: 0;
+           right: 0;
+           bottom: 0;
+           margin: auto; 
+        }
+
     </style>
 
 </head>
 <body>
     <h1>MelOn Free Making Music Mode</h1>
 
-    <div id="contents">
+    <div id="contents" onSelectStart="return false;">
         <div id="pencil" class="stationery"></div>
         <div id="eraser" class="stationery"></div>
         <div id="play"></div>
@@ -125,6 +161,7 @@
         <div id="right" class="scroll"></div>
         <div id="save"></div>
         <div id="load"></div>
+        <div id="soundButtonMask"><div id="soundButtonContainer"></div></div>
         <div id="score" onContextmenu="return false"></div>
     </div>
 

@@ -37,6 +37,8 @@
 /// <reference path="View/ScrollButton.ts"/>
 /// <reference path="View/SaveButton.ts"/>
 /// <reference path="View/LoadButton.ts"/>
+/// <reference path="View/SoundButtonContainer.ts"/>
+/// <reference path="View/SoundButton.ts"/>
 
 // Main
 /// <reference path="main.ts"/>

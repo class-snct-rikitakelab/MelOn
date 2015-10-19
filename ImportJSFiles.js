@@ -50,6 +50,8 @@ var SCRIPT_MAP = {
         "ScrollButton.js",
         "SaveButton.js",
         "LoadButton.js",
+        "SoundButtonContainer.js",
+        "SoundButton.js",
 	],
 };
 

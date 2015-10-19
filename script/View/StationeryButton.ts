@@ -2,6 +2,8 @@
 
 // This class is one of View (Concrete Observer).
 
+
+
 class StationeryButton extends DOMView {
     private pointer: Phaser.Pointer = this.game.device.touch ? this.game.input.pointer1 : this.game.input.activePointer;
     private rightEvent: Phaser.SignalBinding;

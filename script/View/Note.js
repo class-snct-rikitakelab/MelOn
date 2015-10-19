@@ -24,7 +24,7 @@ var Note = (function (_super) {
         this.music.onMove.add(function () { _this.movePosition(); });
         this.music.onChangeExtension.add(function () { _this.changeExtension(); });
         this.setPosition(data.start * constants.width, constants.pitch.indexOf(data.pitch) * constants.height);
-        this.sampleSound();
+        this.ring();
     }
     Note.prototype.setPhysical = function () {
         this.game.physics.enable(this);
@@ -65,7 +65,7 @@ var Note = (function (_super) {
         this.isMoving = true;
         this.isStreching = false;
         this.touchPosition = Math.floor(((this.pointer.x + this.game.camera.x) - this.x) / this.constants.width);
-        this.sampleSound();
+        this.ring();
     };
     Note.prototype.movePosition = function () {
         if (this.music.getSelectedNote !== this.data)
@@ -74,7 +74,7 @@ var Note = (function (_super) {
         if (this.y == this.constants.pitch.indexOf(this.data.pitch) * this.constants.height)
             return;
         this.y = this.constants.pitch.indexOf(this.data.pitch) * this.constants.height;
-        this.sampleSound();
+        this.ring();
     };
     Note.prototype.changeExtension = function () {
         if (this.music.getSelectedNote === this.data)
@@ -85,9 +85,9 @@ var Note = (function (_super) {
         this.music.erase(this.data);
         this.destroy();
     };
-    Note.prototype.sampleSound = function () {
+    Note.prototype.ring = function () {
         this.sound = this.game.sound.play(this.instrument.getInstrument + this.data.pitch);
-        this.sound.fadeOut(this.constants.sampleDuration);
+        this.sound.fadeOut(this.constants.ringDuration);
     };
     Note.prototype.onOverlap = function () {
         if (this.musicPlayer.isPlaying)
