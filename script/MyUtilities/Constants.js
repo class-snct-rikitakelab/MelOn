@@ -232,6 +232,8 @@ var CONSTANTS;
                 buttonImage: "buttonImage",
             };
             this.speed = 4; // px per frame
+            this.measureWidth = new ScoreSheet().width;
+            this.displayMeasureNum = new ScoreSheet().displayMeasureNum;
             this.noteHeight = new MeasureSheet().noteHeight;
             this.pitch = new Music().pitch;
             this.initPitch = "C4"; // is the highest in display!

@@ -225,6 +225,8 @@ namespace CONSTANTS {
         };
         images: { [name: string]: string };
         speed: number = 4; // px per frame
+        measureWidth: number = new ScoreSheet().width;
+        displayMeasureNum: number = new ScoreSheet().displayMeasureNum;
         noteHeight: number = new MeasureSheet().noteHeight;
         pitch: string[] = new Music().pitch;
         initPitch: string = "C4"; // is the highest in display!

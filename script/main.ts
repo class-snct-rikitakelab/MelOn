@@ -36,10 +36,10 @@ class Main extends Phaser.State {
         this.pencil = new StationeryButton(this.game, new CONSTANTS.Pencil, { stationery: this.stationery });
         this.eraser = new StationeryButton(this.game, new CONSTANTS.Eraser, { stationery: this.stationery });
         this.playButton = new PlayButton(this.game, new CONSTANTS.PlayButton, { musicPlayer: this.musicPlayer });
-        this.upButton = new ScrollButton(this.game, new CONSTANTS.UpButton, {});
-        this.downButton = new ScrollButton(this.game, new CONSTANTS.DownButton, {});
-        this.rightButton = new ScrollButton(this.game, new CONSTANTS.RightButton, {});
-        this.leftButton = new ScrollButton(this.game, new CONSTANTS.LeftButton, {});
+        this.upButton = new ScrollButton(this.game, new CONSTANTS.UpButton, { music: this.music, });
+        this.downButton = new ScrollButton(this.game, new CONSTANTS.DownButton, { music: this.music, });
+        this.rightButton = new ScrollButton(this.game, new CONSTANTS.RightButton, { music: this.music, });
+        this.leftButton = new ScrollButton(this.game, new CONSTANTS.LeftButton, { music: this.music, });
         this.saveButton = new SaveButton(this.game, new CONSTANTS.SaveButton, { music: this.music, });
         this.loadButton = new LoadButton(this.game, new CONSTANTS.LoadButton, { music: this.music, });
         this.soundButtonContainer = new SoundButtonContainer(this.game, new CONSTANTS.SoundButtonContainer, { instrument: this.instrument });
