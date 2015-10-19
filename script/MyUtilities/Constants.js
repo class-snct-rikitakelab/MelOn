@@ -110,6 +110,7 @@ var CONSTANTS;
             };
             this.ringDuration = 700; // ms
             this.fadeDuration = 100; // ms
+            this.doubleClkTime = 300; // ms
         }
         return Note;
     })(Music);

@@ -112,6 +112,7 @@ namespace CONSTANTS {
         }
         ringDuration: number = 700;   // ms
         fadeDuration: number = 100;   // ms
+        doubleClkTime: number = 300;  // ms
     }
 
     export class MeasureSheet extends Music implements SpriteView {

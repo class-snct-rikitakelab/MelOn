@@ -29,6 +29,7 @@ class Note extends SpriteView {
     protected setInput() {
         this.inputEnabled = true;
         this.input.useHandCursor = true;
+        this.input
         this.events.onInputUp.add(() => { this.music.refresh(); });
         this.events.onInputDown.add((self, pointer: Phaser.Pointer) => { this.touchNote(pointer); });
         this.events.onInputOver.add(() => {
@@ -40,23 +41,32 @@ class Note extends SpriteView {
         return this.data;
     }
 
-    private touchNote(pointer: Phaser.Pointer) {
-        if (pointer.rightButton.isDown) return;
-        this.music.select(this.data);
-        if (this.stationery.getStationery === this.constants.writeStationery) this.startMoving();
-        if (this.stationery.getStationery === this.constants.eraseStationery) this.erase();
-    }
-
     private refresh() {
         this.isStreching = false;
         this.isMoving = false;
         this.touchPosition = null;
     }
 
+    private touchNote(pointer: Phaser.Pointer) {
+        if (pointer.rightButton.isDown) return;
+        this.music.select(this.data);
+        if (this.stationery.getStationery === this.constants.writeStationery) {
+            if (pointer.msSinceLastClick < this.constants.doubleClkTime) { this.startStreching(); return; }
+            this.startMoving();
+        }
+        if (this.stationery.getStationery === this.constants.eraseStationery) this.erase();
+    }
+
     private startMoving() {
         this.isMoving = true;
         this.isStreching = false;
         this.touchPosition = Math.floor(((this.pointer.x + this.game.camera.x) - this.x) / this.constants.width);
+        this.ring();
+    }
+
+    private startStreching() {
+        this.isMoving = false;
+        this.isStreching = true;
         this.ring();
     }
 

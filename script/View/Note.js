@@ -33,6 +33,7 @@ var Note = (function (_super) {
         var _this = this;
         this.inputEnabled = true;
         this.input.useHandCursor = true;
+        this.input;
         this.events.onInputUp.add(function () { _this.music.refresh(); });
         this.events.onInputDown.add(function (self, pointer) { _this.touchNote(pointer); });
         this.events.onInputOver.add(function () {
@@ -47,24 +48,34 @@ var Note = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Note.prototype.touchNote = function (pointer) {
-        if (pointer.rightButton.isDown)
-            return;
-        this.music.select(this.data);
-        if (this.stationery.getStationery === this.constants.writeStationery)
-            this.startMoving();
-        if (this.stationery.getStationery === this.constants.eraseStationery)
-            this.erase();
-    };
     Note.prototype.refresh = function () {
         this.isStreching = false;
         this.isMoving = false;
         this.touchPosition = null;
     };
+    Note.prototype.touchNote = function (pointer) {
+        if (pointer.rightButton.isDown)
+            return;
+        this.music.select(this.data);
+        if (this.stationery.getStationery === this.constants.writeStationery) {
+            if (pointer.msSinceLastClick < this.constants.doubleClkTime) {
+                this.startStreching();
+                return;
+            }
+            this.startMoving();
+        }
+        if (this.stationery.getStationery === this.constants.eraseStationery)
+            this.erase();
+    };
     Note.prototype.startMoving = function () {
         this.isMoving = true;
         this.isStreching = false;
         this.touchPosition = Math.floor(((this.pointer.x + this.game.camera.x) - this.x) / this.constants.width);
+        this.ring();
+    };
+    Note.prototype.startStreching = function () {
+        this.isMoving = false;
+        this.isStreching = true;
         this.ring();
     };
     Note.prototype.movePosition = function () {
