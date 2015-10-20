@@ -70,29 +70,67 @@
 
         .scroll {
             position: absolute;
-            height: 60px;
-            width: 60px;
+            height: 50px;
+            width: 50px;
+            border-style: groove;
+            border-width: 5px;
             border-radius: 10px;
         }
 
-        #up{
+        #up {
             top: 10px;
             left: 75px;
+            border-color: orange;
+        }
+
+        #upTriangle {
+            position: absolute;
+            bottom: 15px;
+            left: 5px;
+	        border: 20px solid transparent;
+	        border-bottom: 20px solid orange;
         }
 
         #down {
             top: 450px;
             left: 75px;
+            border-color: orange;
+        }
+
+        #downTriangle {
+            position: absolute;
+            top: 15px;
+            left: 5px;
+	        border: 20px solid transparent;
+	        border-top: 20px solid orange;
         }
 
         #left {
             top: 450px;
             left: 150px;
+            border-color: aquamarine;
+        }
+
+        #leftTriangle {
+            position: absolute;
+            top: 5px;
+            right: 15px;
+	        border: 20px solid transparent;
+	        border-right: 20px solid aquamarine;
         }
 
         #right {
             top: 450px;
             left: 730px;
+            border-color: aquamarine;
+        }
+
+        #rightTriangle {
+            position: absolute;
+            top: 5px;
+            left: 15px;
+	        border: 20px solid transparent;
+	        border-left: 20px solid aquamarine;
         }
 
         #save {
@@ -116,15 +154,15 @@
         #soundButtonMask {
             position: absolute;
             overflow: hidden;
-            width: 45px;
+            width: 60px;
             height: 360px;
             top: 80px;
-            left: 82px;
+            left: 75px;
         }
 
         #soundButtonContainer{
             position: absolute;
-            width: 45px;
+            width: inherit;
             top: 0;
         }
 
@@ -132,6 +170,8 @@
             position: absolute;
             left: 0;
             right: 0;
+            width: inherit;
+            height: 42px;
             margin: auto;
             border-radius: 10px;
             cursor: pointer;
@@ -158,10 +198,10 @@
         <div id="pencil" class="stationery"></div>
         <div id="eraser" class="stationery"></div>
         <div id="play"></div>
-        <div id="up" class="scroll"></div>
-        <div id="down" class="scroll"></div>
-        <div id="left" class="scroll"></div>
-        <div id="right" class="scroll"></div>
+        <div id="up" class="scroll"><div id="upTriangle"></div></div>
+        <div id="down" class="scroll"><div id="downTriangle"></div></div>
+        <div id="left" class="scroll"><div id="leftTriangle"></div></div>
+        <div id="right" class="scroll"><div id="rightTriangle"></div></div>
         <div id="save"></div>
         <div id="load"></div>
         <div id="soundButtonMask"><div id="soundButtonContainer"></div></div>

@@ -320,9 +320,7 @@ var CONSTANTS;
         function SoundButton() {
             this.selector = "soundButton";
             this.border = 2;
-            this.width = new MeasureSheet().noteHeight;
-            this.height = this.width - this.border * 2;
-            this.pitchTop = this.width;
+            this.pitchTop = new MeasureSheet().noteHeight;
             this.ringDuration = new Note().ringDuration;
             this.pitch = new Music().pitch;
             this.language = new Game().language;

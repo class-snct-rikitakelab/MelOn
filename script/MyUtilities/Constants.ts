@@ -281,9 +281,7 @@ namespace CONSTANTS {
     export class SoundButton implements DOMView {
         selector = "soundButton";
         border: number = 2;
-        width: number = new MeasureSheet().noteHeight;
-        height: number = this.width - this.border * 2;
-        pitchTop: number = this.width;
+        pitchTop: number = new MeasureSheet().noteHeight;
         ringDuration: number = new Note().ringDuration;
         pitch: string[] = new Music().pitch;
         language: string = new Game().language;

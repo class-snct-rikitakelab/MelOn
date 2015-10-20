@@ -14,8 +14,6 @@ class SoundButton extends DOMView {
     private setView() {
         var text: JQuery = this.setText();
         this.$ = $("#" + this.pitch)
-            .css("height", this.constants.height)
-            .css("width", this.constants.width)
             .css("top", this.constants.border + this.constants.pitchTop * this.constants.pitch.indexOf(this.pitch))
             .css("background-color", "blue")
             .addClass(this.constants.selector)

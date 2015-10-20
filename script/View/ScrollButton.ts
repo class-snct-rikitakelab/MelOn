@@ -8,7 +8,7 @@ class ScrollButton extends DOMView {
 
     constructor(game: Phaser.Game, private constants: CONSTANTS.ScrollButton, models: Object) {
         super(game, constants, models);
-        this.loadImage();
+        //this.loadImage();
         this.$.mousedown(() => { this.isPushed = true; });
         this.$.mouseup(() => { this.isPushed = false; });
         this.$.mouseleave(() => { this.isPushed = false; });
