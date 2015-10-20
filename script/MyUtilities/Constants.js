@@ -347,7 +347,7 @@ var CONSTANTS;
             this.selector = "#speedDisplay";
             this.speeds = new Speed().speeds;
             this.language = new Game().language;
-            this.speedColor = ["green", "yellowgreen", "yellow", "orange", "red"];
+            this.speedColor = ["green", "greenyellow", "yellow", "orange", "red"];
             this.textColor = ["white", "black", "black", "white", "white"];
             this.speedText = {
                 English: ["VERY SLOW", "SLOW", "NORMAL", "FAST", "VERY FAST"],

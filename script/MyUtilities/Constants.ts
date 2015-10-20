@@ -302,7 +302,7 @@ namespace CONSTANTS {
         selector = "#speedDisplay";
         speeds: number[] = new Speed().speeds;
         language: string = new Game().language;
-        speedColor: string[] = ["green", "yellowgreen", "yellow", "orange", "red"];
+        speedColor: string[] = ["green", "greenyellow", "yellow", "orange", "red"];
         textColor: string[] = ["white", "black", "black", "white", "white"];
         speedText = {
             English: ["VERY SLOW", "SLOW", "NORMAL", "FAST", "VERY FAST"],
