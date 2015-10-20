@@ -12,10 +12,12 @@ var MusicPlayBar = (function (_super) {
         this.constants = constants;
         this.musicPlayer = this.models["musicPlayer"];
         this.instrument = this.models["instrument"];
+        this.speed = this.models["speed"];
         this.noteOverlapManager = this.models["noteOverlapManager"];
         this.beatNum = 0;
         this.musicPlayer.onStop.add(function () { _this.musicStop(); });
         this.musicPlayer.onPlay.add(function () { _this.musicPlay(); });
+        this.speed.onChangeSpeed.add(function () { _this.changeSpeed(); });
         this.noteOverlapManager.setMusicPlayBar(this);
         this.anchor.setTo(1.0, 0.0);
     }
@@ -27,12 +29,16 @@ var MusicPlayBar = (function (_super) {
         this.body.velocity.x = 0;
     };
     MusicPlayBar.prototype.musicPlay = function () {
-        this.body.velocity.x = this.constants.playSpeed;
+        this.changeSpeed();
         this.x = 0;
         this.beatNum = 0;
     };
+    MusicPlayBar.prototype.changeSpeed = function () {
+        if (this.musicPlayer.isPlaying)
+            this.body.velocity.x = this.speed.getSpeed;
+    };
     MusicPlayBar.prototype.ring = function () {
-        this.beatSound = this.game.sound.play("tamb");
+        this.beatSound = this.game.sound.play(this.constants.beatSound);
         this.beatSound.fadeOut(400);
     };
     MusicPlayBar.prototype.beat = function () {

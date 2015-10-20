@@ -19,7 +19,7 @@ var CONSTANTS;
             this.height = new Note().height * new ScoreSheet().displayPitchNum;
             this.renderer = "score";
             this.imageAddress = "storage/assets/image/";
-            this.language = "Finnish";
+            this.language = "English";
         }
         return Game;
     })();
@@ -68,6 +68,14 @@ var CONSTANTS;
         return MusicPlayer;
     })();
     CONSTANTS.MusicPlayer = MusicPlayer;
+    var Speed = (function () {
+        function Speed() {
+            this.speeds = [80, 100, 120, 150, 200];
+            this.initSpeed = 2;
+        }
+        return Speed;
+    })();
+    CONSTANTS.Speed = Speed;
     var PreloadBar = (function () {
         function PreloadBar() {
             this.width = new MeasureSheet().width;
@@ -143,6 +151,7 @@ var CONSTANTS;
             this.x = 0;
             this.y = 0;
             this.initImage = "bar";
+            this.beatSound = "tamb";
             this.images = {
                 bar: "musicPlayBar",
             };
@@ -333,5 +342,51 @@ var CONSTANTS;
         return SoundButton;
     })();
     CONSTANTS.SoundButton = SoundButton;
+    var SpeedDisplay = (function () {
+        function SpeedDisplay() {
+            this.selector = "#speedDisplay";
+            this.speeds = new Speed().speeds;
+            this.language = new Game().language;
+            this.speedColor = ["green", "yellowgreen", "yellow", "orange", "red"];
+            this.textColor = ["white", "black", "black", "white", "white"];
+            this.speedText = {
+                English: ["VERY SLOW", "SLOW", "NORMAL", "FAST", "VERY FAST"],
+                Japanese: ["とてもおそい", "おそい", "ふつう", "はやい", "とてもはやい"],
+                Finnish: ["HYVIN HIDAS", "HIDAS", "NORMAALI", "NOPEA", "HYVIN NOPEA"],
+            };
+        }
+        return SpeedDisplay;
+    })();
+    CONSTANTS.SpeedDisplay = SpeedDisplay;
+    var SpeedButton = (function () {
+        function SpeedButton() {
+            this.selector = "";
+            this.upDirection = "up";
+            this.downDirection = "down";
+            this.direction = "";
+        }
+        return SpeedButton;
+    })();
+    CONSTANTS.SpeedButton = SpeedButton;
+    var SpeedUpButton = (function (_super) {
+        __extends(SpeedUpButton, _super);
+        function SpeedUpButton() {
+            _super.apply(this, arguments);
+            this.selector = "#speedUp";
+            this.direction = this.upDirection;
+        }
+        return SpeedUpButton;
+    })(SpeedButton);
+    CONSTANTS.SpeedUpButton = SpeedUpButton;
+    var SpeedDownButton = (function (_super) {
+        __extends(SpeedDownButton, _super);
+        function SpeedDownButton() {
+            _super.apply(this, arguments);
+            this.selector = "#speedDown";
+            this.direction = this.downDirection;
+        }
+        return SpeedDownButton;
+    })(SpeedButton);
+    CONSTANTS.SpeedDownButton = SpeedDownButton;
 })(CONSTANTS || (CONSTANTS = {}));
 //# sourceMappingURL=Constants.js.map

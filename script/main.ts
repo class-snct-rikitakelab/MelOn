@@ -11,6 +11,7 @@ class Main extends Phaser.State {
     private stationery: Stationery = new Stationery(new CONSTANTS.Stationery);
     private instrument: Instrument = new Instrument(new CONSTANTS.Instrument);
     private musicPlayer: MusicPlayer = new MusicPlayer(new CONSTANTS.MusicPlayer);
+    private speed: Speed = new Speed(new CONSTANTS.Speed);
 
     // ========== View ==========
     private noteOverlapManager: NoteOverlapManager; // View Manager is middle of Model and View ?
@@ -27,12 +28,15 @@ class Main extends Phaser.State {
     private saveButton: SaveButton;
     private loadButton: LoadButton;
     private soundButtonContainer: SoundButtonContainer;
+    private speedDisplay: SpeedDisplay;
+    private speedUpButton: SpeedButton;
+    private speedDownButton: SpeedButton;
     
     create() {
         this.noteOverlapManager = new NoteOverlapManager(this.game);
         this.scoreSheet = new ScoreSheet(this.game, new CONSTANTS.ScoreSheet, { music: this.music, stationery: this.stationery });
         this.notes = new Notes(this.game, new CONSTANTS.Notes, { music: this.music, musicPlayer: this.musicPlayer, instrument: this.instrument, stationery: this.stationery, noteOverlapManager: this.noteOverlapManager });
-        this.musicPlayBar = new MusicPlayBar(this.game, new CONSTANTS.MusicPlayBar, { instrument: this.instrument, musicPlayer: this.musicPlayer, noteOverlapManager: this.noteOverlapManager });
+        this.musicPlayBar = new MusicPlayBar(this.game, new CONSTANTS.MusicPlayBar, { instrument: this.instrument, musicPlayer: this.musicPlayer, noteOverlapManager: this.noteOverlapManager, speed: this.speed });
         this.pencil = new StationeryButton(this.game, new CONSTANTS.Pencil, { stationery: this.stationery });
         this.eraser = new StationeryButton(this.game, new CONSTANTS.Eraser, { stationery: this.stationery });
         this.playButton = new PlayButton(this.game, new CONSTANTS.PlayButton, { musicPlayer: this.musicPlayer });
@@ -43,6 +47,9 @@ class Main extends Phaser.State {
         this.saveButton = new SaveButton(this.game, new CONSTANTS.SaveButton, { music: this.music, });
         this.loadButton = new LoadButton(this.game, new CONSTANTS.LoadButton, { music: this.music, });
         this.soundButtonContainer = new SoundButtonContainer(this.game, new CONSTANTS.SoundButtonContainer, { instrument: this.instrument });
+        this.speedDisplay = new SpeedDisplay(this.game, new CONSTANTS.SpeedDisplay, { speed: this.speed });
+        this.speedUpButton = new SpeedButton(this.game, new CONSTANTS.SpeedUpButton, { speed: this.speed });
+        this.speedDownButton = new SpeedButton(this.game, new CONSTANTS.SpeedDownButton, { speed: this.speed });
     }
 
     update() {

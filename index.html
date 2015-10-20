@@ -72,8 +72,8 @@
             position: absolute;
             height: 50px;
             width: 50px;
-            border-style: groove;
-            border-width: 5px;
+            border-style: solid;
+            border-width: 4px;
             border-radius: 10px;
         }
 
@@ -188,6 +188,42 @@
            font-family: "Franklin Gothic Medium",sans-serif;
         }
 
+        #speedDisplay {
+            position: absolute;
+            top: 6px;
+            left: 585px;
+            width: 150px;
+            height: 60px;
+            line-height: 57px;
+            text-align: center;
+            border-style: solid;
+            border-color: black;
+            border-width: 2px;
+            border-radius: 20px;
+            color: black;
+            font-size: 25px;
+            font-weight: 900;
+            font-family: "Franklin Gothic Medium",sans-serif;
+            background-color: white;
+        }
+
+        .speedButton {
+            position: absolute;
+            top: 7px;
+        }
+
+        #speedDown {
+            left: 505px;
+	        border: 30px solid transparent;
+	        border-right: 35px solid lightblue;
+        }
+
+        #speedUp {
+            left: 755px;
+	        border: 30px solid transparent;
+	        border-left: 35px solid lightblue;
+        }
+
     </style>
 
 </head>
@@ -205,6 +241,9 @@
         <div id="save"></div>
         <div id="load"></div>
         <div id="soundButtonMask"><div id="soundButtonContainer"></div></div>
+        <div id="speedDisplay"></div>
+        <div id="speedUp" class="speedButton"></div>
+        <div id="speedDown" class="speedButton"></div>
         <div id="score" onContextmenu="return false"></div>
     </div>
 

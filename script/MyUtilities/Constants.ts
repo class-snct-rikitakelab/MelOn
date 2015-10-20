@@ -16,7 +16,7 @@ namespace CONSTANTS {
         height: number = new Note().height * new ScoreSheet().displayPitchNum;
         renderer: string = "score";
         imageAddress: string = "storage/assets/image/";
-        language: string = "Finnish";
+        language: string = "English";
     }
 
 
@@ -60,6 +60,11 @@ namespace CONSTANTS {
     }
 
     export class MusicPlayer implements Model {
+    }
+
+    export class Speed implements Model {
+        speeds: number[] = [80, 100, 120, 150, 200];
+        initSpeed: number = 2;
     }
 
 
@@ -135,6 +140,7 @@ namespace CONSTANTS {
         x = 0;
         y = 0;
         initImage = "bar";
+        beatSound: string = "tamb";
         images: { [name: string]: string } = {
             bar: "musicPlayBar",
         }
@@ -290,5 +296,35 @@ namespace CONSTANTS {
             Japanese: ["ド", "シ", "ラ", "ソ", "ファ", "ミ", "レ", "ド", "シ", "ラ", "ソ", "ファ", "ミ", "レ", "ド", "シ", "ラ", "ソ", "ファ", "ミ", "レ", "ド"],
             Finnish: ["DO", "TI", "LA", "SO", "FA", "MI", "RE", "DO", "TI", "LA", "SO", "FA", "MI", "RE", "DO", "TI", "LA", "SO", "FA", "MI", "RE", "DO"],
         }
+    }
+
+    export class SpeedDisplay implements DOMView {
+        selector = "#speedDisplay";
+        speeds: number[] = new Speed().speeds;
+        language: string = new Game().language;
+        speedColor: string[] = ["green", "yellowgreen", "yellow", "orange", "red"];
+        textColor: string[] = ["white", "black", "black", "white", "white"];
+        speedText = {
+            English: ["VERY SLOW", "SLOW", "NORMAL", "FAST", "VERY FAST"],
+            Japanese: ["とてもおそい", "おそい", "ふつう", "はやい", "とてもはやい"],
+            Finnish: ["HYVIN HIDAS", "HIDAS", "NORMAALI", "NOPEA", "HYVIN NOPEA"],
+        }
+    }
+
+    export class SpeedButton implements DOMView {
+        selector = "";
+        upDirection: string = "up";
+        downDirection: string = "down";
+        direction: string = "";
+    }
+
+    export class SpeedUpButton extends SpeedButton implements DOMView {
+        selector = "#speedUp";
+        direction = this.upDirection;
+    }
+
+    export class SpeedDownButton extends SpeedButton implements DOMView {
+        selector = "#speedDown";
+        direction = this.downDirection;
     }
 }

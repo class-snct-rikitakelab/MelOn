@@ -36,7 +36,8 @@ var SCRIPT_MAP = {
         "Music.js",
         "Stationery.js",
         "Instrument.js",
-        "MusicPlayer.js"
+        "MusicPlayer.js",
+        "Speed.js",
     ],
 
     View: [
@@ -52,6 +53,8 @@ var SCRIPT_MAP = {
         "LoadButton.js",
         "SoundButtonContainer.js",
         "SoundButton.js",
+        "SpeedDisplay.js",
+        "SpeedButton.js",
 	],
 };
 

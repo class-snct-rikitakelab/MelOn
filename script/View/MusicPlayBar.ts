@@ -4,6 +4,7 @@ class MusicPlayBar extends SpriteView {
 
     private musicPlayer: MusicPlayer = this.models["musicPlayer"];
     private instrument: Instrument = this.models["instrument"];
+    private speed: Speed = this.models["speed"];
     private noteOverlapManager: NoteOverlapManager = this.models["noteOverlapManager"];
     private beatNum: number = 0;
     private beatSound: Phaser.Sound;
@@ -12,6 +13,7 @@ class MusicPlayBar extends SpriteView {
         super(game, constants, models);
         this.musicPlayer.onStop.add(() => { this.musicStop(); });
         this.musicPlayer.onPlay.add(() => { this.musicPlay(); });
+        this.speed.onChangeSpeed.add(() => { this.changeSpeed(); });
         this.noteOverlapManager.setMusicPlayBar(this);
         this.anchor.setTo(1.0, 0.0);
     }
@@ -26,13 +28,17 @@ class MusicPlayBar extends SpriteView {
     }
 
     private musicPlay() {
-        this.body.velocity.x = this.constants.playSpeed;
+        this.changeSpeed();
         this.x = 0;
         this.beatNum = 0;
     }
 
+    private changeSpeed() {
+        if (this.musicPlayer.isPlaying) this.body.velocity.x = this.speed.getSpeed;
+    }
+
     private ring() {
-        this.beatSound = this.game.sound.play("tamb");
+        this.beatSound = this.game.sound.play(this.constants.beatSound);
         this.beatSound.fadeOut(400);
     }
 
