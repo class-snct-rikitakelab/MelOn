@@ -13,6 +13,7 @@ var ScrollButton = (function (_super) {
         this.music = this.models["music"];
         this.isPushed = false;
         this.$.mousedown(function () { _this.isPushed = true; });
+        this.$.on("touchstart", function () { _this.isPushed = true; });
         this.$.mouseup(function () { _this.isPushed = false; });
         this.$.on("touchend", function () { _this.isPushed = false; });
         this.$.mouseleave(function () { _this.isPushed = false; });
