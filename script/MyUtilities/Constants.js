@@ -19,7 +19,7 @@ var CONSTANTS;
             this.height = new Note().height * new ScoreSheet().displayPitchNum;
             this.renderer = "score";
             this.imageAddress = "storage/assets/image/";
-            this.language = "Finnish";
+            this.language = "Japanese";
         }
         return Game;
     })();
@@ -27,7 +27,7 @@ var CONSTANTS;
     var Music = (function () {
         function Music() {
             this.unitNote = 8;
-            this.measureNum = 8;
+            this.measureNum = 16;
             this.pitch = ["C5",
                 "B4", "A4", "G4", "F4", "E4", "D4", "C4",
                 "B3", "A3", "G3", "F3", "E3", "D3", "C3",

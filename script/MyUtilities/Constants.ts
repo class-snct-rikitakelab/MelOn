@@ -16,7 +16,7 @@ namespace CONSTANTS {
         height: number = new Note().height * new ScoreSheet().displayPitchNum;
         renderer: string = "score";
         imageAddress: string = "storage/assets/image/";
-        language: string = "Finnish";
+        language: string = "Japanese";
     }
 
 
@@ -32,7 +32,7 @@ namespace CONSTANTS {
 
     export class Music implements Model {
         unitNote: number = 8;
-        measureNum: number = 8;
+        measureNum: number = 16;
         pitch: string[] = [ "C5",
             "B4", "A4", "G4", "F4", "E4", "D4", "C4",
             "B3", "A3", "G3", "F3", "E3", "D3", "C3",
