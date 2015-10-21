@@ -6,7 +6,8 @@ class SpeedDisplay extends DOMView {
 
     constructor(game: Phaser.Game, private constants: CONSTANTS.SpeedDisplay, models: Object) {
         super(game, constants, models);
-        this.$.click(() => { this.roleSpeed(); });
+        this.$.mousedown(() => { this.roleSpeed(); });
+        this.$.on("touchstart", () => { this.roleSpeed(); });
         this.speed.onChangeSpeed.add(() => { this.changeSpeed(); });
         this.changeSpeed();
     }

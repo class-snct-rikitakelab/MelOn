@@ -12,6 +12,7 @@ var SpeedButton = (function (_super) {
         this.constants = constants;
         this.speed = this.models["speed"];
         this.$.click(function () { _this.changeSpeed(); });
+        this.$.on("touchstart", function () { _this.changeSpeed(); });
     }
     SpeedButton.prototype.changeSpeed = function () {
         if (this.constants.direction === this.constants.upDirection)

@@ -7,6 +7,7 @@ class SpeedButton extends DOMView {
     constructor(game: Phaser.Game, private constants: CONSTANTS.SpeedButton, models: Object) {
         super(game, constants, models);
         this.$.click(() => { this.changeSpeed(); });
+        this.$.on("touchstart", () => { this.changeSpeed(); });
     }
 
     private changeSpeed() {

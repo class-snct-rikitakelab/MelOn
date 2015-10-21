@@ -7,6 +7,7 @@ class SaveButton extends DOMView {
     constructor(game: Phaser.Game, private constants: CONSTANTS.SaveButton, models: Object) {
         super(game, constants, models);
         this.$.click(() => { this.save(); });
+        this.$.on("touchstart", () => { this.save(); });
         this.$.css("background-color", "darkcyan");
     }
 

@@ -9,6 +9,7 @@ class SoundButton extends DOMView {
         super(game, constants, models);
         this.setView();
         this.$.mousedown(() => { this.ring(); });
+        this.$.on("touchstart", () => { this.ring(); });
     }
 
     private setView() {

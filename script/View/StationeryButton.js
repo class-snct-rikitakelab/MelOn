@@ -22,7 +22,8 @@ var StationeryButton = (function (_super) {
         this.stationery.onChangeStationery.add(function () { _this.changeImage(); });
         this.rightEvent = this.pointer.rightButton.onDown.add(function () { _this.toggleStationery(); });
         // This function will be executed when this button is pushed.
-        this.$.click(function () { _this.changeStationery(); });
+        this.$.mousedown(function () { _this.changeStationery(); });
+        this.$.on("touchstart", function () { _this.changeStationery(); });
         this.$.on("contextmenu", function () { return false; });
         // Set initial Image.
         this.changeImage();

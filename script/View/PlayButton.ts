@@ -11,6 +11,7 @@ class PlayButton extends DOMView {
         this.musicPlayer.onPlay.add(() => { this.changeImage(true); });
         this.musicPlayer.onStop.add(() => { this.changeImage(false); this.game.sound.stopAll(); });
         this.$.click(() => { this.changePlayingState(); });
+        this.$.on("touchstart", () => { this.changePlayingState(); });
         this.$.on("contextmenu", () => { return false; });
         this.changeImage(false);
     }

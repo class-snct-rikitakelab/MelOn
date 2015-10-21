@@ -25,7 +25,8 @@ class StationeryButton extends DOMView {
         this.rightEvent = this.pointer.rightButton.onDown.add(() => { this.toggleStationery(); });
 
         // This function will be executed when this button is pushed.
-        this.$.click(() => { this.changeStationery(); });
+        this.$.mousedown(() => { this.changeStationery(); });
+        this.$.on("touchstart", () => { this.changeStationery(); });
         this.$.on("contextmenu", () => { return false; });
 
         // Set initial Image.
