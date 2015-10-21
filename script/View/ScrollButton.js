@@ -12,20 +12,14 @@ var ScrollButton = (function (_super) {
         this.constants = constants;
         this.music = this.models["music"];
         this.isPushed = false;
-        //this.loadImage();
         this.$.mousedown(function () { _this.isPushed = true; });
         this.$.mouseup(function () { _this.isPushed = false; });
+        this.$.on("touchend", function () { _this.isPushed = false; });
         this.$.mouseleave(function () { _this.isPushed = false; });
         this.$.dblclick(function () { _this.double(); });
         this.$.on("contextmenu", function () { return false; });
         this.initCamera();
     }
-    ScrollButton.prototype.loadImage = function () {
-        this.image = $("<img />")
-            .attr("src", this.constants.images["image"])
-            .addClass(this.constants.class["buttonImage"]);
-        this.$.append(this.image);
-    };
     ScrollButton.prototype.initCamera = function () {
         this.game.camera.y = this.constants.noteHeight * this.constants.pitch.indexOf(this.constants.initPitch);
     };

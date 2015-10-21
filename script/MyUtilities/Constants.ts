@@ -16,7 +16,7 @@ namespace CONSTANTS {
         height: number = new Note().height * new ScoreSheet().displayPitchNum;
         renderer: string = "score";
         imageAddress: string = "storage/assets/image/";
-        language: string = "English";
+        language: string = "Finnish";
     }
 
 
@@ -51,11 +51,11 @@ namespace CONSTANTS {
     }
 
     export class Instrument implements Model {
-        pitch: string[] = new Music().pitch;
-        pitchNum: number = this.pitch.length;
         initInstrument: number = 0;
         instruments: string[] = [
             "piano",
+            "trumpet",
+            "violin",
         ]
     }
 
@@ -64,7 +64,7 @@ namespace CONSTANTS {
 
     export class Speed implements Model {
         speeds: number[] = [80, 100, 120, 150, 200];
-        initSpeed: number = 2;
+        initSpeedGrade: number = 2;
     }
 
 
@@ -117,7 +117,7 @@ namespace CONSTANTS {
         }
         ringDuration: number = 700;   // ms
         fadeDuration: number = 100;   // ms
-        doubleClkTime: number = 300;  // ms
+        doubleClkTime: number = 200;  // ms
     }
 
     export class MeasureSheet extends Music implements SpriteView {
@@ -301,6 +301,7 @@ namespace CONSTANTS {
     export class SpeedDisplay implements DOMView {
         selector = "#speedDisplay";
         speeds: number[] = new Speed().speeds;
+        speedGradeNum: number = this.speeds.length;
         language: string = new Game().language;
         speedColor: string[] = ["green", "greenyellow", "yellow", "orange", "red"];
         textColor: string[] = ["white", "black", "black", "white", "white"];
@@ -326,5 +327,10 @@ namespace CONSTANTS {
     export class SpeedDownButton extends SpeedButton implements DOMView {
         selector = "#speedDown";
         direction = this.downDirection;
+    }
+
+    export class InstrumentMenu extends Instrument implements DOMView {
+        selector = "#instrumentMenu";
+        
     }
 }

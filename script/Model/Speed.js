@@ -11,7 +11,7 @@ var Speed = (function (_super) {
         _super.call(this, constants);
         this.constants = constants;
         this.onChangeSpeed = new Phaser.Signal();
-        _.times(this.constants.initSpeed + 1, function () { _this.changeSpeed(true); });
+        _.times(this.constants.initSpeedGrade + 1, function () { _this.changeSpeed(true); });
     }
     Object.defineProperty(Speed.prototype, "getSpeed", {
         get: function () {
@@ -20,11 +20,17 @@ var Speed = (function (_super) {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(Speed.prototype, "getSpeedGrade", {
+        get: function () {
+            return this.constants.speeds.indexOf(this.speed);
+        },
+        enumerable: true,
+        configurable: true
+    });
     Speed.prototype.changeSpeed = function (up) {
-        var newSpeed = this.constants.speeds[this.constants.speeds.indexOf(this.speed) + (up ? 1 : -1)];
-        if (!newSpeed)
-            return;
-        this.speed = newSpeed;
+        var newSpeed = this.constants.speeds[this.getSpeedGrade + (up ? 1 : -1)];
+        if (newSpeed)
+            this.speed = newSpeed;
         this.onChangeSpeed.dispatch();
     };
     return Speed;

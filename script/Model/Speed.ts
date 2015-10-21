@@ -8,17 +8,20 @@ class Speed extends Model {
 
     constructor(private constants: CONSTANTS.Speed) {
         super(constants);
-        _.times(this.constants.initSpeed + 1, () => { this.changeSpeed(true); });
+        _.times(this.constants.initSpeedGrade + 1, () => { this.changeSpeed(true); });
     }
 
     get getSpeed(): number {
         return this.speed;
     }
+
+    get getSpeedGrade(): number {
+        return this.constants.speeds.indexOf(this.speed);
+    }
     
     changeSpeed(up: boolean) {
-        var newSpeed = this.constants.speeds[this.constants.speeds.indexOf(this.speed) + (up ? 1 : -1)];
-        if (!newSpeed) return;
-        this.speed = newSpeed;
+        var newSpeed = this.constants.speeds[this.getSpeedGrade + (up ? 1 : -1)];
+        if (newSpeed) this.speed = newSpeed;
         this.onChangeSpeed.dispatch();
     }
 }

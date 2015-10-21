@@ -19,7 +19,7 @@ var CONSTANTS;
             this.height = new Note().height * new ScoreSheet().displayPitchNum;
             this.renderer = "score";
             this.imageAddress = "storage/assets/image/";
-            this.language = "English";
+            this.language = "Finnish";
         }
         return Game;
     })();
@@ -52,11 +52,11 @@ var CONSTANTS;
     CONSTANTS.Stationery = Stationery;
     var Instrument = (function () {
         function Instrument() {
-            this.pitch = new Music().pitch;
-            this.pitchNum = this.pitch.length;
             this.initInstrument = 0;
             this.instruments = [
                 "piano",
+                "trumpet",
+                "violin",
             ];
         }
         return Instrument;
@@ -71,7 +71,7 @@ var CONSTANTS;
     var Speed = (function () {
         function Speed() {
             this.speeds = [80, 100, 120, 150, 200];
-            this.initSpeed = 2;
+            this.initSpeedGrade = 2;
         }
         return Speed;
     })();
@@ -118,7 +118,7 @@ var CONSTANTS;
             };
             this.ringDuration = 700; // ms
             this.fadeDuration = 100; // ms
-            this.doubleClkTime = 300; // ms
+            this.doubleClkTime = 200; // ms
         }
         return Note;
     })(Music);
@@ -346,6 +346,7 @@ var CONSTANTS;
         function SpeedDisplay() {
             this.selector = "#speedDisplay";
             this.speeds = new Speed().speeds;
+            this.speedGradeNum = this.speeds.length;
             this.language = new Game().language;
             this.speedColor = ["green", "greenyellow", "yellow", "orange", "red"];
             this.textColor = ["white", "black", "black", "white", "white"];
@@ -388,5 +389,14 @@ var CONSTANTS;
         return SpeedDownButton;
     })(SpeedButton);
     CONSTANTS.SpeedDownButton = SpeedDownButton;
+    var InstrumentMenu = (function (_super) {
+        __extends(InstrumentMenu, _super);
+        function InstrumentMenu() {
+            _super.apply(this, arguments);
+            this.selector = "#instrumentMenu";
+        }
+        return InstrumentMenu;
+    })(Instrument);
+    CONSTANTS.InstrumentMenu = InstrumentMenu;
 })(CONSTANTS || (CONSTANTS = {}));
 //# sourceMappingURL=Constants.js.map

@@ -55,6 +55,7 @@ var SCRIPT_MAP = {
         "SoundButton.js",
         "SpeedDisplay.js",
         "SpeedButton.js",
+        "InstrumentMenu.js"
 	],
 };
 
@@ -82,8 +83,7 @@ function write_out(block_name, file) {
 for (var block_name in SCRIPT_LOCATION_MAP)
 {
 	var block_num = SCRIPT_MAP[block_name].length
-	for (var file = 0; file < block_num; ++file)
-	{	
+	for (var file = 0; file < block_num; ++file) {	
 		write_out(block_name, file);
 	};
 };

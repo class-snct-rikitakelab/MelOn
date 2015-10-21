@@ -38,6 +38,7 @@
 /// <reference path="View/SoundButton.ts"/>
 /// <reference path="View/SpeedDisplay.ts"/>
 /// <reference path="View/SpeedButton.ts"/>
+/// <reference path="View/InstrumentMenu.ts"/>
 // Main
 /// <reference path="main.ts"/> 
 //# sourceMappingURL=reference.js.map

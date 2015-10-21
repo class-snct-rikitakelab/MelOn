@@ -13,7 +13,7 @@ var SoundButton = (function (_super) {
         this.pitch = pitch;
         this.instrument = this.models["instrument"];
         this.setView();
-        this.$.click(function () { _this.ring(); });
+        this.$.mousedown(function () { _this.ring(); });
     }
     SoundButton.prototype.setView = function () {
         var text = this.setText();

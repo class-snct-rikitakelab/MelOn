@@ -14,7 +14,7 @@
     <script type="text/javascript" src="script/main.js"></script>
 
     <style type="text/css">
-        #contents {
+        #MelOn {
             position: relative; /*This is needed for children which have "position absolute"*/
             margin: 0 auto;     /*Centering holizontally*/
             width: 900px;       /*This is needed for centering*/
@@ -205,11 +205,13 @@
             font-weight: 900;
             font-family: "Franklin Gothic Medium",sans-serif;
             background-color: white;
+            cursor: pointer;
         }
 
         .speedButton {
             position: absolute;
             top: 7px;
+            cursor: pointer;
         }
 
         #speedDown {
@@ -224,13 +226,22 @@
 	        border-left: 34px solid lightblue;
         }
 
+        #instrumentMenu {
+            position: absolute;
+            top: 450px;
+            left: 520px;
+            height: 60px;
+            width: 180px;
+            background-color: purple;
+        }
+
     </style>
 
 </head>
 <body>
     <h1>MelOn Free Making Music Mode</h1>
 
-    <div id="contents" onSelectStart="return false;">
+    <div id="MelOn" onSelectStart="return false;">
         <div id="pencil" class="stationery"></div>
         <div id="eraser" class="stationery"></div>
         <div id="speedDisplay"></div>
@@ -244,6 +255,7 @@
         <div id="save"></div>
         <div id="load"></div>
         <div id="soundButtonMask"><div id="soundButtonContainer"></div></div>
+        <div id="instrumentMenu"></div>
         <div id="score" onContextmenu="return false"></div>
     </div>
 
