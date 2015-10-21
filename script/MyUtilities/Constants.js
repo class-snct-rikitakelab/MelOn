@@ -246,6 +246,7 @@ var CONSTANTS;
             this.noteHeight = new MeasureSheet().noteHeight;
             this.pitch = new Music().pitch;
             this.initPitch = "C4"; // is the highest in display!
+            this.doubleTapTime = new Note().doubleClkTime; // ms
         }
         return ScrollButton;
     })();

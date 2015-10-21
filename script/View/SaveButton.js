@@ -11,8 +11,7 @@ var SaveButton = (function (_super) {
         _super.call(this, game, constants, models);
         this.constants = constants;
         this.music = this.models["music"];
-        this.$.click(function () { _this.save(); });
-        this.$.on("touchstart", function () { _this.save(); });
+        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.save(); });
         this.$.css("background-color", "darkcyan");
     }
     SaveButton.prototype.save = function () {

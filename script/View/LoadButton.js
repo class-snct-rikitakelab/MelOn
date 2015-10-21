@@ -11,7 +11,7 @@ var LoadButton = (function (_super) {
         _super.call(this, game, constants, models);
         this.constants = constants;
         this.music = this.models["music"];
-        this.$.click(function () { _this.load(); });
+        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.load(); });
         this.$.css("background-color", "aquamarine");
     }
     LoadButton.prototype.load = function () {

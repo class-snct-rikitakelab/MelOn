@@ -236,6 +236,7 @@ namespace CONSTANTS {
         noteHeight: number = new MeasureSheet().noteHeight;
         pitch: string[] = new Music().pitch;
         initPitch: string = "C4"; // is the highest in display!
+        doubleTapTime: number = new Note().doubleClkTime; // ms
     }
 
     export class UpButton extends ScrollButton {

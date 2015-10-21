@@ -6,7 +6,7 @@ class LoadButton extends DOMView {
 
     constructor(game: Phaser.Game, private constants: CONSTANTS.SaveButton, models: Object) {
         super(game, constants, models);
-        this.$.click(() => { this.load(); });
+        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", () => { this.load(); });
         this.$.css("background-color", "aquamarine");
     }
 

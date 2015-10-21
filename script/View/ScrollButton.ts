@@ -8,13 +8,16 @@ class ScrollButton extends DOMView {
 
     constructor(game: Phaser.Game, private constants: CONSTANTS.ScrollButton, models: Object) {
         super(game, constants, models);
-        this.$.mousedown(() => { this.isPushed = true; });
-        this.$.on("touchstart", () => { this.isPushed = true; });
-        this.$.mouseup(() => { this.isPushed = false; });
-        this.$.on("touchend", () => { this.isPushed = false; });
+        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", () => { this.isPushed = true; });
+        this.$.on(this.game.device.touch ? "touchend" : "mouseup", () => { this.isPushed = false; });
         this.$.mouseleave(() => { this.isPushed = false; });
         this.$.dblclick(() => { this.double(); });
         this.$.on("contextmenu", () => { return false; });
+        this.$.data("dblTap", false).click(() => {
+            if (this.$.data("dblTap")) this.$.data("dblTap", false);
+            else this.$.data("dblTap", true);
+            setTimeout(() => { this.$.data("dblTap", false); }, this.constants.doubleTapTime);
+        })
         this.initCamera();
     }
 

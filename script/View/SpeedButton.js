@@ -11,8 +11,7 @@ var SpeedButton = (function (_super) {
         _super.call(this, game, constants, models);
         this.constants = constants;
         this.speed = this.models["speed"];
-        this.$.click(function () { _this.changeSpeed(); });
-        this.$.on("touchstart", function () { _this.changeSpeed(); });
+        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.changeSpeed(); });
     }
     SpeedButton.prototype.changeSpeed = function () {
         if (this.constants.direction === this.constants.upDirection)

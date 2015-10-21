@@ -13,8 +13,7 @@ var SoundButton = (function (_super) {
         this.pitch = pitch;
         this.instrument = this.models["instrument"];
         this.setView();
-        this.$.mousedown(function () { _this.ring(); });
-        this.$.on("touchstart", function () { _this.ring(); });
+        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.ring(); });
     }
     SoundButton.prototype.setView = function () {
         var text = this.setText();

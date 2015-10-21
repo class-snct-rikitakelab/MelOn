@@ -8,8 +8,7 @@ class SoundButton extends DOMView {
     constructor(game: Phaser.Game, private constants: CONSTANTS.SoundButton, models: Object, private pitch: string) {
         super(game, constants, models);
         this.setView();
-        this.$.mousedown(() => { this.ring(); });
-        this.$.on("touchstart", () => { this.ring(); });
+        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", () => { this.ring(); });
     }
 
     private setView() {

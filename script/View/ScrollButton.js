@@ -12,13 +12,18 @@ var ScrollButton = (function (_super) {
         this.constants = constants;
         this.music = this.models["music"];
         this.isPushed = false;
-        this.$.mousedown(function () { _this.isPushed = true; });
-        this.$.on("touchstart", function () { _this.isPushed = true; });
-        this.$.mouseup(function () { _this.isPushed = false; });
-        this.$.on("touchend", function () { _this.isPushed = false; });
+        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.isPushed = true; });
+        this.$.on(this.game.device.touch ? "touchend" : "mouseup", function () { _this.isPushed = false; });
         this.$.mouseleave(function () { _this.isPushed = false; });
         this.$.dblclick(function () { _this.double(); });
         this.$.on("contextmenu", function () { return false; });
+        this.$.data("dblTap", false).click(function () {
+            if (_this.$.data("dblTap"))
+                _this.$.data("dblTap", false);
+            else
+                _this.$.data("dblTap", true);
+            setTimeout(function () { _this.$.data("dblTap", false); }, _this.constants.doubleTapTime);
+        });
         this.initCamera();
     }
     ScrollButton.prototype.initCamera = function () {
