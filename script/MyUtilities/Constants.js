@@ -19,7 +19,7 @@ var CONSTANTS;
             this.height = new Note().height * new ScoreSheet().displayPitchNum;
             this.renderer = "score";
             this.imageAddress = "storage/assets/image/";
-            this.language = "Japanese";
+            this.language = "Finnish";
         }
         return Game;
     })();
@@ -390,6 +390,51 @@ var CONSTANTS;
         return SpeedDownButton;
     })(SpeedButton);
     CONSTANTS.SpeedDownButton = SpeedDownButton;
+    var InstrumentOption = (function (_super) {
+        __extends(InstrumentOption, _super);
+        function InstrumentOption() {
+            _super.apply(this, arguments);
+            this.selector = "";
+            this.height = 60;
+            this.samplePitch = "C3";
+            this.sampleTime = new Note().ringDuration;
+            this.language = new Game().language;
+            this.instrumentText = {
+                English: { piano: "Piano", trumpet: "Trumpet", violin: "Violin" },
+                Japanese: { piano: "ピアノ", trumpet: "トランペット", violin: "バイオリン" },
+                Finnish: { piano: "Piano", trumpet: "Trumpetti", violin: "Viulu" },
+            };
+            this.backgroundColor = {
+                piano: "silver",
+                trumpet: "gold",
+                violin: "saddlebrown",
+            };
+            this.textColor = {
+                piano: "black",
+                trumpet: "black",
+                violin: "white",
+            };
+            this.imageAddress = new Game().imageAddress + "instrument/";
+            this.image = {
+                piano: this.imageAddress + "piano.png",
+                trumpet: this.imageAddress + "trumpet.png",
+                violin: this.imageAddress + "violin.png",
+            };
+        }
+        return InstrumentOption;
+    })(Instrument);
+    CONSTANTS.InstrumentOption = InstrumentOption;
+    var InstrumentContainer = (function (_super) {
+        __extends(InstrumentContainer, _super);
+        function InstrumentContainer() {
+            _super.apply(this, arguments);
+            this.selector = "#instrumentContainer";
+            this.containerHeight = this.height * (this.instruments.length - 1);
+            this.slideTime = 500; // ms
+        }
+        return InstrumentContainer;
+    })(InstrumentOption);
+    CONSTANTS.InstrumentContainer = InstrumentContainer;
     var InstrumentMenu = (function (_super) {
         __extends(InstrumentMenu, _super);
         function InstrumentMenu() {
@@ -397,7 +442,7 @@ var CONSTANTS;
             this.selector = "#instrumentMenu";
         }
         return InstrumentMenu;
-    })(Instrument);
+    })(InstrumentOption);
     CONSTANTS.InstrumentMenu = InstrumentMenu;
 })(CONSTANTS || (CONSTANTS = {}));
 //# sourceMappingURL=Constants.js.map

@@ -16,7 +16,7 @@ namespace CONSTANTS {
         height: number = new Note().height * new ScoreSheet().displayPitchNum;
         renderer: string = "score";
         imageAddress: string = "storage/assets/image/";
-        language: string = "Japanese";
+        language: string = "Finnish";
     }
 
 
@@ -56,7 +56,7 @@ namespace CONSTANTS {
             "piano",
             "trumpet",
             "violin",
-        ]
+        ];
     }
 
     export class MusicPlayer implements Model {
@@ -330,8 +330,42 @@ namespace CONSTANTS {
         direction = this.downDirection;
     }
 
-    export class InstrumentMenu extends Instrument implements DOMView {
+    export class InstrumentOption extends Instrument implements DOMView {
+        selector = "";
+        height: number = 60;
+        samplePitch: string = "C3";
+        sampleTime: number = new Note().ringDuration
+        language: string = new Game().language;
+        instrumentText = {
+            English: { piano: "Piano", trumpet: "Trumpet", violin: "Violin" },
+            Japanese: { piano: "ピアノ", trumpet: "トランペット", violin: "バイオリン" },
+            Finnish: { piano: "Piano", trumpet: "Trumpetti", violin: "Viulu" },
+        }
+        backgroundColor = {
+            piano: "silver",
+            trumpet: "gold",
+            violin: "saddlebrown",
+        };
+        textColor = {
+            piano: "black",
+            trumpet: "black",
+            violin: "white",
+        };
+        imageAddress = new Game().imageAddress + "instrument/";
+        image = {
+            piano: this.imageAddress + "piano.png",
+            trumpet: this.imageAddress + "trumpet.png",
+            violin: this.imageAddress + "violin.png",
+        }
+    }
+
+    export class InstrumentContainer extends InstrumentOption implements DOMView {
+        selector = "#instrumentContainer";
+        containerHeight = this.height * (this.instruments.length - 1);
+        slideTime: number = 500 // ms
+    }
+
+    export class InstrumentMenu extends InstrumentOption implements DOMView {
         selector = "#instrumentMenu";
-        
     }
 }

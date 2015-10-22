@@ -11,8 +11,7 @@ var SpeedDisplay = (function (_super) {
         _super.call(this, game, constants, models);
         this.constants = constants;
         this.speed = this.models["speed"];
-        this.$.mousedown(function () { _this.roleSpeed(); });
-        this.$.on("touchstart", function () { _this.roleSpeed(); });
+        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.roleSpeed(); });
         this.speed.onChangeSpeed.add(function () { _this.changeSpeed(); });
         this.changeSpeed();
     }

@@ -55,6 +55,8 @@ var SCRIPT_MAP = {
         "SoundButton.js",
         "SpeedDisplay.js",
         "SpeedButton.js",
+        "InstrumentOption.js",
+        "InstrumentContainer.js",
         "InstrumentMenu.js"
 	],
 };
