@@ -16,6 +16,7 @@ class SaveButton extends DOMView {
     }
 
     private setEvent() {
+        this.$.mouseenter(() => { this.game.sound.play("select"); });
         this.$.on(this.game.device.touch ? "touchstart" : "mousedown", () => { this.save(); });
     }
 
@@ -23,6 +24,7 @@ class SaveButton extends DOMView {
         if (localStorage.getItem("music") && !confirm("The music you have already saved will be disposed. Is it OK?")) return;
         var str = JSON.stringify(this.music.getMusic);
         localStorage.setItem("music", str); // Local Strage Save
+        this.game.sound.play("save");
         alert("Your music was saved!");
     }
 }

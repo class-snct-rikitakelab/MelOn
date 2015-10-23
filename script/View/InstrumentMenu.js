@@ -11,7 +11,6 @@ var InstrumentMenu = (function (_super) {
         this.constants = constants;
         this.instrument = this.models["instrument"];
         this.text = $("<div></div>").addClass("instrumentText");
-        this.img = $("<img src=\"\" />)");
         this.setView();
         this.setEvent();
         this.changeInstrument();
@@ -21,7 +20,6 @@ var InstrumentMenu = (function (_super) {
             .css("background-color", "blue")
             .css("height", this.constants.height);
         this.$.append(this.text);
-        this.$.append(this.img);
         this.setContainer();
     };
     InstrumentMenu.prototype.setContainer = function () {
@@ -30,9 +28,11 @@ var InstrumentMenu = (function (_super) {
     };
     InstrumentMenu.prototype.setEvent = function () {
         var _this = this;
+        this.$.mouseenter(function () { _this.game.sound.play("select"); });
+        this.$.on("contextmenu", function () { return false; });
         this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.container.slideToggle(); });
         $(document).on(this.game.device.touch ? "touchstart" : "mousedown", function (event) {
-            if (!$.contains($(_this.constants.selector)[0], event.target))
+            if (_this.container.isOpen && !$.contains($(_this.constants.selector)[0], event.target))
                 _this.container.close();
         });
         this.instrument.onChangeInstrument.add(function () { _this.changeInstrument(); });

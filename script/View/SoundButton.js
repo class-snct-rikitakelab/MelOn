@@ -15,18 +15,16 @@ var SoundButton = (function (_super) {
         this.setEvent();
     }
     SoundButton.prototype.setView = function () {
-        var text = this.setText();
         this.$ = $("#" + this.pitch)
             .css("top", this.constants.border + this.constants.pitchTop * this.constants.pitch.indexOf(this.pitch))
             .addClass(this.constants.selector)
-            .append(text);
+            .append($("<div></div>")
+            .addClass("soundButtonText")
+            .text(this.constants.pitchText[this.constants.language][this.constants.pitch.indexOf(this.pitch)]));
     };
     SoundButton.prototype.setEvent = function () {
         var _this = this;
         this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.ring(); });
-    };
-    SoundButton.prototype.setText = function () {
-        return $("<div>" + this.constants.pitchText[this.constants.language][this.constants.pitch.indexOf(this.pitch)] + "</div>");
     };
     SoundButton.prototype.ring = function () {
         if (this.sound && this.sound.isPlaying)

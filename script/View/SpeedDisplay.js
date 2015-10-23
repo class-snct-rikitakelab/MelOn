@@ -20,11 +20,13 @@ var SpeedDisplay = (function (_super) {
     };
     SpeedDisplay.prototype.setEvent = function () {
         var _this = this;
+        this.$.on("mouseenter", function () { _this.game.sound.play("select"); });
         this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.roleSpeed(); });
         this.speed.onChangeSpeed.add(function () { _this.changeSpeed(); });
     };
     SpeedDisplay.prototype.roleSpeed = function () {
         var _this = this;
+        this.game.sound.play("decide");
         if (this.speed.getSpeed === _.last(this.constants.speeds)) {
             _.times(this.constants.speedGradeNum, function () { _this.speed.changeSpeed(false); });
             return;

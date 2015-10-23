@@ -12,19 +12,16 @@ class SoundButton extends DOMView {
     }
 
     private setView() {
-        var text: JQuery = this.setText();
         this.$ = $("#" + this.pitch)
             .css("top", this.constants.border + this.constants.pitchTop * this.constants.pitch.indexOf(this.pitch))
             .addClass(this.constants.selector)
-            .append(text);
+            .append($("<div></div>")
+               .addClass("soundButtonText")
+               .text(this.constants.pitchText[this.constants.language][this.constants.pitch.indexOf(this.pitch)]));
     }
 
     private setEvent() {
         this.$.on(this.game.device.touch ? "touchstart" : "mousedown", () => { this.ring(); });
-    }
-
-    private setText(): JQuery {
-        return $("<div>" + this.constants.pitchText[this.constants.language][this.constants.pitch.indexOf(this.pitch)] + "</div>");
     }
 
     private ring() {

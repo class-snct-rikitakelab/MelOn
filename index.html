@@ -18,7 +18,7 @@
             background-color: lemonchiffon;
         }
 
-        #title {
+        #logo {
             display: block;
             margin: 50px auto 50px auto;
             width: 300px;
@@ -26,9 +26,9 @@
         }
 
         #MelOn {
-            position: relative; /*This is needed for children which have "position absolute"*/
+            position: relative;            /*This is needed for children which have "position absolute"*/
             margin: 0 auto 100px auto;     /*Centering holizontally*/
-            width: 900px;       /*This is needed for centering*/
+            width: 900px;                  /*This is needed for centering*/
             height: 520px;
             -moz-user-select: none;
             -webkit-user-drag: none;
@@ -104,7 +104,7 @@
         }
 
         #up {
-            top: 10px;
+            top: 13px;
             left: 75px;
             border-color: orange;
         }
@@ -118,7 +118,7 @@
         }
 
         #down {
-            top: 450px;
+            top: 453px;
             left: 75px;
             border-color: orange;
         }
@@ -132,7 +132,7 @@
         }
 
         #left {
-            top: 450px;
+            top: 453px;
             left: 150px;
             border-color: cornflowerblue;
         }
@@ -146,7 +146,7 @@
         }
 
         #right {
-            top: 450px;
+            top: 453px;
             left: 730px;
             border-color: cornflowerblue;
         }
@@ -169,6 +169,7 @@
             border-style: solid;
             border-width: 2px;
             border-radius: 10px;
+            cursor: pointer;
         }
 
         #load {
@@ -181,6 +182,7 @@
             border-style: solid;
             border-width: 2px;
             border-radius: 10px;
+            cursor: pointer;
         }
 
         #soundButtonMask {
@@ -189,7 +191,7 @@
             width: 60px;
             height: 360px;
             top: 80px;
-            left: 75px;
+            left: 74px;
         }
 
         #soundButtonContainer{
@@ -206,11 +208,11 @@
             height: 42px;
             margin: auto;
             border-radius: 10px;
-            background-color: limegreen;
+            background-color: forestgreen;
             cursor: pointer;
         }
 
-        .soundButton :first-child {
+        .soundButtonText {
            position: absolute;
            line-height: 40px;
            text-align: center;
@@ -308,7 +310,7 @@
 
 </head>
 <body>
-    <img id="title" src="storage/assets/image/game/MelOnLogo.png" />
+    <img id="logo" src="storage/assets/image/game/MelOnLogo.png" />
     <div id="MelOn" onSelectStart="return false;">
         <div id="pencil" class="stationery"></div>
         <div id="eraser" class="stationery"></div>

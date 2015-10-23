@@ -44,9 +44,10 @@ namespace CONSTANTS {
     }
 
     export class Stationery implements Model {
-        writeStationery: string = "pencil";
-        eraseStationery: string = "eraser";
-        stationeryNum: number = 2;
+        stationeries: string[] = ["pencil", "eraser"];
+        writeStationery: string = this.stationeries[0];
+        eraseStationery: string = this.stationeries[1];
+        stationeryNum: number = this.stationeries.length;
         initStationery: string = this.writeStationery;
     }
 
@@ -178,11 +179,13 @@ namespace CONSTANTS {
         selector: string;
     }
 
+    export class Logo implements DOMView {
+        selector = "#logo";
+    }
+
     export class StationeryButton implements DOMView {
-        selector;
+        selector = "";
         name: string;
-        index: number;
-        stationeryNum: number = new Stationery().stationeryNum;
         protected imageAddress: string = new Game().imageAddress + "stationeryButton/";
         class: { [name: string]: string } = {
             buttonImage: "buttonImage",
@@ -195,7 +198,6 @@ namespace CONSTANTS {
     export class Pencil extends StationeryButton{
         selector = "#pencil";
         name = new Stationery().writeStationery;
-        index = 0;
         images: { [name: string]: string } = {
             image: this.imageAddress + "pencil.png",
         }
@@ -204,10 +206,14 @@ namespace CONSTANTS {
     export class Eraser extends StationeryButton {
         selector = "#eraser";
         name = new Stationery().eraseStationery;
-        index = 1;
         images: { [name: string]: string } = {
             image: this.imageAddress + "eraser.png",
         }
+    }
+
+    export class StationeryToggler extends StationeryButton {
+        stationeries = new Stationery().stationeries;
+        stationeryNum = new Stationery().stationeryNum;
     }
 
     export class PlayButton implements DOMView {
@@ -312,7 +318,7 @@ namespace CONSTANTS {
             English: ["VERY SLOW", "SLOW", "NORMAL", "FAST", "VERY FAST"],
             Japanese: ["とてもおそい", "おそい", "ふつう", "はやい", "とてもはやい"],
             Finnish: ["HYVIN HIDAS", "HIDAS", "NORMAALI", "NOPEA", "HYVIN NOPEA"],
-        }
+        };
     }
 
     export class SpeedButton implements DOMView {
@@ -320,6 +326,7 @@ namespace CONSTANTS {
         upDirection: string = "up";
         downDirection: string = "down";
         direction: string = "";
+        speedGradeNum: number = new Speed().speeds.length;
     }
 
     export class SpeedUpButton extends SpeedButton implements DOMView {

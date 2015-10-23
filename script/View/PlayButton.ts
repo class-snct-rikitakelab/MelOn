@@ -3,21 +3,24 @@
 class PlayButton extends DOMView {
 
     private musicPlayer: MusicPlayer = this.models["musicPlayer"];
-    private image: JQuery;
 
     constructor(game: Phaser.Game, private constants: CONSTANTS.PlayButton, models: Object) {
         super(game, constants, models);
-        this.loadImage();
-        this.musicPlayer.onPlay.add(() => { this.changeImage(true); });
-        this.musicPlayer.onStop.add(() => { this.changeImage(false); this.game.sound.stopAll(); });
-        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", () => { this.changePlayingState(); });
-        this.$.on("contextmenu", () => { return false; });
+        this.setView();
+        this.setEvent();
         this.changeImage(false);
     }
 
-    private loadImage() {
-        this.image = $("<img />").attr("src", this.constants.images["image"]).addClass(this.constants.class["buttonImage"]);
-        this.$.append(this.image);
+    private setView() {
+        this.$.append($(`<img src="${this.constants.images["image"]}" />`).addClass(this.constants.class["buttonImage"]));
+    }
+
+    private setEvent() {
+        this.musicPlayer.onPlay.add(() => { this.changeImage(true); });
+        this.musicPlayer.onStop.add(() => { this.changeImage(false); this.game.sound.stopAll(); });
+        this.$.on("mouseenter", () => { this.game.sound.play("select"); });
+        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", () => { this.changePlayingState(); });
+        this.$.on("contextmenu", () => { return false; });
     }
 
     private changeImage(playing: boolean) {

@@ -41,12 +41,14 @@ var SCRIPT_MAP = {
     ],
 
     View: [
+        "Logo.js",
         "Note.js",
         "Notes.js",
         "MeasureSheet.js",
         "ScoreSheet.js",
         "MusicPlayBar.js",
         "StationeryButton.js",
+        "StationeryToggler.js",
         "PlayButton.js",
         "ScrollButton.js",
         "SaveButton.js",

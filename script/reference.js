@@ -25,11 +25,13 @@
 /// <reference path="Model/Instrument.ts"/>
 /// <reference path="Model/Speed.ts"/>
 // View
+/// <reference path="View/Logo.ts"/>
 /// <reference path="View/Note.ts"/>
 /// <reference path="View/Notes.ts"/>
 /// <reference path="View/MeasureSheet.ts"/>
 /// <reference path="View/ScoreSheet.ts"/>
 /// <reference path="View/StationeryButton.ts"/>
+/// <reference path="View/StationeryToggler.ts"/>
 /// <reference path="View/PlayButton.ts"/>
 /// <reference path="View/ScrollButton.ts"/>
 /// <reference path="View/SaveButton.ts"/>

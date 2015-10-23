@@ -10,7 +10,9 @@ var InstrumentContainer = (function (_super) {
         _super.call(this, game, constants, models);
         this.constants = constants;
         this.instrument = this.models["instrument"];
+        this.isOpen = false;
         this.setView();
+        this.setEvent();
     }
     InstrumentContainer.prototype.setView = function () {
         var _this = this;
@@ -20,11 +22,22 @@ var InstrumentContainer = (function (_super) {
             new InstrumentOption(_this.game, new CONSTANTS.InstrumentOption, _this.models, instrument);
         });
     };
+    InstrumentContainer.prototype.setEvent = function () {
+        var _this = this;
+        this.instrument.onChangeInstrument.add(function () { _this.close(); });
+    };
     InstrumentContainer.prototype.close = function () {
         this.$.stop(true, true).slideUp(this.constants.slideTime);
+        this.isOpen = false;
     };
     InstrumentContainer.prototype.slideToggle = function () {
+        console.log(this.slideToggle.caller);
         this.$.stop(true, true).slideToggle(this.constants.slideTime);
+        this.isOpen = !this.isOpen;
+        if (this.isOpen)
+            this.game.sound.play("open");
+        else
+            this.game.sound.play("close");
     };
     return InstrumentContainer;
 })(DOMView);

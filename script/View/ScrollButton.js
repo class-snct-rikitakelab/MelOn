@@ -7,16 +7,21 @@ var __extends = (this && this.__extends) || function (d, b) {
 var ScrollButton = (function (_super) {
     __extends(ScrollButton, _super);
     function ScrollButton(game, constants, models) {
-        var _this = this;
         _super.call(this, game, constants, models);
         this.constants = constants;
         this.music = this.models["music"];
         this.isPushed = false;
+        this.initCamera();
+        this.setEvent();
+    }
+    ScrollButton.prototype.setEvent = function () {
+        var _this = this;
+        this.$.on("contextmenu", function () { return false; });
         this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.isPushed = true; });
         this.$.on(this.game.device.touch ? "touchend" : "mouseup", function () { _this.isPushed = false; });
+        this.$.mouseenter(function () { _this.game.sound.play("select"); });
         this.$.mouseleave(function () { _this.isPushed = false; });
         this.$.dblclick(function () { _this.double(); });
-        this.$.on("contextmenu", function () { return false; });
         this.$.data("dblTap", false).click(function () {
             if (_this.$.data("dblTap"))
                 _this.$.data("dblTap", false);
@@ -24,8 +29,7 @@ var ScrollButton = (function (_super) {
                 _this.$.data("dblTap", true);
             setTimeout(function () { _this.$.data("dblTap", false); }, _this.constants.doubleTapTime);
         });
-        this.initCamera();
-    }
+    };
     ScrollButton.prototype.initCamera = function () {
         this.game.camera.y = this.constants.noteHeight * this.constants.pitch.indexOf(this.constants.initPitch);
     };
@@ -43,6 +47,7 @@ var ScrollButton = (function (_super) {
         return x;
     };
     ScrollButton.prototype.double = function () {
+        this.game.sound.play("jump");
         switch (this.constants.direction) {
             case "up":
                 this.game.camera.y = 0;

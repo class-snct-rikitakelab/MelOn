@@ -13,7 +13,7 @@ class InstrumentOption extends DOMView {
     }
 
     private setEvent() {
-        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", () => { this.changeInstrument(); });
+        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", (e) => { this.changeInstrument(); e.stopPropagation(); });
         this.instrument.onChangeInstrument.add(() => { this.checkInstrument(); });
     }
 

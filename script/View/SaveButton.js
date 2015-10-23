@@ -19,6 +19,7 @@ var SaveButton = (function (_super) {
     };
     SaveButton.prototype.setEvent = function () {
         var _this = this;
+        this.$.mouseenter(function () { _this.game.sound.play("select"); });
         this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.save(); });
     };
     SaveButton.prototype.save = function () {
@@ -26,6 +27,7 @@ var SaveButton = (function (_super) {
             return;
         var str = JSON.stringify(this.music.getMusic);
         localStorage.setItem("music", str); // Local Strage Save
+        this.game.sound.play("save");
         alert("Your music was saved!");
     };
     return SaveButton;

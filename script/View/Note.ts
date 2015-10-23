@@ -83,6 +83,7 @@ class Note extends SpriteView {
     }
 
     private erase() {
+        this.game.sound.play("erase");
         this.music.select(this.data);
         this.music.erase(this.data);
         this.destroy();

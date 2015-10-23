@@ -1,67 +1,34 @@
 ﻿/// <reference path="../reference.ts"/>
 
-// This class is one of View (Concrete Observer).
-
-
-
 class StationeryButton extends DOMView {
-    private pointer: Phaser.Pointer = this.game.device.touch ? this.game.input.pointer1 : this.game.input.activePointer;
-    private rightEvent: Phaser.SignalBinding;
-    private stationery: Stationery = this.models["stationery"]; // Observer(View) can watch Subject(Model).
-    private image: JQuery;
+    private stationery: Stationery = this.models["stationery"];
 
     constructor(game: Phaser.Game, private constants: CONSTANTS.StationeryButton, models: Object) {
-        // game and models will be set in this instance by super class ( DOMObject ).
         super(game, constants, models);
-
-        // Make DOM image in advanse.
-        this.loadImage();
-        
-        // These two below settings are needed for jQuery event process.
-        // The important thing is using arrow function.
-
-        // This function will be executed when the stationery is changed. What is called notify method.
-        this.stationery.onChangeStationery.add(() => { this.changeImage(); });
-        this.rightEvent = this.pointer.rightButton.onDown.add(() => { this.toggleStationery(); });
-
-        // This function will be executed when this button is pushed.
-        this.$.mousedown(() => { this.changeStationery(); });
-        this.$.on("touchstart", () => { this.changeStationery(); });
-        this.$.on("contextmenu", () => { return false; });
-
-        // Set initial Image.
+        this.setView();
+        this.setEvent();
         this.changeImage();
     }
-    
-    private loadImage(): void {
-        // Get the on and off image of this button. 
-        // "src" is url of these images.
-        // They can have class of CSS as well. 
-        this.image = $("<img />")
-            .attr("src", this.constants.images["image"])
-            .addClass(this.constants.class["buttonImage"]);
 
-        // Create these above images inside this button element.
-        this.$.append(this.image);
+    private setView() {
+        this.$.append($(`<img src="${this.constants.images["image"]}"/>`).addClass(this.constants.class["buttonImage"]));
+    }
+
+    private setEvent() {
+        this.$.on("contextmenu", () => { return false; });
+        this.$.on("mouseenter", () => { this.game.sound.play("select"); });
+        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", () => { this.changeStationery(); });
+        this.stationery.onChangeStationery.add(() => { this.changeImage(); });
     }
 
     private changeImage(): void {
-        // Change image of this button depends on stationery.
-        if (this.stationery.getStationery === this.constants.name) {
-            this.$.css("background-color", this.constants.onColor);
-            return;     // Use early "return" rather than "else".
-        }
+        this.$.css("background-color", this.constants.onColor);
+        if (this.stationery.getStationery === this.constants.name) return;
         this.$.css("background-color", this.constants.offColor);
     }
 
     private changeStationery(): void {
-        // Set the stationery of this button. 
-        // This method causes trigger of functions which were set by "onChangeStationery".
+        this.game.sound.play("decide");
         this.stationery.changeStationery(this.constants.name);
-    }
-
-    private toggleStationery(): void {
-        if ((this.rightEvent.callCount + 1) % this.constants.stationeryNum === this.constants.index)
-            this.changeStationery();
     }
 }

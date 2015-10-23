@@ -6,11 +6,28 @@ class SpeedButton extends DOMView {
 
     constructor(game: Phaser.Game, private constants: CONSTANTS.SpeedButton, models: Object) {
         super(game, constants, models);
+        this.setEvent();
+    }
+
+    private setEvent() {
+        this.$.on("mouseenter", () => { this.game.sound.play("select"); });
         this.$.on(this.game.device.touch ? "touchstart" : "mousedown", () => { this.changeSpeed(); });
     }
 
     private changeSpeed() {
-        if (this.constants.direction === this.constants.upDirection) this.speed.changeSpeed(true);
-        if (this.constants.direction === this.constants.downDirection) this.speed.changeSpeed(false);
+        if (this.constants.direction === this.constants.upDirection) this.speedUp();
+        if (this.constants.direction === this.constants.downDirection) this.speedDown();
+    }
+
+    private speedUp() {
+        if (this.speed.getSpeedGrade === this.constants.speedGradeNum - 1) { this.game.sound.play("boo"); return; }
+        this.game.sound.play("decide");
+        this.speed.changeSpeed(true);
+    }
+
+    private speedDown() {
+        if (this.speed.getSpeedGrade === 0) { this.game.sound.play("boo"); return; }
+        this.game.sound.play("decide");
+        this.speed.changeSpeed(false);
     }
 }

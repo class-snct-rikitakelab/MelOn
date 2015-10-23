@@ -7,17 +7,37 @@ var __extends = (this && this.__extends) || function (d, b) {
 var SpeedButton = (function (_super) {
     __extends(SpeedButton, _super);
     function SpeedButton(game, constants, models) {
-        var _this = this;
         _super.call(this, game, constants, models);
         this.constants = constants;
         this.speed = this.models["speed"];
-        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.changeSpeed(); });
+        this.setEvent();
     }
+    SpeedButton.prototype.setEvent = function () {
+        var _this = this;
+        this.$.on("mouseenter", function () { _this.game.sound.play("select"); });
+        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.changeSpeed(); });
+    };
     SpeedButton.prototype.changeSpeed = function () {
         if (this.constants.direction === this.constants.upDirection)
-            this.speed.changeSpeed(true);
+            this.speedUp();
         if (this.constants.direction === this.constants.downDirection)
-            this.speed.changeSpeed(false);
+            this.speedDown();
+    };
+    SpeedButton.prototype.speedUp = function () {
+        if (this.speed.getSpeedGrade === this.constants.speedGradeNum - 1) {
+            this.game.sound.play("boo");
+            return;
+        }
+        this.game.sound.play("decide");
+        this.speed.changeSpeed(true);
+    };
+    SpeedButton.prototype.speedDown = function () {
+        if (this.speed.getSpeedGrade === 0) {
+            this.game.sound.play("boo");
+            return;
+        }
+        this.game.sound.play("decide");
+        this.speed.changeSpeed(false);
     };
     return SpeedButton;
 })(DOMView);

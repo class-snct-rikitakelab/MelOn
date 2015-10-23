@@ -18,7 +18,7 @@ var InstrumentOption = (function (_super) {
     }
     InstrumentOption.prototype.setEvent = function () {
         var _this = this;
-        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.changeInstrument(); });
+        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function (e) { _this.changeInstrument(); e.stopPropagation(); });
         this.instrument.onChangeInstrument.add(function () { _this.checkInstrument(); });
     };
     InstrumentOption.prototype.setView = function () {

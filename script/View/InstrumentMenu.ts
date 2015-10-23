@@ -3,9 +3,8 @@
 class InstrumentMenu extends DOMView {
 
     private instrument: Instrument = this.models["instrument"];
-    private text: JQuery = $("<div></div>").addClass("instrumentText");
-    private img: JQuery = $(`<img src="" />)`);
     private container: InstrumentContainer;
+    private text: JQuery = $("<div></div>").addClass("instrumentText");
 
     constructor(game: Phaser.Game, private constants: CONSTANTS.InstrumentMenu, models: Object) {
         super(game, constants, models);
@@ -19,7 +18,6 @@ class InstrumentMenu extends DOMView {
             .css("background-color", "blue")
             .css("height", this.constants.height);
         this.$.append(this.text);
-        this.$.append(this.img);
         this.setContainer();
     }
 
@@ -29,9 +27,11 @@ class InstrumentMenu extends DOMView {
     }
 
     private setEvent() {
-        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", () => { this.container.slideToggle(); });
+        this.$.mouseenter(() => { this.game.sound.play("select"); });
+        this.$.on("contextmenu", () => { return false; });
+        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", () => { this.container.slideToggle();});
         $(document).on(this.game.device.touch ? "touchstart" : "mousedown", (event) => {
-            if (!$.contains($(this.constants.selector)[0], event.target)) this.container.close();
+            if (this.container.isOpen && !$.contains($(this.constants.selector)[0], event.target)) this.container.close();
         });
         this.instrument.onChangeInstrument.add(() => { this.changeInstrument(); });
     }

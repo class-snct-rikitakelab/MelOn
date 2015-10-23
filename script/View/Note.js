@@ -92,6 +92,7 @@ var Note = (function (_super) {
             this.width = this.constants.width * (this.music.getSelectedNote.extension + 1);
     };
     Note.prototype.erase = function () {
+        this.game.sound.play("erase");
         this.music.select(this.data);
         this.music.erase(this.data);
         this.destroy();

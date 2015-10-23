@@ -16,12 +16,14 @@ class LoadButton extends DOMView {
     }
 
     private setEvent() {
+        this.$.mouseenter(() => { this.game.sound.play("select"); });
         this.$.on(this.game.device.touch ? "touchstart" : "mousedown", () => { this.load(); });
     }
 
     private load() {
         if (!confirm("The music you are making will be disposed. Is it OK?")) return;
         var score: { [pitch: string]: NoteData[] } = JSON.parse(localStorage.getItem("music"));
+        this.game.sound.play("load");
         if (!score) { alert("Music not Found!"); return; }
         this.setMusic(score);
     }

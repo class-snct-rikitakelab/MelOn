@@ -19,12 +19,14 @@ var LoadButton = (function (_super) {
     };
     LoadButton.prototype.setEvent = function () {
         var _this = this;
+        this.$.mouseenter(function () { _this.game.sound.play("select"); });
         this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.load(); });
     };
     LoadButton.prototype.load = function () {
         if (!confirm("The music you are making will be disposed. Is it OK?"))
             return;
         var score = JSON.parse(localStorage.getItem("music"));
+        this.game.sound.play("load");
         if (!score) {
             alert("Music not Found!");
             return;

@@ -100,8 +100,17 @@ var MelOnAssets = (function (_super) {
                 ["violinG4", ["violinG4.ogg"]],
             ],
             se: [
-                ["MelOn", ["MelOn!.mp3",]],
-                ["tamb", ["tamb.mp3",]],
+                ["MelOn", ["MelOn!.ogg",]],
+                ["tamb", ["tamb.ogg",]],
+                ["boo", ["boo.ogg",]],
+                ["close", ["close.ogg",]],
+                ["decide", ["decide.ogg",]],
+                ["erase", ["erase.ogg",]],
+                ["load", ["load.ogg",]],
+                ["open", ["open.ogg",]],
+                ["save", ["save.ogg",]],
+                ["select", ["select.mp3",]],
+                ["jump", ["jump.ogg",]],
             ],
         };
         this.preloadImages = {

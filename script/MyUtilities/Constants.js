@@ -42,9 +42,10 @@ var CONSTANTS;
     CONSTANTS.Music = Music;
     var Stationery = (function () {
         function Stationery() {
-            this.writeStationery = "pencil";
-            this.eraseStationery = "eraser";
-            this.stationeryNum = 2;
+            this.stationeries = ["pencil", "eraser"];
+            this.writeStationery = this.stationeries[0];
+            this.eraseStationery = this.stationeries[1];
+            this.stationeryNum = this.stationeries.length;
             this.initStationery = this.writeStationery;
         }
         return Stationery;
@@ -178,9 +179,16 @@ var CONSTANTS;
         return Notes;
     })(MeasureSheet);
     CONSTANTS.Notes = Notes;
+    var Logo = (function () {
+        function Logo() {
+            this.selector = "#logo";
+        }
+        return Logo;
+    })();
+    CONSTANTS.Logo = Logo;
     var StationeryButton = (function () {
         function StationeryButton() {
-            this.stationeryNum = new Stationery().stationeryNum;
+            this.selector = "";
             this.imageAddress = new Game().imageAddress + "stationeryButton/";
             this.class = {
                 buttonImage: "buttonImage",
@@ -197,7 +205,6 @@ var CONSTANTS;
             _super.apply(this, arguments);
             this.selector = "#pencil";
             this.name = new Stationery().writeStationery;
-            this.index = 0;
             this.images = {
                 image: this.imageAddress + "pencil.png",
             };
@@ -211,7 +218,6 @@ var CONSTANTS;
             _super.apply(this, arguments);
             this.selector = "#eraser";
             this.name = new Stationery().eraseStationery;
-            this.index = 1;
             this.images = {
                 image: this.imageAddress + "eraser.png",
             };
@@ -219,6 +225,16 @@ var CONSTANTS;
         return Eraser;
     })(StationeryButton);
     CONSTANTS.Eraser = Eraser;
+    var StationeryToggler = (function (_super) {
+        __extends(StationeryToggler, _super);
+        function StationeryToggler() {
+            _super.apply(this, arguments);
+            this.stationeries = new Stationery().stationeries;
+            this.stationeryNum = new Stationery().stationeryNum;
+        }
+        return StationeryToggler;
+    })(StationeryButton);
+    CONSTANTS.StationeryToggler = StationeryToggler;
     var PlayButton = (function () {
         function PlayButton() {
             this.selector = "#play";
@@ -368,6 +384,7 @@ var CONSTANTS;
             this.upDirection = "up";
             this.downDirection = "down";
             this.direction = "";
+            this.speedGradeNum = new Speed().speeds.length;
         }
         return SpeedButton;
     })();

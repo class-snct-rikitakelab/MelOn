@@ -21,11 +21,13 @@ var Main = (function (_super) {
     }
     Main.prototype.create = function () {
         this.noteOverlapManager = new NoteOverlapManager(this.game);
+        this.logo = new Logo(this.game, new CONSTANTS.Logo, {});
         this.scoreSheet = new ScoreSheet(this.game, new CONSTANTS.ScoreSheet, { music: this.music, stationery: this.stationery });
         this.notes = new Notes(this.game, new CONSTANTS.Notes, { music: this.music, musicPlayer: this.musicPlayer, instrument: this.instrument, stationery: this.stationery, noteOverlapManager: this.noteOverlapManager });
         this.musicPlayBar = new MusicPlayBar(this.game, new CONSTANTS.MusicPlayBar, { instrument: this.instrument, musicPlayer: this.musicPlayer, noteOverlapManager: this.noteOverlapManager, speed: this.speed });
         this.pencil = new StationeryButton(this.game, new CONSTANTS.Pencil, { stationery: this.stationery });
         this.eraser = new StationeryButton(this.game, new CONSTANTS.Eraser, { stationery: this.stationery });
+        this.stationeryToggler = new StationeryToggler(this.game, new CONSTANTS.StationeryToggler, { stationery: this.stationery });
         this.playButton = new PlayButton(this.game, new CONSTANTS.PlayButton, { musicPlayer: this.musicPlayer });
         this.upButton = new ScrollButton(this.game, new CONSTANTS.UpButton, { music: this.music, });
         this.downButton = new ScrollButton(this.game, new CONSTANTS.DownButton, { music: this.music, });

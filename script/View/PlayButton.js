@@ -7,20 +7,23 @@ var __extends = (this && this.__extends) || function (d, b) {
 var PlayButton = (function (_super) {
     __extends(PlayButton, _super);
     function PlayButton(game, constants, models) {
-        var _this = this;
         _super.call(this, game, constants, models);
         this.constants = constants;
         this.musicPlayer = this.models["musicPlayer"];
-        this.loadImage();
-        this.musicPlayer.onPlay.add(function () { _this.changeImage(true); });
-        this.musicPlayer.onStop.add(function () { _this.changeImage(false); _this.game.sound.stopAll(); });
-        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.changePlayingState(); });
-        this.$.on("contextmenu", function () { return false; });
+        this.setView();
+        this.setEvent();
         this.changeImage(false);
     }
-    PlayButton.prototype.loadImage = function () {
-        this.image = $("<img />").attr("src", this.constants.images["image"]).addClass(this.constants.class["buttonImage"]);
-        this.$.append(this.image);
+    PlayButton.prototype.setView = function () {
+        this.$.append($("<img src=\"" + this.constants.images["image"] + "\" />").addClass(this.constants.class["buttonImage"]));
+    };
+    PlayButton.prototype.setEvent = function () {
+        var _this = this;
+        this.musicPlayer.onPlay.add(function () { _this.changeImage(true); });
+        this.musicPlayer.onStop.add(function () { _this.changeImage(false); _this.game.sound.stopAll(); });
+        this.$.on("mouseenter", function () { _this.game.sound.play("select"); });
+        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.changePlayingState(); });
+        this.$.on("contextmenu", function () { return false; });
     };
     PlayButton.prototype.changeImage = function (playing) {
         this.$.css("background-color", playing ? this.constants.onColor : this.constants.offColor);

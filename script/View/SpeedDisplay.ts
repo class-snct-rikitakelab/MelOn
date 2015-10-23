@@ -17,11 +17,13 @@ class SpeedDisplay extends DOMView {
     }
 
     private setEvent() {
+        this.$.on("mouseenter", () => { this.game.sound.play("select"); });
         this.$.on(this.game.device.touch ? "touchstart" : "mousedown", () => { this.roleSpeed(); });
         this.speed.onChangeSpeed.add(() => { this.changeSpeed(); });
     }
 
     private roleSpeed() {
+        this.game.sound.play("decide");
         if (this.speed.getSpeed === _.last(this.constants.speeds)) {
             _.times(this.constants.speedGradeNum, () => { this.speed.changeSpeed(false); });
             return;
