@@ -3,12 +3,22 @@
 class SpeedDisplay extends DOMView {
 
     private speed: Speed = this.models["speed"];
+    private text: JQuery = $(`<div id="speedDisplayText"></div>`);
 
     constructor(game: Phaser.Game, private constants: CONSTANTS.SpeedDisplay, models: Object) {
         super(game, constants, models);
+        this.setView();
+        this.setEvent();
+        this.changeSpeed();
+    }
+
+    private setView() {
+        this.$.append(this.text);
+    }
+
+    private setEvent() {
         this.$.on(this.game.device.touch ? "touchstart" : "mousedown", () => { this.roleSpeed(); });
         this.speed.onChangeSpeed.add(() => { this.changeSpeed(); });
-        this.changeSpeed();
     }
 
     private roleSpeed() {
@@ -20,7 +30,7 @@ class SpeedDisplay extends DOMView {
     }
 
     private changeSpeed() {
-        this.$.text(this.constants.speedText[this.constants.language][this.speed.getSpeedGrade]);
+        this.text.text(this.constants.speedText[this.constants.language][this.speed.getSpeedGrade]);
         this.$.css("background-color", this.constants.speedColor[this.speed.getSpeedGrade])
             .css("color", this.constants.textColor[this.speed.getSpeedGrade]);
     }

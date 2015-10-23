@@ -11,11 +11,6 @@ class InstrumentContainer extends DOMView {
 
     private setView() {
         this.$.css("height", this.constants.containerHeight)
-            .css("bottom", this.constants.height);
-        this.setInstrumentOptions();
-    }
-
-    private setInstrumentOptions() {
         this.constants.instruments.forEach((instrument: string) => {
             this.$.append($(`<div id="${instrument}"></div>`));
             new InstrumentOption(this.game, new CONSTANTS.InstrumentOption, this.models, instrument);

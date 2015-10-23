@@ -185,8 +185,8 @@ var CONSTANTS;
             this.class = {
                 buttonImage: "buttonImage",
             };
-            this.onColor = "red";
-            this.offColor = "blue";
+            this.onColor = "crimson";
+            this.offColor = "royalblue";
         }
         return StationeryButton;
     })();
@@ -229,7 +229,7 @@ var CONSTANTS;
                 image: new Game().imageAddress + "playButton/playButton.png",
             };
             this.onColor = "orange";
-            this.offColor = "green";
+            this.offColor = "limegreen";
         }
         return PlayButton;
     })();
@@ -306,6 +306,7 @@ var CONSTANTS;
     var SaveButton = (function () {
         function SaveButton() {
             this.selector = "#save";
+            this.image = new Game().imageAddress + "storageButton/save.png";
         }
         return SaveButton;
     })();
@@ -313,6 +314,7 @@ var CONSTANTS;
     var LoadButton = (function () {
         function LoadButton() {
             this.selector = "#load";
+            this.image = new Game().imageAddress + "storageButton/load.png";
         }
         return LoadButton;
     })();

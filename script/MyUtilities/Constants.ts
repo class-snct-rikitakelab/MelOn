@@ -188,8 +188,8 @@ namespace CONSTANTS {
             buttonImage: "buttonImage",
         };
         images: { [name: string]: string };
-        onColor: string = "red";
-        offColor: string = "blue";
+        onColor: string = "crimson";
+        offColor: string = "royalblue";
     }
 
     export class Pencil extends StationeryButton{
@@ -219,7 +219,7 @@ namespace CONSTANTS {
             image: new Game().imageAddress + "playButton/playButton.png",
         }
         onColor: string = "orange";
-        offColor: string = "green";
+        offColor: string = "limegreen";
     }
 
     export class ScrollButton implements DOMView {
@@ -273,10 +273,12 @@ namespace CONSTANTS {
 
     export class SaveButton implements DOMView {
         selector = "#save";
+        image: string = new Game().imageAddress + "storageButton/save.png";
     }
 
     export class LoadButton implements DOMView {
         selector = "#load";
+        image: string = new Game().imageAddress + "storageButton/load.png";
     }
 
     export class SoundButtonContainer implements DOMView {

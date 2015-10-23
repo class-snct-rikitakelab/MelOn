@@ -7,13 +7,20 @@ var __extends = (this && this.__extends) || function (d, b) {
 var LoadButton = (function (_super) {
     __extends(LoadButton, _super);
     function LoadButton(game, constants, models) {
-        var _this = this;
         _super.call(this, game, constants, models);
         this.constants = constants;
         this.music = this.models["music"];
-        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.load(); });
-        this.$.css("background-color", "aquamarine");
+        this.setView();
+        this.setEvent();
     }
+    LoadButton.prototype.setView = function () {
+        this.$.append($("<img src=" + this.constants.image + " />").addClass("buttonImage")
+            .css({ width: "70px", height: "50px" }));
+    };
+    LoadButton.prototype.setEvent = function () {
+        var _this = this;
+        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.load(); });
+    };
     LoadButton.prototype.load = function () {
         if (!confirm("The music you are making will be disposed. Is it OK?"))
             return;

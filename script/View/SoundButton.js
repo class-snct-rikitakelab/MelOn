@@ -7,21 +7,23 @@ var __extends = (this && this.__extends) || function (d, b) {
 var SoundButton = (function (_super) {
     __extends(SoundButton, _super);
     function SoundButton(game, constants, models, pitch) {
-        var _this = this;
         _super.call(this, game, constants, models);
         this.constants = constants;
         this.pitch = pitch;
         this.instrument = this.models["instrument"];
         this.setView();
-        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.ring(); });
+        this.setEvent();
     }
     SoundButton.prototype.setView = function () {
         var text = this.setText();
         this.$ = $("#" + this.pitch)
             .css("top", this.constants.border + this.constants.pitchTop * this.constants.pitch.indexOf(this.pitch))
-            .css("background-color", "blue")
             .addClass(this.constants.selector)
             .append(text);
+    };
+    SoundButton.prototype.setEvent = function () {
+        var _this = this;
+        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.ring(); });
     };
     SoundButton.prototype.setText = function () {
         return $("<div>" + this.constants.pitchText[this.constants.language][this.constants.pitch.indexOf(this.pitch)] + "</div>");

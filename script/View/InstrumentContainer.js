@@ -13,12 +13,8 @@ var InstrumentContainer = (function (_super) {
         this.setView();
     }
     InstrumentContainer.prototype.setView = function () {
-        this.$.css("height", this.constants.containerHeight)
-            .css("bottom", this.constants.height);
-        this.setInstrumentOptions();
-    };
-    InstrumentContainer.prototype.setInstrumentOptions = function () {
         var _this = this;
+        this.$.css("height", this.constants.containerHeight);
         this.constants.instruments.forEach(function (instrument) {
             _this.$.append($("<div id=\"" + instrument + "\"></div>"));
             new InstrumentOption(_this.game, new CONSTANTS.InstrumentOption, _this.models, instrument);

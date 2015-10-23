@@ -7,17 +7,25 @@ var __extends = (this && this.__extends) || function (d, b) {
 var SaveButton = (function (_super) {
     __extends(SaveButton, _super);
     function SaveButton(game, constants, models) {
-        var _this = this;
         _super.call(this, game, constants, models);
         this.constants = constants;
         this.music = this.models["music"];
-        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.save(); });
-        this.$.css("background-color", "darkcyan");
+        this.setView();
+        this.setEvent();
     }
+    SaveButton.prototype.setView = function () {
+        this.$.append($("<img src=" + this.constants.image + " />").addClass("buttonImage")
+            .css({ width: "70px", height: "50px" }));
+    };
+    SaveButton.prototype.setEvent = function () {
+        var _this = this;
+        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.save(); });
+    };
     SaveButton.prototype.save = function () {
+        if (localStorage.getItem("music") && !confirm("The music you have already saved will be disposed. Is it OK?"))
+            return;
         var str = JSON.stringify(this.music.getMusic);
-        // Local Strage Save
-        localStorage.setItem("music", str);
+        localStorage.setItem("music", str); // Local Strage Save
         alert("Your music was saved!");
     };
     return SaveButton;

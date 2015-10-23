@@ -8,16 +8,19 @@ class SoundButton extends DOMView {
     constructor(game: Phaser.Game, private constants: CONSTANTS.SoundButton, models: Object, private pitch: string) {
         super(game, constants, models);
         this.setView();
-        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", () => { this.ring(); });
+        this.setEvent();
     }
 
     private setView() {
         var text: JQuery = this.setText();
         this.$ = $("#" + this.pitch)
             .css("top", this.constants.border + this.constants.pitchTop * this.constants.pitch.indexOf(this.pitch))
-            .css("background-color", "blue")
             .addClass(this.constants.selector)
             .append(text);
+    }
+
+    private setEvent() {
+        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", () => { this.ring(); });
     }
 
     private setText(): JQuery {

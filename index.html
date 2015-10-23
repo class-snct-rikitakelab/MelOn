@@ -14,11 +14,22 @@
     <script type="text/javascript" src="script/main.js"></script>
 
     <style type="text/css">
+        body {
+            background-color: lemonchiffon;
+        }
+
+        #title {
+            display: block;
+            margin: 50px auto 50px auto;
+            width: 300px;
+            height: 150px;
+        }
+
         #MelOn {
             position: relative; /*This is needed for children which have "position absolute"*/
-            margin: 0 auto;     /*Centering holizontally*/
+            margin: 0 auto 100px auto;     /*Centering holizontally*/
             width: 900px;       /*This is needed for centering*/
-            height: 500px;
+            height: 520px;
             -moz-user-select: none;
             -webkit-user-drag: none;
             user-select: none;
@@ -29,8 +40,7 @@
             width: 640px;
             height: 360px;
             top: 80px;
-            left: 150px;
-            border-radius: 20px;
+            left: 149px;
         }
 
        .buttonImage {
@@ -46,10 +56,12 @@
 
         .stationery{
             position: absolute;
-            border-radius: 11px;
             width: 110px;
             height: 60px;
             top: 10px;          /*Use top, left, bottom, and right to adjust absolute elements*/
+            border-style: solid;
+            border-width: 2px;
+            border-radius: 11px;
             cursor: pointer;
         }
 
@@ -58,16 +70,27 @@
         }
 
         #eraser {
-            left: 285px;
+            left: 282px;
         }
 
         #play {
             position: absolute;
-            border-radius: 100%;
             width: 100px;
             height: 70px;
-            left: 418px;
+            left: 415px;
+            border-style: solid;
+            border-width: 2px;
+            border-radius: 100%;
             cursor: pointer;
+        }
+
+        #calyx {
+            display: block;
+            position: absolute;
+            width: 103px;
+            height: 90px;
+            top: -18px;
+            left: 415px;
         }
 
         .scroll {
@@ -77,6 +100,7 @@
             border-style: solid;
             border-width: 4px;
             border-radius: 10px;
+            cursor: pointer;
         }
 
         #up {
@@ -110,7 +134,7 @@
         #left {
             top: 450px;
             left: 150px;
-            border-color: aquamarine;
+            border-color: cornflowerblue;
         }
 
         #leftTriangle {
@@ -118,13 +142,13 @@
             top: 5px;
             right: 15px;
 	        border: 20px solid transparent;
-	        border-right: 20px solid aquamarine;
+	        border-right: 20px solid cornflowerblue;
         }
 
         #right {
             top: 450px;
             left: 730px;
-            border-color: aquamarine;
+            border-color: cornflowerblue;
         }
 
         #rightTriangle {
@@ -132,25 +156,31 @@
             top: 5px;
             left: 15px;
 	        border: 20px solid transparent;
-	        border-left: 20px solid aquamarine;
+	        border-left: 20px solid cornflowerblue;
         }
 
         #save {
             position: absolute;
+            background-color: dodgerblue;
             height: 60px;
             width: 115px;
-            border-radius: 10px;
             top: 450px;
-            left: 220px;
+            left: 218px;
+            border-style: solid;
+            border-width: 2px;
+            border-radius: 10px;
         }
 
         #load {
             position: absolute;
+            background-color: lightskyblue;
             height: 60px;
             width: 115px;
-            border-radius: 10px;
             top: 450px;
-            left: 347px;
+            left: 345px;
+            border-style: solid;
+            border-width: 2px;
+            border-radius: 10px;
         }
 
         #soundButtonMask {
@@ -176,6 +206,7 @@
             height: 42px;
             margin: auto;
             border-radius: 10px;
+            background-color: limegreen;
             cursor: pointer;
         }
 
@@ -193,21 +224,22 @@
         #speedDisplay {
             position: absolute;
             top: 6px;
-            left: 585px;
-            width: 150px;
+            left: 575px;
+            width: 170px;
             height: 60px;
-            line-height: 57px;
-            text-align: center;
             border-style: solid;
             border-color: black;
             border-width: 2px;
             border-radius: 20px;
-            color: black;
-            font-size: 25px;
+            cursor: pointer;
+        }
+
+        #speedDisplayText {
+            line-height: 60px;
+            text-align: center;
+            font-size: 20px;
             font-weight: 900;
             font-family: "Franklin Gothic Medium",sans-serif;
-            background-color: white;
-            cursor: pointer;
         }
 
         .speedButton {
@@ -217,13 +249,13 @@
         }
 
         #speedDown {
-            left: 505px;
+            left: 500px;
 	        border: 30px solid transparent;
 	        border-right: 34px solid lightblue;
         }
 
         #speedUp {
-            left: 755px;
+            left: 760px;
 	        border: 30px solid transparent;
 	        border-left: 34px solid lightblue;
         }
@@ -237,7 +269,7 @@
         .instrumentText {
             position: absolute;
             width: 170px;
-            left: 70px;
+            left: 80px;
             text-align: center;
             line-height: 60px;
             font-size: 25px;
@@ -247,10 +279,10 @@
 
         .instrumentImage {
             position: absolute;
-            width: 60px;
-            height: 40px;
+            width: 65px;
+            height: 48px;
             left: 20px;
-            margin-top: 10px;
+            margin-top: 7px;
             border-radius: 5px;
         }
 
@@ -258,28 +290,32 @@
             position: absolute;
             overflow: hidden;
             display: none;
+            bottom: 62px;
+            cursor: pointer;
         }
 
         #instrumentMenu {
             position: absolute;
             top: 450px;
-            left: 475px;
+            left: 473px;
+            border-style: solid;
+            border-width: 2px;
             border-radius: 10px;
+            cursor: pointer;
         }
 
     </style>
 
 </head>
 <body>
-    <h1>MelOn Free Making Music Mode</h1>
-
+    <img id="title" src="storage/assets/image/game/MelOnLogo.png" />
     <div id="MelOn" onSelectStart="return false;">
         <div id="pencil" class="stationery"></div>
         <div id="eraser" class="stationery"></div>
         <div id="speedDisplay"></div>
         <div id="speedDown" class="speedButton"></div>
         <div id="speedUp" class="speedButton"></div>
-        <div id="play"></div>
+        <img id="calyx" src="storage/assets/image/game/melon.png" /><div id="play"></div>
         <div id="up" class="scroll"><div id="upTriangle"></div></div>
         <div id="down" class="scroll"><div id="downTriangle"></div></div>
         <div id="left" class="scroll"><div id="leftTriangle"></div></div>
