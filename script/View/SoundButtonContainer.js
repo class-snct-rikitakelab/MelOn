@@ -14,7 +14,8 @@ var SoundButtonContainer = (function (_super) {
         this.createSoundButtons();
     }
     SoundButtonContainer.prototype.setView = function () {
-        this.$.css("height", this.constants.height);
+        this.$.on("contextmenu", function () { return false; })
+            .css("height", this.constants.height);
     };
     SoundButtonContainer.prototype.createSoundButtons = function () {
         var _this = this;

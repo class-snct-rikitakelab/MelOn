@@ -13,6 +13,7 @@ class SoundButton extends DOMView {
 
     private setView() {
         this.$ = $("#" + this.pitch)
+            .on("contextmenu", () => { return false; })
             .css("top", this.constants.border + this.constants.pitchTop * this.constants.pitch.indexOf(this.pitch))
             .addClass(this.constants.selector)
             .append($("<div></div>")

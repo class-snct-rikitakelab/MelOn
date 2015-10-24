@@ -16,6 +16,7 @@ var SoundButton = (function (_super) {
     }
     SoundButton.prototype.setView = function () {
         this.$ = $("#" + this.pitch)
+            .on("contextmenu", function () { return false; })
             .css("top", this.constants.border + this.constants.pitchTop * this.constants.pitch.indexOf(this.pitch))
             .addClass(this.constants.selector)
             .append($("<div></div>")

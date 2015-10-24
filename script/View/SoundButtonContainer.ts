@@ -11,7 +11,8 @@ class SoundButtonContainer extends DOMView {
     }
 
     private setView() {
-        this.$.css("height", this.constants.height);
+        this.$.on("contextmenu", () => { return false; })
+            .css("height", this.constants.height);
     }
 
     private createSoundButtons() {

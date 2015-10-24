@@ -26,8 +26,8 @@ var InstrumentMenu = (function (_super) {
         var _this = this;
         if (!this.game.device.touch)
             this.setSelectEffect();
-        this.$.on("contextmenu", function () { return false; });
-        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.container.slideToggle(); });
+        this.$.on("contextmenu", function () { return false; })
+            .on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.container.slideToggle(); });
         $(document).on(this.game.device.touch ? "touchstart" : "mousedown", function (event) {
             if (_this.container.isOpen && !$.contains($(_this.constants.selector)[0], event.target))
                 _this.container.close();

@@ -67,13 +67,6 @@ class Main extends Phaser.State {
         this.leftButton.update();
         this.soundButtonContainer.update();
     }
-
-    render() {
-        // For debug. In render method, all values are always updated.
-        // this.game.debug.text(this.time.fps + 'fps', 5, 20);
-        // this.game.debug.text(this.notes.selectedNote ? "select": "unselect", 100, 100, "black");
-        // this.game.debug.cameraInfo(this.camera, 10, 20, "blue");
-    }
 }
 
 // Do it after loading HTML, and use jQuery

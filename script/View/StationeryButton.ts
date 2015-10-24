@@ -16,14 +16,14 @@ class StationeryButton extends DOMView {
 
     private setEvent() {
         if (!this.game.device.touch) this.setSelectEffect();
-        this.$.on("contextmenu", () => { return false; });
-        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", () => { this.changeStationery(); });
+        this.$.on("contextmenu", () => { return false; })
+            .on(this.game.device.touch ? "touchstart" : "mousedown", () => { this.changeStationery(); });
         this.stationery.onChangeStationery.add(() => { this.changeImage(); });
     }
 
     private setSelectEffect() {
-        this.$.on("mouseenter", () => { this.$.css("box-shadow", "0 0 20px 6px darkorange"); this.game.sound.play("select"); });
-        this.$.on("mouseleave", () => { this.$.css("box-shadow", "none"); });        
+        this.$.on("mouseenter", () => { this.$.css("box-shadow", "0 0 20px 6px darkorange"); this.game.sound.play("select"); })
+            .on("mouseleave", () => { this.$.css("box-shadow", "none"); });        
     }
 
     private changeImage(): void {

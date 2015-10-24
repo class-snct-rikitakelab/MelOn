@@ -16,7 +16,8 @@ var SpeedButton = (function (_super) {
         var _this = this;
         if (!this.game.device.touch)
             this.setSelectEffect();
-        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.changeSpeed(); });
+        this.$.on("contextmenu", function () { return false; })
+            .on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.changeSpeed(); });
     };
     SpeedButton.prototype.setSelectEffect = function () {
         var _this = this;

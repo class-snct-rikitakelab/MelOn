@@ -23,8 +23,8 @@ class InstrumentMenu extends DOMView {
 
     private setEvent() {
         if (!this.game.device.touch) this.setSelectEffect();
-        this.$.on("contextmenu", () => { return false; });
-        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", () => { this.container.slideToggle();});
+        this.$.on("contextmenu", () => { return false; })
+            .on(this.game.device.touch ? "touchstart" : "mousedown", () => { this.container.slideToggle();});
         $(document).on(this.game.device.touch ? "touchstart" : "mousedown", (event) => {
             if (this.container.isOpen && !$.contains($(this.constants.selector)[0], event.target)) this.container.close();
         });
