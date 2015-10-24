@@ -19,11 +19,17 @@ var PlayButton = (function (_super) {
     };
     PlayButton.prototype.setEvent = function () {
         var _this = this;
-        this.musicPlayer.onPlay.add(function () { _this.changeImage(true); });
-        this.musicPlayer.onStop.add(function () { _this.changeImage(false); _this.game.sound.stopAll(); });
-        this.$.on("mouseenter", function () { _this.game.sound.play("select"); });
+        if (!this.game.device.touch)
+            this.setSelectEffect();
         this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.changePlayingState(); });
         this.$.on("contextmenu", function () { return false; });
+        this.musicPlayer.onPlay.add(function () { _this.changeImage(true); });
+        this.musicPlayer.onStop.add(function () { _this.changeImage(false); _this.game.sound.stopAll(); });
+    };
+    PlayButton.prototype.setSelectEffect = function () {
+        var _this = this;
+        this.$.on("mouseenter", function () { _this.$.css("box-shadow", "0 0 20px 6px springgreen"); _this.game.sound.play("select"); });
+        this.$.on("mouseleave", function () { _this.$.css("box-shadow", "none"); });
     };
     PlayButton.prototype.changeImage = function (playing) {
         this.$.css("background-color", playing ? this.constants.onColor : this.constants.offColor);

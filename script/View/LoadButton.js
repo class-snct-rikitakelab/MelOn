@@ -19,8 +19,14 @@ var LoadButton = (function (_super) {
     };
     LoadButton.prototype.setEvent = function () {
         var _this = this;
-        this.$.mouseenter(function () { _this.game.sound.play("select"); });
+        if (!this.game.device.touch)
+            this.setSelectEffect();
         this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.load(); });
+    };
+    LoadButton.prototype.setSelectEffect = function () {
+        var _this = this;
+        this.$.on("mouseenter", function () { _this.$.css("box-shadow", "0 0 20px 6px lightseagreen"); _this.game.sound.play("select"); });
+        this.$.on("mouseleave", function () { _this.$.css("box-shadow", "none"); });
     };
     LoadButton.prototype.load = function () {
         if (!confirm("The music you are making will be disposed. Is it OK?"))

@@ -64,7 +64,7 @@ namespace CONSTANTS {
     }
 
     export class Speed implements Model {
-        speeds: number[] = [80, 100, 120, 150, 200];
+        speeds: number[] = [80, 100, 130, 170, 220];
         initSpeedGrade: number = 2;
     }
 

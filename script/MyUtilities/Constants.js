@@ -71,7 +71,7 @@ var CONSTANTS;
     CONSTANTS.MusicPlayer = MusicPlayer;
     var Speed = (function () {
         function Speed() {
-            this.speeds = [80, 100, 120, 150, 200];
+            this.speeds = [80, 100, 130, 170, 220];
             this.initSpeedGrade = 2;
         }
         return Speed;

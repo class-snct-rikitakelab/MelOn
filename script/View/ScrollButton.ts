@@ -5,6 +5,7 @@ class ScrollButton extends DOMView {
     private music: Music = this.models["music"];
     private image: JQuery;
     private isPushed: boolean = false;
+    private isOn: boolean = false;
 
     constructor(game: Phaser.Game, private constants: CONSTANTS.ScrollButton, models: Object) {
         super(game, constants, models);
@@ -13,17 +14,37 @@ class ScrollButton extends DOMView {
     }
 
     private setEvent() {
+        if(!this.game.device.touch) this.setSelectEffect();
         this.$.on("contextmenu", () => { return false; });
-        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", () => { this.isPushed = true; });
-        this.$.on(this.game.device.touch ? "touchend" : "mouseup", () => { this.isPushed = false; });
-        this.$.mouseenter(() => { this.game.sound.play("select"); });
-        this.$.mouseleave(() => { this.isPushed = false; });
+        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", () => { this.push(); });
+        this.$.on(this.game.device.touch ? "touchend" : "mouseup", () => { this.pull(); });
+        this.$.on("mouseleave", () => { this.isOn = false; this.pull(); });
         this.$.dblclick(() => { this.double(); });
         this.$.data("dblTap", false).click(() => {
             if (this.$.data("dblTap")) this.$.data("dblTap", false);
             else this.$.data("dblTap", true);
             setTimeout(() => { this.$.data("dblTap", false); }, this.constants.doubleTapTime);
         })
+    }
+
+    private setSelectEffect() {
+        this.$.on("mouseenter", () => {
+            this.isOn = true;
+            this.$.css("box-shadow", "0 0 8px 2px lawngreen, 0 0 8px 2px lawngreen inset");
+            this.game.sound.play("select");
+        });
+        this.$.on("mouseleave", () => { this.isOn = false; this.$.css("box-shadow", "none"); });
+    }
+
+    private push() {
+        this.isPushed = true;
+        this.$.css("box-shadow", "0 0 8px 2px palevioletred, 0 0 8px 2px palevioletred inset");
+    }
+
+    private pull() {
+        this.isPushed = false;
+        if (this.isOn) this.$.css("box-shadow", "0 0 8px 2px lawngreen, 0 0 8px 2px lawngreen inset");
+        else this.$.css("box-shadow", "none");
     }
 
     private initCamera() {

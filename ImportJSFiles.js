@@ -84,11 +84,8 @@ function write_out(block_name, file) {
 };
 
 //　リストのスクリプトを全て書き出す
-for (var block_name in SCRIPT_LOCATION_MAP)
-{
+for (var block_name in SCRIPT_LOCATION_MAP) {
 	var block_num = SCRIPT_MAP[block_name].length
-	for (var file = 0; file < block_num; ++file) {	
-		write_out(block_name, file);
-	};
+	for (var file = 0; file < block_num; ++file) write_out(block_name, file);
 };
 

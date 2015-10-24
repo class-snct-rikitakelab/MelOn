@@ -10,8 +10,12 @@ class SpeedButton extends DOMView {
     }
 
     private setEvent() {
-        this.$.on("mouseenter", () => { this.game.sound.play("select"); });
+        if (!this.game.device.touch) this.setSelectEffect();
         this.$.on(this.game.device.touch ? "touchstart" : "mousedown", () => { this.changeSpeed(); });
+    }
+
+    private setSelectEffect() {
+        this.$.on("mouseenter", () => { this.game.sound.play("select"); });
     }
 
     private changeSpeed() {

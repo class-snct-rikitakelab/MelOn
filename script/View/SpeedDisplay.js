@@ -20,9 +20,15 @@ var SpeedDisplay = (function (_super) {
     };
     SpeedDisplay.prototype.setEvent = function () {
         var _this = this;
-        this.$.on("mouseenter", function () { _this.game.sound.play("select"); });
+        if (!this.game.device.touch)
+            this.setSelectEffect();
         this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.roleSpeed(); });
         this.speed.onChangeSpeed.add(function () { _this.changeSpeed(); });
+    };
+    SpeedDisplay.prototype.setSelectEffect = function () {
+        var _this = this;
+        this.$.on("mouseenter", function () { _this.$.css("box-shadow", "0 0 20px 6px darkorange"); _this.game.sound.play("select"); });
+        this.$.on("mouseleave", function () { _this.$.css("box-shadow", "none"); });
     };
     SpeedDisplay.prototype.roleSpeed = function () {
         var _this = this;

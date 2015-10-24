@@ -19,16 +19,13 @@ var InstrumentMenu = (function (_super) {
         this.$.addClass("instrumentOption")
             .css("background-color", "blue")
             .css("height", this.constants.height);
-        this.$.append(this.text);
-        this.setContainer();
-    };
-    InstrumentMenu.prototype.setContainer = function () {
-        this.$.append($("<div id='instrumentContainer'></div>"));
+        this.$.append(this.text).append($("<div id='instrumentContainer'></div>"));
         this.container = new InstrumentContainer(this.game, new CONSTANTS.InstrumentContainer, this.models);
     };
     InstrumentMenu.prototype.setEvent = function () {
         var _this = this;
-        this.$.mouseenter(function () { _this.game.sound.play("select"); });
+        if (!this.game.device.touch)
+            this.setSelectEffect();
         this.$.on("contextmenu", function () { return false; });
         this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.container.slideToggle(); });
         $(document).on(this.game.device.touch ? "touchstart" : "mousedown", function (event) {
@@ -36,6 +33,11 @@ var InstrumentMenu = (function (_super) {
                 _this.container.close();
         });
         this.instrument.onChangeInstrument.add(function () { _this.changeInstrument(); });
+    };
+    InstrumentMenu.prototype.setSelectEffect = function () {
+        var _this = this;
+        this.$.on("mouseenter", function () { _this.$.css("box-shadow", "0 0 20px 6px lightseagreen"); _this.game.sound.play("select"); });
+        this.$.on("mouseleave", function () { _this.$.css("box-shadow", "none"); });
     };
     InstrumentMenu.prototype.changeInstrument = function () {
         var name = this.instrument.getInstrument;

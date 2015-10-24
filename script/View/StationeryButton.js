@@ -19,10 +19,16 @@ var StationeryButton = (function (_super) {
     };
     StationeryButton.prototype.setEvent = function () {
         var _this = this;
+        if (!this.game.device.touch)
+            this.setSelectEffect();
         this.$.on("contextmenu", function () { return false; });
-        this.$.on("mouseenter", function () { _this.game.sound.play("select"); });
         this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.changeStationery(); });
         this.stationery.onChangeStationery.add(function () { _this.changeImage(); });
+    };
+    StationeryButton.prototype.setSelectEffect = function () {
+        var _this = this;
+        this.$.on("mouseenter", function () { _this.$.css("box-shadow", "0 0 20px 6px darkorange"); _this.game.sound.play("select"); });
+        this.$.on("mouseleave", function () { _this.$.css("box-shadow", "none"); });
     };
     StationeryButton.prototype.changeImage = function () {
         this.$.css("background-color", this.constants.onColor);

@@ -24,7 +24,14 @@ var SoundButton = (function (_super) {
     };
     SoundButton.prototype.setEvent = function () {
         var _this = this;
+        if (!this.game.device.touch)
+            this.setSelectEffect();
         this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.ring(); });
+    };
+    SoundButton.prototype.setSelectEffect = function () {
+        var _this = this;
+        this.$.on("mouseenter", function () { _this.$.css("box-shadow", "0 0 10px 3px skyblue"); });
+        this.$.on("mouseleave", function () { _this.$.css("box-shadow", "none"); });
     };
     SoundButton.prototype.ring = function () {
         if (this.sound && this.sound.isPlaying)

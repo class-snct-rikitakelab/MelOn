@@ -14,8 +14,13 @@ var SpeedButton = (function (_super) {
     }
     SpeedButton.prototype.setEvent = function () {
         var _this = this;
-        this.$.on("mouseenter", function () { _this.game.sound.play("select"); });
+        if (!this.game.device.touch)
+            this.setSelectEffect();
         this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.changeSpeed(); });
+    };
+    SpeedButton.prototype.setSelectEffect = function () {
+        var _this = this;
+        this.$.on("mouseenter", function () { _this.game.sound.play("select"); });
     };
     SpeedButton.prototype.changeSpeed = function () {
         if (this.constants.direction === this.constants.upDirection)

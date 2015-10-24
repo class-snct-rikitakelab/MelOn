@@ -11,16 +11,18 @@ var ScrollButton = (function (_super) {
         this.constants = constants;
         this.music = this.models["music"];
         this.isPushed = false;
+        this.isOn = false;
         this.initCamera();
         this.setEvent();
     }
     ScrollButton.prototype.setEvent = function () {
         var _this = this;
+        if (!this.game.device.touch)
+            this.setSelectEffect();
         this.$.on("contextmenu", function () { return false; });
-        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.isPushed = true; });
-        this.$.on(this.game.device.touch ? "touchend" : "mouseup", function () { _this.isPushed = false; });
-        this.$.mouseenter(function () { _this.game.sound.play("select"); });
-        this.$.mouseleave(function () { _this.isPushed = false; });
+        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.push(); });
+        this.$.on(this.game.device.touch ? "touchend" : "mouseup", function () { _this.pull(); });
+        this.$.on("mouseleave", function () { _this.isOn = false; _this.pull(); });
         this.$.dblclick(function () { _this.double(); });
         this.$.data("dblTap", false).click(function () {
             if (_this.$.data("dblTap"))
@@ -29,6 +31,26 @@ var ScrollButton = (function (_super) {
                 _this.$.data("dblTap", true);
             setTimeout(function () { _this.$.data("dblTap", false); }, _this.constants.doubleTapTime);
         });
+    };
+    ScrollButton.prototype.setSelectEffect = function () {
+        var _this = this;
+        this.$.on("mouseenter", function () {
+            _this.isOn = true;
+            _this.$.css("box-shadow", "0 0 8px 2px lawngreen, 0 0 8px 2px lawngreen inset");
+            _this.game.sound.play("select");
+        });
+        this.$.on("mouseleave", function () { _this.isOn = false; _this.$.css("box-shadow", "none"); });
+    };
+    ScrollButton.prototype.push = function () {
+        this.isPushed = true;
+        this.$.css("box-shadow", "0 0 8px 2px palevioletred, 0 0 8px 2px palevioletred inset");
+    };
+    ScrollButton.prototype.pull = function () {
+        this.isPushed = false;
+        if (this.isOn)
+            this.$.css("box-shadow", "0 0 8px 2px lawngreen, 0 0 8px 2px lawngreen inset");
+        else
+            this.$.css("box-shadow", "none");
     };
     ScrollButton.prototype.initCamera = function () {
         this.game.camera.y = this.constants.noteHeight * this.constants.pitch.indexOf(this.constants.initPitch);

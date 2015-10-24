@@ -17,23 +17,23 @@ class InstrumentMenu extends DOMView {
         this.$.addClass("instrumentOption")
             .css("background-color", "blue")
             .css("height", this.constants.height);
-        this.$.append(this.text);
-        this.setContainer();
-    }
-
-    private setContainer() {
-        this.$.append($("<div id='instrumentContainer'></div>"));
+        this.$.append(this.text).append($("<div id='instrumentContainer'></div>"));
         this.container = new InstrumentContainer(this.game, new CONSTANTS.InstrumentContainer, this.models);
     }
 
     private setEvent() {
-        this.$.mouseenter(() => { this.game.sound.play("select"); });
+        if (!this.game.device.touch) this.setSelectEffect();
         this.$.on("contextmenu", () => { return false; });
         this.$.on(this.game.device.touch ? "touchstart" : "mousedown", () => { this.container.slideToggle();});
         $(document).on(this.game.device.touch ? "touchstart" : "mousedown", (event) => {
             if (this.container.isOpen && !$.contains($(this.constants.selector)[0], event.target)) this.container.close();
         });
         this.instrument.onChangeInstrument.add(() => { this.changeInstrument(); });
+    }
+
+    private setSelectEffect() {
+        this.$.on("mouseenter", () => { this.$.css("box-shadow", "0 0 20px 6px lightseagreen"); this.game.sound.play("select"); });
+        this.$.on("mouseleave", () => { this.$.css("box-shadow", "none"); });
     }
 
     private changeInstrument() {

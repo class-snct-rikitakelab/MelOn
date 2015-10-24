@@ -17,9 +17,14 @@ class SpeedDisplay extends DOMView {
     }
 
     private setEvent() {
-        this.$.on("mouseenter", () => { this.game.sound.play("select"); });
+        if (!this.game.device.touch) this.setSelectEffect();
         this.$.on(this.game.device.touch ? "touchstart" : "mousedown", () => { this.roleSpeed(); });
         this.speed.onChangeSpeed.add(() => { this.changeSpeed(); });
+    }
+
+    private setSelectEffect() {
+        this.$.on("mouseenter", () => { this.$.css("box-shadow", "0 0 20px 6px darkorange"); this.game.sound.play("select"); });
+        this.$.on("mouseleave", () => { this.$.css("box-shadow", "none"); });        
     }
 
     private roleSpeed() {
