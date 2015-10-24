@@ -29,11 +29,13 @@ class Note extends SpriteView {
     protected setInput() {
         this.inputEnabled = true;
         this.input.useHandCursor = true;
-        this.input
         this.events.onInputUp.add(() => { this.music.refresh(); });
         this.events.onInputDown.add((self, pointer: Phaser.Pointer) => { this.touchNote(pointer); });
         this.events.onInputOver.add(() => {
-            if (this.stationery.getStationery === this.constants.eraseStationery && this.pointer.isDown) this.erase();
+            if (this.stationery.getStationery === this.constants.eraseStationery && this.pointer.isDown) {
+                this.game.sound.play("erase");
+                this.erase();
+            }
         });
     }
 

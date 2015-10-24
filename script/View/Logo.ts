@@ -12,13 +12,11 @@ class Logo extends DOMView {
 
     private ajax() {
         this.game.sound.play("MelOn");
-        /*
         $.ajax({
             type: "get",
             url: "storage/lesson/json.json",
             dataType: "json",
             success: (data, dataType) => { console.log(data, dataType); }
         });
-        */
     }
 }

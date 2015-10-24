@@ -33,12 +33,13 @@ var Note = (function (_super) {
         var _this = this;
         this.inputEnabled = true;
         this.input.useHandCursor = true;
-        this.input;
         this.events.onInputUp.add(function () { _this.music.refresh(); });
         this.events.onInputDown.add(function (self, pointer) { _this.touchNote(pointer); });
         this.events.onInputOver.add(function () {
-            if (_this.stationery.getStationery === _this.constants.eraseStationery && _this.pointer.isDown)
+            if (_this.stationery.getStationery === _this.constants.eraseStationery && _this.pointer.isDown) {
+                _this.game.sound.play("erase");
                 _this.erase();
+            }
         });
     };
     Object.defineProperty(Note.prototype, "getNoteData", {
