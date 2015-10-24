@@ -7,7 +7,6 @@ var __extends = (this && this.__extends) || function (d, b) {
 var Note = (function (_super) {
     __extends(Note, _super);
     function Note(game, constants, models, data) {
-        var _this = this;
         _super.call(this, game, constants, models);
         this.constants = constants;
         this.data = data;
@@ -19,10 +18,7 @@ var Note = (function (_super) {
         this.isStreching = true;
         this.isMoving = false;
         this.touchPosition = null;
-        this.music.onEraseAll.add(function () { _this.erase(); });
-        this.music.onRefresh.add(function () { _this.refresh(); });
-        this.music.onMove.add(function () { _this.movePosition(); });
-        this.music.onChangeExtension.add(function () { _this.changeExtension(); });
+        this.setEvent();
         this.setPosition(data.start * constants.width, constants.pitch.indexOf(data.pitch) * constants.height);
         this.ring();
     }
@@ -41,6 +37,13 @@ var Note = (function (_super) {
                 _this.erase();
             }
         });
+    };
+    Note.prototype.setEvent = function () {
+        var _this = this;
+        this.music.onEraseAll.add(function () { _this.erase(); });
+        this.music.onRefresh.add(function () { _this.refresh(); });
+        this.music.onMove.add(function () { _this.movePosition(); });
+        this.music.onChangeExtension.add(function () { _this.changeExtension(); });
     };
     Object.defineProperty(Note.prototype, "getNoteData", {
         get: function () {

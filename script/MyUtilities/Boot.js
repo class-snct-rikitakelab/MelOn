@@ -20,7 +20,7 @@ var Boot = (function (_super) {
         // Start phisics system.
         this.physics.startSystem(Phaser.Physics.ARCADE);
         // Unless you specifically need to support multitouch I would recommend setting this to 1
-        this.input.maxPointers = 2;
+        this.input.maxPointers = 1;
         // This game can run even if the users change the focus such as tab on their browser.
         // Phaser will automatically pause if the browser tab the game is in loses focus. You can disable that here:
         this.stage.disableVisibilityChange = true;
