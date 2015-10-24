@@ -7,6 +7,18 @@ class Logo extends DOMView {
     }
 
     private setEvent() {
-        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", () => { this.game.sound.play("MelOn"); });
+        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", () => { this.ajax(); });
+    }
+
+    private ajax() {
+        this.game.sound.play("MelOn");
+        /*
+        $.ajax({
+            type: "get",
+            url: "storage/lesson/json.json",
+            dataType: "json",
+            success: (data, dataType) => { console.log(data, dataType); }
+        });
+        */
     }
 }

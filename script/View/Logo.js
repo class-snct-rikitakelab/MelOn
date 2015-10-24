@@ -13,7 +13,18 @@ var Logo = (function (_super) {
     }
     Logo.prototype.setEvent = function () {
         var _this = this;
-        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.game.sound.play("MelOn"); });
+        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.ajax(); });
+    };
+    Logo.prototype.ajax = function () {
+        this.game.sound.play("MelOn");
+        /*
+        $.ajax({
+            type: "get",
+            url: "storage/lesson/json.json",
+            dataType: "json",
+            success: (data, dataType) => { console.log(data, dataType); }
+        });
+        */
     };
     return Logo;
 })(DOMView);

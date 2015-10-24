@@ -29,7 +29,6 @@ class InstrumentContainer extends DOMView {
     }
 
     slideToggle() {
-        console.log(this.slideToggle.caller);
         this.$.stop(true, true).slideToggle(this.constants.slideTime);
         this.isOpen = !this.isOpen;
         if (this.isOpen) this.game.sound.play("open");

@@ -64,8 +64,10 @@ var Note = (function (_super) {
             }
             this.startMoving();
         }
-        if (this.stationery.getStationery === this.constants.eraseStationery)
+        if (this.stationery.getStationery === this.constants.eraseStationery) {
+            this.game.sound.play("erase");
             this.erase();
+        }
     };
     Note.prototype.startMoving = function () {
         this.isMoving = true;
@@ -92,7 +94,6 @@ var Note = (function (_super) {
             this.width = this.constants.width * (this.music.getSelectedNote.extension + 1);
     };
     Note.prototype.erase = function () {
-        this.game.sound.play("erase");
         this.music.select(this.data);
         this.music.erase(this.data);
         this.destroy();

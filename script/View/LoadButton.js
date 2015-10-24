@@ -26,12 +26,12 @@ var LoadButton = (function (_super) {
         if (!confirm("The music you are making will be disposed. Is it OK?"))
             return;
         var score = JSON.parse(localStorage.getItem("music"));
-        this.game.sound.play("load");
         if (!score) {
             alert("Music not Found!");
             return;
         }
         this.setMusic(score);
+        this.game.sound.play("load");
     };
     LoadButton.prototype.setMusic = function (score) {
         var _this = this;

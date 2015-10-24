@@ -54,7 +54,10 @@ class Note extends SpriteView {
             if (pointer.msSinceLastClick < this.constants.doubleClkTime) { this.startStreching(); return; }
             this.startMoving();
         }
-        if (this.stationery.getStationery === this.constants.eraseStationery) this.erase();
+        if (this.stationery.getStationery === this.constants.eraseStationery) {
+            this.game.sound.play("erase");
+            this.erase();
+        }
     }
 
     private startMoving() {
@@ -83,7 +86,6 @@ class Note extends SpriteView {
     }
 
     private erase() {
-        this.game.sound.play("erase");
         this.music.select(this.data);
         this.music.erase(this.data);
         this.destroy();

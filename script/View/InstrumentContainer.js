@@ -31,7 +31,6 @@ var InstrumentContainer = (function (_super) {
         this.isOpen = false;
     };
     InstrumentContainer.prototype.slideToggle = function () {
-        console.log(this.slideToggle.caller);
         this.$.stop(true, true).slideToggle(this.constants.slideTime);
         this.isOpen = !this.isOpen;
         if (this.isOpen)
