@@ -236,7 +236,7 @@ namespace CONSTANTS {
             buttonImage: "buttonImage",
         };
         images: { [name: string]: string };
-        speed: number = 4; // px per frame
+        speed: number = 5; // px per frame
         measureWidth: number = new ScoreSheet().width;
         displayMeasureNum: number = new ScoreSheet().displayMeasureNum;
         noteHeight: number = new MeasureSheet().noteHeight;

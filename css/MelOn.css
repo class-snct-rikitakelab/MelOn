@@ -1,7 +1,7 @@
 ﻿#MelOn {
-    position: relative;            /*This is needed for children which have "position absolute"*/
-    margin: 0 auto;     /*Centering holizontally*/
-    width: 900px;                  /*This is needed for centering*/
+    position: relative;
+    margin: 0 auto;
+    width: 900px;
     height: 520px;
     -moz-user-select: none;
     -webkit-user-drag: none;
@@ -198,6 +198,7 @@
     font-size: 25px;
     font-weight: 900;
     font-family: "Franklin Gothic Medium",sans-serif;
+    -webkit-text-size-adjust: 100%;
 }
 
 #speedDisplay {

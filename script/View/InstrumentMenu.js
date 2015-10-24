@@ -36,7 +36,7 @@ var InstrumentMenu = (function (_super) {
     };
     InstrumentMenu.prototype.setSelectEffect = function () {
         var _this = this;
-        this.$.on("mouseenter", function () { _this.$.css("box-shadow", "0 0 20px 6px lightseagreen"); _this.game.sound.play("select"); });
+        this.$.on("mouseenter", function () { _this.$.css("box-shadow", "0 0 20px 6px deepskyblue"); _this.game.sound.play("select"); });
         this.$.on("mouseleave", function () { _this.$.css("box-shadow", "none"); });
     };
     InstrumentMenu.prototype.changeInstrument = function () {

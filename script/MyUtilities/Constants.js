@@ -256,7 +256,7 @@ var CONSTANTS;
             this.class = {
                 buttonImage: "buttonImage",
             };
-            this.speed = 4; // px per frame
+            this.speed = 5; // px per frame
             this.measureWidth = new ScoreSheet().width;
             this.displayMeasureNum = new ScoreSheet().displayMeasureNum;
             this.noteHeight = new MeasureSheet().noteHeight;

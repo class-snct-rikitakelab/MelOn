@@ -16,7 +16,7 @@ class PlayButton extends DOMView {
     }
 
     private setEvent() {
-        if (!this.game.device.touch) this.setSelectEffect();
+        this.setSelectEffect();
         this.$.on(this.game.device.touch ? "touchstart" : "mousedown", () => { this.changePlayingState(); });
         this.$.on("contextmenu", () => { return false; });
         this.musicPlayer.onPlay.add(() => { this.changeImage(true); });
@@ -24,9 +24,14 @@ class PlayButton extends DOMView {
     }
 
     private setSelectEffect() {
-        this.$.on("mouseenter", () => { this.$.css("box-shadow", "0 0 20px 6px springgreen"); this.game.sound.play("select"); });
-        this.$.on("mouseleave", () => { this.$.css("box-shadow", "none"); });
+        this.$.on("mouseenter", () => {
+            this.$.css("box-shadow", `0 0 20px 6px ${this.musicPlayer.isPlaying ? "orange" : "springgreen"}`);
+            this.game.sound.play("select");
+        });
+        this.$.on(this.game.device.touch ? "touchend" : "mouseleave", () => { this.$.css("box-shadow", "none"); });
     }
+
+
 
     private changeImage(playing: boolean) {
         this.$.css("background-color", playing ? this.constants.onColor : this.constants.offColor);
@@ -34,5 +39,6 @@ class PlayButton extends DOMView {
 
     private changePlayingState() {
         this.musicPlayer.togglePlayingState();
+        this.$.css("box-shadow", `0 0 20px 6px ${this.musicPlayer.isPlaying ? "orange" : "springgreen"}`);
     }
 }

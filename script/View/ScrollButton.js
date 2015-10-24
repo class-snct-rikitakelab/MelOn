@@ -12,6 +12,7 @@ var ScrollButton = (function (_super) {
         this.music = this.models["music"];
         this.isPushed = false;
         this.isOn = false;
+        this.isAlerted = false;
         this.initCamera();
         this.setEvent();
     }
@@ -23,7 +24,8 @@ var ScrollButton = (function (_super) {
         this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.push(); });
         this.$.on(this.game.device.touch ? "touchend" : "mouseup", function () { _this.pull(); });
         this.$.on("mouseleave", function () { _this.isOn = false; _this.pull(); });
-        this.$.dblclick(function () { _this.double(); });
+        this.$.dblclick(function () { if (!_this.isLimit())
+            _this.double(); });
         this.$.data("dblTap", false).click(function () {
             if (_this.$.data("dblTap"))
                 _this.$.data("dblTap", false);
@@ -47,6 +49,7 @@ var ScrollButton = (function (_super) {
     };
     ScrollButton.prototype.pull = function () {
         this.isPushed = false;
+        this.isAlerted = false;
         if (this.isOn)
             this.$.css("box-shadow", "0 0 8px 2px lawngreen, 0 0 8px 2px lawngreen inset");
         else
@@ -67,6 +70,34 @@ var ScrollButton = (function (_super) {
             });
         });
         return x;
+    };
+    ScrollButton.prototype.isLimit = function () {
+        switch (this.constants.direction) {
+            case "up":
+                if (this.game.camera.y === 0) {
+                    return true;
+                }
+                break;
+            case "down":
+                if (this.game.camera.y !== 0 && this.game.camera.atLimit.y) {
+                    return true;
+                }
+                break;
+            case "right":
+                if (this.game.camera.x !== 0 && this.game.camera.atLimit.x) {
+                    return true;
+                }
+                break;
+            case "left":
+                if (this.game.camera.x === 0) {
+                    return true;
+                }
+                break;
+            default:
+                return false;
+                break;
+        }
+        return false;
     };
     ScrollButton.prototype.double = function () {
         this.game.sound.play("jump");
@@ -102,6 +133,10 @@ var ScrollButton = (function (_super) {
                     this.game.camera.x -= this.constants.speed;
                     break;
                 default: break;
+            }
+            if (this.isLimit() && !this.isAlerted) {
+                this.game.sound.play("boo");
+                this.isAlerted = true;
             }
         }
     };

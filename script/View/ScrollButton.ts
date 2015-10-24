@@ -6,6 +6,7 @@ class ScrollButton extends DOMView {
     private image: JQuery;
     private isPushed: boolean = false;
     private isOn: boolean = false;
+    private isAlerted: boolean = false;
 
     constructor(game: Phaser.Game, private constants: CONSTANTS.ScrollButton, models: Object) {
         super(game, constants, models);
@@ -19,7 +20,7 @@ class ScrollButton extends DOMView {
         this.$.on(this.game.device.touch ? "touchstart" : "mousedown", () => { this.push(); });
         this.$.on(this.game.device.touch ? "touchend" : "mouseup", () => { this.pull(); });
         this.$.on("mouseleave", () => { this.isOn = false; this.pull(); });
-        this.$.dblclick(() => { this.double(); });
+        this.$.dblclick(() => { if(!this.isLimit()) this.double(); });
         this.$.data("dblTap", false).click(() => {
             if (this.$.data("dblTap")) this.$.data("dblTap", false);
             else this.$.data("dblTap", true);
@@ -43,6 +44,7 @@ class ScrollButton extends DOMView {
 
     private pull() {
         this.isPushed = false;
+        this.isAlerted = false;
         if (this.isOn) this.$.css("box-shadow", "0 0 8px 2px lawngreen, 0 0 8px 2px lawngreen inset");
         else this.$.css("box-shadow", "none");
     }
@@ -61,6 +63,17 @@ class ScrollButton extends DOMView {
             });
         });
         return x;
+    }
+
+    private isLimit(): boolean {
+        switch (this.constants.direction) {
+            case "up": if (this.game.camera.y === 0) { return true; } break;
+            case "down": if (this.game.camera.y !== 0 && this.game.camera.atLimit.y) { return true; } break;
+            case "right": if (this.game.camera.x !== 0 && this.game.camera.atLimit.x) { return true; } break;
+            case "left": if (this.game.camera.x === 0) { return true; } break;
+            default: return false; break;
+        }
+        return false;
     }
 
     private double() {
@@ -82,6 +95,10 @@ class ScrollButton extends DOMView {
                 case "right": this.game.camera.x += this.constants.speed; break;
                 case "left": this.game.camera.x -= this.constants.speed; break;
                 default: break;
+            }
+            if (this.isLimit() && !this.isAlerted) {
+                this.game.sound.play("boo");
+                this.isAlerted = true;
             }
         }
     }

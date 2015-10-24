@@ -19,8 +19,7 @@ var PlayButton = (function (_super) {
     };
     PlayButton.prototype.setEvent = function () {
         var _this = this;
-        if (!this.game.device.touch)
-            this.setSelectEffect();
+        this.setSelectEffect();
         this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.changePlayingState(); });
         this.$.on("contextmenu", function () { return false; });
         this.musicPlayer.onPlay.add(function () { _this.changeImage(true); });
@@ -28,14 +27,18 @@ var PlayButton = (function (_super) {
     };
     PlayButton.prototype.setSelectEffect = function () {
         var _this = this;
-        this.$.on("mouseenter", function () { _this.$.css("box-shadow", "0 0 20px 6px springgreen"); _this.game.sound.play("select"); });
-        this.$.on("mouseleave", function () { _this.$.css("box-shadow", "none"); });
+        this.$.on("mouseenter", function () {
+            _this.$.css("box-shadow", "0 0 20px 6px " + (_this.musicPlayer.isPlaying ? "orange" : "springgreen"));
+            _this.game.sound.play("select");
+        });
+        this.$.on(this.game.device.touch ? "touchend" : "mouseleave", function () { _this.$.css("box-shadow", "none"); });
     };
     PlayButton.prototype.changeImage = function (playing) {
         this.$.css("background-color", playing ? this.constants.onColor : this.constants.offColor);
     };
     PlayButton.prototype.changePlayingState = function () {
         this.musicPlayer.togglePlayingState();
+        this.$.css("box-shadow", "0 0 20px 6px " + (this.musicPlayer.isPlaying ? "orange" : "springgreen"));
     };
     return PlayButton;
 })(DOMView);
