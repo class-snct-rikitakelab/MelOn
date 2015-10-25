@@ -12,7 +12,7 @@
         GroupView: "script/GroupView/",
         SpriteView: "script/SpriteView/",
         MelOn: "script/MelOn/",
-        Main: "script/",
+        Main: "script/Main/",
     };
 
     let scripts = {

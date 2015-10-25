@@ -1,7 +1,7 @@
 ﻿{
     let locations = {
         Libraries: "storage/lib/",
-        Main: "script/",
+        Main: "script/Main/",
     };
 
     let scripts = {

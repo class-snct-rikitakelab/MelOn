@@ -1,7 +1,7 @@
 {
     var locations = {
         Libraries: "storage/lib/",
-        Main: "script/",
+        Main: "script/Main/",
     };
     var scripts = {
         Libraries: [

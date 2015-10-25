@@ -1,4 +1,4 @@
-/// <reference path="reference.ts"/>
+/// <reference path="../reference.ts"/>
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -9,8 +9,8 @@ var FreeMakingMusicMode = (function (_super) {
     function FreeMakingMusicMode(assets, constants) {
         _super.call(this, constants.width, constants.height, Phaser.AUTO, constants.renderer);
         this.logo = new Logo(this, new CONSTANTS.Logo, {});
+        this.setMelOn(constants.selector);
         this.createElements(constants.selector, constants.elements);
-        this.setRestrict(constants.selector);
         this.state.add('Boot', Boot, false);
         this.state.add('Preloader', Preloader, false);
         this.state.add('Main', MelOn, false);
@@ -23,8 +23,9 @@ var FreeMakingMusicMode = (function (_super) {
             parent.append("<div id=" + element + "></div>");
         }
     };
-    FreeMakingMusicMode.prototype.setRestrict = function (selector) {
-        $(selector).on("contextmenu", function () { return false; }).on("selectstart", function () { return false; });
+    FreeMakingMusicMode.prototype.setMelOn = function (selector) {
+        $(selector).on("contextmenu", function () { return false; }).on("selectstart", function () { return false; })
+            .append($("<img id=\"calyx\" src=\"storage/assets/image/game/melon.png\" />"));
     };
     return FreeMakingMusicMode;
 })(Phaser.Game);

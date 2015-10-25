@@ -1,4 +1,4 @@
-﻿/// <reference path="reference.ts"/>
+﻿/// <reference path="../reference.ts"/>
 
 class FreeMakingMusicMode extends Phaser.Game {
 
@@ -6,8 +6,8 @@ class FreeMakingMusicMode extends Phaser.Game {
 
     constructor(assets: AssetLoader, constants: CONSTANTS.MelOn) {
         super(constants.width, constants.height, Phaser.AUTO, constants.renderer);
+        this.setMelOn(constants.selector);
         this.createElements(constants.selector, constants.elements);
-        this.setRestrict(constants.selector);
         this.state.add('Boot', Boot, false);
         this.state.add('Preloader', Preloader, false);
         this.state.add('Main', MelOn, false);
@@ -19,8 +19,9 @@ class FreeMakingMusicMode extends Phaser.Game {
         for (var element of elementIds) parent.append(`<div id=${element}></div>`);
     }
 
-    private setRestrict(selector: string) {
-        $(selector).on("contextmenu", () => { return false; }).on("selectstart", () => { return false; });
+    private setMelOn(selector: string) {
+        $(selector).on("contextmenu", () => { return false; }).on("selectstart", () => { return false; })
+            .append($(`<img id="calyx" src="storage/assets/image/game/melon.png" />`));
     }
 }
 
