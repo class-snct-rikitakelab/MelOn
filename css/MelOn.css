@@ -52,20 +52,12 @@
     position: absolute;
     width: 100px;
     height: 70px;
+    top: 0;
     left: 415px;
     border-style: solid;
     border-width: 2px;
     border-radius: 100%;
     cursor: pointer;
-}
-
-#calyx {
-    display: block;
-    position: absolute;
-    width: 103px;
-    height: 90px;
-    top: -18px;
-    left: 415px;
 }
 
 .scroll {
@@ -224,18 +216,20 @@
 }
 
 .speed {
-    position: absolute;
-    top: 7px;
     cursor: pointer;
 }
 
 #speedDown {
+    position: absolute;
+    top: 7px;
     left: 500px;
 	border: 30px solid transparent;
 	border-right: 34px solid lightblue;
 }
 
 #speedUp {
+    position: absolute;
+    top: 7px;
     left: 760px;
 	border: 30px solid transparent;
 	border-left: 34px solid lightblue;
