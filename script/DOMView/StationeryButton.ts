@@ -17,8 +17,7 @@ class StationeryButton extends DOMView {
 
     private setEvent() {
         if (!this.game.device.touch) this.setSelectEffect();
-        this.$.on("contextmenu", () => { return false; })
-            .on(this.game.device.touch ? "touchstart" : "mousedown", () => { this.changeStationery(); });
+        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", () => { this.changeStationery(); });
         this.stationery.onChangeStationery.add(() => { this.changeImage(); });
     }
 

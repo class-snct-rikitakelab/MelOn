@@ -26,8 +26,7 @@ var InstrumentMenu = (function (_super) {
         var _this = this;
         if (!this.game.device.touch)
             this.setSelectEffect();
-        this.$.on("contextmenu", function () { return false; })
-            .on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.container.slideToggle(); });
+        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.container.slideToggle(); });
         $(document).on(this.game.device.touch ? "touchstart" : "mousedown", function (event) {
             if (_this.container.isOpen && !$.contains($(_this.constants.selector)[0], event.target))
                 _this.container.close();
@@ -36,8 +35,8 @@ var InstrumentMenu = (function (_super) {
     };
     InstrumentMenu.prototype.setSelectEffect = function () {
         var _this = this;
-        this.$.on("mouseenter", function () { _this.$.css("box-shadow", "0 0 20px 6px deepskyblue"); _this.game.sound.play("select"); });
-        this.$.on("mouseleave", function () { _this.$.css("box-shadow", "none"); });
+        this.$.on("mouseenter", function () { _this.$.css("box-shadow", "0 0 20px 6px deepskyblue"); _this.game.sound.play("select"); })
+            .on("mouseleave", function () { _this.$.css("box-shadow", "none"); });
     };
     InstrumentMenu.prototype.changeInstrument = function () {
         var name = this.instrument.getInstrument;

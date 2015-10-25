@@ -11,19 +11,24 @@ var __extends = (this && this.__extends) || function (d, b) {
 var CONSTANTS;
 (function (CONSTANTS) {
     //
-    // ========== Game Constants ==========
+    // ========== MelOn Substance Constants ==========
     //
-    var Game = (function () {
-        function Game() {
+    var MelOn = (function () {
+        function MelOn() {
+            this.selector = "#MelOn";
             this.width = new MeasureSheet().width * new ScoreSheet().displayMeasureNum;
             this.height = new Note().height * new ScoreSheet().displayPitchNum;
             this.renderer = "score";
             this.imageAddress = "storage/assets/image/";
             this.language = "Finnish";
+            this.elements = [
+                "score", "pencil", "eraser", "speedDisplay", "speedDown", "speedUp", "play",
+                "save", "load", "instrumentMenu", "soundButtonContainer", "up", "down", "left", "right",
+            ];
         }
-        return Game;
+        return MelOn;
     })();
-    CONSTANTS.Game = Game;
+    CONSTANTS.MelOn = MelOn;
     var Music = (function () {
         function Music() {
             this.unitNote = 8;
@@ -81,8 +86,8 @@ var CONSTANTS;
         function PreloadBar() {
             this.width = new MeasureSheet().width;
             this.height = new Note().height;
-            this.x = new Game().width / 2;
-            this.y = new Game().height / 2;
+            this.x = new MelOn().width / 2;
+            this.y = new MelOn().height / 2;
             this.initImage = "preloadBar";
             this.images = {
                 preloadBar: "preloadBar"
@@ -93,8 +98,8 @@ var CONSTANTS;
     CONSTANTS.PreloadBar = PreloadBar;
     var Background = (function () {
         function Background() {
-            this.width = new Game().width;
-            this.height = new Game().height;
+            this.width = new MelOn().width;
+            this.height = new MelOn().height;
             this.x = 0;
             this.y = 0;
             this.initImage = "background";
@@ -189,7 +194,7 @@ var CONSTANTS;
     var StationeryButton = (function () {
         function StationeryButton() {
             this.selector = "";
-            this.imageAddress = new Game().imageAddress + "stationeryButton/";
+            this.imageAddress = new MelOn().imageAddress + "stationeryButton/";
             this.class = {
                 stationery: "stationery",
                 buttonImage: "buttonImage",
@@ -243,7 +248,7 @@ var CONSTANTS;
                 buttonImage: "buttonImage",
             };
             this.images = {
-                image: new Game().imageAddress + "playButton/playButton.png",
+                image: new MelOn().imageAddress + "playButton/playButton.png",
             };
             this.onColor = "orange";
             this.offColor = "limegreen";
@@ -310,7 +315,7 @@ var CONSTANTS;
     var SaveButton = (function () {
         function SaveButton() {
             this.selector = "#save";
-            this.image = new Game().imageAddress + "storageButton/save.png";
+            this.image = new MelOn().imageAddress + "storageButton/save.png";
         }
         return SaveButton;
     })();
@@ -318,7 +323,7 @@ var CONSTANTS;
     var LoadButton = (function () {
         function LoadButton() {
             this.selector = "#load";
-            this.image = new Game().imageAddress + "storageButton/load.png";
+            this.image = new MelOn().imageAddress + "storageButton/load.png";
         }
         return LoadButton;
     })();
@@ -339,7 +344,7 @@ var CONSTANTS;
             this.pitchTop = new MeasureSheet().noteHeight;
             this.ringDuration = new Note().ringDuration;
             this.pitch = new Music().pitch;
-            this.language = new Game().language;
+            this.language = new MelOn().language;
             this.pitchText = {
                 English: ["C", "B", "A", "G", "F", "E", "D", "C", "B", "A", "G", "F", "E", "D", "C", "B", "A", "G", "F", "E", "D", "C"],
                 Japanese: ["ド", "シ", "ラ", "ソ", "ファ", "ミ", "レ", "ド", "シ", "ラ", "ソ", "ファ", "ミ", "レ", "ド", "シ", "ラ", "ソ", "ファ", "ミ", "レ", "ド"],
@@ -354,7 +359,7 @@ var CONSTANTS;
             this.selector = "#speedDisplay";
             this.speeds = new Speed().speeds;
             this.speedGradeNum = this.speeds.length;
-            this.language = new Game().language;
+            this.language = new MelOn().language;
             this.speedColor = ["green", "greenyellow", "yellow", "orange", "red"];
             this.textColor = ["white", "black", "black", "white", "white"];
             this.speedText = {
@@ -408,7 +413,7 @@ var CONSTANTS;
             this.height = 60;
             this.samplePitch = "C3";
             this.sampleTime = new Note().ringDuration;
-            this.language = new Game().language;
+            this.language = new MelOn().language;
             this.instrumentText = {
                 English: { piano: "Piano", trumpet: "Trumpet", violin: "Violin" },
                 Japanese: { piano: "ピアノ", trumpet: "トランペット", violin: "バイオリン" },
@@ -424,7 +429,7 @@ var CONSTANTS;
                 trumpet: "black",
                 violin: "white",
             };
-            this.imageAddress = new Game().imageAddress + "instrument/";
+            this.imageAddress = new MelOn().imageAddress + "instrument/";
             this.image = {
                 piano: this.imageAddress + "piano.png",
                 trumpet: this.imageAddress + "trumpet.png",

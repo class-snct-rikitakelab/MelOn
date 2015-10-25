@@ -21,8 +21,7 @@ class ScrollButton extends DOMView {
 
     private setEvent() {
         if(!this.game.device.touch) this.setSelectEffect();
-        this.$.on("contextmenu", () => { return false; })
-            .on(this.game.device.touch ? "touchstart" : "mousedown", () => { this.push(); })
+        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", () => { this.push(); })
             .on(this.game.device.touch ? "touchend" : "mouseup", () => { this.pull(); })
             .on("mouseleave", () => { this.isOn = false; this.pull(); })
             .on("dblclick", () => { if (!this.isLimit()) this.double(); })
@@ -30,7 +29,8 @@ class ScrollButton extends DOMView {
                 if (this.$.data("dblTap")) this.$.data("dblTap", false);
                 else this.$.data("dblTap", true);
                 setTimeout(() => { this.$.data("dblTap", false); }, this.constants.doubleTapTime);
-            });
+            })
+            .append(`<div id=${this.constants.direction + "Triangle"}></div>`);
     }
 
     private setSelectEffect() {
@@ -38,8 +38,7 @@ class ScrollButton extends DOMView {
             this.isOn = true;
             this.$.css("box-shadow", "0 0 8px 2px lawngreen, 0 0 8px 2px lawngreen inset");
             this.game.sound.play("select");
-        });
-        this.$.on("mouseleave", () => { this.isOn = false; this.$.css("box-shadow", "none"); });
+        }).on("mouseleave", () => { this.isOn = false; this.$.css("box-shadow", "none"); });
     }
 
     private push() {

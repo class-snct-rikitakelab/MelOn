@@ -24,8 +24,7 @@ var ScrollButton = (function (_super) {
         var _this = this;
         if (!this.game.device.touch)
             this.setSelectEffect();
-        this.$.on("contextmenu", function () { return false; })
-            .on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.push(); })
+        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.push(); })
             .on(this.game.device.touch ? "touchend" : "mouseup", function () { _this.pull(); })
             .on("mouseleave", function () { _this.isOn = false; _this.pull(); })
             .on("dblclick", function () { if (!_this.isLimit())
@@ -36,7 +35,8 @@ var ScrollButton = (function (_super) {
             else
                 _this.$.data("dblTap", true);
             setTimeout(function () { _this.$.data("dblTap", false); }, _this.constants.doubleTapTime);
-        });
+        })
+            .append("<div id=" + (this.constants.direction + "Triangle") + "></div>");
     };
     ScrollButton.prototype.setSelectEffect = function () {
         var _this = this;
@@ -44,8 +44,7 @@ var ScrollButton = (function (_super) {
             _this.isOn = true;
             _this.$.css("box-shadow", "0 0 8px 2px lawngreen, 0 0 8px 2px lawngreen inset");
             _this.game.sound.play("select");
-        });
-        this.$.on("mouseleave", function () { _this.isOn = false; _this.$.css("box-shadow", "none"); });
+        }).on("mouseleave", function () { _this.isOn = false; _this.$.css("box-shadow", "none"); });
     };
     ScrollButton.prototype.push = function () {
         this.isPushed = true;

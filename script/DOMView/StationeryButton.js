@@ -22,8 +22,7 @@ var StationeryButton = (function (_super) {
         var _this = this;
         if (!this.game.device.touch)
             this.setSelectEffect();
-        this.$.on("contextmenu", function () { return false; })
-            .on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.changeStationery(); });
+        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.changeStationery(); });
         this.stationery.onChangeStationery.add(function () { _this.changeImage(); });
     };
     StationeryButton.prototype.setSelectEffect = function () {

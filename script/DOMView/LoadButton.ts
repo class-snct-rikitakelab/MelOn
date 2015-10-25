@@ -21,8 +21,8 @@ class LoadButton extends DOMView {
     }
 
     private setSelectEffect() {
-        this.$.on("mouseenter", () => { this.$.css("box-shadow", "0 0 20px 6px deepskyblue"); this.game.sound.play("select"); });
-        this.$.on("mouseleave", () => { this.$.css("box-shadow", "none"); });
+        this.$.on("mouseenter", () => { this.$.css("box-shadow", "0 0 20px 6px deepskyblue"); this.game.sound.play("select"); })
+            .on("mouseleave", () => { this.$.css("box-shadow", "none"); });
     }
 
     private load() {

@@ -12,7 +12,6 @@ class SpeedButton extends DOMView {
     private setEvent() {
         if (!this.game.device.touch) this.setSelectEffect();
         this.$.addClass(this.constants.class["speed"])
-            .on("contextmenu", () => { return false; })
             .on(this.game.device.touch ? "touchstart" : "mousedown", () => { this.changeSpeed(); });
     }
 

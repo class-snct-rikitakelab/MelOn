@@ -25,8 +25,8 @@ var LoadButton = (function (_super) {
     };
     LoadButton.prototype.setSelectEffect = function () {
         var _this = this;
-        this.$.on("mouseenter", function () { _this.$.css("box-shadow", "0 0 20px 6px deepskyblue"); _this.game.sound.play("select"); });
-        this.$.on("mouseleave", function () { _this.$.css("box-shadow", "none"); });
+        this.$.on("mouseenter", function () { _this.$.css("box-shadow", "0 0 20px 6px deepskyblue"); _this.game.sound.play("select"); })
+            .on("mouseleave", function () { _this.$.css("box-shadow", "none"); });
     };
     LoadButton.prototype.load = function () {
         if (!confirm("The music you are making will be disposed. Is it OK?"))

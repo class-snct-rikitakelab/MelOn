@@ -8,15 +8,20 @@
 namespace CONSTANTS {
     
     //
-    // ========== Game Constants ==========
+    // ========== MelOn Substance Constants ==========
     //
 
-    export class Game {
+    export class MelOn {
+        selector: string = "#MelOn";
         width: number = new MeasureSheet().width * new ScoreSheet().displayMeasureNum;
         height: number = new Note().height * new ScoreSheet().displayPitchNum;
         renderer: string = "score";
         imageAddress: string = "storage/assets/image/";
         language: string = "Finnish";
+        elements: string[] = [
+            "score", "pencil", "eraser", "speedDisplay", "speedDown", "speedUp", "play",
+            "save", "load", "instrumentMenu", "soundButtonContainer", "up", "down", "left", "right",
+        ];
     }
 
 
@@ -88,8 +93,8 @@ namespace CONSTANTS {
     export class PreloadBar implements SpriteView{
         width = new MeasureSheet().width;
         height = new Note().height;
-        x = new Game().width / 2;
-        y = new Game().height / 2;
+        x = new MelOn().width / 2;
+        y = new MelOn().height / 2;
         initImage = "preloadBar";
         images: { [name: string]: string } = {
             preloadBar: "preloadBar"
@@ -97,8 +102,8 @@ namespace CONSTANTS {
     }
 
     export class Background implements SpriteView {
-        width = new Game().width;
-        height = new Game().height;
+        width = new MelOn().width;
+        height = new MelOn().height;
         x = 0;
         y = 0;
         initImage = "background";
@@ -186,7 +191,7 @@ namespace CONSTANTS {
     export class StationeryButton implements DOMView {
         selector = "";
         name: string;
-        protected imageAddress: string = new Game().imageAddress + "stationeryButton/";
+        protected imageAddress: string = new MelOn().imageAddress + "stationeryButton/";
         class: { [name: string]: string } = {
             stationery: "stationery",
             buttonImage: "buttonImage",
@@ -223,7 +228,7 @@ namespace CONSTANTS {
             buttonImage: "buttonImage",
         };
         images: { [name: string]: string } = {
-            image: new Game().imageAddress + "playButton/playButton.png",
+            image: new MelOn().imageAddress + "playButton/playButton.png",
         }
         onColor: string = "orange";
         offColor: string = "limegreen";
@@ -266,12 +271,12 @@ namespace CONSTANTS {
 
     export class SaveButton implements DOMView {
         selector = "#save";
-        image: string = new Game().imageAddress + "storageButton/save.png";
+        image: string = new MelOn().imageAddress + "storageButton/save.png";
     }
 
     export class LoadButton implements DOMView {
         selector = "#load";
-        image: string = new Game().imageAddress + "storageButton/load.png";
+        image: string = new MelOn().imageAddress + "storageButton/load.png";
     }
 
     export class SoundButtonContainer implements DOMView {
@@ -286,7 +291,7 @@ namespace CONSTANTS {
         pitchTop: number = new MeasureSheet().noteHeight;
         ringDuration: number = new Note().ringDuration;
         pitch: string[] = new Music().pitch;
-        language: string = new Game().language;
+        language: string = new MelOn().language;
         pitchText = {
             English: ["C", "B", "A", "G", "F", "E", "D", "C", "B", "A", "G", "F", "E", "D", "C", "B", "A", "G", "F", "E", "D", "C"],
             Japanese: ["ド", "シ", "ラ", "ソ", "ファ", "ミ", "レ", "ド", "シ", "ラ", "ソ", "ファ", "ミ", "レ", "ド", "シ", "ラ", "ソ", "ファ", "ミ", "レ", "ド"],
@@ -298,7 +303,7 @@ namespace CONSTANTS {
         selector = "#speedDisplay";
         speeds: number[] = new Speed().speeds;
         speedGradeNum: number = this.speeds.length;
-        language: string = new Game().language;
+        language: string = new MelOn().language;
         speedColor: string[] = ["green", "greenyellow", "yellow", "orange", "red"];
         textColor: string[] = ["white", "black", "black", "white", "white"];
         speedText = {
@@ -334,7 +339,7 @@ namespace CONSTANTS {
         height: number = 60;
         samplePitch: string = "C3";
         sampleTime: number = new Note().ringDuration
-        language: string = new Game().language;
+        language: string = new MelOn().language;
         instrumentText = {
             English: { piano: "Piano", trumpet: "Trumpet", violin: "Violin" },
             Japanese: { piano: "ピアノ", trumpet: "トランペット", violin: "バイオリン" },
@@ -350,7 +355,7 @@ namespace CONSTANTS {
             trumpet: "black",
             violin: "white",
         };
-        imageAddress = new Game().imageAddress + "instrument/";
+        imageAddress = new MelOn().imageAddress + "instrument/";
         image = {
             piano: this.imageAddress + "piano.png",
             trumpet: this.imageAddress + "trumpet.png",

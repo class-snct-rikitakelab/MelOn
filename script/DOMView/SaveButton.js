@@ -25,8 +25,8 @@ var SaveButton = (function (_super) {
     };
     SaveButton.prototype.setSelectEffect = function () {
         var _this = this;
-        this.$.on("mouseenter", function () { _this.$.css("box-shadow", "0 0 20px 6px deepskyblue"); _this.game.sound.play("select"); });
-        this.$.on("mouseleave", function () { _this.$.css("box-shadow", "none"); });
+        this.$.on("mouseenter", function () { _this.$.css("box-shadow", "0 0 20px 6px deepskyblue"); _this.game.sound.play("select"); })
+            .on("mouseleave", function () { _this.$.css("box-shadow", "none"); });
     };
     SaveButton.prototype.save = function () {
         if (localStorage.getItem("music") && !confirm("The music you have already saved will be disposed. Is it OK?"))

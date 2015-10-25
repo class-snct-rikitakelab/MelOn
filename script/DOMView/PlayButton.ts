@@ -18,7 +18,6 @@ class PlayButton extends DOMView {
     private setEvent() {
         this.setSelectEffect();
         this.$.on(this.game.device.touch ? "touchstart" : "mousedown", () => { this.changePlayingState(); });
-        this.$.on("contextmenu", () => { return false; });
         this.musicPlayer.onPlay.add(() => { this.changeImage(true); });
         this.musicPlayer.onStop.add(() => { this.changeImage(false); this.game.sound.stopAll(); });
     }
@@ -27,11 +26,8 @@ class PlayButton extends DOMView {
         this.$.on("mouseenter", () => {
             this.$.css("box-shadow", `0 0 20px 6px ${this.musicPlayer.isPlaying ? "orange" : "springgreen"}`);
             this.game.sound.play("select");
-        });
-        this.$.on(this.game.device.touch ? "touchend" : "mouseleave", () => { this.$.css("box-shadow", "none"); });
+        }).on(this.game.device.touch ? "touchend" : "mouseleave", () => { this.$.css("box-shadow", "none"); });
     }
-
-
 
     private changeImage(playing: boolean) {
         this.$.css("background-color", playing ? this.constants.onColor : this.constants.offColor);

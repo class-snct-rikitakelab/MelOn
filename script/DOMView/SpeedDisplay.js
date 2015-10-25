@@ -22,14 +22,13 @@ var SpeedDisplay = (function (_super) {
         var _this = this;
         if (!this.game.device.touch)
             this.setSelectEffect();
-        this.$.on("contextmenu", function () { return false; })
-            .on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.roleSpeed(); });
+        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.roleSpeed(); });
         this.speed.onChangeSpeed.add(function () { _this.changeSpeed(); });
     };
     SpeedDisplay.prototype.setSelectEffect = function () {
         var _this = this;
-        this.$.on("mouseenter", function () { _this.$.css("box-shadow", "0 0 20px 6px darkorange"); _this.game.sound.play("select"); });
-        this.$.on("mouseleave", function () { _this.$.css("box-shadow", "none"); });
+        this.$.on("mouseenter", function () { _this.$.css("box-shadow", "0 0 20px 6px darkorange"); _this.game.sound.play("select"); })
+            .on("mouseleave", function () { _this.$.css("box-shadow", "none"); });
     };
     SpeedDisplay.prototype.roleSpeed = function () {
         var _this = this;

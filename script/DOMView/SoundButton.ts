@@ -13,9 +13,8 @@ class SoundButton extends DOMView {
 
     private setView() {
         this.$ = $("#" + this.pitch)
-            .on("contextmenu", () => { return false; })
-            .css("top", this.constants.border + this.constants.pitchTop * this.constants.pitch.indexOf(this.pitch))
             .addClass(this.constants.selector)
+            .css("top", this.constants.border + this.constants.pitchTop * this.constants.pitch.indexOf(this.pitch))
             .append($("<div></div>")
                .addClass("soundButtonText")
                .text(this.constants.pitchText[this.constants.language][this.constants.pitch.indexOf(this.pitch)]));
@@ -27,8 +26,8 @@ class SoundButton extends DOMView {
     }
 
     private setSelectEffect() {
-        this.$.on("mouseenter", () => { this.$.css("box-shadow", "0 0 10px 3px skyblue"); });
-        this.$.on("mouseleave", () => { this.$.css("box-shadow", "none"); });
+        this.$.on("mouseenter", () => { this.$.css("box-shadow", "0 0 10px 3px skyblue"); })
+            .on("mouseleave", () => { this.$.css("box-shadow", "none"); });
     }
 
     private ring() {

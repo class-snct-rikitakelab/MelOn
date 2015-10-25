@@ -16,9 +16,8 @@ var SoundButton = (function (_super) {
     }
     SoundButton.prototype.setView = function () {
         this.$ = $("#" + this.pitch)
-            .on("contextmenu", function () { return false; })
-            .css("top", this.constants.border + this.constants.pitchTop * this.constants.pitch.indexOf(this.pitch))
             .addClass(this.constants.selector)
+            .css("top", this.constants.border + this.constants.pitchTop * this.constants.pitch.indexOf(this.pitch))
             .append($("<div></div>")
             .addClass("soundButtonText")
             .text(this.constants.pitchText[this.constants.language][this.constants.pitch.indexOf(this.pitch)]));
@@ -31,8 +30,8 @@ var SoundButton = (function (_super) {
     };
     SoundButton.prototype.setSelectEffect = function () {
         var _this = this;
-        this.$.on("mouseenter", function () { _this.$.css("box-shadow", "0 0 10px 3px skyblue"); });
-        this.$.on("mouseleave", function () { _this.$.css("box-shadow", "none"); });
+        this.$.on("mouseenter", function () { _this.$.css("box-shadow", "0 0 10px 3px skyblue"); })
+            .on("mouseleave", function () { _this.$.css("box-shadow", "none"); });
     };
     SoundButton.prototype.ring = function () {
         if (this.sound && this.sound.isPlaying)
