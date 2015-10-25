@@ -1,103 +1,102 @@
-﻿var MelOn_LOCATIONS = {
-    Libraries: "storage/lib/",
-    Asset: "script/Asset/",
-    Constants: "script/Constants/",
-    Boot: "script/Boot/",
-    Preloader: "script/Preloader/",
-    Model: "script/Model/",
-    ConcreteModel: "script/ConcreteModel/",
-    View: "script/View/",
-    DOMView: "script/DOMView/",
-    GroupView: "script/GroupView/",
-    SpriteView: "script/SpriteView/",
-    MelOn: "script/MelOn/",
-    Main: "script/",
-};
+﻿{
+    let locations = {
+        Libraries: "storage/lib/",
+        Asset: "script/Asset/",
+        Constants: "script/Constants/",
+        Boot: "script/Boot/",
+        Preloader: "script/Preloader/",
+        Model: "script/Model/",
+        ConcreteModel: "script/ConcreteModel/",
+        View: "script/View/",
+        DOMView: "script/DOMView/",
+        GroupView: "script/GroupView/",
+        SpriteView: "script/SpriteView/",
+        MelOn: "script/MelOn/",
+        Main: "script/",
+    };
 
-var MelOn_SCRIPTS = {
-    Libraries: [
-        "phaser",
-        "jquery-1.10.2.min",
-        "underscore",
-    ],
+    let scripts = {
+        Libraries: [
+            "phaser",
+            "jquery-1.10.2.min",
+            "underscore",
+        ],
 
-    Asset: [
-        "AssetLoader",
-        "MelOnAssets",
-    ],
+        Asset: [
+            "AssetLoader",
+            "MelOnAssets",
+        ],
 
-    Constants: [
-        "Constants",
-    ],
+        Constants: [
+            "Constants",
+        ],
 
-    Model: [
-        "Model"
-    ],
+        Model: [
+            "Model"
+        ],
 
-    ConcreteModel: [
-        "Music",
-        "Stationery",
-        "MusicPlayer",
-        "Instrument",
-        "Speed",
-    ],
+        ConcreteModel: [
+            "Music",
+            "Stationery",
+            "MusicPlayer",
+            "Instrument",
+            "Speed",
+        ],
 
-    View: [
-        "DOMView",
-        "GroupView",
-        "SpriteView",
-        "ContactManager",
-    ],
+        View: [
+            "DOMView",
+            "GroupView",
+            "SpriteView",
+            "ContactManager",
+        ],
 
-    DOMView: [
-        "Logo",
-        "StationeryToggler",
-        "StationeryButton",
-        "SpeedDisplay",
-        "SpeedButton",
-        "PlayButton",
-        "SaveButton",
-        "LoadButton",
-        "InstrumentMenu",
-        "InstrumentContainer",
-        "InstrumentOption",
-        "SoundButtonContainer",
-        "SoundButton",
-        "ScrollButton",
-    ],
+        DOMView: [
+            "Logo",
+            "StationeryToggler",
+            "StationeryButton",
+            "SpeedDisplay",
+            "SpeedButton",
+            "PlayButton",
+            "SaveButton",
+            "LoadButton",
+            "InstrumentMenu",
+            "InstrumentContainer",
+            "InstrumentOption",
+            "SoundButtonContainer",
+            "SoundButton",
+            "ScrollButton",
+        ],
 
-    GroupView: [
-        "ScoreSheet",
-        "Notes",
-    ],
+        GroupView: [
+            "ScoreSheet",
+            "Notes",
+        ],
 
-    SpriteView: [
-        "MeasureSheet",
-        "Note",
-        "MusicPlayBar",
-    ],
+        SpriteView: [
+            "MeasureSheet",
+            "Note",
+            "MusicPlayBar",
+        ],
 
-    Boot: [
-        "Boot",
-    ],
+        Boot: [
+            "Boot",
+        ],
 
-    Preloader: [
-        "Preloader",
-    ],
+        Preloader: [
+            "Preloader",
+        ],
 
-    MelOn: [
-        "MelOn",
-    ],
+        MelOn: [
+            "MelOn",
+        ],
 
-    Main: [
-        "FreeMakingMusicMode",
-    ],
-};
+        Main: [
+            "FreeMakingMusicMode",
+        ],
+    };
 
-function importJS(locations: Object, scripts: Object) {
     for (var locationName in locations) {
-        var location = locations[locationName];
+        let location = locations[locationName];
         for (var script of scripts[locationName]) document.write(`<script src=${location + script + ".js"}></script>`);
     }
 }
-importJS(MelOn_LOCATIONS, MelOn_SCRIPTS);

@@ -1,4 +1,4 @@
-﻿// Reference declaration type script
+﻿// reference declaration type script
 // Write all TypeScript Files to use in this software.
 // <reference path=""/>
 

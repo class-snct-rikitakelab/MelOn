@@ -1,4 +1,4 @@
-// Reference declaration type script
+// reference declaration type script
 // Write all TypeScript Files to use in this software.
 // <reference path=""/>
 // Declaration type files of libraries.
@@ -51,5 +51,5 @@
 // Preloader
 /// <reference path="Preloader/Preloader"/>
 // MelOn
-/// <reference path="MelOn/MelOn"/> 
+/// <reference path="MelOn/MelOn"/>
 //# sourceMappingURL=reference.js.map
