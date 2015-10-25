@@ -1,4 +1,4 @@
-﻿/// <reference path="../reference.ts"/>
+﻿/// <reference path="../referenceFreeMakingMusic.ts"/>
 
 class GroupView extends Phaser.Group {
 

@@ -1,4 +1,4 @@
-﻿/// <reference path="../reference.ts"/>
+﻿/// <reference path="../referenceFreeMakingMusic.ts"/>
 
 class MelOnAssets extends AssetLoader {
     protected baseURL = "storage/assets";

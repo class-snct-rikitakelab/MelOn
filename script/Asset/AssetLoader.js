@@ -1,4 +1,4 @@
-/// <reference path="../reference.ts"/>
+/// <reference path="../referenceFreeMakingMusic.ts"/>
 var AssetLoader = (function () {
     function AssetLoader() {
         this.addresses = {

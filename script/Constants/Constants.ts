@@ -1,4 +1,4 @@
-﻿/// <reference path="../reference.ts"/>
+﻿/// <reference path="../referenceFreeMakingMusic.ts"/>
 
 // We have to consider order inside each class due to JavaScript codes.
 // By using clesses in namespace, we can set inheritable constants!

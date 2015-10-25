@@ -1,4 +1,4 @@
-/// <reference path="../reference.ts"/>
+/// <reference path="../referenceFreeMakingMusic.ts"/>
 // This class is super class of each models.
 // Inheritance of this class means the child class is one of Model(Concrete Subject).
 var Model = (function () {

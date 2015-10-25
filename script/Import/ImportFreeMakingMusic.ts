@@ -13,7 +13,7 @@
         SpriteView: "script/SpriteView/",
         MelOn: "script/MelOn/",
         Main: "script/Main/",
-    };
+    }
 
     let scripts = {
         Libraries: [
@@ -93,7 +93,7 @@
         Main: [
             "FreeMakingMusicMode",
         ],
-    };
+    }
 
     for (var locationName in locations) {
         let location = locations[locationName];
