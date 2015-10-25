@@ -15,7 +15,7 @@ class Boot extends Phaser.State {
     create() {
         this.physics.startSystem(Phaser.Physics.ARCADE);
         this.input.maxPointers = 1;
-        this.stage.disableVisibilityChange = true;
+        this.stage.disableVisibilityChange = false;
         this.time.advancedTiming = true;
         this.game.state.start('Preloader', true, false, this.assets);
     }

@@ -10,7 +10,7 @@ var FreeMakingMusicMode = (function (_super) {
         _super.call(this, constants.width, constants.height, Phaser.AUTO, constants.renderer);
         this.logo = new Logo(this, new CONSTANTS.Logo, {});
         this.createElements(constants.selector, constants.elements);
-        this.setMelOn(constants.selector);
+        this.setRestrict(constants.selector);
         this.state.add('Boot', Boot, false);
         this.state.add('Preloader', Preloader, false);
         this.state.add('Main', MelOn, false);
@@ -23,9 +23,8 @@ var FreeMakingMusicMode = (function (_super) {
             parent.append("<div id=" + element + "></div>");
         }
     };
-    FreeMakingMusicMode.prototype.setMelOn = function (selector) {
-        $(selector).on("contextmenu", function () { return false; })
-            .on("selectstart", function () { return false; });
+    FreeMakingMusicMode.prototype.setRestrict = function (selector) {
+        $(selector).on("contextmenu", function () { return false; }).on("selectstart", function () { return false; });
     };
     return FreeMakingMusicMode;
 })(Phaser.Game);

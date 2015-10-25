@@ -59,15 +59,6 @@
     cursor: pointer;
 }
 
-#calyx {
-    display: block;
-    position: absolute;
-    width: 103px;
-    height: 90px;
-    top: -18px;
-    left: 415px;
-}
-
 .scroll {
     position: absolute;
     height: 50px;
