@@ -1,4 +1,4 @@
-﻿/// <reference path="../referenceFreeMakingMusic.ts"/>
+﻿/// <reference path="../FreeMakingMusic.ref.ts"/>
 
 class SpriteView extends Phaser.Sprite {
 

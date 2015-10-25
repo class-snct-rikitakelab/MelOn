@@ -1,4 +1,4 @@
-﻿/// <reference path="../referenceFreeMakingMusic.ts"/>
+﻿/// <reference path="../FreeMakingMusic.ref.ts"/>
 
 class Logo extends DOMView {
     constructor(game: Phaser.Game, private constants: CONSTANTS.Logo, models: Object) {

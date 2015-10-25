@@ -1,4 +1,4 @@
-﻿/// <reference path="../referenceFreeMakingMusic.ts"/>
+﻿/// <reference path="../FreeMakingMusic.ref.ts"/>
 
 // This class is super class of each DOM element View.
 // Inheritance of this class means the child class is one of DOM element View(Concrete Observer).

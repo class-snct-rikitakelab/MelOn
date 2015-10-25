@@ -1,4 +1,4 @@
-﻿/// <reference path="../referenceFreeMakingMusic.ts"/>
+﻿/// <reference path="../FreeMakingMusic.ref.ts"/>
 
 // This is the class to manage collision and overlap of Phaser objects.
 

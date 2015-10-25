@@ -3,4 +3,4 @@
 /// <reference path="../storage/declaration/jqueryui"/>
 /// <reference path="../storage/declaration/phaser"/>
 /// <reference path="../storage/declaration/underscore"/> 
-//# sourceMappingURL=referenceIndex.js.map
+//# sourceMappingURL=index.ref.js.map

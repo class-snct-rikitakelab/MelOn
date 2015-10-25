@@ -52,4 +52,4 @@
 /// <reference path="Preloader/Preloader"/>
 // MelOn
 /// <reference path="MelOn/MelOn"/>
-//# sourceMappingURL=referenceFreeMakingMusic.js.map
+//# sourceMappingURL=FreeMakingMusic.ref.js.map

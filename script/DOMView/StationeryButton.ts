@@ -1,4 +1,4 @@
-﻿/// <reference path="../referenceFreeMakingMusic.ts"/>
+﻿/// <reference path="../FreeMakingMusic.ref.ts"/>
 
 class StationeryButton extends DOMView {
     private stationery: Stationery = this.models["stationery"];
