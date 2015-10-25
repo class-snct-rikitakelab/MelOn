@@ -223,7 +223,7 @@
     font-family: "Franklin Gothic Medium",sans-serif;
 }
 
-.speedButton {
+.speed {
     position: absolute;
     top: 7px;
     cursor: pointer;

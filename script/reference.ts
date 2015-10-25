@@ -3,50 +3,64 @@
 // <reference path=""/>
 
 // Declaration type files of libraries.
-/// <reference path="../storage/declaration/jquery.d.ts"/>
-/// <reference path="../storage/declaration/jqueryui.d.ts"/>
-/// <reference path="../storage/declaration/phaser.d.ts"/>
-/// <reference path="../storage/declaration/underscore.d.ts"/>
+/// <reference path="../storage/declaration/jquery"/>
+/// <reference path="../storage/declaration/jqueryui"/>
+/// <reference path="../storage/declaration/phaser"/>
+/// <reference path="../storage/declaration/underscore"/>
 
-// MyUtility
-/// <reference path="MyUtilities/AssetLoader.ts"/>
-/// <reference path="MyUtilities/Assets.ts"/>
-/// <reference path="MyUtilities/Preloader.ts" />
-/// <reference path="MyUtilities/Boot.ts"/>
-/// <reference path="MyUtilities/MyPhaserGame.ts"/>
-/// <reference path="MyUtilities/Constants.ts"/>
-/// <reference path="MyUtilities/ContactManager.ts"/>
-/// <reference path="MyUtilities/Model.ts"/>
-/// <reference path="MyUtilities/SpriteView.ts"/>
-/// <reference path="MyUtilities/GroupView.ts"/>
-/// <reference path="MyUtilities/DOMView.ts"/>
+// Asset
+/// <reference path="Asset/AssetLoader"/>
+/// <reference path="Asset/MelOnAssets"/>
+
+// Constants
+/// <reference path="Constants/Constants"/>
 
 // Model
-/// <reference path="Model/Music.ts"/>
-/// <reference path="Model/MusicPlayer.ts"/>
-/// <reference path="Model/Stationery.ts"/>
-/// <reference path="Model/Instrument.ts"/>
-/// <reference path="Model/Speed.ts"/>
+/// <reference path="Model/Model"/>
+
+// ConcreteModel
+/// <reference path="ConcreteModel/Music"/>
+/// <reference path="ConcreteModel/Stationery"/>
+/// <reference path="ConcreteModel/MusicPlayer"/>
+/// <reference path="ConcreteModel/Instrument"/>
+/// <reference path="ConcreteModel/Speed"/>
 
 // View
-/// <reference path="View/Logo.ts"/>
-/// <reference path="View/Note.ts"/>
-/// <reference path="View/Notes.ts"/>
-/// <reference path="View/MeasureSheet.ts"/>
-/// <reference path="View/ScoreSheet.ts"/>
-/// <reference path="View/StationeryButton.ts"/>
-/// <reference path="View/StationeryToggler.ts"/>
-/// <reference path="View/PlayButton.ts"/>
-/// <reference path="View/ScrollButton.ts"/>
-/// <reference path="View/SaveButton.ts"/>
-/// <reference path="View/LoadButton.ts"/>
-/// <reference path="View/SoundButtonContainer.ts"/>
-/// <reference path="View/SoundButton.ts"/>
-/// <reference path="View/SpeedDisplay.ts"/>
-/// <reference path="View/SpeedButton.ts"/>
-/// <reference path="View/InstrumentOption.ts"/>
-/// <reference path="View/InstrumentContainer.ts"/>
-/// <reference path="View/InstrumentMenu.ts"/>
+/// <reference path="View/DOMView"/>
+/// <reference path="View/GroupView"/>
+/// <reference path="View/SpriteView"/>
+/// <reference path="View/ContactManager"/>
 
-// Main
-/// <reference path="main.ts"/>
+// DOMView
+/// <reference path="DOMView/Logo"/>
+/// <reference path="DOMView/StationeryToggler"/>
+/// <reference path="DOMView/StationeryButton"/>
+/// <reference path="DOMView/SpeedDisplay"/>
+/// <reference path="DOMView/SpeedButton"/>
+/// <reference path="DOMView/PlayButton"/>
+/// <reference path="DOMView/SaveButton"/>
+/// <reference path="DOMView/LoadButton"/>
+/// <reference path="DOMView/InstrumentMenu"/>
+/// <reference path="DOMView/InstrumentContainer"/>
+/// <reference path="DOMView/Instrumentoption"/>
+/// <reference path="DOMView/SoundButtonContainer"/>
+/// <reference path="DOMView/SoundButton"/>
+/// <reference path="DOMView/ScrollButton"/>
+
+// GroupView
+/// <reference path="GroupView/ScoreSheet"/>
+/// <reference path="GroupView/Notes"/>
+
+// SpriteView
+/// <reference path="SpriteView/MeasureSheet"/>
+/// <reference path="SpriteView/Note"/>
+/// <reference path="SpriteView/MusicPlayBar"/>
+
+// Boot
+/// <reference path="Boot/Boot"/>
+
+// Preloader
+/// <reference path="Preloader/Preloader"/>
+
+// MelOn
+/// <reference path="MelOn/MelOn"/>
