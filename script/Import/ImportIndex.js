@@ -1,13 +1,26 @@
 {
     var locations = {
         Libraries: "storage/lib/",
+        Constants: "script/Constants/",
+        View: "script/View/",
+        HTMLView: "script/HTMLView/",
         Main: "script/Main/",
     };
     var scripts = {
         Libraries: [
-            "phaser",
             "jquery-1.10.2.min",
             "underscore",
+        ],
+        View: [
+            "HTMLView",
+        ],
+        Constants: [
+            "Constants",
+            "index.const",
+        ],
+        HTMLView: [
+            "HTMLLogo",
+            "ModeButton",
         ],
         Main: [
             "index",

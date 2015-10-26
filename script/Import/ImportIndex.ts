@@ -1,14 +1,30 @@
 ﻿{
     let locations = {
         Libraries: "storage/lib/",
+        Constants: "script/Constants/",
+        View: "script/View/",
+        HTMLView: "script/HTMLView/",
         Main: "script/Main/",
     };
 
     let scripts = {
         Libraries: [
-            "phaser",
             "jquery-1.10.2.min",
             "underscore",
+        ],
+
+        View: [
+            "HTMLView",
+        ],
+
+        Constants: [
+            "Constants",
+            "index.const",
+        ],
+
+        HTMLView: [
+            "HTMLLogo",
+            "ModeButton",
         ],
 
         Main: [
@@ -16,8 +32,8 @@
         ],
     };
 
-    for (var locationName in locations) {
+    for (let locationName in locations) {
         let location = locations[locationName];
-        for (var script of scripts[locationName]) document.write(`<script src=${location + script + ".js"}></script>`);
+        for (let script of scripts[locationName]) document.write(`<script src=${location + script + ".js"}></script>`);
     }
 }

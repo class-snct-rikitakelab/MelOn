@@ -16,7 +16,7 @@ var Logo = (function (_super) {
         this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.ajax(); });
     };
     Logo.prototype.ajax = function () {
-        // We can only read JSON file in local !!
+        // We can read only JSON file in local !!
         // $.getJSON("storage/lesson/json.json", (data) => { console.log(data["A3"]) });
         this.game.sound.play("MelOn");
     };

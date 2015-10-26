@@ -11,7 +11,7 @@ class Logo extends DOMView {
     }
 
     private ajax() {
-        // We can only read JSON file in local !!
+        // We can read only JSON file in local !!
         // $.getJSON("storage/lesson/json.json", (data) => { console.log(data["A3"]) });
 
         this.game.sound.play("MelOn");

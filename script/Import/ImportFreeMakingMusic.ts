@@ -95,8 +95,8 @@
         ],
     }
 
-    for (var locationName in locations) {
+    for (let locationName in locations) {
         let location = locations[locationName];
-        for (var script of scripts[locationName]) document.write(`<script src=${location + script + ".js"}></script>`);
+        for (let script of scripts[locationName]) document.write(`<script src=${location + script + ".js"}></script>`);
     }
 }
