@@ -22,6 +22,7 @@
         ],
         HTMLView: [
             "HTMLLogo",
+            "JSONList",
         ],
         Main: [
             "LessonList",
