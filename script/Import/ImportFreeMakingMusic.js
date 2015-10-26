@@ -18,6 +18,7 @@
         Libraries: [
             "phaser",
             "jquery-1.10.2.min",
+            "jquery-uvg",
             "underscore",
         ],
         Asset: [

@@ -32,18 +32,19 @@ namespace INDEX {
 
     export class FreeMakingMusic extends ModeButton implements HTMLView {
         selector = "#freeMakingMusic";
-        destination = "FreeMakingMusic.html";
+        destination = "FreeMakingMusic.html?lang=Finnish";
         shadowColor = "orange";
         images: { [name: string]: string } = {
             image: "storage/assets/image/modeButton/freeMakingMusicFinnish.png",
         };
     }
 
-    export class Practice extends ModeButton implements HTMLView {
-        selector = "#practice";
+    export class Lesson extends ModeButton implements HTMLView {
+        selector = "#lesson";
+        destination = "LessonList.html?lang=Finnish";
         shadowColor = "lawngreen";
         images: { [name: string]: string } = {
-            image: "storage/assets/image/modeButton/practiceFinnish.png",
+            image: "storage/assets/image/modeButton/lessonFinnish.png",
         };
     }
 }

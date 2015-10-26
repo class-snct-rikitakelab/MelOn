@@ -1,13 +1,12 @@
-/// <reference path="../FreeMakingMusic.ref.ts"/>
+// We have to consider order inside each class due to JavaScript codes.
+// By using clesses in namespace, we can set inheritable constants!
+// And by using interface, it will be safe for the parent class of child classes.
+// If we don't use export, we can hide the classes.
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-// We have to consider order inside each class due to JavaScript codes.
-// By using clesses in namespace, we can set inheritable constants!
-// And by using interface, it will be safe for the parent class of child classes.
-// If we don't use export, we can hide the classes.
 var CONSTANTS;
 (function (CONSTANTS) {
     //
@@ -20,7 +19,8 @@ var CONSTANTS;
             this.height = new Note().height * new ScoreSheet().displayPitchNum;
             this.renderer = "score";
             this.imageAddress = "storage/assets/image/";
-            this.language = "Finnish";
+            this.languageList = ["English", "Japanese", "Finnish"];
+            this.language = _.include(this.languageList, $.getUrlVar("lang")) ? $.getUrlVar("lang") : "English";
             this.elements = [
                 "score", "pencil", "eraser", "speedDisplay", "speedDown", "speedUp", "play",
                 "save", "load", "instrumentMenu", "soundButtonContainer", "up", "down", "left", "right",

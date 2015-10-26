@@ -1,6 +1,4 @@
-﻿/// <reference path="../FreeMakingMusic.ref.ts"/>
-
-// We have to consider order inside each class due to JavaScript codes.
+﻿// We have to consider order inside each class due to JavaScript codes.
 // By using clesses in namespace, we can set inheritable constants!
 // And by using interface, it will be safe for the parent class of child classes.
 // If we don't use export, we can hide the classes.
@@ -17,7 +15,8 @@ namespace CONSTANTS {
         height: number = new Note().height * new ScoreSheet().displayPitchNum;
         renderer: string = "score";
         imageAddress: string = "storage/assets/image/";
-        language: string = "Finnish";
+        languageList: string[] = ["English", "Japanese", "Finnish"];
+        language: string =_.include(this.languageList, $.getUrlVar("lang")) ? $.getUrlVar("lang") : "English";
         elements: string[] = [
             "score", "pencil", "eraser", "speedDisplay", "speedDown", "speedUp", "play",
             "save", "load", "instrumentMenu", "soundButtonContainer", "up", "down", "left", "right",

@@ -39,7 +39,7 @@ var INDEX;
         function FreeMakingMusic() {
             _super.apply(this, arguments);
             this.selector = "#freeMakingMusic";
-            this.destination = "FreeMakingMusic.html";
+            this.destination = "FreeMakingMusic.html?lang=Finnish";
             this.shadowColor = "orange";
             this.images = {
                 image: "storage/assets/image/modeButton/freeMakingMusicFinnish.png",
@@ -48,18 +48,19 @@ var INDEX;
         return FreeMakingMusic;
     })(ModeButton);
     INDEX.FreeMakingMusic = FreeMakingMusic;
-    var Practice = (function (_super) {
-        __extends(Practice, _super);
-        function Practice() {
+    var Lesson = (function (_super) {
+        __extends(Lesson, _super);
+        function Lesson() {
             _super.apply(this, arguments);
-            this.selector = "#practice";
+            this.selector = "#lesson";
+            this.destination = "LessonList.html?lang=Finnish";
             this.shadowColor = "lawngreen";
             this.images = {
-                image: "storage/assets/image/modeButton/practiceFinnish.png",
+                image: "storage/assets/image/modeButton/lessonFinnish.png",
             };
         }
-        return Practice;
+        return Lesson;
     })(ModeButton);
-    INDEX.Practice = Practice;
+    INDEX.Lesson = Lesson;
 })(INDEX || (INDEX = {}));
 //# sourceMappingURL=index.const.js.map
