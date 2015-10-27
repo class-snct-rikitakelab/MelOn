@@ -58,7 +58,7 @@ class ScrollButton extends DOMView {
     }
 
     private rightestPosition(): number {
-        var music: { [pitch: string]: NoteData[] } = this.music.getMusic;
+        var music: MusicData = this.music.getMusic;
         var x: number = 0;
         _.each(music, (line: NoteData[]) => {
             _.each(line, (note: NoteData) => {

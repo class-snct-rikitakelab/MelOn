@@ -7,6 +7,12 @@ namespace LESSON_LIST {
         language: string = _.include(this.languageList, $.getUrlVar("lang")) ? $.getUrlVar("lang") : "English";
     }
 
+    export var listUrls = {
+        English: "storage/lesson/english/lessonList.en.json",
+        Japanese: "storage/lesson/japanese/lessonList.ja.json",
+        Finnish: "storage/lesson/finnish/lessonList.fi.json",
+    }
+
     export class choose {
         script = {
             English: "Choose a lesson!",
@@ -20,11 +26,7 @@ namespace LESSON_LIST {
     export class JSONList implements HTMLView {
         selector = "#lessonList";
         language = new Language().language;
-        listUrls = {
-            English: "storage/lesson/english/lessonListEnglish.json",
-            Japanese: "storage/lesson/japanese/lessonListJapanese.json",
-            Finnish: "storage/lesson/finnish/lessonListFinnish.json",
-        };
+        listUrl = listUrls[this.language];
         childClasses = {
             header: "header",
             title: "title",
@@ -40,7 +42,7 @@ namespace LESSON_LIST {
             Japanese: "せつめい",
             Finnish: "Kuvaus",
         };
-        practiceModeUrl: string = `FreeMakingMusic.html?lang=${this.language}&lesson=`;
+        practiceModeUrl: string = `Lesson.html?lang=${this.language}&lesson=`;
         images: { [name: string]: string } = {};
         audios: { [name: string]: string } = {};
     }

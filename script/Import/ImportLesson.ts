@@ -30,6 +30,8 @@
 
         Constants: [
             "Constants",
+            "LessonList.const",
+            "Lesson.const",
         ],
 
         Model: [
@@ -42,6 +44,8 @@
             "MusicPlayer",
             "Instrument",
             "Speed",
+            "LessonData",
+            "Achievement",
         ],
 
         View: [
@@ -66,11 +70,13 @@
             "SoundButtonContainer",
             "SoundButton",
             "ScrollButton",
+            "NextButton",
         ],
 
         GroupView: [
             "ScoreSheet",
             "Notes",
+            "TargetNotes",
         ],
 
         SpriteView: [
@@ -89,10 +95,12 @@
 
         MelOn: [
             "MelOn",
+            "LessonMelOn",
         ],
 
         Main: [
             "FreeMakingMusic",
+            "Lesson",
         ],
     }
 

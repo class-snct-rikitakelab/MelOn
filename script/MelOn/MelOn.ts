@@ -2,32 +2,32 @@
 
 class MelOn extends Phaser.State {
     // ========== Model ==========
-    private music: Music = new Music(new CONSTANTS.Music);
-    private stationery: Stationery = new Stationery(new CONSTANTS.Stationery);
-    private musicPlayer: MusicPlayer = new MusicPlayer(new CONSTANTS.MusicPlayer);
-    private instrument: Instrument = new Instrument(new CONSTANTS.Instrument);
-    private speed: Speed = new Speed(new CONSTANTS.Speed);
+    protected music: Music = new Music(new CONSTANTS.Music);
+    protected stationery: Stationery = new Stationery(new CONSTANTS.Stationery);
+    protected musicPlayer: MusicPlayer = new MusicPlayer(new CONSTANTS.MusicPlayer);
+    protected instrument: Instrument = new Instrument(new CONSTANTS.Instrument);
+    protected speed: Speed = new Speed(new CONSTANTS.Speed);
 
     // ========== View ==========
-    private noteOverlapManager: NoteOverlapManager; // View Manager is middle of Model and View ?
-    private stationeryToggler: StationeryToggler;
-    private pencil: StationeryButton;
-    private eraser: StationeryButton;
-    private speedDisplay: SpeedDisplay;
-    private speedUpButton: SpeedButton;
-    private speedDownButton: SpeedButton;
-    private playButton: PlayButton;
-    private saveButton: SaveButton;
-    private loadButton: LoadButton;
-    private instrumentMenu: InstrumentMenu;
-    private soundButtonContainer: SoundButtonContainer;
-    private upButton: ScrollButton;
-    private downButton: ScrollButton;
-    private rightButton: ScrollButton;
-    private leftButton: ScrollButton;
-    private scoreSheet: ScoreSheet;
-    private notes: Notes;
-    private musicPlayBar: MusicPlayBar;
+    protected noteOverlapManager: NoteOverlapManager; // View Manager is middle of Model and View ?
+    protected stationeryToggler: StationeryToggler;
+    protected pencil: StationeryButton;
+    protected eraser: StationeryButton;
+    protected speedDisplay: SpeedDisplay;
+    protected speedUpButton: SpeedButton;
+    protected speedDownButton: SpeedButton;
+    protected playButton: PlayButton;
+    protected saveButton: SaveButton;
+    protected loadButton: LoadButton;
+    protected instrumentMenu: InstrumentMenu;
+    protected soundButtonContainer: SoundButtonContainer;
+    protected upButton: ScrollButton;
+    protected downButton: ScrollButton;
+    protected rightButton: ScrollButton;
+    protected leftButton: ScrollButton;
+    protected scoreSheet: ScoreSheet;
+    protected notes: Notes;
+    protected musicPlayBar: MusicPlayBar;
     
     create() {
         this.noteOverlapManager = new NoteOverlapManager(this.game);

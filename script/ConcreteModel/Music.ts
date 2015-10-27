@@ -7,8 +7,10 @@ interface NoteData {
     extension: number;
 }
 
+interface MusicData { [pitch: string]: NoteData[] }
+
 class Music extends Model {
-    private music: { [pitch: string]: NoteData[] };
+    private music: MusicData;
     private selectedNote: NoteData = null;
 
     onSelect: Phaser.Signal = new Phaser.Signal();
@@ -32,7 +34,7 @@ class Music extends Model {
         return this.selectedNote;
     }
 
-    get getMusic(): { [pitch: string]: NoteData[] } {
+    get getMusic(): MusicData {
         return this.music;
     }
 

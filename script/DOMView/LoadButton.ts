@@ -27,13 +27,13 @@ class LoadButton extends DOMView {
 
     private load() {
         if (!confirm("The music you are making will be disposed. Is it OK?")) return;
-        var score: { [pitch: string]: NoteData[] } = JSON.parse(localStorage.getItem("music"));
+        var score: MusicData = JSON.parse(localStorage.getItem("music"));
         if (!score) { alert("Music not Found!"); return; }
         this.setMusic(score);
         this.game.sound.play("load");
     }
 
-    private setMusic(score: { [pitch: string]: NoteData[] }) {
+    private setMusic(score: MusicData) {
         this.music.eraseAll();
         _.each(score, (line: NoteData[]) => { _.each(line, (note: NoteData) => { this.createNote(note); }); });
     }

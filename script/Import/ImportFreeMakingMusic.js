@@ -79,7 +79,7 @@
             "MelOn",
         ],
         Main: [
-            "FreeMakingMusicMode",
+            "FreeMakingMusic",
         ],
     };
     for (var locationName in locations) {

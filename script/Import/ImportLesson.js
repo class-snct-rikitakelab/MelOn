@@ -1,5 +1,5 @@
-﻿{
-    let locations = {
+{
+    var locations = {
         Libraries: "storage/lib/",
         Asset: "script/Asset/",
         Constants: "script/Constants/",
@@ -13,44 +13,41 @@
         SpriteView: "script/SpriteView/",
         MelOn: "script/MelOn/",
         Main: "script/Main/",
-    }
-
-    let scripts = {
+    };
+    var scripts = {
         Libraries: [
             "phaser",
             "jquery-1.10.2.min",
             "jquery-uvg",
             "underscore",
         ],
-
         Asset: [
             "AssetLoader",
             "MelOnAssets",
         ],
-
         Constants: [
             "Constants",
+            "LessonList.const",
+            "Lesson.const",
         ],
-
         Model: [
             "Model"
         ],
-
         ConcreteModel: [
             "Music",
             "Stationery",
             "MusicPlayer",
             "Instrument",
             "Speed",
+            "LessonData",
+            "Achievement",
         ],
-
         View: [
             "DOMView",
             "GroupView",
             "SpriteView",
             "ContactManager",
         ],
-
         DOMView: [
             "Logo",
             "StationeryToggler",
@@ -66,38 +63,39 @@
             "SoundButtonContainer",
             "SoundButton",
             "ScrollButton",
+            "NextButton",
         ],
-
         GroupView: [
             "ScoreSheet",
             "Notes",
+            "TargetNotes",
         ],
-
         SpriteView: [
             "MeasureSheet",
             "Note",
             "MusicPlayBar",
         ],
-
         Boot: [
             "Boot",
         ],
-
         Preloader: [
             "Preloader",
         ],
-
         MelOn: [
             "MelOn",
+            "LessonMelOn",
         ],
-
         Main: [
             "FreeMakingMusic",
+            "Lesson",
         ],
-    }
-
-    for (let locationName in locations) {
-        let location = locations[locationName];
-        for (let script of scripts[locationName]) document.write(`<script src=${location + script + ".js"}></script>`);
+    };
+    for (var locationName in locations) {
+        var location_1 = locations[locationName];
+        for (var _i = 0, _a = scripts[locationName]; _i < _a.length; _i++) {
+            var script = _a[_i];
+            document.write("<script src=" + (location_1 + script + ".js") + "></script>");
+        }
     }
 }
+//# sourceMappingURL=ImportLesson.js.map

@@ -26,14 +26,14 @@ class AssetLoader {
     protected preloadSpriteSheets: { [dir: string]: [string, string, number, number][] };
     protected preloadAudios: { [dir: string]: [string, string[]][] };
 
-    public load(loader: Phaser.Loader) {
+    load(loader: Phaser.Loader) {
         loader.baseURL = this.baseURL + "/";
         this.loadImages(loader, this.images, this.addresses.images);
         this.loadSpriteSheets(loader, this.spriteSheets, this.addresses.spriteSheets);
         this.loadAudios(loader, this.audios, this.addresses.audios);
     }
 
-    public preload(loader: Phaser.Loader) {
+     preload(loader: Phaser.Loader) {
         loader.baseURL = this.baseURL + "/";
         this.loadImages(loader, this.preloadImages, this.addresses.preloadImages);
         this.loadSpriteSheets(loader, this.preloadSpriteSheets, this.addresses.preloadSpriteSheets);

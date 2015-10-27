@@ -4,7 +4,7 @@ class JSONList extends HTMLView{
     constructor(private constants: LESSON_LIST.JSONList) {
         super(constants);
         this.makeHeader();
-        $.getJSON(this.constants.listUrls[this.constants.language], (data) => { this.makeList(data); });
+        $.getJSON(this.constants.listUrl, (data) => { this.makeList(data); });
     }
 
     private makeHeader() {
@@ -15,6 +15,7 @@ class JSONList extends HTMLView{
     }
 
     private makeRow(lesson: Object, title: string) {
+        if (!lesson["public"]) return;
         var row = $(`<tr></tr>`);
         row.append($(`<td><a href=${this.constants.practiceModeUrl + title}>${title}</a></td>`)
             .addClass(this.constants.childClasses["title"]));

@@ -9,6 +9,11 @@ var LESSON_LIST;
         return Language;
     })();
     LESSON_LIST.Language = Language;
+    LESSON_LIST.listUrls = {
+        English: "storage/lesson/english/lessonList.en.json",
+        Japanese: "storage/lesson/japanese/lessonList.ja.json",
+        Finnish: "storage/lesson/finnish/lessonList.fi.json",
+    };
     var choose = (function () {
         function choose() {
             this.script = {
@@ -24,11 +29,7 @@ var LESSON_LIST;
         function JSONList() {
             this.selector = "#lessonList";
             this.language = new Language().language;
-            this.listUrls = {
-                English: "storage/lesson/english/lessonListEnglish.json",
-                Japanese: "storage/lesson/japanese/lessonListJapanese.json",
-                Finnish: "storage/lesson/finnish/lessonListFinnish.json",
-            };
+            this.listUrl = LESSON_LIST.listUrls[this.language];
             this.childClasses = {
                 header: "header",
                 title: "title",
@@ -44,7 +45,7 @@ var LESSON_LIST;
                 Japanese: "せつめい",
                 Finnish: "Kuvaus",
             };
-            this.practiceModeUrl = "FreeMakingMusic.html?lang=" + this.language + "&lesson=";
+            this.practiceModeUrl = "Lesson.html?lang=" + this.language + "&lesson=";
             this.images = {};
             this.audios = {};
         }
