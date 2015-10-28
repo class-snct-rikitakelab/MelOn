@@ -16,6 +16,7 @@ var LessonData = (function (_super) {
     }
     LessonData.prototype.getJSON = function () {
         var _this = this;
+        $.ajaxSetup({ async: false });
         $.getJSON(this.constants.listUrl, function (list, status) {
             if (status !== "success")
                 return false;
@@ -34,6 +35,7 @@ var LessonData = (function (_super) {
             }
         });
         return true;
+        $.ajaxSetup({ async: true });
     };
     LessonData.prototype.getLessonData = function (data) {
         this.title = data["title"];

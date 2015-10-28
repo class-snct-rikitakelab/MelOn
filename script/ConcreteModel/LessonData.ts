@@ -20,6 +20,7 @@ class LessonData extends Model {
     }
 
     private getJSON(): boolean {
+        $.ajaxSetup({ async: false });
         $.getJSON(this.constants.listUrl, (list, status) => {
             if (status !== "success") return false;
             $.getJSON(list[$.getUrlVar("lesson")]["url"], (data, statud) => {
@@ -35,6 +36,7 @@ class LessonData extends Model {
             }
         });
         return true;
+        $.ajaxSetup({ async: true });
     }
 
     private getLessonData(data: Object) {
