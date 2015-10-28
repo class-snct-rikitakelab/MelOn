@@ -8,9 +8,9 @@ class JSONList extends HTMLView{
     }
 
     private getJSON() {
-        // $.ajaxSetup({ async: false });
+        $.ajaxSetup({ async: false });
         $.getJSON(this.constants.listUrl, (data) => { this.makeList(data); });
-        // $.ajaxSetup({ async: true });
+        $.ajaxSetup({ async: true });
     }
 
     private makeHeader() {
