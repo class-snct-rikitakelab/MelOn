@@ -24,8 +24,8 @@ var LESSON;
             this.measureWidth = new ScoreData().width;
             this.noteHeight = new ScoreData().noteHeight;
             this.pitch = new ScoreData().pitch;
-            this.opacity = 0.3;
-            this.color = 0x0000ff;
+            this.opacity = 1.0;
+            this.color = 0x7777ff;
         }
         return TargetNotes;
     })();

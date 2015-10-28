@@ -22,8 +22,8 @@ namespace LESSON {
         measureWidth: number = new ScoreData().width;
         noteHeight: number = new ScoreData().noteHeight;
         pitch: string[] = new ScoreData().pitch;
-        opacity: number = 0.3;
-        color = 0x0000ff;
+        opacity: number = 1.0;
+        color = 0x7777ff;
     }
 
     export class Blanks implements GroupView {

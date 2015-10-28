@@ -25,6 +25,7 @@ class TargetNotes extends GroupView {
         var instance: Phaser.Sprite = this.create(x, y, this.constants.images["note"]);
         instance.width = unitWidth * (note.extension + 1);
         instance.height = this.constants.noteHeight;
+        instance.blendMode = PIXI.blendModes.ADD;
         instance.alpha = this.constants.opacity;
         instance.tint = this.constants.color;
     }
