@@ -10,6 +10,7 @@ var Lecture = (function (_super) {
         _super.call(this, game, constants, models);
         this.constants = constants;
         this.lessonData = this.models["lessonData"];
+        console.log(this.lessonData);
         this.setTitle(this.lessonData.getTitle);
         this.setLecture(this.lessonData.getLecture);
     }

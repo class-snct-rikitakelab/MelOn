@@ -13,15 +13,28 @@ class LessonData extends Model {
 
     constructor(private constants: LESSON.LessonData) {
         super(constants);
-        this.getJSON();
+        if (!this.getJSON()) {
+            alert("Invalied File Data!");
+            document.location = <any>this.constants.defaultUrl;
+        }
     }
 
-    private getJSON() {
-        $.getJSON(this.constants.listUrl, (list) => {
-            $.getJSON(list[$.getUrlVar("lesson")]["url"], (data) => { this.getLessonData(data); });
-            if ($.getUrlVar("inherit"))
-                $.getJSON(list[$.getUrlVar("inherit")]["url"], (data) => { this.inherit = data["music"]; });
+    private getJSON(): boolean {
+        $.getJSON(this.constants.listUrl, (list, status) => {
+            if (status !== "success") return false;
+            $.getJSON(list[$.getUrlVar("lesson")]["url"], (data, statud) => {
+                if (status !== "success") return false;
+                console.log(data, status);
+                this.getLessonData(data);
+            });
+            if ($.getUrlVar("inherit")) {
+                $.getJSON(list[$.getUrlVar("inherit")]["url"], (data, status) => {
+                    if (status !== "success") return false;
+                    this.inherit = data["music"];
+                });
+            }
         });
+        return true;
     }
 
     private getLessonData(data: Object) {

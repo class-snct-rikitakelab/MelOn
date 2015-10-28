@@ -9,15 +9,31 @@ var LessonData = (function (_super) {
     function LessonData(constants) {
         _super.call(this, constants);
         this.constants = constants;
-        this.getJSON();
+        if (!this.getJSON()) {
+            alert("Invalied File Data!");
+            document.location = this.constants.defaultUrl;
+        }
     }
     LessonData.prototype.getJSON = function () {
         var _this = this;
-        $.getJSON(this.constants.listUrl, function (list) {
-            $.getJSON(list[$.getUrlVar("lesson")]["url"], function (data) { _this.getLessonData(data); });
-            if ($.getUrlVar("inherit"))
-                $.getJSON(list[$.getUrlVar("inherit")]["url"], function (data) { _this.inherit = data["music"]; });
+        $.getJSON(this.constants.listUrl, function (list, status) {
+            if (status !== "success")
+                return false;
+            $.getJSON(list[$.getUrlVar("lesson")]["url"], function (data, statud) {
+                if (status !== "success")
+                    return false;
+                console.log(data, status);
+                _this.getLessonData(data);
+            });
+            if ($.getUrlVar("inherit")) {
+                $.getJSON(list[$.getUrlVar("inherit")]["url"], function (data, status) {
+                    if (status !== "success")
+                        return false;
+                    _this.inherit = data["music"];
+                });
+            }
         });
+        return true;
     };
     LessonData.prototype.getLessonData = function (data) {
         this.title = data["title"];

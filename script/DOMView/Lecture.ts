@@ -6,6 +6,7 @@ class Lecture extends DOMView {
 
     constructor(game: Phaser.Game, private constants: LESSON.Lecture, models: Object) {
         super(game, constants, models);
+        console.log(this.lessonData);
         this.setTitle(this.lessonData.getTitle);
         this.setLecture(this.lessonData.getLecture);
     }
