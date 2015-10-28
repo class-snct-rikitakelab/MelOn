@@ -4,13 +4,12 @@ class JSONList extends HTMLView{
     constructor(private constants: LESSON_LIST.JSONList) {
         super(constants);
         this.makeHeader();
-        this.getJSON();
+        $.getJSON(this.constants.listUrl, (data) => { this.makeList(data); });
     }
 
     private getJSON() {
-        $.ajaxSetup({ async: false });
-        $.getJSON(this.constants.listUrl, (data) => { this.makeList(data); });
-        $.ajaxSetup({ async: true });
+        // $.ajaxSetup({ async: false });
+        // $.ajaxSetup({ async: true });
     }
 
     private makeHeader() {
