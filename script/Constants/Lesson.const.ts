@@ -14,6 +14,7 @@ namespace LESSON {
     }
 
     export class Achievement implements Model {
+        pitch = new ScoreData().pitch;
     }
 
     export class TargetNotes implements GroupView {
@@ -21,8 +22,16 @@ namespace LESSON {
         measureWidth: number = new ScoreData().width;
         noteHeight: number = new ScoreData().noteHeight;
         pitch: string[] = new ScoreData().pitch;
-        opacity: number = 0.2;
+        opacity: number = 0.3;
         color = 0x0000ff;
+    }
+
+    export class Blanks implements GroupView {
+        images: { [name: string]: string } = { blank: "blank", };
+        pitch: string[] = new ScoreData().pitch;
+        measureWidth: number = new ScoreData().width;
+        height: number = new ScoreData().noteHeight * this.pitch.length;
+        opacity: number = 0.3;
     }
 
     export class NextButton implements DOMView {

@@ -33,7 +33,7 @@ var TargetNotes = (function (_super) {
         instance.tint = this.constants.color;
     };
     TargetNotes.prototype.checkMatch = function () {
-        this.achievement.checkMusic(this.lessonData.getTargetMusic, this.music.getMusic);
+        this.achievement.checkTrace(this.lessonData.getTargetMusic, this.music.getMusic);
     };
     return TargetNotes;
 })(GroupView);

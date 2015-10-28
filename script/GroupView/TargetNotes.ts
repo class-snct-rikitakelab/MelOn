@@ -30,6 +30,6 @@ class TargetNotes extends GroupView {
     }
 
     private checkMatch() {
-        this.achievement.checkMusic(this.lessonData.getTargetMusic, this.music.getMusic);
+        this.achievement.checkTrace(this.lessonData.getTargetMusic, this.music.getMusic);
     }
 }

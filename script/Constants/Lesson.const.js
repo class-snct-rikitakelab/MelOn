@@ -13,6 +13,7 @@ var LESSON;
     LESSON.LessonData = LessonData;
     var Achievement = (function () {
         function Achievement() {
+            this.pitch = new ScoreData().pitch;
         }
         return Achievement;
     })();
@@ -23,12 +24,23 @@ var LESSON;
             this.measureWidth = new ScoreData().width;
             this.noteHeight = new ScoreData().noteHeight;
             this.pitch = new ScoreData().pitch;
-            this.opacity = 0.2;
+            this.opacity = 0.3;
             this.color = 0x0000ff;
         }
         return TargetNotes;
     })();
     LESSON.TargetNotes = TargetNotes;
+    var Blanks = (function () {
+        function Blanks() {
+            this.images = { blank: "blank", };
+            this.pitch = new ScoreData().pitch;
+            this.measureWidth = new ScoreData().width;
+            this.height = new ScoreData().noteHeight * this.pitch.length;
+            this.opacity = 0.3;
+        }
+        return Blanks;
+    })();
+    LESSON.Blanks = Blanks;
     var NextButton = (function () {
         function NextButton() {
             this.selector = "#nextButton";

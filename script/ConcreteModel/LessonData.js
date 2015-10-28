@@ -21,25 +21,35 @@ var LessonData = (function (_super) {
         this.target = data["music"];
         this.mode = data["mode"];
         this.nextUrl = data["next"] ? "Lesson.html?lang=" + LESSON.language + "&lesson=" + data["next"] : this.constants.defaultUrl;
+        if (this.mode === "filling")
+            this.getFillingLessonData(data);
+    };
+    LessonData.prototype.getFillingLessonData = function (data) {
+        this.unitNote = data["unitNote"];
+        this.blanks = data["blank"];
     };
     Object.defineProperty(LessonData.prototype, "getMode", {
-        get: function () {
-            return this.mode;
-        },
+        get: function () { return this.mode; },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(LessonData.prototype, "getTargetMusic", {
-        get: function () {
-            return this.target;
-        },
+        get: function () { return this.target; },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(LessonData.prototype, "getNextUrl", {
-        get: function () {
-            return this.nextUrl;
-        },
+        get: function () { return this.nextUrl; },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(LessonData.prototype, "getUnitNote", {
+        get: function () { return this.unitNote; },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(LessonData.prototype, "getBlanks", {
+        get: function () { return this.blanks; },
         enumerable: true,
         configurable: true
     });

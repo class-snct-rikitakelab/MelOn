@@ -77,6 +77,7 @@
             "ScoreSheet",
             "Notes",
             "TargetNotes",
+            "Blanks",
         ],
 
         SpriteView: [

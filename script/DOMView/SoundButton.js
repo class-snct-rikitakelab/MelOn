@@ -26,18 +26,25 @@ var SoundButton = (function (_super) {
         var _this = this;
         if (!this.game.device.touch)
             this.setSelectEffect();
-        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.ring(); });
+        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.start(); })
+            .on(this.game.device.touch ? "touchend" : "mouseup", function () { _this.end(); })
+            .on("mouseleave", function () { _this.end(); });
     };
     SoundButton.prototype.setSelectEffect = function () {
         var _this = this;
         this.$.on("mouseenter", function () { _this.$.css("box-shadow", "0 0 10px 3px skyblue"); })
             .on("mouseleave", function () { _this.$.css("box-shadow", "none"); });
     };
-    SoundButton.prototype.ring = function () {
+    SoundButton.prototype.start = function () {
         if (this.sound && this.sound.isPlaying)
             this.sound.fadeOut(this.constants.ringDuration);
         this.sound = this.game.sound.play(this.instrument.getInstrument + this.pitch);
-        this.sound.fadeOut(this.constants.ringDuration);
+        this.$.css("background-color", "orange");
+    };
+    SoundButton.prototype.end = function () {
+        if (this.sound)
+            this.sound.fadeOut(this.constants.ringDuration);
+        this.$.css("background-color", "limegreen");
     };
     return SoundButton;
 })(DOMView);

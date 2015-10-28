@@ -44,6 +44,7 @@ var Note = (function (_super) {
         this.music.onRefresh.add(function () { _this.refresh(); });
         this.music.onMove.add(function () { _this.movePosition(); });
         this.music.onChangeExtension.add(function () { _this.changeExtension(); });
+        this.musicPlayer.onStop.add(function () { _this.offOverlap(); });
     };
     Object.defineProperty(Note.prototype, "getNoteData", {
         get: function () {

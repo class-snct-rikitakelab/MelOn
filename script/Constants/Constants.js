@@ -122,8 +122,8 @@ var CONSTANTS;
             this.images = {
                 note: "note",
             };
-            this.ringDuration = 700; // ms
-            this.fadeDuration = 100; // ms
+            this.ringDuration = 500; // ms
+            this.fadeDuration = 200; // ms
             this.doubleClkTime = 200; // ms
         }
         return Note;
@@ -153,8 +153,9 @@ var CONSTANTS;
             _super.apply(this, arguments);
             this.width = 10;
             this.height = new MeasureSheet().height;
-            this.beatWidth = new MeasureSheet().width / 4;
-            this.x = 0;
+            this.measureWidth = new MeasureSheet().width;
+            this.beatWidth = this.measureWidth / 4;
+            this.x = -this.width;
             this.y = 0;
             this.initImage = "bar";
             this.beatSound = "tamb";
@@ -342,7 +343,7 @@ var CONSTANTS;
             this.selector = "soundButton";
             this.border = 2;
             this.pitchTop = new MeasureSheet().noteHeight;
-            this.ringDuration = new Note().ringDuration;
+            this.ringDuration = 200;
             this.pitch = new Music().pitch;
             this.language = new MelOn().language;
             this.pitchText = {

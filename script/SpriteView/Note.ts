@@ -41,6 +41,7 @@ class Note extends SpriteView {
         this.music.onRefresh.add(() => { this.refresh(); });
         this.music.onMove.add(() => { this.movePosition(); });
         this.music.onChangeExtension.add(() => { this.changeExtension(); });
+        this.musicPlayer.onStop.add(() => { this.offOverlap(); });
     }
 
     get getNoteData(): NoteData {

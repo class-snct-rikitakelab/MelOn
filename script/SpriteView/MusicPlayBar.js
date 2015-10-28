@@ -10,11 +10,14 @@ var MusicPlayBar = (function (_super) {
         var _this = this;
         _super.call(this, game, constants, models);
         this.constants = constants;
+        this.music = this.models["music"];
         this.musicPlayer = this.models["musicPlayer"];
         this.instrument = this.models["instrument"];
         this.speed = this.models["speed"];
         this.noteOverlapManager = this.models["noteOverlapManager"];
+        this.stopPosition = 0;
         this.beatNum = 0;
+        this.music.onRefresh.add(function () { _this.updateStopPosition(); });
         this.musicPlayer.onStop.add(function () { _this.musicStop(); });
         this.musicPlayer.onPlay.add(function () { _this.musicPlay(); });
         this.speed.onChangeSpeed.add(function () { _this.changeSpeed(); });
@@ -24,13 +27,26 @@ var MusicPlayBar = (function (_super) {
     MusicPlayBar.prototype.setPhysical = function () {
         this.game.physics.arcade.enable(this);
     };
+    MusicPlayBar.prototype.updateStopPosition = function () {
+        var _this = this;
+        var music = this.music.getMusic;
+        var x = 0;
+        _.each(music, function (line) {
+            _.each(line, function (note) {
+                var endPosition = (_this.constants.measureWidth / note.unitNote) * (note.start + note.extension + 1);
+                if (endPosition > x)
+                    x = endPosition;
+            });
+        });
+        this.stopPosition = x;
+    };
     MusicPlayBar.prototype.musicStop = function () {
         this.game.camera.follow(null);
         this.body.velocity.x = 0;
     };
     MusicPlayBar.prototype.musicPlay = function () {
         this.changeSpeed();
-        this.x = 0;
+        this.x = -this.constants.width;
         this.beatNum = 0;
     };
     MusicPlayBar.prototype.changeSpeed = function () {
@@ -53,11 +69,11 @@ var MusicPlayBar = (function (_super) {
             _.times(pastBeat, function (n) { _this.ring(); _this.beatNum++; });
     };
     MusicPlayBar.prototype.update = function () {
-        if (this.x >= this.game.world.width)
-            this.musicPlayer.stop();
         if (this.musicPlayer.isPlaying) {
             this.beat();
             this.game.camera.focusOnXY(this.x, this.game.camera.y + this.game.camera.view.halfHeight);
+            if (this.x > this.stopPosition)
+                this.musicPlayer.stop();
         }
     };
     return MusicPlayBar;

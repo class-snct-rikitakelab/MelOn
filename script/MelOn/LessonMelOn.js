@@ -10,14 +10,14 @@ var LessonMelOn = (function (_super) {
         _super.apply(this, arguments);
         // ========== Model ==========
         this.lessonData = new LessonData(new LESSON.LessonData);
-        this.achievement = new Achievement(new LESSON.Achievement);
     }
     LessonMelOn.prototype.create = function () {
+        this.achievement = new Achievement(new LESSON.Achievement, this.lessonData.getMode);
         _super.prototype.create.call(this);
+        this.targetNotes = new TargetNotes(this.game, new LESSON.TargetNotes, { music: this.music, lessonData: this.lessonData, achievement: this.achievement });
+        this.nextButton = new NextButton(this.game, new LESSON.NextButton, { lessonData: this.lessonData, achievement: this.achievement, musicPlayer: this.musicPlayer });
         switch (this.lessonData.getMode) {
-            case "tracing":
-                this.tracing();
-                break;
+            case "tracing": break;
             case "filling":
                 this.filling();
                 break;
@@ -26,14 +26,8 @@ var LessonMelOn = (function (_super) {
                 break;
         }
     };
-    LessonMelOn.prototype.tracing = function () {
-        this.targetNotes = new TargetNotes(this.game, new LESSON.TargetNotes, { music: this.music, lessonData: this.lessonData, achievement: this.achievement });
-        this.nextButton = new NextButton(this.game, new LESSON.NextButton, { lessonData: this.lessonData, achievement: this.achievement, musicPlayer: this.musicPlayer });
-    };
     LessonMelOn.prototype.filling = function () {
-        this.targetNotes = new TargetNotes(this.game, new LESSON.TargetNotes, { music: this.music, lessonData: this.lessonData, achievement: this.achievement });
-        this.blanks;
-        this.nextButton = new NextButton(this.game, new LESSON.NextButton, { lessonData: this.lessonData, achievement: this.achievement, musicPlayer: this.musicPlayer });
+        this.blanks = new Blanks(this.game, new LESSON.Blanks, { music: this.music, lessonData: this.lessonData, achievement: this.achievement });
     };
     LessonMelOn.prototype.error = function () {
         alert("There are some errors in this lesson file!");

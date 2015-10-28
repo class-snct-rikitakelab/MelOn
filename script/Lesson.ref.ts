@@ -10,6 +10,7 @@
 
 // GroupView
 /// <reference path="GroupView/TargetNotes.ts"/>
+/// <reference path="GroupView/Blanks.ts"/>
 
 // DOMView
 /// <reference path="DOMView/NextButton.ts"/>

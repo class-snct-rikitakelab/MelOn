@@ -22,7 +22,9 @@ class SoundButton extends DOMView {
 
     private setEvent() {
         if (!this.game.device.touch) this.setSelectEffect();
-        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", () => { this.ring(); });
+        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", () => { this.start(); })
+            .on(this.game.device.touch ? "touchend" : "mouseup", () => { this.end(); })
+            .on("mouseleave", () => { this.end(); });
     }
 
     private setSelectEffect() {
@@ -30,9 +32,14 @@ class SoundButton extends DOMView {
             .on("mouseleave", () => { this.$.css("box-shadow", "none"); });
     }
 
-    private ring() {
+    private start() {
         if (this.sound && this.sound.isPlaying) this.sound.fadeOut(this.constants.ringDuration);
         this.sound = this.game.sound.play(this.instrument.getInstrument + this.pitch);
-        this.sound.fadeOut(this.constants.ringDuration);
+        this.$.css("background-color", "orange");
+    }
+
+    private end() {
+        if (this.sound) this.sound.fadeOut(this.constants.ringDuration);
+        this.$.css("background-color", "limegreen");
     }
 }

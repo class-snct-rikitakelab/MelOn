@@ -3,6 +3,7 @@
 class PlayButton extends DOMView {
 
     private musicPlayer: MusicPlayer = this.models["musicPlayer"];
+    private isOver: boolean;
 
     constructor(game: Phaser.Game, private constants: CONSTANTS.PlayButton, models: Object) {
         super(game, constants, models);
@@ -19,18 +20,23 @@ class PlayButton extends DOMView {
         this.setSelectEffect();
         this.$.on(this.game.device.touch ? "touchstart" : "mousedown", () => { this.changePlayingState(); });
         this.musicPlayer.onPlay.add(() => { this.changeImage(true); });
-        this.musicPlayer.onStop.add(() => { this.changeImage(false); this.game.sound.stopAll(); });
+        this.musicPlayer.onStop.add(() => { this.changeImage(false); });
     }
 
     private setSelectEffect() {
         this.$.on("mouseenter", () => {
             this.$.css("box-shadow", `0 0 20px 6px ${this.musicPlayer.isPlaying ? "orange" : "springgreen"}`);
             this.game.sound.play("select");
-        }).on(this.game.device.touch ? "touchend" : "mouseleave", () => { this.$.css("box-shadow", "none"); });
+            this.isOver = true;
+        }).on(this.game.device.touch ? "touchend" : "mouseleave", () => {
+            this.$.css("box-shadow", "none");
+            this.isOver = false;
+        });
     }
 
     private changeImage(playing: boolean) {
-        this.$.css("background-color", playing ? this.constants.onColor : this.constants.offColor);
+        this.$.css("background-color", playing ? this.constants.onColor : this.constants.offColor)
+            .css("box-shadow", this.isOver ? "0 0 20px 6px springgreen" : "none");
     }
 
     private changePlayingState() {

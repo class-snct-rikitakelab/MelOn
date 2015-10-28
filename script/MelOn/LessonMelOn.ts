@@ -3,31 +3,27 @@
 class LessonMelOn extends MelOn {
     // ========== Model ==========
     private lessonData: LessonData = new LessonData(new LESSON.LessonData);
-    private achievement: Achievement = new Achievement(new LESSON.Achievement);
+    private achievement: Achievement;
 
     // ========== View ==========
     private targetNotes: TargetNotes;
-    private blanks;
+    private blanks: Blanks;
     private nextButton: NextButton;
 
     create() {
+        this.achievement = new Achievement(new LESSON.Achievement, this.lessonData.getMode);
         super.create();
+        this.targetNotes = new TargetNotes(this.game, new LESSON.TargetNotes, { music: this.music, lessonData: this.lessonData, achievement: this.achievement });
+        this.nextButton = new NextButton(this.game, new LESSON.NextButton, { lessonData: this.lessonData, achievement: this.achievement, musicPlayer: this.musicPlayer });
         switch (this.lessonData.getMode) {
-            case "tracing": this.tracing(); break;
+            case "tracing": break;
             case "filling": this.filling(); break;
             default: this.error(); break;
         }
     }
 
-    tracing() {
-        this.targetNotes = new TargetNotes(this.game, new LESSON.TargetNotes, { music: this.music, lessonData: this.lessonData, achievement: this.achievement });
-        this.nextButton = new NextButton(this.game, new LESSON.NextButton, { lessonData: this.lessonData, achievement: this.achievement, musicPlayer: this.musicPlayer });
-    }
-
     filling() {
-        this.targetNotes = new TargetNotes(this.game, new LESSON.TargetNotes, { music: this.music, lessonData: this.lessonData, achievement: this.achievement });
-        this.blanks;
-        this.nextButton = new NextButton(this.game, new LESSON.NextButton, { lessonData: this.lessonData, achievement: this.achievement, musicPlayer: this.musicPlayer });
+        this.blanks = new Blanks(this.game, new LESSON.Blanks, { music: this.music, lessonData: this.lessonData, achievement: this.achievement });
     }
 
     error() {

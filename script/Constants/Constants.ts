@@ -120,8 +120,8 @@ namespace CONSTANTS {
         images: { [name: string]: string } = {
             note: "note",
         }
-        ringDuration: number = 700;   // ms
-        fadeDuration: number = 100;   // ms
+        ringDuration: number = 500;   // ms
+        fadeDuration: number = 200;   // ms
         doubleClkTime: number = 200;  // ms
     }
 
@@ -141,8 +141,9 @@ namespace CONSTANTS {
     export class MusicPlayBar extends Music implements SpriteView {
         width = 10;
         height = new MeasureSheet().height;
-        beatWidth: number = new MeasureSheet().width / 4;
-        x = 0;
+        measureWidth = new MeasureSheet().width
+        beatWidth: number = this.measureWidth / 4;
+        x = - this.width;
         y = 0;
         initImage = "bar";
         beatSound: string = "tamb";
@@ -288,7 +289,7 @@ namespace CONSTANTS {
         selector = "soundButton";
         border: number = 2;
         pitchTop: number = new MeasureSheet().noteHeight;
-        ringDuration: number = new Note().ringDuration;
+        ringDuration: number = 200;
         pitch: string[] = new Music().pitch;
         language: string = new MelOn().language;
         pitchText = {
