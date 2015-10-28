@@ -2,12 +2,14 @@
 
 class LessonData extends Model {
     
+    private title: string;
     private target: MusicData;
     private mode: string;
     private nextUrl: string;
     private unitNote: number;
     private blanks: [number, number][];
     private inherit: MusicData;
+    private lecture: { [prop: string]: string }[];
 
     constructor(private constants: LESSON.LessonData) {
         super(constants);
@@ -23,9 +25,11 @@ class LessonData extends Model {
     }
 
     private getLessonData(data: Object) {
+        this.title = data["title"];
         this.target = data["music"];
         this.mode = data["mode"];
         this.setNextUrl(data);
+        this.lecture = data["lecture"];
         if (this.mode === "filling") this.setFillingLessonData(data);
     }
 
@@ -41,10 +45,12 @@ class LessonData extends Model {
         this.blanks = data["blank"];
     }
 
+    get getTitle(): string { return this.title; }
     get getMode(): string { return this.mode; }
     get getTargetMusic(): MusicData { return this.target; }
     get getNextUrl(): string { return this.nextUrl; }
     get getUnitNote(): number { return this.unitNote; }
     get getBlanks(): [number, number][] { return this.blanks; }
     get getInherit(): MusicData { return this.inherit; }
+    get getLecture(): { [prop: string]: string }[] { return this.lecture; }
 }

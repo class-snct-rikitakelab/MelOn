@@ -20,9 +20,11 @@ var LessonData = (function (_super) {
         });
     };
     LessonData.prototype.getLessonData = function (data) {
+        this.title = data["title"];
         this.target = data["music"];
         this.mode = data["mode"];
         this.setNextUrl(data);
+        this.lecture = data["lecture"];
         if (this.mode === "filling")
             this.setFillingLessonData(data);
     };
@@ -39,6 +41,11 @@ var LessonData = (function (_super) {
         this.unitNote = data["unitNote"];
         this.blanks = data["blank"];
     };
+    Object.defineProperty(LessonData.prototype, "getTitle", {
+        get: function () { return this.title; },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(LessonData.prototype, "getMode", {
         get: function () { return this.mode; },
         enumerable: true,
@@ -66,6 +73,11 @@ var LessonData = (function (_super) {
     });
     Object.defineProperty(LessonData.prototype, "getInherit", {
         get: function () { return this.inherit; },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(LessonData.prototype, "getLecture", {
+        get: function () { return this.lecture; },
         enumerable: true,
         configurable: true
     });

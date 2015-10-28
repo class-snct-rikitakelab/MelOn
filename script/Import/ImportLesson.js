@@ -64,6 +64,7 @@
             "SoundButton",
             "ScrollButton",
             "NextButton",
+            "Lecture",
         ],
         GroupView: [
             "ScoreSheet",

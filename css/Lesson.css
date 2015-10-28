@@ -17,3 +17,54 @@
     font-family: "Franklin Gothic Medium",sans-serif;
     cursor: pointer;
 }
+
+#lecture {
+    width: 700px;
+    margin: 50px auto 50px auto;
+    font-size: 30px;
+    font-family: "Franklin Gothic Medium",sans-serif;
+}
+
+#title {
+    margin: 20px auto 50px auto;
+    text-align: center;
+    font-size: 50px;
+    font-style: italic;
+    font-family: "Franklin Gothic Medium",sans-serif;
+}
+
+.balloon{
+    margin: 30px auto 30px auto;
+    padding: 15px;
+    border-radius: 20px;
+}
+
+.person {
+    position: relative;
+    width: 200px;
+    height: 160px;
+}
+
+#teacher{
+}
+
+#child{
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.person img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.triangle {
+    position:absolute;
+    top: -30px;
+    left: 60px;
+    width: 0;
+	height: 0;
+	border: 40px solid transparent;
+    border-top: 30px solid;
+}

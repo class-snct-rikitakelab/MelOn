@@ -37,4 +37,26 @@ namespace LESSON {
     export class NextButton implements DOMView {
         selector = "#nextButton";
     }
+
+    export class Lecture implements DOMView {
+        selector = "#lecture";
+        titleId = "title";
+        personIds = {
+            teacher: "teacher",
+            child: "child",
+        };
+        balloonColor = {
+            teacher: "lightgreen",
+            child: "orange",
+        };
+        image = {
+            teacher: "storage/assets/image/person/teacher.png",
+            child: "storage/assets/image/person/child.png",
+        };
+        commonClass = {
+            balloon: "balloon",
+            triangle: "triangle",
+            person: "person",
+        };
+    }
 }

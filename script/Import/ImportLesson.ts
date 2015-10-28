@@ -71,6 +71,7 @@
             "SoundButton",
             "ScrollButton",
             "NextButton",
+            "Lecture",
         ],
 
         GroupView: [

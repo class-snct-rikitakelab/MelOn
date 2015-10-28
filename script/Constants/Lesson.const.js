@@ -48,5 +48,30 @@ var LESSON;
         return NextButton;
     })();
     LESSON.NextButton = NextButton;
+    var Lecture = (function () {
+        function Lecture() {
+            this.selector = "#lecture";
+            this.titleId = "title";
+            this.personIds = {
+                teacher: "teacher",
+                child: "child",
+            };
+            this.balloonColor = {
+                teacher: "lightgreen",
+                child: "orange",
+            };
+            this.image = {
+                teacher: "storage/assets/image/person/teacher.png",
+                child: "storage/assets/image/person/child.png",
+            };
+            this.commonClass = {
+                balloon: "balloon",
+                triangle: "triangle",
+                person: "person",
+            };
+        }
+        return Lecture;
+    })();
+    LESSON.Lecture = Lecture;
 })(LESSON || (LESSON = {}));
 //# sourceMappingURL=Lesson.const.js.map

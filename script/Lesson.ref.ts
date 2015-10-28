@@ -14,3 +14,4 @@
 
 // DOMView
 /// <reference path="DOMView/NextButton.ts"/>
+/// <reference path="DOMView/Lecture.ts"/>
