@@ -15,16 +15,27 @@ var LessonData = (function (_super) {
         var _this = this;
         $.getJSON(this.constants.listUrl, function (list) {
             $.getJSON(list[$.getUrlVar("lesson")]["url"], function (data) { _this.getLessonData(data); });
+            if ($.getUrlVar("inherit"))
+                $.getJSON(list[$.getUrlVar("inherit")]["url"], function (data) { _this.inherit = data["music"]; });
         });
     };
     LessonData.prototype.getLessonData = function (data) {
         this.target = data["music"];
         this.mode = data["mode"];
-        this.nextUrl = data["next"] ? "Lesson.html?lang=" + LESSON.language + "&lesson=" + data["next"] : this.constants.defaultUrl;
+        this.setNextUrl(data);
         if (this.mode === "filling")
-            this.getFillingLessonData(data);
+            this.setFillingLessonData(data);
     };
-    LessonData.prototype.getFillingLessonData = function (data) {
+    LessonData.prototype.setNextUrl = function (data) {
+        if (data["next"]) {
+            this.nextUrl = "Lesson.html?lang=" + LESSON.language + "&lesson=" + data["next"];
+            if (data["passNext"] === true)
+                this.nextUrl += "&inherit=" + data["title"];
+        }
+        else
+            this.nextUrl = this.constants.defaultUrl;
+    };
+    LessonData.prototype.setFillingLessonData = function (data) {
         this.unitNote = data["unitNote"];
         this.blanks = data["blank"];
     };
@@ -50,6 +61,11 @@ var LessonData = (function (_super) {
     });
     Object.defineProperty(LessonData.prototype, "getBlanks", {
         get: function () { return this.blanks; },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(LessonData.prototype, "getInherit", {
+        get: function () { return this.inherit; },
         enumerable: true,
         configurable: true
     });

@@ -43,6 +43,7 @@ var LoadButton = (function (_super) {
         var _this = this;
         this.music.eraseAll();
         _.each(score, function (line) { _.each(line, function (note) { _this.createNote(note); }); });
+        this.game.sound.stopAll();
     };
     LoadButton.prototype.createNote = function (note) {
         this.music.write(note);

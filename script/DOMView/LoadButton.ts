@@ -33,9 +33,10 @@ class LoadButton extends DOMView {
         this.game.sound.play("load");
     }
 
-    private setMusic(score: MusicData) {
+    setMusic(score: MusicData) {
         this.music.eraseAll();
         _.each(score, (line: NoteData[]) => { _.each(line, (note: NoteData) => { this.createNote(note); }); });
+        this.game.sound.stopAll();
     }
 
     private createNote(note: NoteData) {

@@ -7,6 +7,7 @@ class LessonData extends Model {
     private nextUrl: string;
     private unitNote: number;
     private blanks: [number, number][];
+    private inherit: MusicData;
 
     constructor(private constants: LESSON.LessonData) {
         super(constants);
@@ -15,18 +16,27 @@ class LessonData extends Model {
 
     private getJSON() {
         $.getJSON(this.constants.listUrl, (list) => {
-            $.getJSON(list[$.getUrlVar("lesson")]["url"], (data) => { this.getLessonData(data);});
+            $.getJSON(list[$.getUrlVar("lesson")]["url"], (data) => { this.getLessonData(data); });
+            if ($.getUrlVar("inherit"))
+                $.getJSON(list[$.getUrlVar("inherit")]["url"], (data) => { this.inherit = data["music"]; });
         });
     }
 
     private getLessonData(data: Object) {
         this.target = data["music"];
         this.mode = data["mode"];
-        this.nextUrl = data["next"] ? `Lesson.html?lang=${LESSON.language}&lesson=${data["next"]}` : this.constants.defaultUrl;
-        if (this.mode === "filling") this.getFillingLessonData(data);
+        this.setNextUrl(data);
+        if (this.mode === "filling") this.setFillingLessonData(data);
     }
 
-    private getFillingLessonData(data: Object) {
+    private setNextUrl(data: Object) {
+        if (data["next"]) {
+            this.nextUrl = `Lesson.html?lang=${LESSON.language}&lesson=${data["next"]}`;
+            if (data["passNext"] === true) this.nextUrl += `&inherit=${data["title"]}`;
+        } else this.nextUrl = this.constants.defaultUrl;
+    }
+
+    private setFillingLessonData(data: Object) {
         this.unitNote = data["unitNote"];
         this.blanks = data["blank"];
     }
@@ -36,4 +46,5 @@ class LessonData extends Model {
     get getNextUrl(): string { return this.nextUrl; }
     get getUnitNote(): number { return this.unitNote; }
     get getBlanks(): [number, number][] { return this.blanks; }
+    get getInherit(): MusicData { return this.inherit; }
 }
