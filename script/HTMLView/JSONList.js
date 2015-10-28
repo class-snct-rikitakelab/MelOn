@@ -14,9 +14,9 @@ var JSONList = (function (_super) {
     }
     JSONList.prototype.getJSON = function () {
         var _this = this;
-        $.ajaxSetup({ async: false });
+        // $.ajaxSetup({ async: false });
         $.getJSON(this.constants.listUrl, function (data) { _this.makeList(data); });
-        $.ajaxSetup({ async: true });
+        // $.ajaxSetup({ async: true });
     };
     JSONList.prototype.makeHeader = function () {
         var header = $("<tr></tr>");
