@@ -14,5 +14,6 @@ class Lesson extends FreeMakingMusic {
 
 // Do it after loading HTML, and use jQuery
 window.onload = () => {
+    $.ajaxSetup({ cache: false });
     $(() => { new Lesson(new MelOnAssets, new CONSTANTS.MelOn); });
 }

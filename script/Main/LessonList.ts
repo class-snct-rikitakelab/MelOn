@@ -10,5 +10,6 @@ class LessonList {
 }
 
 window.onload = () => {
+    $.ajaxSetup({ cache: false });
     $(() => { new LessonList(); });
 }

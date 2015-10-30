@@ -20,23 +20,13 @@ class LessonData extends Model {
     }
 
     private getJSON(): boolean {
-        $.ajaxSetup({ async: false });
         $.getJSON(this.constants.listUrl, (list, status) => {
-            if (status !== "success") return false;
-            $.getJSON(list[$.getUrlVar("lesson")]["url"], (data, statud) => {
-                if (status !== "success") return false;
-                console.log(data, status);
-                this.getLessonData(data);
-            });
+            $.getJSON(list[$.getUrlVar("lesson")]["url"], (data, statud) => { this.getLessonData(data); });
             if ($.getUrlVar("inherit")) {
-                $.getJSON(list[$.getUrlVar("inherit")]["url"], (data, status) => {
-                    if (status !== "success") return false;
-                    this.inherit = data["music"];
-                });
+                $.getJSON(list[$.getUrlVar("inherit")]["url"], (data, status) => { this.inherit = data["music"]; });
             }
         });
         return true;
-        $.ajaxSetup({ async: true });
     }
 
     private getLessonData(data: Object) {

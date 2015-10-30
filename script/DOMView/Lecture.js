@@ -10,36 +10,33 @@ var Lecture = (function (_super) {
         _super.call(this, game, constants, models);
         this.constants = constants;
         this.lessonData = this.models["lessonData"];
-        console.log(this.lessonData);
-        this.setTitle(this.lessonData.getTitle);
-        this.setLecture(this.lessonData.getLecture);
+        this.$.append(this.makeTitle(this.lessonData.getTitle));
+        this.makeLecture(this.lessonData.getLecture);
     }
-    Lecture.prototype.setTitle = function (title) {
-        this.$.append($("<div id=" + this.constants.titleId + "></div>").text(title));
+    Lecture.prototype.makeTitle = function (title) {
+        return $("<div id=" + this.constants.titleId + "></div>").text(title);
     };
-    Lecture.prototype.setLecture = function (lecture) {
+    Lecture.prototype.makeLecture = function (lecture) {
         var _this = this;
         lecture.forEach(function (block) {
-            _this.makeBalloon(block);
-            _this.makePerson(block["person"]);
+            _this.$.append(_this.makeBalloon(block));
+            _this.$.append(_this.makePerson(block["person"]));
         });
     };
     Lecture.prototype.makeBalloon = function (block) {
-        this.$.append($("<div></div>")
-            .addClass(this.constants.commonClass.balloon)
-            .css("background-color", this.constants.balloonColor[block["person"]])
-            .text(block["speech"]));
+        return $("<div></div>").addClass(this.constants.commonClass.balloon)
+            .css("background-color", this.constants.balloonColor[block["person"]]).text(block["speech"]);
+    };
+    Lecture.prototype.makeTriangle = function (person) {
+        return $("<div></div>").addClass(this.constants.commonClass.triangle)
+            .css("border-top-color", this.constants.balloonColor[person]);
+    };
+    Lecture.prototype.makeImage = function (person) {
+        return $("<img src=" + this.constants.image[person] + " />");
     };
     Lecture.prototype.makePerson = function (person) {
-        var personBlock = $("<div id=" + this.constants.personIds[person] + "></div>")
-            .addClass(this.constants.commonClass.person);
-        var triangle = $("<div></div>")
-            .addClass(this.constants.commonClass.triangle)
-            .css("border-top-color", this.constants.balloonColor[person]);
-        var image = $("<img src=" + this.constants.image[person] + " />");
-        personBlock.append(triangle);
-        personBlock.append(image);
-        this.$.append(personBlock);
+        return $("<div id=" + this.constants.personIds[person] + "></div>").addClass(this.constants.commonClass.person)
+            .append(this.makeTriangle(person)).append(this.makeImage(person));
     };
     return Lecture;
 })(DOMView);

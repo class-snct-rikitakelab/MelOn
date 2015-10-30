@@ -16,26 +16,13 @@ var LessonData = (function (_super) {
     }
     LessonData.prototype.getJSON = function () {
         var _this = this;
-        $.ajaxSetup({ async: false });
         $.getJSON(this.constants.listUrl, function (list, status) {
-            if (status !== "success")
-                return false;
-            $.getJSON(list[$.getUrlVar("lesson")]["url"], function (data, statud) {
-                if (status !== "success")
-                    return false;
-                console.log(data, status);
-                _this.getLessonData(data);
-            });
+            $.getJSON(list[$.getUrlVar("lesson")]["url"], function (data, statud) { _this.getLessonData(data); });
             if ($.getUrlVar("inherit")) {
-                $.getJSON(list[$.getUrlVar("inherit")]["url"], function (data, status) {
-                    if (status !== "success")
-                        return false;
-                    _this.inherit = data["music"];
-                });
+                $.getJSON(list[$.getUrlVar("inherit")]["url"], function (data, status) { _this.inherit = data["music"]; });
             }
         });
         return true;
-        $.ajaxSetup({ async: true });
     };
     LessonData.prototype.getLessonData = function (data) {
         this.title = data["title"];

@@ -26,21 +26,24 @@ class NextButton extends DOMView {
     private finish() {
         this.game.sound.stopAll();
         this.game.sound.play("load");
-        alert("Good Job! Try to play the music!");
         this.$.mousedown(() => { alert("Play the music!"); });
+        alert("Good Job! Try to play the music!");
     }
+
+    private onActive = _.once(() => {
+        this.game.sound.stopAll();
+        this.game.sound.play("save");
+        this.setSelectEffect();
+        this.$.css("background-color", "orange").unbind("mousedown")
+            .mousedown(() => {
+                this.game.sound.play("decide");
+                setTimeout(() => { document.location = <any>this.lessonData.getNextUrl; }, 500);
+            });
+        alert("Excellent! push Next button to go on!");
+    });
 
     private active() {
         if (!this.achievement.isFinished) return;
-        this.game.sound.stopAll();
-        this.game.sound.play("save");
-        alert("Excellent! push Next button to go on!");
-        this.$.css("background-color", "orange");
-        this.setSelectEffect();
-        this.$.unbind("mousedown");
-        this.$.mousedown(() => {
-            this.game.sound.play("decide");
-            setTimeout(() => { document.location = <any>this.lessonData.getNextUrl; }, 500);
-        });
+        this.onActive();
     }
 }

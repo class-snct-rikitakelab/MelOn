@@ -7,15 +7,16 @@ var __extends = (this && this.__extends) || function (d, b) {
 var JSONList = (function (_super) {
     __extends(JSONList, _super);
     function JSONList(constants) {
-        var _this = this;
         _super.call(this, constants);
         this.constants = constants;
         this.makeHeader();
-        $.getJSON(this.constants.listUrl, function (data) { _this.makeList(data); });
+        this.getJSON();
     }
     JSONList.prototype.getJSON = function () {
-        // $.ajaxSetup({ async: false });
-        // $.ajaxSetup({ async: true });
+        var _this = this;
+        $.ajaxSetup({ async: false });
+        $.getJSON(this.constants.listUrl, function (data) { _this.makeList(data); });
+        $.ajaxSetup({ async: true });
     };
     JSONList.prototype.makeHeader = function () {
         var header = $("<tr></tr>");

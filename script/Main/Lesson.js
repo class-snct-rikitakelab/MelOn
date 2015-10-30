@@ -18,6 +18,7 @@ var Lesson = (function (_super) {
 })(FreeMakingMusic);
 // Do it after loading HTML, and use jQuery
 window.onload = function () {
+    $.ajaxSetup({ cache: false });
     $(function () { new Lesson(new MelOnAssets, new CONSTANTS.MelOn); });
 };
 //# sourceMappingURL=Lesson.js.map
