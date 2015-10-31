@@ -13,39 +13,43 @@ class LessonData extends Model {
 
     constructor(private constants: LESSON.LessonData) {
         super(constants);
-        if (!this.getJSON()) {
-            alert("Invalied File Data!");
-            document.location = <any>this.constants.defaultUrl;
-        }
+        this.getLessonData();
     }
 
-    private getJSON(): boolean {
-        $.getJSON(this.constants.listUrl, (list, status) => {
-            $.getJSON(list[$.getUrlVar("lesson")]["url"], (data, statud) => { this.getLessonData(data); });
+    private getLessonData() {
+        $.ajaxSetup({ error: () => { this.ajaxError(); } });
+        $.getJSON(this.constants.listUrl, (list) => {
+            var lessonInfo = list[$.getUrlVar("lesson")];
+            if (!lessonInfo) this.ajaxError();
+            $.getJSON(lessonInfo["url"], (data, status) => { this.importLessonData(data); });
             if ($.getUrlVar("inherit")) {
-                $.getJSON(list[$.getUrlVar("inherit")]["url"], (data, status) => { this.inherit = data["music"]; });
+                $.getJSON(list[$.getUrlVar("inherit")]["url"], (data) => { this.inherit = data["music"]; });
             }
         });
-        return true;
     }
 
-    private getLessonData(data: Object) {
+    private ajaxError() {
+        alert("Lesson Data Read Error!");
+        document.location = <any>this.constants.defaultUrl;
+    }
+
+    private importLessonData(data: Object) {
         this.title = data["title"];
         this.target = data["music"];
         this.mode = data["mode"];
-        this.setNextUrl(data);
         this.lecture = data["lecture"];
-        if (this.mode === "filling") this.setFillingLessonData(data);
+        this.makeNextUrl(data);
+        if (this.mode === "filling") this.importFillingLessonData(data);
     }
 
-    private setNextUrl(data: Object) {
+    private makeNextUrl(data: Object) {
         if (data["next"]) {
             this.nextUrl = `Lesson.html?lang=${LESSON.language}&lesson=${data["next"]}`;
             if (data["passNext"] === true) this.nextUrl += `&inherit=${data["title"]}`;
         } else this.nextUrl = this.constants.defaultUrl;
     }
 
-    private setFillingLessonData(data: Object) {
+    private importFillingLessonData(data: Object) {
         this.unitNote = data["unitNote"];
         this.blanks = data["blank"];
     }

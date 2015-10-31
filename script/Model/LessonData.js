@@ -9,31 +9,35 @@ var LessonData = (function (_super) {
     function LessonData(constants) {
         _super.call(this, constants);
         this.constants = constants;
-        if (!this.getJSON()) {
-            alert("Invalied File Data!");
-            document.location = this.constants.defaultUrl;
-        }
+        this.getLessonData();
     }
-    LessonData.prototype.getJSON = function () {
+    LessonData.prototype.getLessonData = function () {
         var _this = this;
-        $.getJSON(this.constants.listUrl, function (list, status) {
-            $.getJSON(list[$.getUrlVar("lesson")]["url"], function (data, statud) { _this.getLessonData(data); });
+        $.ajaxSetup({ error: function () { _this.ajaxError(); } });
+        $.getJSON(this.constants.listUrl, function (list) {
+            var lessonInfo = list[$.getUrlVar("lesson")];
+            if (!lessonInfo)
+                _this.ajaxError();
+            $.getJSON(lessonInfo["url"], function (data, status) { _this.importLessonData(data); });
             if ($.getUrlVar("inherit")) {
-                $.getJSON(list[$.getUrlVar("inherit")]["url"], function (data, status) { _this.inherit = data["music"]; });
+                $.getJSON(list[$.getUrlVar("inherit")]["url"], function (data) { _this.inherit = data["music"]; });
             }
         });
-        return true;
     };
-    LessonData.prototype.getLessonData = function (data) {
+    LessonData.prototype.ajaxError = function () {
+        alert("Lesson Data Read Error!");
+        document.location = this.constants.defaultUrl;
+    };
+    LessonData.prototype.importLessonData = function (data) {
         this.title = data["title"];
         this.target = data["music"];
         this.mode = data["mode"];
-        this.setNextUrl(data);
         this.lecture = data["lecture"];
+        this.makeNextUrl(data);
         if (this.mode === "filling")
-            this.setFillingLessonData(data);
+            this.importFillingLessonData(data);
     };
-    LessonData.prototype.setNextUrl = function (data) {
+    LessonData.prototype.makeNextUrl = function (data) {
         if (data["next"]) {
             this.nextUrl = "Lesson.html?lang=" + LESSON.language + "&lesson=" + data["next"];
             if (data["passNext"] === true)
@@ -42,7 +46,7 @@ var LessonData = (function (_super) {
         else
             this.nextUrl = this.constants.defaultUrl;
     };
-    LessonData.prototype.setFillingLessonData = function (data) {
+    LessonData.prototype.importFillingLessonData = function (data) {
         this.unitNote = data["unitNote"];
         this.blanks = data["blank"];
     };

@@ -6,7 +6,6 @@
         Boot: "script/Boot/",
         Preloader: "script/Preloader/",
         Model: "script/Model/",
-        ConcreteModel: "script/ConcreteModel/",
         View: "script/View/",
         DOMView: "script/DOMView/",
         GroupView: "script/GroupView/",
@@ -31,9 +30,7 @@
             "Lesson.const",
         ],
         Model: [
-            "Model"
-        ],
-        ConcreteModel: [
+            "Model",
             "Music",
             "Stationery",
             "MusicPlayer",

@@ -1,7 +1,8 @@
 /// <reference path="FreeMakingMusic.ref.ts"/>
-// ConcreteModel
-/// <reference path="ConcreteModel/LessonData.ts"/>
-/// <reference path="ConcreteModel/Achievement.ts"/>
+// Model
+/// <reference path="Model/Model.ts"/>
+/// <reference path="Model/LessonData.ts"/>
+/// <reference path="Model/Achievement.ts"/>
 // Constants
 /// <reference path="Constants/LessonList.const.ts"/>
 /// <reference path="Constants/Lesson.const.ts"/>

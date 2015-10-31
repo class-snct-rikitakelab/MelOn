@@ -13,12 +13,11 @@
 /// <reference path="Constants/Constants"/>
 // Model
 /// <reference path="Model/Model"/>
-// ConcreteModel
-/// <reference path="ConcreteModel/Music"/>
-/// <reference path="ConcreteModel/Stationery"/>
-/// <reference path="ConcreteModel/MusicPlayer"/>
-/// <reference path="ConcreteModel/Instrument"/>
-/// <reference path="ConcreteModel/Speed"/>
+/// <reference path="Model/Music"/>
+/// <reference path="Model/Stationery"/>
+/// <reference path="Model/MusicPlayer"/>
+/// <reference path="Model/Instrument"/>
+/// <reference path="Model/Speed"/>
 // View
 /// <reference path="View/DOMView"/>
 /// <reference path="View/GroupView"/>
