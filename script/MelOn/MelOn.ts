@@ -29,7 +29,7 @@ class MelOn extends Phaser.State {
     protected scoreSheet: ScoreSheet;
     protected notes: Notes;
     protected musicPlayBar: MusicPlayBar;
-    protected modalWindow: ModalWindow;
+    protected storageModal: StorageModal;
     
     create() {
         this.noteOverlapManager = new NoteOverlapManager(this.game);
@@ -51,7 +51,7 @@ class MelOn extends Phaser.State {
         this.downButton = new ScrollButton(this.game, new CONSTANTS.DownButton, { music: this.music, });
         this.rightButton = new ScrollButton(this.game, new CONSTANTS.RightButton, { music: this.music, });
         this.leftButton = new ScrollButton(this.game, new CONSTANTS.LeftButton, { music: this.music, });
-        this.modalWindow = new ModalWindow(this.game, new CONSTANTS.ModalWindow, { musicStorage: this.musicStorage });
+        this.storageModal = new StorageModal(this.game, new CONSTANTS.StorageModal, { musicStorage: this.musicStorage });
     }
 
     update() {

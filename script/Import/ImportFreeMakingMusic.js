@@ -58,6 +58,7 @@
             "SoundButton",
             "ScrollButton",
             "ModalWindow",
+            "StorageModal",
         ],
         GroupView: [
             "ScoreSheet",

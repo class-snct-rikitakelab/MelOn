@@ -70,6 +70,7 @@
             "NextButton",
             "Lecture",
             "ModalWindow",
+            "StorageModal",
         ],
 
         GroupView: [

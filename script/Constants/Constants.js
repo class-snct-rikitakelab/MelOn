@@ -497,6 +497,13 @@ var CONSTANTS;
                 "Japanese": "いいえ",
                 "Finnish": "Ei",
             };
+        }
+        return ModalWindow;
+    })();
+    CONSTANTS.ModalWindow = ModalWindow;
+    var StorageModal = (function () {
+        function StorageModal() {
+            this.modalConstants = new ModalWindow();
             this.saveConfirmMsg = {
                 "English": "The music you have already saved will be disposed. Is it OK?",
                 "Japanese": "すでに保存されている音楽が上書きされます。よろしいですか？",
@@ -518,8 +525,8 @@ var CONSTANTS;
                 "Finnish": "Music not Found!",
             };
         }
-        return ModalWindow;
+        return StorageModal;
     })();
-    CONSTANTS.ModalWindow = ModalWindow;
+    CONSTANTS.StorageModal = StorageModal;
 })(CONSTANTS || (CONSTANTS = {}));
 //# sourceMappingURL=Constants.js.map

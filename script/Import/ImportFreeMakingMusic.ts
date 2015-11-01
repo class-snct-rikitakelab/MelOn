@@ -64,6 +64,7 @@
             "SoundButton",
             "ScrollButton",
             "ModalWindow",
+            "StorageModal",
         ],
 
         GroupView: [

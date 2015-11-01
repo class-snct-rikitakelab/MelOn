@@ -390,7 +390,7 @@ namespace CONSTANTS {
         };
         modalClasses = {
             button: "modalButton",
-        }
+        };
         okText = {
             "English": "OK",
             "Japanese": "はい",
@@ -406,6 +406,10 @@ namespace CONSTANTS {
             "Japanese": "いいえ",
             "Finnish": "Ei",
         };
+    }
+
+    export class StorageModal {
+        modalConstants: ModalWindow = new ModalWindow();
         saveConfirmMsg = {
             "English": "The music you have already saved will be disposed. Is it OK?",
             "Japanese": "すでに保存されている音楽が上書きされます。よろしいですか？",

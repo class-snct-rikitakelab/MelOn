@@ -44,6 +44,8 @@
 /// <reference path="DOMView/SoundButtonContainer"/>
 /// <reference path="DOMView/SoundButton"/>
 /// <reference path="DOMView/ScrollButton"/>
+/// <reference path="DOMView/ModalWindow"/>
+/// <reference path="DOMView/StorageModal"/>
 
 // GroupView
 /// <reference path="GroupView/ScoreSheet"/>

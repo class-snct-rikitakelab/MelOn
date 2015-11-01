@@ -36,7 +36,7 @@ var MelOn = (function (_super) {
         this.downButton = new ScrollButton(this.game, new CONSTANTS.DownButton, { music: this.music, });
         this.rightButton = new ScrollButton(this.game, new CONSTANTS.RightButton, { music: this.music, });
         this.leftButton = new ScrollButton(this.game, new CONSTANTS.LeftButton, { music: this.music, });
-        this.modalWindow = new ModalWindow(this.game, new CONSTANTS.ModalWindow, { musicStorage: this.musicStorage });
+        this.storageModal = new StorageModal(this.game, new CONSTANTS.StorageModal, { musicStorage: this.musicStorage });
     };
     MelOn.prototype.update = function () {
         this.noteOverlapManager.checkAllOverlap();
