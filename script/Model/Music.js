@@ -53,9 +53,6 @@ var Music = (function (_super) {
         this.refresh();
         this.onErase.dispatch();
     };
-    Music.prototype.eraseAll = function () {
-        this.onEraseAll.dispatch();
-    };
     Music.prototype.moveHorizontally = function (note, right) {
         var checkPosition = note.start + (right ? note.extension + 1 : -1);
         if (checkPosition < 0 || checkPosition > note.unitNote * this.constants.measureNum)
@@ -88,6 +85,19 @@ var Music = (function (_super) {
         if (note.extension < 0)
             note.extension = 0;
         this.onChangeExtension.dispatch();
+    };
+    Music.prototype.eraseAll = function () {
+        this.onEraseAll.dispatch();
+    };
+    Music.prototype.createNote = function (note) {
+        this.write(note);
+        this.onChangeExtension.dispatch();
+    };
+    Music.prototype.setMusic = function (music) {
+        var _this = this;
+        this.eraseAll();
+        _.each(music, function (line) { _.each(line, function (note) { _this.createNote(note); }); });
+        this.refresh();
     };
     return Music;
 })(Model);

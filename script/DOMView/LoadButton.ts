@@ -3,8 +3,9 @@
 class LoadButton extends DOMView {
 
     private music: Music = this.models["music"];
+    private musicStorage: MusicStorage = this.models["musicStorage"];
 
-    constructor(game: Phaser.Game, private constants: CONSTANTS.SaveButton, models: Object) {
+    constructor(game: Phaser.Game, private constants: CONSTANTS.LoadButton, models: Object) {
         super(game, constants, models);
         this.setView();
         this.setEvent();
@@ -12,12 +13,7 @@ class LoadButton extends DOMView {
 
     private setView() {
         this.$.append($(`<img src=${this.constants.image} />`).addClass("buttonImage")
-            .css({ width: "70px", height: "50px"}));
-    }
-
-    private setEvent() {
-        if (!this.game.device.touch) this.setSelectEffect();
-        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", () => { this.load(); });
+            .css({ width: "70px", height: "50px" }));
     }
 
     private setSelectEffect() {
@@ -25,24 +21,15 @@ class LoadButton extends DOMView {
             .on("mouseleave", () => { this.$.css("box-shadow", "none"); });
     }
 
-    private load() {
-        if (!confirm("The music you are making will be disposed. Is it OK?")) return;
-        var score: MusicData = JSON.parse(localStorage.getItem("music"));
-        if (!score) { alert("Music not Found!"); return; }
-        this.setMusic(score);
-        this.game.sound.play("load");
+    private setEvent() {
+        if (!this.game.device.touch) this.setSelectEffect();
+        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", () => { this.musicStorage.loadConfirm(); });
+        this.musicStorage.onLoad.add((loadMusic) => { this.setMusic(loadMusic); });
     }
 
-    setMusic(score: MusicData) {
-        this.music.eraseAll();
-        _.each(score, (line: NoteData[]) => { _.each(line, (note: NoteData) => { this.createNote(note); }); });
-        this.game.sound.stopAll();
-    }
-
-    private createNote(note: NoteData) {
-        this.music.write(note);
-        this.music.select(note);
-        this.music.onChangeExtension.dispatch();
-        this.music.refresh();
+    private setMusic(music: MusicData) {
+        this.game.sound.mute = true;
+        this.music.setMusic(music);
+        this.game.sound.mute = false;
     }
 }

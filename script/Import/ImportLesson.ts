@@ -42,6 +42,7 @@
             "Speed",
             "LessonData",
             "Achievement",
+            "MusicStorage",
         ],
 
         View: [
@@ -68,6 +69,7 @@
             "ScrollButton",
             "NextButton",
             "Lecture",
+            "ModalWindow",
         ],
 
         GroupView: [

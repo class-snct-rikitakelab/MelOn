@@ -59,10 +59,6 @@ class Music extends Model {
         this.onErase.dispatch();
     }
 
-    eraseAll() {
-        this.onEraseAll.dispatch();
-    }
-
     moveHorizontally(note: NoteData, right: boolean) {
         var checkPosition: number = note.start + (right ? note.extension + 1 : -1);
         if (checkPosition < 0 || checkPosition > note.unitNote * this.constants.measureNum) return;
@@ -92,5 +88,20 @@ class Music extends Model {
         note.extension--;
         if (note.extension < 0) note.extension = 0;
         this.onChangeExtension.dispatch();
+    }
+
+    eraseAll() {
+        this.onEraseAll.dispatch();
+    }
+
+    createNote(note: NoteData) {
+        this.write(note);
+        this.onChangeExtension.dispatch();
+    }
+
+    setMusic(music: MusicData) {
+        this.eraseAll();
+        _.each(music, (line: NoteData[]) => { _.each(line, (note: NoteData) => { this.createNote(note); }); });
+        this.refresh();
     }
 }

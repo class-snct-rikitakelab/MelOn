@@ -10,6 +10,7 @@ var LoadButton = (function (_super) {
         _super.call(this, game, constants, models);
         this.constants = constants;
         this.music = this.models["music"];
+        this.musicStorage = this.models["musicStorage"];
         this.setView();
         this.setEvent();
     }
@@ -17,39 +18,22 @@ var LoadButton = (function (_super) {
         this.$.append($("<img src=" + this.constants.image + " />").addClass("buttonImage")
             .css({ width: "70px", height: "50px" }));
     };
-    LoadButton.prototype.setEvent = function () {
-        var _this = this;
-        if (!this.game.device.touch)
-            this.setSelectEffect();
-        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.load(); });
-    };
     LoadButton.prototype.setSelectEffect = function () {
         var _this = this;
         this.$.on("mouseenter", function () { _this.$.css("box-shadow", "0 0 20px 6px deepskyblue"); _this.game.sound.play("select"); })
             .on("mouseleave", function () { _this.$.css("box-shadow", "none"); });
     };
-    LoadButton.prototype.load = function () {
-        if (!confirm("The music you are making will be disposed. Is it OK?"))
-            return;
-        var score = JSON.parse(localStorage.getItem("music"));
-        if (!score) {
-            alert("Music not Found!");
-            return;
-        }
-        this.setMusic(score);
-        this.game.sound.play("load");
-    };
-    LoadButton.prototype.setMusic = function (score) {
+    LoadButton.prototype.setEvent = function () {
         var _this = this;
-        this.music.eraseAll();
-        _.each(score, function (line) { _.each(line, function (note) { _this.createNote(note); }); });
-        this.game.sound.stopAll();
+        if (!this.game.device.touch)
+            this.setSelectEffect();
+        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.musicStorage.loadConfirm(); });
+        this.musicStorage.onLoad.add(function (loadMusic) { _this.setMusic(loadMusic); });
     };
-    LoadButton.prototype.createNote = function (note) {
-        this.music.write(note);
-        this.music.select(note);
-        this.music.onChangeExtension.dispatch();
-        this.music.refresh();
+    LoadButton.prototype.setMusic = function (music) {
+        this.game.sound.mute = true;
+        this.music.setMusic(music);
+        this.game.sound.mute = false;
     };
     return LoadButton;
 })(DOMView);

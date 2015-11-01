@@ -34,6 +34,7 @@
             "MusicPlayer",
             "Instrument",
             "Speed",
+            "MusicStorage",
         ],
         View: [
             "DOMView",
@@ -56,6 +57,7 @@
             "SoundButtonContainer",
             "SoundButton",
             "ScrollButton",
+            "ModalWindow",
         ],
         GroupView: [
             "ScoreSheet",

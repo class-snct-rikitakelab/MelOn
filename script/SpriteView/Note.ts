@@ -99,6 +99,7 @@ class Note extends SpriteView {
     }
 
     private ring() {
+        if (this.game.sound.mute) return;
         this.sound = this.game.sound.play(this.instrument.getInstrument + this.data.pitch);
         this.sound.fadeOut(this.constants.ringDuration);
     }

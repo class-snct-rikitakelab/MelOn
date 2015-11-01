@@ -16,7 +16,8 @@ namespace CONSTANTS {
         renderer: string = "score";
         imageAddress: string = "storage/assets/image/";
         languageList: string[] = ["English", "Japanese", "Finnish"];
-        language: string =_.include(this.languageList, $.getUrlVar("lang")) ? $.getUrlVar("lang") : "English";
+        defaultLanguage: string = "English";
+        language: string =_.include(this.languageList, $.getUrlVar("lang")) ? $.getUrlVar("lang") : this.defaultLanguage;
         elements: string[] = [
             "score", "pencil", "eraser", "speedDisplay", "speedDown", "speedUp", "play",
             "save", "load", "instrumentMenu", "soundButtonContainer", "up", "down", "left", "right",
@@ -70,6 +71,9 @@ namespace CONSTANTS {
     export class Speed implements Model {
         speeds: number[] = [80, 100, 130, 170, 220];
         initSpeedGrade: number = 2;
+    }
+
+    export class MusicStorage implements Model {
     }
 
 
@@ -371,5 +375,56 @@ namespace CONSTANTS {
 
     export class InstrumentMenu extends InstrumentOption implements DOMView {
         selector = "#instrumentMenu";
+    }
+
+    export class ModalWindow implements DOMView {
+        selector = "body";
+        language: string = new MelOn().language;
+        modalIds = {
+            overlay: "modalOverlay",
+            window: "modalWindow",
+            message: "modalMessage",
+            ok: "modalOk",
+            yes: "modalYes",
+            no: "modalNo",
+        };
+        modalClasses = {
+            button: "modalButton",
+        }
+        okText = {
+            "English": "OK",
+            "Japanese": "はい",
+            "Finnish": "Joo",
+        };
+        yesText = {
+            "English": "Yes",
+            "Japanese": "はい",
+            "Finnish": "Kyllä",
+        };
+        noText = {
+            "English": "No",
+            "Japanese": "いいえ",
+            "Finnish": "Ei",
+        };
+        saveConfirmMsg = {
+            "English": "The music you have already saved will be disposed. Is it OK?",
+            "Japanese": "すでに保存されている音楽が上書きされます。よろしいですか？",
+            "Finnish": "The music you have already saved will be disposed. Is it OK?",
+        };
+        saveMsg = {
+            "English": "Your music was saved!",
+            "Japanese": "音楽が保存されました！",
+            "Finnish": "Your music was saved!",
+        };
+        loadConfirmMsg = {
+            "English": "The music you are making will be disposed. Is it OK?",
+            "Japanese": "今楽譜にある音楽が消えてしまいます。よろしいですか？",
+            "Finnish": "The music you are making will be disposed. Is it OK?",
+        };
+        loadFailMsg = {
+            "English": "Music not Found!",
+            "Japanese": "音楽が保存されていません！",
+            "Finnish": "Music not Found!",
+        };
     }
 }

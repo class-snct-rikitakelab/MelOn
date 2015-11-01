@@ -10,6 +10,15 @@ var DOMView = (function () {
         // DOMObjects have their own Element of jQuery by using selector.
         this.$ = $(constants.selector);
     }
+    DOMView.prototype.pushEvent = function () {
+        return this.game.device.touch ? "touchstart" : "mousedown";
+    };
+    DOMView.prototype.toId = function (name) {
+        return "#" + name;
+    };
+    DOMView.prototype.makeDiv = function (id) {
+        return $("<div id=" + id + "></div>");
+    };
     return DOMView;
 })();
 //# sourceMappingURL=DOMView.js.map

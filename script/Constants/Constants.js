@@ -20,7 +20,8 @@ var CONSTANTS;
             this.renderer = "score";
             this.imageAddress = "storage/assets/image/";
             this.languageList = ["English", "Japanese", "Finnish"];
-            this.language = _.include(this.languageList, $.getUrlVar("lang")) ? $.getUrlVar("lang") : "English";
+            this.defaultLanguage = "English";
+            this.language = _.include(this.languageList, $.getUrlVar("lang")) ? $.getUrlVar("lang") : this.defaultLanguage;
             this.elements = [
                 "score", "pencil", "eraser", "speedDisplay", "speedDown", "speedUp", "play",
                 "save", "load", "instrumentMenu", "soundButtonContainer", "up", "down", "left", "right",
@@ -82,6 +83,12 @@ var CONSTANTS;
         return Speed;
     })();
     CONSTANTS.Speed = Speed;
+    var MusicStorage = (function () {
+        function MusicStorage() {
+        }
+        return MusicStorage;
+    })();
+    CONSTANTS.MusicStorage = MusicStorage;
     var PreloadBar = (function () {
         function PreloadBar() {
             this.width = new MeasureSheet().width;
@@ -460,5 +467,59 @@ var CONSTANTS;
         return InstrumentMenu;
     })(InstrumentOption);
     CONSTANTS.InstrumentMenu = InstrumentMenu;
+    var ModalWindow = (function () {
+        function ModalWindow() {
+            this.selector = "body";
+            this.language = new MelOn().language;
+            this.modalIds = {
+                overlay: "modalOverlay",
+                window: "modalWindow",
+                message: "modalMessage",
+                ok: "modalOk",
+                yes: "modalYes",
+                no: "modalNo",
+            };
+            this.modalClasses = {
+                button: "modalButton",
+            };
+            this.okText = {
+                "English": "OK",
+                "Japanese": "はい",
+                "Finnish": "Joo",
+            };
+            this.yesText = {
+                "English": "Yes",
+                "Japanese": "はい",
+                "Finnish": "Kyllä",
+            };
+            this.noText = {
+                "English": "No",
+                "Japanese": "いいえ",
+                "Finnish": "Ei",
+            };
+            this.saveConfirmMsg = {
+                "English": "The music you have already saved will be disposed. Is it OK?",
+                "Japanese": "すでに保存されている音楽が上書きされます。よろしいですか？",
+                "Finnish": "The music you have already saved will be disposed. Is it OK?",
+            };
+            this.saveMsg = {
+                "English": "Your music was saved!",
+                "Japanese": "音楽が保存されました！",
+                "Finnish": "Your music was saved!",
+            };
+            this.loadConfirmMsg = {
+                "English": "The music you are making will be disposed. Is it OK?",
+                "Japanese": "今楽譜にある音楽が消えてしまいます。よろしいですか？",
+                "Finnish": "The music you are making will be disposed. Is it OK?",
+            };
+            this.loadFailMsg = {
+                "English": "Music not Found!",
+                "Japanese": "音楽が保存されていません！",
+                "Finnish": "Music not Found!",
+            };
+        }
+        return ModalWindow;
+    })();
+    CONSTANTS.ModalWindow = ModalWindow;
 })(CONSTANTS || (CONSTANTS = {}));
 //# sourceMappingURL=Constants.js.map

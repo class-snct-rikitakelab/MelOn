@@ -9,8 +9,7 @@ class ModeButton extends HTMLView {
 
     private setEvent() {
         this.$.click(() => { this.click(); });
-        this.$.mouseenter(() => { this.enrer(); });
-        this.$.mouseleave(() => { this.leave(); });
+        this.$.hover(() => { this.enrer(); }, () => { this.leave(); });
     }
 
     private click() {

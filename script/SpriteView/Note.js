@@ -104,6 +104,8 @@ var Note = (function (_super) {
         this.destroy();
     };
     Note.prototype.ring = function () {
+        if (this.game.sound.mute)
+            return;
         this.sound = this.game.sound.play(this.instrument.getInstrument + this.data.pitch);
         this.sound.fadeOut(this.constants.ringDuration);
     };

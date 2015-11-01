@@ -38,6 +38,7 @@
             "MusicPlayer",
             "Instrument",
             "Speed",
+            "MusicStorage",
         ],
 
         View: [
@@ -62,6 +63,7 @@
             "SoundButtonContainer",
             "SoundButton",
             "ScrollButton",
+            "ModalWindow",
         ],
 
         GroupView: [

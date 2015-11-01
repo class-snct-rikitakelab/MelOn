@@ -14,6 +14,7 @@ var MelOn = (function (_super) {
         this.musicPlayer = new MusicPlayer(new CONSTANTS.MusicPlayer);
         this.instrument = new Instrument(new CONSTANTS.Instrument);
         this.speed = new Speed(new CONSTANTS.Speed);
+        this.musicStorage = new MusicStorage(new CONSTANTS.MusicStorage);
     }
     MelOn.prototype.create = function () {
         this.noteOverlapManager = new NoteOverlapManager(this.game);
@@ -24,8 +25,8 @@ var MelOn = (function (_super) {
         this.speedUpButton = new SpeedButton(this.game, new CONSTANTS.SpeedUpButton, { speed: this.speed });
         this.speedDownButton = new SpeedButton(this.game, new CONSTANTS.SpeedDownButton, { speed: this.speed });
         this.playButton = new PlayButton(this.game, new CONSTANTS.PlayButton, { musicPlayer: this.musicPlayer });
-        this.saveButton = new SaveButton(this.game, new CONSTANTS.SaveButton, { music: this.music, });
-        this.loadButton = new LoadButton(this.game, new CONSTANTS.LoadButton, { music: this.music, });
+        this.saveButton = new SaveButton(this.game, new CONSTANTS.SaveButton, { music: this.music, musicStorage: this.musicStorage });
+        this.loadButton = new LoadButton(this.game, new CONSTANTS.LoadButton, { music: this.music, musicStorage: this.musicStorage });
         this.instrumentMenu = new InstrumentMenu(this.game, new CONSTANTS.InstrumentMenu, { instrument: this.instrument, musicPlayer: this.musicPlayer });
         this.soundButtonContainer = new SoundButtonContainer(this.game, new CONSTANTS.SoundButtonContainer, { instrument: this.instrument });
         this.scoreSheet = new ScoreSheet(this.game, new CONSTANTS.ScoreSheet, { music: this.music, stationery: this.stationery });
@@ -35,6 +36,7 @@ var MelOn = (function (_super) {
         this.downButton = new ScrollButton(this.game, new CONSTANTS.DownButton, { music: this.music, });
         this.rightButton = new ScrollButton(this.game, new CONSTANTS.RightButton, { music: this.music, });
         this.leftButton = new ScrollButton(this.game, new CONSTANTS.LeftButton, { music: this.music, });
+        this.modalWindow = new ModalWindow(this.game, new CONSTANTS.ModalWindow, { musicStorage: this.musicStorage });
     };
     MelOn.prototype.update = function () {
         this.noteOverlapManager.checkAllOverlap();

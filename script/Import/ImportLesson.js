@@ -38,6 +38,7 @@
             "Speed",
             "LessonData",
             "Achievement",
+            "MusicStorage",
         ],
         View: [
             "DOMView",
@@ -62,6 +63,7 @@
             "ScrollButton",
             "NextButton",
             "Lecture",
+            "ModalWindow",
         ],
         GroupView: [
             "ScoreSheet",

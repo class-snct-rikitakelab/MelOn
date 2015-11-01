@@ -10,6 +10,7 @@ var SaveButton = (function (_super) {
         _super.call(this, game, constants, models);
         this.constants = constants;
         this.music = this.models["music"];
+        this.musicStorage = this.models["musicStorage"];
         this.setView();
         this.setEvent();
     }
@@ -17,24 +18,18 @@ var SaveButton = (function (_super) {
         this.$.append($("<img src=" + this.constants.image + " />").addClass("buttonImage")
             .css({ width: "70px", height: "50px" }));
     };
-    SaveButton.prototype.setEvent = function () {
-        var _this = this;
-        if (!this.game.device.touch)
-            this.setSelectEffect();
-        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.save(); });
-    };
     SaveButton.prototype.setSelectEffect = function () {
         var _this = this;
         this.$.on("mouseenter", function () { _this.$.css("box-shadow", "0 0 20px 6px deepskyblue"); _this.game.sound.play("select"); })
             .on("mouseleave", function () { _this.$.css("box-shadow", "none"); });
     };
-    SaveButton.prototype.save = function () {
-        if (localStorage.getItem("music") && !confirm("The music you have already saved will be disposed. Is it OK?"))
-            return;
-        var str = JSON.stringify(this.music.getMusic);
-        localStorage.setItem("music", str); // Local Strage Save
-        this.game.sound.play("save");
-        alert("Your music was saved!");
+    SaveButton.prototype.setEvent = function () {
+        var _this = this;
+        if (!this.game.device.touch)
+            this.setSelectEffect();
+        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () {
+            _this.musicStorage.saveConfirm(_this.music.getMusic);
+        });
     };
     return SaveButton;
 })(DOMView);

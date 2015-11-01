@@ -7,6 +7,7 @@ class MelOn extends Phaser.State {
     protected musicPlayer: MusicPlayer = new MusicPlayer(new CONSTANTS.MusicPlayer);
     protected instrument: Instrument = new Instrument(new CONSTANTS.Instrument);
     protected speed: Speed = new Speed(new CONSTANTS.Speed);
+    protected musicStorage: MusicStorage = new MusicStorage(new CONSTANTS.MusicStorage);
 
     // ========== View ==========
     protected noteOverlapManager: NoteOverlapManager; // View Manager is middle of Model and View ?
@@ -28,6 +29,7 @@ class MelOn extends Phaser.State {
     protected scoreSheet: ScoreSheet;
     protected notes: Notes;
     protected musicPlayBar: MusicPlayBar;
+    protected modalWindow: ModalWindow;
     
     create() {
         this.noteOverlapManager = new NoteOverlapManager(this.game);
@@ -38,8 +40,8 @@ class MelOn extends Phaser.State {
         this.speedUpButton = new SpeedButton(this.game, new CONSTANTS.SpeedUpButton, { speed: this.speed });
         this.speedDownButton = new SpeedButton(this.game, new CONSTANTS.SpeedDownButton, { speed: this.speed });
         this.playButton = new PlayButton(this.game, new CONSTANTS.PlayButton, { musicPlayer: this.musicPlayer });
-        this.saveButton = new SaveButton(this.game, new CONSTANTS.SaveButton, { music: this.music, });
-        this.loadButton = new LoadButton(this.game, new CONSTANTS.LoadButton, { music: this.music, });
+        this.saveButton = new SaveButton(this.game, new CONSTANTS.SaveButton, { music: this.music, musicStorage: this.musicStorage});
+        this.loadButton = new LoadButton(this.game, new CONSTANTS.LoadButton, { music: this.music, musicStorage: this.musicStorage});
         this.instrumentMenu = new InstrumentMenu(this.game, new CONSTANTS.InstrumentMenu, { instrument: this.instrument, musicPlayer: this.musicPlayer });
         this.soundButtonContainer = new SoundButtonContainer(this.game, new CONSTANTS.SoundButtonContainer, { instrument: this.instrument });
         this.scoreSheet = new ScoreSheet(this.game, new CONSTANTS.ScoreSheet, { music: this.music, stationery: this.stationery });
@@ -49,6 +51,7 @@ class MelOn extends Phaser.State {
         this.downButton = new ScrollButton(this.game, new CONSTANTS.DownButton, { music: this.music, });
         this.rightButton = new ScrollButton(this.game, new CONSTANTS.RightButton, { music: this.music, });
         this.leftButton = new ScrollButton(this.game, new CONSTANTS.LeftButton, { music: this.music, });
+        this.modalWindow = new ModalWindow(this.game, new CONSTANTS.ModalWindow, { musicStorage: this.musicStorage });
     }
 
     update() {

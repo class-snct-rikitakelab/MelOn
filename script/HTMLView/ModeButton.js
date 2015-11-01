@@ -15,8 +15,7 @@ var ModeButton = (function (_super) {
     ModeButton.prototype.setEvent = function () {
         var _this = this;
         this.$.click(function () { _this.click(); });
-        this.$.mouseenter(function () { _this.enrer(); });
-        this.$.mouseleave(function () { _this.leave(); });
+        this.$.hover(function () { _this.enrer(); }, function () { _this.leave(); });
     };
     ModeButton.prototype.click = function () {
         var _this = this;

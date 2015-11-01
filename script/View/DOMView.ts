@@ -12,4 +12,16 @@ class DOMView {
         // DOMObjects have their own Element of jQuery by using selector.
         this.$ = $(constants.selector);
     }
+
+    protected pushEvent(): string {
+        return this.game.device.touch ? "touchstart" : "mousedown";
+    }
+
+    protected toId(name: string): string {
+        return "#" + name;
+    }
+
+    protected makeDiv(id: string): JQuery {
+        return $(`<div id=${id}></div>`);
+    }
 }
