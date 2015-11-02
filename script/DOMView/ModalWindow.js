@@ -16,11 +16,11 @@ var ModalWindow = (function (_super) {
         this.lang = modalConstants.language;
     }
     ModalWindow.prototype.open = function () {
-        var scrollY = window.scrollY;
-        window.onscroll = function () { window.scrollTo(null, scrollY); };
-        $(window).on('touchmove.noScroll', function (e) { e.preventDefault(); });
-        this.close();
         this.refleshEvents();
+        this.close();
+        var scrollY = window.scrollY;
+        window.onscroll = function () { window.scrollTo(window.scrollX, scrollY); };
+        $(window).on('touchmove.noScroll', function (e) { e.preventDefault(); });
     };
     ModalWindow.prototype.close = function () {
         window.onscroll = null;

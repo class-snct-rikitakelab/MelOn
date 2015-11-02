@@ -15,11 +15,11 @@ class ModalWindow extends DOMView {
     }
 
     private open() {
-        var scrollY = window.scrollY;
-        window.onscroll = () => { window.scrollTo(null, scrollY); };
-        $(window).on('touchmove.noScroll', (e) => { e.preventDefault(); });
-        this.close();
         this.refleshEvents();
+        this.close();
+        var scrollY = window.scrollY;
+        window.onscroll = () => { window.scrollTo(window.scrollX, scrollY); };
+        $(window).on('touchmove.noScroll', (e) => { e.preventDefault(); });
     }
 
     private close() {

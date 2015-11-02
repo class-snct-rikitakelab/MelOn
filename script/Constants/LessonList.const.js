@@ -10,9 +10,9 @@ var LESSON_LIST;
     })();
     LESSON_LIST.Language = Language;
     LESSON_LIST.listUrls = {
-        English: "storage/lesson/english/lessonList.en.json",
-        Japanese: "storage/lesson/japanese/lessonList.ja.json",
-        Finnish: "storage/lesson/finnish/lessonList.fi.json",
+        English: "storage/lesson/list/lessonList.en.json",
+        Japanese: "storage/lesson/list/lessonList.ja.json",
+        Finnish: "storage/lesson/list/lessonList.fi.json",
     };
     var choose = (function () {
         function choose() {

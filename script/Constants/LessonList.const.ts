@@ -8,9 +8,9 @@ namespace LESSON_LIST {
     }
 
     export var listUrls = {
-        English: "storage/lesson/english/lessonList.en.json",
-        Japanese: "storage/lesson/japanese/lessonList.ja.json",
-        Finnish: "storage/lesson/finnish/lessonList.fi.json",
+        English: "storage/lesson/list/lessonList.en.json",
+        Japanese: "storage/lesson/list/lessonList.ja.json",
+        Finnish: "storage/lesson/list/lessonList.fi.json",
     }
 
     export class choose {
