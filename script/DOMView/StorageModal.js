@@ -22,9 +22,9 @@ var StorageModal = (function (_super) {
     StorageModal.prototype.saveConfirm = function () {
         var _this = this;
         this.game.sound.play("decide");
+        this.confirm(this.constants.loadConfirmMsg[this.lang]);
         this.onYes.addOnce(function () { _this.musicStorage.save(); });
         this.onNo.addOnce(function () { _this.game.sound.play("close"); });
-        this.confirm(this.constants.loadConfirmMsg[this.lang]);
     };
     StorageModal.prototype.save = function () {
         this.game.sound.play("save");
@@ -37,9 +37,9 @@ var StorageModal = (function (_super) {
             this.loadFailed();
             return;
         }
+        this.confirm(this.constants.loadConfirmMsg[this.lang]);
         this.onYes.addOnce(function () { _this.musicStorage.load(); });
         this.onNo.addOnce(function () { _this.game.sound.play("close"); });
-        this.confirm(this.constants.loadConfirmMsg[this.lang]);
     };
     StorageModal.prototype.loadFailed = function () {
         this.game.sound.play("boo");

@@ -27,7 +27,7 @@ class LoadButton extends DOMView {
         this.musicStorage.onLoad.add((loadMusic) => { this.setMusic(loadMusic); });
     }
 
-    private setMusic(music: MusicData) {
+    setMusic(music: MusicData) {
         this.game.sound.mute = true;
         this.music.setMusic(music);
         this.game.sound.mute = false;

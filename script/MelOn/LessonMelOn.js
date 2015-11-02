@@ -10,22 +10,18 @@ var LessonMelOn = (function (_super) {
         _super.apply(this, arguments);
         // ========== Model ==========
         this.lessonData = new LessonData(new LESSON.LessonData);
+        this.achievement = new Achievement(new LESSON.Achievement, this.lessonData.getMode);
     }
     LessonMelOn.prototype.create = function () {
-        this.achievement = new Achievement(new LESSON.Achievement, this.lessonData.getMode);
         _super.prototype.create.call(this);
-        if (this.lessonData.getInherit)
-            this.music.setMusic(this.lessonData.getInherit);
         this.targetNotes = new TargetNotes(this.game, new LESSON.TargetNotes, { music: this.music, lessonData: this.lessonData, achievement: this.achievement });
         this.nextButton = new NextButton(this.game, new LESSON.NextButton, { lessonData: this.lessonData, achievement: this.achievement, musicPlayer: this.musicPlayer });
-        if (this.lessonData.getMode === "filling") {
-            this.blanks = new Blanks(this.game, new LESSON.Blanks, { music: this.music, lessonData: this.lessonData, achievement: this.achievement });
-        }
         this.lecture = new Lecture(this.game, new LESSON.Lecture, { lessonData: this.lessonData });
-    };
-    LessonMelOn.prototype.error = function () {
-        alert("There are some errors in this lesson file!");
-        document.location = ("LessonList.html?lang=" + LESSON.language);
+        this.lessonModal = new LessonModal(this.game, new LESSON.LessonModal, { achievement: this.achievement, lessonData: this.lessonData });
+        if (this.lessonData.getMode === "filling")
+            this.blanks = new Blanks(this.game, new LESSON.Blanks, { music: this.music, lessonData: this.lessonData, achievement: this.achievement });
+        if (this.lessonData.getInherit)
+            this.loadButton.setMusic(this.lessonData.getInherit);
     };
     return LessonMelOn;
 })(MelOn);

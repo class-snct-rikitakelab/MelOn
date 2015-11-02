@@ -9,7 +9,7 @@
 
     let scripts = {
         Libraries: [
-            "jquery-1.10.2.min",
+            "jquery-1.11.3",
             "jquery-uvg",
             "underscore",
         ],

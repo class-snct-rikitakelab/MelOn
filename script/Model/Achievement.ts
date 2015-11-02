@@ -5,7 +5,11 @@ class Achievement extends Model {
     private traced: boolean = false;
     private filled: boolean = (this.mode === "filling") ? false : true;
     private finished: boolean = false;
+
     onFinish: Phaser.Signal = new Phaser.Signal;
+    onPlayAlert: Phaser.Signal = new Phaser.Signal;
+    onStopAlert: Phaser.Signal = new Phaser.Signal;
+    onActive: Phaser.Signal = new Phaser.Signal;
 
     constructor(private constants: LESSON.Achievement, private mode: string) {
         super(constants);
@@ -17,6 +21,18 @@ class Achievement extends Model {
 
     private isAchieved(): boolean {
         return this.traced && this.filled;
+    }
+
+    playAlert() {
+        this.onPlayAlert.dispatch();
+    }
+
+    stopAlert() {
+        this.onStopAlert.dispatch();
+    }
+
+    active() {
+        this.onActive.dispatch();
     }
 
     private sortMusic(music: MusicData): MusicData {

@@ -2,11 +2,19 @@
     background-color: lemonchiffon;
 }
 
+#MelOn{
+    height: 620px;
+}
+
 #nextButton {
+    position: absolute;
     background-color: gray;
     width: 600px;
     height: 80px;
-    margin: 20px auto;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: 0 auto;
     border-style: solid;
     border-width: 5px;
     border-radius: 10px;
@@ -14,7 +22,6 @@
     font-size: 80px;
     font-weight: 900;
     font-style: italic;
-    font-family: "Franklin Gothic Medium",sans-serif;
     cursor: pointer;
 }
 

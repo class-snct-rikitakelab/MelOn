@@ -9,6 +9,7 @@ var ModalWindow = (function (_super) {
     function ModalWindow(game, modalConstants, models) {
         _super.call(this, game, modalConstants, models);
         this.modalConstants = modalConstants;
+        this.onClose = new Phaser.Signal();
         this.onOk = new Phaser.Signal();
         this.onYes = new Phaser.Signal();
         this.onNo = new Phaser.Signal();
@@ -17,8 +18,8 @@ var ModalWindow = (function (_super) {
     ModalWindow.prototype.open = function () {
         var scrollY = window.scrollY;
         window.onscroll = function () { window.scrollTo(null, scrollY); };
-        if ($(this.modalConstants.modalIds.overlay)[0])
-            $(this.modalConstants.modalIds.overlay).remove();
+        this.close();
+        this.refleshEvents();
     };
     ModalWindow.prototype.close = function () {
         window.onscroll = null;
@@ -26,6 +27,8 @@ var ModalWindow = (function (_super) {
         overlay.fadeOut(function () { overlay.remove(); });
     };
     ModalWindow.prototype.refleshEvents = function () {
+        this.onClose.dispatch();
+        this.onClose.removeAll();
         this.onOk.removeAll();
         this.onYes.removeAll();
         this.onNo.removeAll();
@@ -36,7 +39,6 @@ var ModalWindow = (function (_super) {
         return this.makeDiv(id).on(this.pushEvent(), function (e) {
             if (e.target.id === id) {
                 _this.game.sound.play("close");
-                _this.refleshEvents();
                 _this.close();
             }
         });
@@ -69,9 +71,9 @@ var ModalWindow = (function (_super) {
         var window = this.makeWindow();
         var message = this.makeMessage(text);
         var yesButton = this.makeButton(this.modalConstants.modalIds.yes, this.modalConstants.yesText[this.lang])
-            .on(this.pushEvent(), function () { _this.onYes.dispatch(); _this.onNo.removeAll(); });
+            .on(this.pushEvent(), function () { _this.onYes.dispatch(); });
         var noButton = this.makeButton(this.modalConstants.modalIds.no, this.modalConstants.noText[this.lang])
-            .on(this.pushEvent(), function () { _this.onNo.dispatch(); _this.onYes.removeAll(); });
+            .on(this.pushEvent(), function () { _this.onNo.dispatch(); });
         window.append(message).append(yesButton).append(noButton);
         return overlay.append(window);
     };
@@ -79,6 +81,7 @@ var ModalWindow = (function (_super) {
         this.open();
         this.$.append(this.alertAssemble(text).fadeIn());
     };
+    // Add the events after open!!
     ModalWindow.prototype.confirm = function (text) {
         this.open();
         this.$.append(this.confirmAssemble(text).fadeIn());

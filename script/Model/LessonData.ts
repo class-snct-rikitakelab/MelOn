@@ -29,7 +29,7 @@ class LessonData extends Model {
     }
 
     private ajaxError() {
-        alert("Lesson Data Read Error!");
+        alert(this.constants.errorMsg[this.constants.language]);
         document.location = <any>this.constants.defaultUrl;
     }
 

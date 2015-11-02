@@ -19,7 +19,7 @@ var LESSON_LIST;
             this.script = {
                 English: "Choose a lesson!",
                 Japanese: "おけいこをえらぼう！",
-                Finnish: "Valita oppitunti!",
+                Finnish: "Valitse oppitunti!",
             };
         }
         return choose;
@@ -38,7 +38,7 @@ var LESSON_LIST;
             this.title = {
                 English: "Title",
                 Japanese: "だいめい",
-                Finnish: "Ostikko",
+                Finnish: "Otsikko",
             };
             this.description = {
                 English: "Description",

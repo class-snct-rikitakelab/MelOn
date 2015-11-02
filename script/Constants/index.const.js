@@ -6,6 +6,7 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var INDEX;
 (function (INDEX) {
+    INDEX.defaultLanguage = "Finnish";
     ;
     var HTMLLogo = (function () {
         function HTMLLogo() {
@@ -23,8 +24,9 @@ var INDEX;
     var ModeButton = (function () {
         function ModeButton() {
             this.selector = "";
-            this.destination = "";
+            this.baseUrl = "";
             this.shadowColor = "";
+            this.defaultLanguage = INDEX.defaultLanguage;
             this.images = {};
             this.audios = {
                 select: "storage/assets/sound/se/select.mp3",
@@ -39,10 +41,12 @@ var INDEX;
         function FreeMakingMusic() {
             _super.apply(this, arguments);
             this.selector = "#freeMakingMusic";
-            this.destination = "FreeMakingMusic.html?lang=Finnish";
+            this.baseUrl = "FreeMakingMusic.html?lang=";
             this.shadowColor = "orange";
             this.images = {
-                image: "storage/assets/image/modeButton/freeMakingMusicFinnish.png",
+                "English": "storage/assets/image/modeButton/freeMakingMusicEnglish.png",
+                "Japanese": "storage/assets/image/modeButton/freeMakingMusicJapanese.png",
+                "Finnish": "storage/assets/image/modeButton/freeMakingMusicFinnish.png",
             };
         }
         return FreeMakingMusic;
@@ -53,10 +57,12 @@ var INDEX;
         function Lesson() {
             _super.apply(this, arguments);
             this.selector = "#lesson";
-            this.destination = "LessonList.html?lang=Finnish";
+            this.baseUrl = "LessonList.html?lang=";
             this.shadowColor = "lawngreen";
             this.images = {
-                image: "storage/assets/image/modeButton/lessonFinnish.png",
+                "English": "storage/assets/image/modeButton/lessonEnglish.png",
+                "Japanese": "storage/assets/image/modeButton/lessonJapanese.png",
+                "Finnish": "storage/assets/image/modeButton/lessonFinnish.png",
             };
         }
         return Lesson;

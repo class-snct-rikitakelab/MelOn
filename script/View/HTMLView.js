@@ -8,6 +8,7 @@ var HTMLView = (function () {
         _.each(constants.audios, function (src, name) { _this.audios[name] = new Audio(src); });
     }
     HTMLView.prototype.setImage = function (image) {
+        this.$.remove("img");
         this.$.append(this.images[image]);
     };
     HTMLView.prototype.audioPlay = function (audio) {

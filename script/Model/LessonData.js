@@ -25,7 +25,7 @@ var LessonData = (function (_super) {
         });
     };
     LessonData.prototype.ajaxError = function () {
-        alert("Lesson Data Read Error!");
+        alert(this.constants.errorMsg[this.constants.language]);
         document.location = this.constants.defaultUrl;
     };
     LessonData.prototype.importLessonData = function (data) {

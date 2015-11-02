@@ -12,12 +12,12 @@ class FreeMakingMusic extends Phaser.Game {
         this.start();
     }
 
-    private setMelOn(selector: string) {
+    protected setMelOn(selector: string) {
         $(selector).on("contextmenu", () => { return false; }).on("selectstart", () => { return false; })
             .append($(`<img id="calyx" src="storage/assets/image/game/melon.png" />`));
     }
 
-    private createElements(parentSelector: string, elementIds: string[]) {
+    protected createElements(parentSelector: string, elementIds: string[]) {
         var parent = $(parentSelector);
         for (var element of elementIds) parent.append(`<div id=${element}></div>`);
     }

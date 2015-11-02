@@ -8,7 +8,7 @@ var LessonList = (function () {
     return LessonList;
 })();
 window.onload = function () {
-    $.ajaxSetup({ cache: false });
+    $.ajaxSetup({ async: false, cache: false });
     $(function () { new LessonList(); });
 };
 //# sourceMappingURL=LessonList.js.map

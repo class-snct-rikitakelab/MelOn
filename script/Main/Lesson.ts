@@ -5,6 +5,11 @@ class Lesson extends FreeMakingMusic {
         super(assets, constants);
     }
 
+    protected createElements(parentSelector: string, elementIds: string[]) {
+        elementIds.push("nextButton");
+        super.createElements(parentSelector, elementIds);
+    }
+
     protected setStates() {
         this.state.add('Boot', Boot, false);
         this.state.add('Preloader', Preloader, false);
@@ -14,6 +19,6 @@ class Lesson extends FreeMakingMusic {
 
 // Do it after loading HTML, and use jQuery
 window.onload = () => {
-    $.ajaxSetup({ cache: false });
+    $.ajaxSetup({ async: false, cache: false });
     $(() => { new Lesson(new MelOnAssets, new CONSTANTS.MelOn); });
 }

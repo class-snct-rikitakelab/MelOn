@@ -9,6 +9,10 @@ var Lesson = (function (_super) {
     function Lesson(assets, constants) {
         _super.call(this, assets, constants);
     }
+    Lesson.prototype.createElements = function (parentSelector, elementIds) {
+        elementIds.push("nextButton");
+        _super.prototype.createElements.call(this, parentSelector, elementIds);
+    };
     Lesson.prototype.setStates = function () {
         this.state.add('Boot', Boot, false);
         this.state.add('Preloader', Preloader, false);
@@ -18,7 +22,7 @@ var Lesson = (function (_super) {
 })(FreeMakingMusic);
 // Do it after loading HTML, and use jQuery
 window.onload = function () {
-    $.ajaxSetup({ cache: false });
+    $.ajaxSetup({ async: false, cache: false });
     $(function () { new Lesson(new MelOnAssets, new CONSTANTS.MelOn); });
 };
 //# sourceMappingURL=Lesson.js.map

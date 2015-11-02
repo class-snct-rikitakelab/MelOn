@@ -5,12 +5,19 @@ namespace LESSON {
     import Model = CONSTANTS.Model;
     import GroupView = CONSTANTS.GroupView;
     import DOMView = CONSTANTS.DOMView;
+    import ModalWindow = CONSTANTS.ModalWindow;
     
     export var language: string = new LESSON_LIST.Language().language;
 
     export class LessonData implements Model {
-        listUrl: string = LESSON_LIST.listUrls[LESSON.language];
-        defaultUrl: string = `LessonList.html?lang=${LESSON.language}`;
+        language: string = language
+        listUrl: string = LESSON_LIST.listUrls[language];
+        defaultUrl: string = `LessonList.html?lang=${language}`;
+        errorMsg = {
+            "English": "Lesson Data Read Error...",
+            "Japanese": "学習データの読み込みに失敗しました。",
+            "Finnish": "Lesson Data Read Error...",
+        }
     }
 
     export class Achievement implements Model {
@@ -36,6 +43,12 @@ namespace LESSON {
 
     export class NextButton implements DOMView {
         selector = "#nextButton";
+        lang = language;
+        next = {
+            "English": "NEXT ⇒",
+            "Japanese": "次へ ⇒",
+            "Finnish": "SEURAAVA ⇒"
+        }
     }
 
     export class Lecture implements DOMView {
@@ -57,6 +70,30 @@ namespace LESSON {
             balloon: "balloon",
             triangle: "triangle",
             person: "person",
+        };
+    }
+
+    export class LessonModal {
+        modalConstants: ModalWindow = new ModalWindow();
+        playMsg = {
+            "English": "Play the music.",
+            "Japanese": "音楽を再生してね。",
+            "Finnish": "Play the music.",
+        };
+        stopMsg = {
+            "English": "Listen to the music or stop.",
+            "Japanese": "音楽を最後まで聞くか、停止してね。",
+            "Finnish": "Listen to the music or stop.",
+        };
+        TryMsg = {
+            "English": "Good Job! Try to play the music!",
+            "Japanese": "やったね！　音楽を再生してみよう！",
+            "Finnish": "Good Job! Try to play the music!",
+        };
+        goNextMsg = {
+            "English": "Excellent! push NEXT button to go on!",
+            "Japanese": "よくできました！　「次へ」ボタンを押して進もう！",
+            "Finnish": "Excellent! push NEXT button to go on!",
         };
     }
 }

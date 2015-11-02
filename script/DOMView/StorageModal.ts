@@ -18,9 +18,9 @@ class StorageModal extends ModalWindow {
 
     saveConfirm() {
         this.game.sound.play("decide");
+        this.confirm(this.constants.loadConfirmMsg[this.lang]);
         this.onYes.addOnce(() => { this.musicStorage.save(); });
         this.onNo.addOnce(() => { this.game.sound.play("close"); });
-        this.confirm(this.constants.loadConfirmMsg[this.lang]);
     }
 
     save() {
@@ -31,9 +31,9 @@ class StorageModal extends ModalWindow {
     loadConfirm(exist: boolean) {
         this.game.sound.play("decide");
         if (!exist) { this.loadFailed(); return; }
+        this.confirm(this.constants.loadConfirmMsg[this.lang]);
         this.onYes.addOnce(() => { this.musicStorage.load(); });
         this.onNo.addOnce(() => { this.game.sound.play("close"); });
-        this.confirm(this.constants.loadConfirmMsg[this.lang]);
     }
 
     loadFailed() {

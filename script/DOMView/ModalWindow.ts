@@ -4,6 +4,7 @@ class ModalWindow extends DOMView {
 
     protected lang: string;
 
+    onClose: Phaser.Signal = new Phaser.Signal();
     onOk: Phaser.Signal = new Phaser.Signal();
     onYes: Phaser.Signal = new Phaser.Signal();
     onNo: Phaser.Signal = new Phaser.Signal();
@@ -16,7 +17,8 @@ class ModalWindow extends DOMView {
     private open() {
         var scrollY = window.scrollY;
         window.onscroll = () => { window.scrollTo(null, scrollY); };
-        if ($(this.modalConstants.modalIds.overlay)[0]) $(this.modalConstants.modalIds.overlay).remove();
+        this.close();
+        this.refleshEvents();
     }
 
     private close() {
@@ -26,6 +28,8 @@ class ModalWindow extends DOMView {
     }
 
     private refleshEvents() {
+        this.onClose.dispatch();
+        this.onClose.removeAll();
         this.onOk.removeAll();
         this.onYes.removeAll();
         this.onNo.removeAll();
@@ -34,7 +38,7 @@ class ModalWindow extends DOMView {
     private makeOverlay(): JQuery {
         var id = this.modalConstants.modalIds.overlay;
         return this.makeDiv(id).on(this.pushEvent(), (e) => {
-            if (e.target.id === id) { this.game.sound.play("close"); this.refleshEvents(); this.close(); }
+            if (e.target.id === id) { this.game.sound.play("close"); this.close(); }
         });
     }
 
@@ -68,9 +72,9 @@ class ModalWindow extends DOMView {
         var window = this.makeWindow();
         var message = this.makeMessage(text);
         var yesButton = this.makeButton(this.modalConstants.modalIds.yes, this.modalConstants.yesText[this.lang])
-            .on(this.pushEvent(), () => { this.onYes.dispatch(); this.onNo.removeAll(); });
+            .on(this.pushEvent(), () => { this.onYes.dispatch(); });
         var noButton = this.makeButton(this.modalConstants.modalIds.no, this.modalConstants.noText[this.lang])
-            .on(this.pushEvent(), () => { this.onNo.dispatch(); this.onYes.removeAll(); });
+            .on(this.pushEvent(), () => { this.onNo.dispatch(); });
         window.append(message).append(yesButton).append(noButton);
         return overlay.append(window);
     }
@@ -80,6 +84,7 @@ class ModalWindow extends DOMView {
         this.$.append(this.alertAssemble(text).fadeIn());
     }
 
+    // Add the events after open!!
     protected confirm(text: string) {
         this.open();
         this.$.append(this.confirmAssemble(text).fadeIn());

@@ -2,11 +2,18 @@
 var LESSON;
 (function (LESSON) {
     var ScoreData = CONSTANTS.MeasureSheet;
+    var ModalWindow = CONSTANTS.ModalWindow;
     LESSON.language = new LESSON_LIST.Language().language;
     var LessonData = (function () {
         function LessonData() {
+            this.language = LESSON.language;
             this.listUrl = LESSON_LIST.listUrls[LESSON.language];
             this.defaultUrl = "LessonList.html?lang=" + LESSON.language;
+            this.errorMsg = {
+                "English": "Lesson Data Read Error...",
+                "Japanese": "学習データの読み込みに失敗しました。",
+                "Finnish": "Lesson Data Read Error...",
+            };
         }
         return LessonData;
     })();
@@ -44,6 +51,12 @@ var LESSON;
     var NextButton = (function () {
         function NextButton() {
             this.selector = "#nextButton";
+            this.lang = LESSON.language;
+            this.next = {
+                "English": "NEXT ⇒",
+                "Japanese": "次へ ⇒",
+                "Finnish": "SEURAAVA ⇒"
+            };
         }
         return NextButton;
     })();
@@ -73,5 +86,32 @@ var LESSON;
         return Lecture;
     })();
     LESSON.Lecture = Lecture;
+    var LessonModal = (function () {
+        function LessonModal() {
+            this.modalConstants = new ModalWindow();
+            this.playMsg = {
+                "English": "Play the music.",
+                "Japanese": "音楽を再生してね。",
+                "Finnish": "Play the music.",
+            };
+            this.stopMsg = {
+                "English": "Listen to the music or stop.",
+                "Japanese": "音楽を最後まで聞くか、停止してね。",
+                "Finnish": "Listen to the music or stop.",
+            };
+            this.TryMsg = {
+                "English": "Good Job! Try to play the music!",
+                "Japanese": "やったね！　音楽を再生してみよう！",
+                "Finnish": "Good Job! Try to play the music!",
+            };
+            this.goNextMsg = {
+                "English": "Excellent! push NEXT button to go on!",
+                "Japanese": "よくできました！　「次へ」ボタンを押して進もう！",
+                "Finnish": "Excellent! push NEXT button to go on!",
+            };
+        }
+        return LessonModal;
+    })();
+    LESSON.LessonModal = LessonModal;
 })(LESSON || (LESSON = {}));
 //# sourceMappingURL=Lesson.const.js.map

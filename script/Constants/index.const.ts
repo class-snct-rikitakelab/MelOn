@@ -2,6 +2,8 @@
 
 namespace INDEX {
 
+    export var defaultLanguage: string = "Finnish"; 
+
     export interface HTMLView {
         selector: string;
         images: { [name: string]: string };
@@ -20,8 +22,9 @@ namespace INDEX {
 
     export class ModeButton implements HTMLView {
         selector = "";
-        destination = "";
+        baseUrl = "";
         shadowColor = "";
+        defaultLanguage: string = defaultLanguage;
         images: { [name: string]: string } = {
         };
         audios: { [name: string]: string } = {
@@ -32,19 +35,23 @@ namespace INDEX {
 
     export class FreeMakingMusic extends ModeButton implements HTMLView {
         selector = "#freeMakingMusic";
-        destination = "FreeMakingMusic.html?lang=Finnish";
+        baseUrl = "FreeMakingMusic.html?lang=";
         shadowColor = "orange";
         images: { [name: string]: string } = {
-            image: "storage/assets/image/modeButton/freeMakingMusicFinnish.png",
+            "English": "storage/assets/image/modeButton/freeMakingMusicEnglish.png",
+            "Japanese": "storage/assets/image/modeButton/freeMakingMusicJapanese.png",
+            "Finnish": "storage/assets/image/modeButton/freeMakingMusicFinnish.png",
         };
     }
 
     export class Lesson extends ModeButton implements HTMLView {
         selector = "#lesson";
-        destination = "LessonList.html?lang=Finnish";
+        baseUrl = "LessonList.html?lang=";
         shadowColor = "lawngreen";
         images: { [name: string]: string } = {
-            image: "storage/assets/image/modeButton/lessonFinnish.png",
+            "English": "storage/assets/image/modeButton/lessonEnglish.png",
+            "Japanese": "storage/assets/image/modeButton/lessonJapanese.png",
+            "Finnish": "storage/assets/image/modeButton/lessonFinnish.png",
         };
     }
 }

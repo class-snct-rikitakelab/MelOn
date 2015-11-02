@@ -17,7 +17,7 @@ namespace LESSON_LIST {
         script = {
             English: "Choose a lesson!",
             Japanese: "おけいこをえらぼう！",
-            Finnish: "Valita oppitunti!",
+            Finnish: "Valitse oppitunti!",
         };
     }
 
@@ -35,7 +35,7 @@ namespace LESSON_LIST {
         title = {
             English: "Title",
             Japanese: "だいめい",
-            Finnish: "Ostikko",
+            Finnish: "Otsikko",
         };
         description = {
             English: "Description",
