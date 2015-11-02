@@ -17,12 +17,14 @@ class ModalWindow extends DOMView {
     private open() {
         var scrollY = window.scrollY;
         window.onscroll = () => { window.scrollTo(null, scrollY); };
+        $(window).on('touchmove.noScroll', (e) => { e.preventDefault(); });
         this.close();
         this.refleshEvents();
     }
 
     private close() {
         window.onscroll = null;
+        $(window).off('.noScroll');
         var overlay = $(this.toId(this.modalConstants.modalIds.overlay));
         overlay.fadeOut(() => { overlay.remove(); });
     }

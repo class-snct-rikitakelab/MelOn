@@ -18,11 +18,13 @@ var ModalWindow = (function (_super) {
     ModalWindow.prototype.open = function () {
         var scrollY = window.scrollY;
         window.onscroll = function () { window.scrollTo(null, scrollY); };
+        $(window).on('touchmove.noScroll', function (e) { e.preventDefault(); });
         this.close();
         this.refleshEvents();
     };
     ModalWindow.prototype.close = function () {
         window.onscroll = null;
+        $(window).off('.noScroll');
         var overlay = $(this.toId(this.modalConstants.modalIds.overlay));
         overlay.fadeOut(function () { overlay.remove(); });
     };

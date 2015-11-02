@@ -411,7 +411,7 @@ namespace CONSTANTS {
     export class StorageModal {
         modalConstants: ModalWindow = new ModalWindow();
         saveConfirmMsg = {
-            "English": "The music you have already saved will be disposed. Is it OK?",
+            "English": "The music you have already saved will be disposed.Is it OK?",
             "Japanese": "すでに保存されている音楽が上書きされます。よろしいですか？",
             "Finnish": "The music you have already saved will be disposed. Is it OK?",
         };
