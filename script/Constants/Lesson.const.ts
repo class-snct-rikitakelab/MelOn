@@ -16,7 +16,7 @@ namespace LESSON {
         errorMsg = {
             "English": "Lesson Data Read Error...",
             "Japanese": "学習データの読み込みに失敗しました。",
-            "Finnish": "Lesson Data Read Error...",
+            "Finnish": "Oppitunnin tietoja ei onnistuttu lukemaan...",
         }
     }
 
@@ -78,22 +78,22 @@ namespace LESSON {
         playMsg = {
             "English": "Play the music.",
             "Japanese": "音楽を再生してね。",
-            "Finnish": "Play the music.",
+            "Finnish": "Soita musiikkia.",
         };
         stopMsg = {
             "English": "Listen to the music or stop.",
             "Japanese": "音楽を最後まで聞くか、停止してね。",
-            "Finnish": "Listen to the music or stop.",
+            "Finnish": "Kuuntele musiikkia tai pysötä.",
         };
         TryMsg = {
             "English": "Good Job! Try to play the music!",
             "Japanese": "やったね！　音楽を再生してみよう！",
-            "Finnish": "Good Job! Try to play the music!",
+            "Finnish": "Hienoa! Kokeile soittaa musiikkia!",
         };
         goNextMsg = {
             "English": "Excellent! push NEXT button to go on!",
             "Japanese": "よくできました！　「次へ」ボタンを押して進もう！",
-            "Finnish": "Excellent! push NEXT button to go on!",
+            "Finnish": "Erinomaista! Paina SEURAAVA nappia jatkaaksesi!",
         };
     }
 }

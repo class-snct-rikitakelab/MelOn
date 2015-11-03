@@ -508,22 +508,22 @@ var CONSTANTS;
             this.saveConfirmMsg = {
                 "English": "The music you have already saved will be disposed.Is it OK?",
                 "Japanese": "すでに保存されている音楽が上書きされます。よろしいですか？",
-                "Finnish": "The music you have already saved will be disposed. Is it OK?",
+                "Finnish": "Tallentamasi musiikki poistetaan. Sopiiko se?",
             };
             this.saveMsg = {
                 "English": "Your music was saved!",
                 "Japanese": "音楽が保存されました！",
-                "Finnish": "Your music was saved!",
+                "Finnish": "Musiikkisi on tallennettu!",
             };
             this.loadConfirmMsg = {
                 "English": "The music you are making will be disposed. Is it OK?",
                 "Japanese": "今楽譜にある音楽が消えてしまいます。よろしいですか？",
-                "Finnish": "The music you are making will be disposed. Is it OK?",
+                "Finnish": "Musiikki jota teet poistetaan. Sopiiko se?",
             };
             this.loadFailMsg = {
                 "English": "Music not Found!",
                 "Japanese": "音楽が保存されていません！",
-                "Finnish": "Music not Found!",
+                "Finnish": "Musiikkia ei lödetty!",
             };
         }
         return StorageModal;
