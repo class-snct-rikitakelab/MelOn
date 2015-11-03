@@ -15,6 +15,12 @@ var AssetLoader = (function () {
             FRAME_WIDTH: 2,
             FRAME_HEIGHT: 3,
         };
+        this.images = {};
+        this.spriteSheets = {};
+        this.audios = {};
+        this.preloadImages = {};
+        this.preloadSpriteSheets = {};
+        this.preloadAudios = {};
     }
     AssetLoader.prototype.load = function (loader) {
         loader.baseURL = this.baseURL + "/";

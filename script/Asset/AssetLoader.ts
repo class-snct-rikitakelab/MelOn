@@ -19,12 +19,12 @@ class AssetLoader {
         FRAME_HEIGHT: 3,
     }
 
-    protected images: { [dir: string]: [string, string][] };
-    protected spriteSheets: { [dir: string]: [string, string, number, number][] };
-    protected audios: { [dir: string]: [string, string[]][] };
-    protected preloadImages: { [dir: string]: [string, string][] };
-    protected preloadSpriteSheets: { [dir: string]: [string, string, number, number][] };
-    protected preloadAudios: { [dir: string]: [string, string[]][] };
+    protected images: { [dir: string]: [string, string][] } = {};
+    protected spriteSheets: { [dir: string]: [string, string, number, number][] } = {};
+    protected audios: { [dir: string]: [string, string[]][] } = {};
+    protected preloadImages: { [dir: string]: [string, string][] } = {};
+    protected preloadSpriteSheets: { [dir: string]: [string, string, number, number][] } = {};
+    protected preloadAudios: { [dir: string]: [string, string[]][] } = {};
 
     load(loader: Phaser.Loader) {
         loader.baseURL = this.baseURL + "/";

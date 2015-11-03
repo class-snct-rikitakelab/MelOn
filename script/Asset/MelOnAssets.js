@@ -25,7 +25,6 @@ var MelOnAssets = (function (_super) {
                 ["score", "score.png"],
             ]
         };
-        this.spriteSheets = {};
         // ogg is not supported by IE. But mp3 makes loading time much longer.
         // Google Chrome is recommended.
         this.audios = {
@@ -126,17 +125,17 @@ var MelOnAssets = (function (_super) {
                 ["violinG4", ["violinG4.ogg", "violinG4.mp3"]],
             ],
             se: [
-                ["MelOn", ["MelOn!.ogg",]],
-                ["tamb", ["tamb.ogg",]],
-                ["boo", ["boo.ogg",]],
-                ["close", ["close.ogg",]],
-                ["decide", ["decide.ogg",]],
-                ["erase", ["erase.ogg",]],
-                ["load", ["load.ogg",]],
-                ["open", ["open.ogg",]],
-                ["save", ["save.ogg",]],
+                ["MelOn", ["MelOn!.mp3",]],
+                ["tamb", ["tamb.mp3",]],
+                ["boo", ["boo.mp3",]],
+                ["close", ["close.mp3",]],
+                ["decide", ["decide.mp3",]],
+                ["erase", ["erase.mp3",]],
+                ["load", ["load.mp3",]],
+                ["open", ["open.mp3",]],
+                ["save", ["save.mp3",]],
                 ["select", ["select.mp3",]],
-                ["jump", ["jump.ogg",]],
+                ["jump", ["jump.mp3",]],
             ],
         };
         this.preloadImages = {
@@ -147,8 +146,6 @@ var MelOnAssets = (function (_super) {
                 ["background", "background.png"],
             ],
         };
-        this.preloadSpriteSheets = {};
-        this.preloadAudios = {};
     }
     return MelOnAssets;
 })(AssetLoader);
