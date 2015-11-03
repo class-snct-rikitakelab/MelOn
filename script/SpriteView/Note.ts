@@ -26,8 +26,8 @@ class Note extends SpriteView {
     protected setInput() {
         this.inputEnabled = true;
         this.input.useHandCursor = true;
-        this.events.onInputUp.add(() => { this.music.refresh(); });
-        this.events.onInputDown.add((self, pointer: Phaser.Pointer) => { this.touchNote(pointer); });
+        this.events.onInputUp.add(() => this.music.refresh());
+        this.events.onInputDown.add((self, pointer: Phaser.Pointer) => this.touchNote(pointer));
         this.events.onInputOver.add(() => {
             if (this.stationery.getStationery === this.constants.eraseStationery && this.pointer.isDown) {
                 this.game.sound.play("erase");
@@ -37,11 +37,11 @@ class Note extends SpriteView {
     }
 
     private setEvent() {
-        this.music.onEraseAll.add(() => { this.erase(); });
-        this.music.onRefresh.add(() => { this.refresh(); });
-        this.music.onMove.add(() => { this.movePosition(); });
-        this.music.onChangeExtension.add(() => { this.changeExtension(); });
-        this.musicPlayer.onStop.add(() => { this.offOverlap(); });
+        this.music.onEraseAll.add(() => this.erase());
+        this.music.onRefresh.add(() => this.refresh());
+        this.music.onMove.add(() => this.movePosition());
+        this.music.onChangeExtension.add(() => this.changeExtension());
+        this.musicPlayer.onStop.add(() => this.offOverlap());
     }
 
     get getNoteData(): NoteData {
@@ -89,7 +89,10 @@ class Note extends SpriteView {
     }
 
     private changeExtension() {
-        if (this.music.getSelectedNote === this.data) this.width = this.constants.width * (this.music.getSelectedNote.extension + 1);
+        if (this.music.getSelectedNote === this.data)
+            this.game.add.tween(this)
+                .to({ width: this.constants.width * (this.music.getSelectedNote.extension + 1) }, this.constants.tweenDuration)
+                .start();
     }
 
     private erase() {
@@ -129,8 +132,10 @@ class Note extends SpriteView {
     }
 
     private strech() {
-        var juttingOut = (this.pointer.x + this.game.camera.x) - (this.x + this.width);
-        var juttingIn = (this.x + this.width) - (this.pointer.x + this.game.camera.x);
+        var right = this.x + this.constants.width * (this.data.extension + 1);
+        var left = this.pointer.x + this.game.camera.x
+        var juttingOut = left - right;
+        var juttingIn = right - left;
         if (juttingOut > 0) _.times(Math.ceil(juttingOut / this.constants.width), () => { this.music.lengthen(this.data); });
         if (juttingIn > 0) _.times(Math.floor(juttingIn / this.constants.width), () => { this.music.shorten(this.data); });
     }

@@ -29,8 +29,8 @@ var Note = (function (_super) {
         var _this = this;
         this.inputEnabled = true;
         this.input.useHandCursor = true;
-        this.events.onInputUp.add(function () { _this.music.refresh(); });
-        this.events.onInputDown.add(function (self, pointer) { _this.touchNote(pointer); });
+        this.events.onInputUp.add(function () { return _this.music.refresh(); });
+        this.events.onInputDown.add(function (self, pointer) { return _this.touchNote(pointer); });
         this.events.onInputOver.add(function () {
             if (_this.stationery.getStationery === _this.constants.eraseStationery && _this.pointer.isDown) {
                 _this.game.sound.play("erase");
@@ -40,11 +40,11 @@ var Note = (function (_super) {
     };
     Note.prototype.setEvent = function () {
         var _this = this;
-        this.music.onEraseAll.add(function () { _this.erase(); });
-        this.music.onRefresh.add(function () { _this.refresh(); });
-        this.music.onMove.add(function () { _this.movePosition(); });
-        this.music.onChangeExtension.add(function () { _this.changeExtension(); });
-        this.musicPlayer.onStop.add(function () { _this.offOverlap(); });
+        this.music.onEraseAll.add(function () { return _this.erase(); });
+        this.music.onRefresh.add(function () { return _this.refresh(); });
+        this.music.onMove.add(function () { return _this.movePosition(); });
+        this.music.onChangeExtension.add(function () { return _this.changeExtension(); });
+        this.musicPlayer.onStop.add(function () { return _this.offOverlap(); });
     };
     Object.defineProperty(Note.prototype, "getNoteData", {
         get: function () {
@@ -96,7 +96,9 @@ var Note = (function (_super) {
     };
     Note.prototype.changeExtension = function () {
         if (this.music.getSelectedNote === this.data)
-            this.width = this.constants.width * (this.music.getSelectedNote.extension + 1);
+            this.game.add.tween(this)
+                .to({ width: this.constants.width * (this.music.getSelectedNote.extension + 1) }, this.constants.tweenDuration)
+                .start();
     };
     Note.prototype.erase = function () {
         this.music.select(this.data);
@@ -140,8 +142,10 @@ var Note = (function (_super) {
     };
     Note.prototype.strech = function () {
         var _this = this;
-        var juttingOut = (this.pointer.x + this.game.camera.x) - (this.x + this.width);
-        var juttingIn = (this.x + this.width) - (this.pointer.x + this.game.camera.x);
+        var right = this.x + this.constants.width * (this.data.extension + 1);
+        var left = this.pointer.x + this.game.camera.x;
+        var juttingOut = left - right;
+        var juttingIn = right - left;
         if (juttingOut > 0)
             _.times(Math.ceil(juttingOut / this.constants.width), function () { _this.music.lengthen(_this.data); });
         if (juttingIn > 0)

@@ -131,6 +131,7 @@ var CONSTANTS;
             };
             this.ringDuration = 500; // ms
             this.fadeDuration = 200; // ms
+            this.tweenDuration = 150; // ms
             this.doubleClkTime = 200; // ms
         }
         return Note;
