@@ -14,7 +14,7 @@ var HTMLView = (function () {
     HTMLView.prototype.audioPlay = function (audio) {
         console.log(window.navigator.userAgent.toLowerCase().indexOf("msie") != -1);
         audio.pause();
-        //audio.currentTime = 0;
+        audio.currentTime = 0;
         audio.play();
     };
     return HTMLView;

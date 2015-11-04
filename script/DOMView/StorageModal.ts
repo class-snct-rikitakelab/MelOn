@@ -18,7 +18,7 @@ class StorageModal extends ModalWindow {
 
     saveConfirm() {
         this.game.sound.play("decide");
-        this.confirm(this.constants.loadConfirmMsg[this.lang]);
+        this.confirm(this.constants.saveConfirmMsg[this.lang]);
         this.onYes.addOnce(() => { this.musicStorage.save(); });
         this.onNo.addOnce(() => { this.game.sound.play("close"); });
     }

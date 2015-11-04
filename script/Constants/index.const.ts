@@ -2,7 +2,7 @@
 
 namespace INDEX {
 
-    export var defaultLanguage: string = "Finnish"; 
+    export var defaultLanguage: string = "English"; 
 
     export interface HTMLView {
         selector: string;
