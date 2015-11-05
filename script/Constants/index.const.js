@@ -6,7 +6,7 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var INDEX;
 (function (INDEX) {
-    INDEX.defaultLanguage = "English";
+    INDEX.defaultLanguage = "Finnish";
     ;
     var HTMLLogo = (function () {
         function HTMLLogo() {
