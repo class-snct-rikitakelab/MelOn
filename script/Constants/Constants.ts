@@ -22,6 +22,7 @@ namespace CONSTANTS {
             "score", "pencil", "eraser", "speedDisplay", "speedDown", "speedUp", "play",
             "save", "load", "instrumentMenu", "soundButtonContainer", "up", "down", "left", "right",
         ];
+        dammy: string = "dammy";
     }
 
 

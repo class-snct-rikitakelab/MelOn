@@ -26,6 +26,7 @@ var CONSTANTS;
                 "score", "pencil", "eraser", "speedDisplay", "speedDown", "speedUp", "play",
                 "save", "load", "instrumentMenu", "soundButtonContainer", "up", "down", "left", "right",
             ];
+            this.dammy = "dammy";
         }
         return MelOn;
     })();
