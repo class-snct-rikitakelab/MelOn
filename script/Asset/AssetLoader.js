@@ -54,9 +54,10 @@ var AssetLoader = (function () {
         var _this = this;
         _.each(audios, function (assets, name) {
             _.each(assets, function (asset) {
-                _.each(asset[_this.enum.FILE], function (value) {
-                    loader.audio(asset[_this.enum.KEY], base + "/" + name + "/" + value);
+                _.each(asset[_this.enum.FILE], function (value, index) {
+                    asset[_this.enum.FILE][index] = base + "/" + name + "/" + value;
                 });
+                console.log(loader.audio(asset[_this.enum.KEY], asset[_this.enum.FILE]));
             });
         });
     };

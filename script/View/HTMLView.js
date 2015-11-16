@@ -12,7 +12,6 @@ var HTMLView = (function () {
         this.$.append(this.images[image]);
     };
     HTMLView.prototype.audioPlay = function (audio) {
-        console.log(window.navigator.userAgent.toLowerCase().indexOf("msie") != -1);
         audio.pause();
         audio.currentTime = 0;
         audio.play();

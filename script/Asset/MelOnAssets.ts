@@ -126,17 +126,17 @@ class MelOnAssets extends AssetLoader {
         ],
 
         se: [
-            ["MelOn", ["MelOn!.ogg", ]],
-            ["tamb", ["tamb.ogg", ]],
-            ["boo", ["boo.ogg", ]],
-            ["close", ["close.ogg", ]],
-            ["decide", ["decide.ogg", ]],
-            ["erase", ["erase.ogg", ]],
-            ["load", ["load.ogg", ]],
-            ["open", ["open.ogg", ]],
-            ["save", ["save.ogg", ]],
+            ["MelOn", ["MelOn!.ogg", "MelOn!.mp3"]],
+            ["tamb", ["tamb.ogg", "tamb.mp3"]],
+            ["boo", ["boo.ogg", "boo.mp3"]],
+            ["close", ["close.ogg", "close.mp3"]],
+            ["decide", ["decide.ogg", "decide.mp3"]],
+            ["erase", ["erase.ogg", "erase.mp3"]],
+            ["load", ["load.ogg", "load.mp3"]],
+            ["open", ["open.ogg", "open.mp3"]],
+            ["save", ["save.ogg", "save.mp3"]],
             ["select", ["select.mp3", ]],
-            ["jump", ["jump.ogg", ]],
+            ["jump", ["jump.ogg", "jump.mp3"]],
         ],
     };
 

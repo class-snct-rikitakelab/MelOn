@@ -17,7 +17,6 @@ class HTMLView {
     }
 
     protected audioPlay(audio: HTMLAudioElement) {
-        console.log(window.navigator.userAgent.toLowerCase().indexOf("msie") != -1);
         audio.pause();
         audio.currentTime = 0;
         audio.play();

@@ -22,7 +22,6 @@ namespace CONSTANTS {
             "score", "pencil", "eraser", "speedDisplay", "speedDown", "speedUp", "play",
             "save", "load", "instrumentMenu", "soundButtonContainer", "up", "down", "left", "right",
         ];
-        dammy: string = "dammy";
     }
 
 
@@ -128,7 +127,7 @@ namespace CONSTANTS {
         ringDuration: number = 500;   // ms
         fadeDuration: number = 200;   // ms
         tweenDuration: number = 150;  // ms
-        doubleClkTime: number = 200;  // ms
+        doubleClkTime: number = 150;  // ms
     }
 
     export class MeasureSheet extends Music implements SpriteView {

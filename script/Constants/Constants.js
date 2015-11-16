@@ -26,7 +26,6 @@ var CONSTANTS;
                 "score", "pencil", "eraser", "speedDisplay", "speedDown", "speedUp", "play",
                 "save", "load", "instrumentMenu", "soundButtonContainer", "up", "down", "left", "right",
             ];
-            this.dammy = "dammy";
         }
         return MelOn;
     })();
@@ -133,7 +132,7 @@ var CONSTANTS;
             this.ringDuration = 500; // ms
             this.fadeDuration = 200; // ms
             this.tweenDuration = 150; // ms
-            this.doubleClkTime = 200; // ms
+            this.doubleClkTime = 150; // ms
         }
         return Note;
     })(Music);
