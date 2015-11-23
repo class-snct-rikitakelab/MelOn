@@ -58,13 +58,15 @@ class AssetLoader {
     }
 
     private loadAudios(loader: Phaser.Loader, audios: { [dir: string]: [string, string[]][] }, base: string) {
+				loader.enableParallel = false;
         _.each(audios, (assets: [string, string[]][], name: string) => {
             _.each(assets, (asset: any) => {
                 _.each(asset[this.enum.FILE], (value: string, index: number) => {
                     asset[this.enum.FILE][index] = base + "/" + name + "/" + value;
                 });
-								console.log(loader.audio(asset[this.enum.KEY], asset[this.enum.FILE]));
+								loader.audio(asset[this.enum.KEY], asset[this.enum.FILE]);
             });
         });
+				//loader.enableParallel = true;
     }
 }

@@ -127,7 +127,7 @@ namespace CONSTANTS {
         ringDuration: number = 500;   // ms
         fadeDuration: number = 200;   // ms
         tweenDuration: number = 150;  // ms
-        doubleClkTime: number = 150;  // ms
+        doubleClkTime: number = 200;  // ms
     }
 
     export class MeasureSheet extends Music implements SpriteView {
@@ -251,7 +251,7 @@ namespace CONSTANTS {
         noteHeight: number = new MeasureSheet().noteHeight;
         pitch: string[] = new Music().pitch;
         initPitch: string = "C4"; // is the highest in display!
-        doubleTapTime: number = new Note().doubleClkTime; // ms
+        doubleTapTime: number = 150; // ms
     }
 
     export class UpButton extends ScrollButton {
@@ -300,7 +300,7 @@ namespace CONSTANTS {
         pitchText = {
             English: ["C", "B", "A", "G", "F", "E", "D", "C", "B", "A", "G", "F", "E", "D", "C", "B", "A", "G", "F", "E", "D", "C"],
             Japanese: ["ド", "シ", "ラ", "ソ", "ファ", "ミ", "レ", "ド", "シ", "ラ", "ソ", "ファ", "ミ", "レ", "ド", "シ", "ラ", "ソ", "ファ", "ミ", "レ", "ド"],
-            Finnish: ["DO", "TI", "LA", "SO", "FA", "MI", "RE", "DO", "TI", "LA", "SO", "FA", "MI", "RE", "DO", "TI", "LA", "SO", "FA", "MI", "RE", "DO"],
+            Finnish: ["DO", "SI", "LA", "SOL", "FA", "MI", "RE", "DO", "SI", "LA", "SOL", "FA", "MI", "RE", "DO", "SI", "LA", "SOL", "FA", "MI", "RE", "DO"],
         }
     }
 

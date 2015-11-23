@@ -52,14 +52,16 @@ var AssetLoader = (function () {
     };
     AssetLoader.prototype.loadAudios = function (loader, audios, base) {
         var _this = this;
+        loader.enableParallel = false;
         _.each(audios, function (assets, name) {
             _.each(assets, function (asset) {
                 _.each(asset[_this.enum.FILE], function (value, index) {
                     asset[_this.enum.FILE][index] = base + "/" + name + "/" + value;
                 });
-                console.log(loader.audio(asset[_this.enum.KEY], asset[_this.enum.FILE]));
+                loader.audio(asset[_this.enum.KEY], asset[_this.enum.FILE]);
             });
         });
+        //loader.enableParallel = true;
     };
     return AssetLoader;
 })();

@@ -132,7 +132,7 @@ var CONSTANTS;
             this.ringDuration = 500; // ms
             this.fadeDuration = 200; // ms
             this.tweenDuration = 150; // ms
-            this.doubleClkTime = 150; // ms
+            this.doubleClkTime = 200; // ms
         }
         return Note;
     })(Music);
@@ -276,7 +276,7 @@ var CONSTANTS;
             this.noteHeight = new MeasureSheet().noteHeight;
             this.pitch = new Music().pitch;
             this.initPitch = "C4"; // is the highest in display!
-            this.doubleTapTime = new Note().doubleClkTime; // ms
+            this.doubleTapTime = 150; // ms
         }
         return ScrollButton;
     })();
@@ -357,7 +357,7 @@ var CONSTANTS;
             this.pitchText = {
                 English: ["C", "B", "A", "G", "F", "E", "D", "C", "B", "A", "G", "F", "E", "D", "C", "B", "A", "G", "F", "E", "D", "C"],
                 Japanese: ["ド", "シ", "ラ", "ソ", "ファ", "ミ", "レ", "ド", "シ", "ラ", "ソ", "ファ", "ミ", "レ", "ド", "シ", "ラ", "ソ", "ファ", "ミ", "レ", "ド"],
-                Finnish: ["DO", "TI", "LA", "SO", "FA", "MI", "RE", "DO", "TI", "LA", "SO", "FA", "MI", "RE", "DO", "TI", "LA", "SO", "FA", "MI", "RE", "DO"],
+                Finnish: ["DO", "SI", "LA", "SOL", "FA", "MI", "RE", "DO", "SI", "LA", "SOL", "FA", "MI", "RE", "DO", "SI", "LA", "SOL", "FA", "MI", "RE", "DO"],
             };
         }
         return SoundButton;
