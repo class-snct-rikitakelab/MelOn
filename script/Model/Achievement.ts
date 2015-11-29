@@ -56,10 +56,10 @@ class Achievement extends Model {
     }
 
     checkTrace(target: MusicData, music: MusicData) {
-        //if (this.mode === "filling") {
-        this.traced = !this.finished && this.includeTrace(this.sortMusic(target), this.sortMusic(music));
-        //}
-        //else this.traced = !this.finished && _.isEqual(this.sortMusic(target), this.sortMusic(music));
+        if (this.mode === "filling") {
+            this.traced = !this.finished && this.includeTrace(this.sortMusic(target), this.sortMusic(music));
+        }
+        else this.traced = !this.finished && _.isEqual(this.sortMusic(target), this.sortMusic(music));
         this.checkFinish();
     }
     
