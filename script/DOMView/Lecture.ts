@@ -1,11 +1,11 @@
 ﻿/// <reference path="../Lesson.ref.ts"/>
 
-class Lecture extends DOMView {
+class Lecture extends HTMLView {
 
     private lessonData: LessonData = this.models["lessonData"];
 
-    constructor(game: Phaser.Game, private constants: LESSON.Lecture, models: Object) {
-        super(game, constants, models);
+    constructor(private constants: LESSON.Lecture, private models: Object) {
+        super(constants);
         this.$.append(this.makeTitle(this.lessonData.getTitle));
         this.makeLecture(this.lessonData.getLecture);
     }
@@ -23,7 +23,7 @@ class Lecture extends DOMView {
 
     private makeBalloon(block: Object): JQuery {
         return $("<div></div>").addClass(this.constants.commonClass.balloon)
-            .css("background-color", this.constants.balloonColor[block["person"]]).text(block["speech"]);
+            .css("background-color", this.constants.balloonColor[block["person"]]).append(block["speech"]);
     }
 
     private makeTriangle(person: string): JQuery {
@@ -32,7 +32,7 @@ class Lecture extends DOMView {
     }
 
     private makeImage(person: string): JQuery {
-        return $(`<img src=${this.constants.image[person]} />`);
+        return $(`<img src=${this.constants.images[person]} />`);
     }
 
     private makePerson(person: string): JQuery {

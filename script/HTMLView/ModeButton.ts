@@ -4,20 +4,20 @@ class ModeButton extends HTMLView {
 
     private destination: string;
 
-    constructor(private constants: INDEX.ModeButton) {
+    constructor(private constants: INDEX.ModeButton, private language: Language) {
         super(constants);
-        this.setImage(this.constants.defaultLanguage);
+        this.setImage(this.language.getLanguage);
         this.setEvent();
-        this.setUrl(this.constants.defaultLanguage);
+        this.setUrl(this.language.getLanguage);
     }
 
     private setEvent() {
         this.$.click(() => { this.click(); });
         this.$.hover(() => { this.enter(); }, () => { this.leave(); });
-        //this.language.onChangeLanguage(() => { 
-        //    this.chengeImage(this.language.getLanguage);
-        //    this.setUrl(this.language.getLanguage);
-        //});
+        this.language.onChangeLanguage(() => { 
+            this.setImage(this.language.getLanguage);
+            this.setUrl(this.language.getLanguage);
+        });
     }
 
     private click() {

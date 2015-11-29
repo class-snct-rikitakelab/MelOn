@@ -6,6 +6,8 @@ namespace LESSON {
     import GroupView = CONSTANTS.GroupView;
     import DOMView = CONSTANTS.DOMView;
     import ModalWindow = CONSTANTS.ModalWindow;
+	import ReturnButton = CONSTANTS.ReturnButton;
+	import HTMLView = INDEX.HTMLView;
     
     export var language: string = new LESSON_LIST.Language().language;
 
@@ -51,7 +53,7 @@ namespace LESSON {
         }
     }
 
-    export class Lecture implements DOMView {
+    export class Lecture implements HTMLView {
         selector = "#lecture";
         titleId = "title";
         personIds = {
@@ -62,15 +64,17 @@ namespace LESSON {
             teacher: "lightgreen",
             child: "orange",
         };
-        image = {
-            teacher: "storage/assets/image/person/teacher.png",
-            child: "storage/assets/image/person/child.png",
-        };
-        commonClass = {
+		commonClass = {
             balloon: "balloon",
             triangle: "triangle",
             person: "person",
         };
+		baseImageAddress: string = "storage/assets/image/person/";
+        images: {[name: string]: string} = {
+            teacher: this.baseImageAddress + "teacher.png",
+            child: this.baseImageAddress + "child.png",
+        };
+		audios: { [name: string]: string } = {};
     }
 
     export class LessonModal {
@@ -96,4 +100,21 @@ namespace LESSON {
             "Finnish": "Erinomaista! Paina SEURAAVA nappia jatkaaksesi!",
         };
     }
+
+	export class ReturnLessonListButton implements ReturnButton {
+		selector = "#returnLessonList";
+		language = language;
+		destination = "LessonList.html?lang=" + this.language;
+		shadowColor = "lavender";
+		text = {
+			"English": "Select Lesson",
+			"Japanese": "レッスンをえらぶ",
+			"Finnish": "Valitse oppitunti",
+		};
+		confirmMsg = {
+			"English": "The music you are making will be disposed. Is it OK to return the Lesson List page?",
+			"Japanese": "今、楽ふにある音楽が消えてしまいます。レッスンせんたくページへもどっても良いですか？",
+			"Finnish": "Musiikki jota teet poistetaan. Palataanko takaisin oppitunnit sivulle?",
+		};
+	}
 }

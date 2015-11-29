@@ -6,9 +6,10 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var Lecture = (function (_super) {
     __extends(Lecture, _super);
-    function Lecture(game, constants, models) {
-        _super.call(this, game, constants, models);
+    function Lecture(constants, models) {
+        _super.call(this, constants);
         this.constants = constants;
+        this.models = models;
         this.lessonData = this.models["lessonData"];
         this.$.append(this.makeTitle(this.lessonData.getTitle));
         this.makeLecture(this.lessonData.getLecture);
@@ -25,19 +26,19 @@ var Lecture = (function (_super) {
     };
     Lecture.prototype.makeBalloon = function (block) {
         return $("<div></div>").addClass(this.constants.commonClass.balloon)
-            .css("background-color", this.constants.balloonColor[block["person"]]).text(block["speech"]);
+            .css("background-color", this.constants.balloonColor[block["person"]]).append(block["speech"]);
     };
     Lecture.prototype.makeTriangle = function (person) {
         return $("<div></div>").addClass(this.constants.commonClass.triangle)
             .css("border-top-color", this.constants.balloonColor[person]);
     };
     Lecture.prototype.makeImage = function (person) {
-        return $("<img src=" + this.constants.image[person] + " />");
+        return $("<img src=" + this.constants.images[person] + " />");
     };
     Lecture.prototype.makePerson = function (person) {
         return $("<div id=" + this.constants.personIds[person] + "></div>").addClass(this.constants.commonClass.person)
             .append(this.makeTriangle(person)).append(this.makeImage(person));
     };
     return Lecture;
-})(DOMView);
+})(HTMLView);
 //# sourceMappingURL=Lecture.js.map

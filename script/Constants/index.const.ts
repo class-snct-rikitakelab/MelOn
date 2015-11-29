@@ -1,14 +1,33 @@
 ﻿/// <reference path="../index.ref.ts"/>
 
 namespace INDEX {
-
-    export var defaultLanguage: string = "Finnish"; 
-
     export interface HTMLView {
         selector: string;
         images: { [name: string]: string };
         audios: { [name: string]: string };
     };
+
+	export class Language {
+		defaultLanguage: string = "English"; 
+		nationarities = {
+			"en-US": "English",
+			"en": "English",
+			"ja-JP": "Japanese",
+			"ja": "Japanese",
+			"fi": "Finnish",
+		}
+	}
+
+	export class LanguageSelector implements HTMLView {
+			selector = "#languageSelector";
+			options: { [value: string]: string } = {
+					"English": "English", "Finnish": "Suomeksi", "Japanese": "日本語"
+			};
+			images: { [name: string]: string } = {};
+			audios: { [name: string]: string } = {
+					decide: "storage/assets/sound/se/decide.mp3",
+			};
+	}
 
     export class HTMLLogo implements HTMLView {
         selector = "#logo";
@@ -24,7 +43,7 @@ namespace INDEX {
         selector = "";
         baseUrl = "";
         shadowColor = "";
-        defaultLanguage: string = defaultLanguage;
+        defaultLanguage: string = new Language().defaultLanguage;
         images: { [name: string]: string } = {
         };
         audios: { [name: string]: string } = {

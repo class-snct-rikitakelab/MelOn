@@ -1,12 +1,18 @@
 ﻿/// <reference path="../Lesson.ref.ts"/>
 
 class Lesson extends FreeMakingMusic {
+
+	private returnLessonListButton = new ReturnButton(this, new LESSON.ReturnLessonListButton);
+	private lessonData: LessonData;
+
     constructor(assets: AssetLoader, constants: CONSTANTS.MelOn) {
         super(assets, constants);
     }
 
     protected createElements(parentSelector: string, elementIds: string[]) {
-        elementIds.push("nextButton");
+		this.lessonData = new LessonData(new LESSON.LessonData);
+		new Lecture(new LESSON.Lecture, { lessonData: this.lessonData });
+		elementIds.push("nextButton");
         super.createElements(parentSelector, elementIds);
     }
 

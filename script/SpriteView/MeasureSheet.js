@@ -12,18 +12,18 @@ var MeasureSheet = (function (_super) {
         this.measure = measure;
         this.music = this.models["music"];
         this.stationery = this.models["stationery"];
+        this.musicPlayer = this.models["musicPlayer"];
         this.pointer = this.game.device.touch ? this.game.input.pointer1 : this.game.input.activePointer;
         this.setPosition(this.constants.width * this.measure, 0);
     }
     MeasureSheet.prototype.setInput = function () {
         var _this = this;
         this.inputEnabled = true;
-        this.input.useHandCursor = true;
-        this.events.onInputDown.add(function (self, pointer) { _this.createNote(pointer); });
-        this.events.onInputUp.add(function () { _this.music.refresh(); });
+        this.events.onInputDown.add(function (self, pointer) { return _this.createNote(pointer); });
+        this.events.onInputUp.add(function () { return _this.music.refresh(); });
     };
     MeasureSheet.prototype.createNote = function (pointer) {
-        if (pointer.rightButton.isDown)
+        if (this.musicPlayer.isPlaying || pointer.rightButton.isDown)
             return;
         var start = Math.floor((this.pointer.x + this.game.camera.x) / this.constants.noteWidth);
         var pitch = this.constants.pitch[Math.floor((this.pointer.y + this.game.camera.y) / this.constants.noteHeight)];

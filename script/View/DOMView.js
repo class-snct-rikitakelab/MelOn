@@ -13,11 +13,20 @@ var DOMView = (function () {
     DOMView.prototype.pushEvent = function () {
         return this.game.device.touch ? "touchstart" : "mousedown";
     };
+    DOMView.prototype.pullEvent = function () {
+        return this.game.device.touch ? "touchend" : "mouseup";
+    };
     DOMView.prototype.toId = function (name) {
         return "#" + name;
     };
     DOMView.prototype.makeDiv = function (id) {
         return $("<div id=" + id + "></div>");
+    };
+    DOMView.prototype.IECheck = function () {
+        var userAgent = window.navigator.userAgent.toLowerCase();
+        if (userAgent.indexOf('msie') == -1 && userAgent.indexOf('trident') != -1 || userAgent.indexOf('msie') != -1)
+            return true;
+        return false;
     };
     return DOMView;
 })();

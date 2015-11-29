@@ -52,7 +52,7 @@ class ModalWindow extends DOMView {
     }
 
     private makeMessage(text: string): JQuery {
-        return this.makeDiv(this.modalConstants.modalIds.message).text(text);
+        return this.makeDiv(this.modalConstants.modalIds.message).append(text);
     }
 
     private makeWindow(): JQuery {
@@ -81,14 +81,14 @@ class ModalWindow extends DOMView {
         return overlay.append(window);
     }
 
-    protected alert(text: string) {
+    alert(text: {}) {
         this.open();
-        this.$.append(this.alertAssemble(text).fadeIn());
+        this.$.append(this.alertAssemble(text[this.lang]).fadeIn());
     }
 
     // Add the events after open!!
-    protected confirm(text: string) {
+    confirm(text: {}) {
         this.open();
-        this.$.append(this.confirmAssemble(text).fadeIn());
+        this.$.append(this.confirmAssemble(text[this.lang]).fadeIn());
     }
 }

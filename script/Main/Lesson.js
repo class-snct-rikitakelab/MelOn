@@ -8,8 +8,11 @@ var Lesson = (function (_super) {
     __extends(Lesson, _super);
     function Lesson(assets, constants) {
         _super.call(this, assets, constants);
+        this.returnLessonListButton = new ReturnButton(this, new LESSON.ReturnLessonListButton);
     }
     Lesson.prototype.createElements = function (parentSelector, elementIds) {
+        this.lessonData = new LessonData(new LESSON.LessonData);
+        new Lecture(new LESSON.Lecture, { lessonData: this.lessonData });
         elementIds.push("nextButton");
         _super.prototype.createElements.call(this, parentSelector, elementIds);
     };

@@ -6,21 +6,22 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var ModeButton = (function (_super) {
     __extends(ModeButton, _super);
-    function ModeButton(constants) {
+    function ModeButton(constants, language) {
         _super.call(this, constants);
         this.constants = constants;
-        this.setImage(this.constants.defaultLanguage);
+        this.language = language;
+        this.setImage(this.language.getLanguage);
         this.setEvent();
-        this.setUrl(this.constants.defaultLanguage);
+        this.setUrl(this.language.getLanguage);
     }
     ModeButton.prototype.setEvent = function () {
         var _this = this;
         this.$.click(function () { _this.click(); });
         this.$.hover(function () { _this.enter(); }, function () { _this.leave(); });
-        //this.language.onChangeLanguage(() => { 
-        //    this.chengeImage(this.language.getLanguage);
-        //    this.setUrl(this.language.getLanguage);
-        //});
+        this.language.onChangeLanguage(function () {
+            _this.setImage(_this.language.getLanguage);
+            _this.setUrl(_this.language.getLanguage);
+        });
     };
     ModeButton.prototype.click = function () {
         var _this = this;

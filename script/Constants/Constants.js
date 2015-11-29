@@ -129,10 +129,11 @@ var CONSTANTS;
             this.images = {
                 note: "note",
             };
+            this.tailShortening = 20;
             this.ringDuration = 500; // ms
-            this.fadeDuration = 200; // ms
+            this.fadeDuration = 250; // ms
             this.tweenDuration = 150; // ms
-            this.doubleClkTime = 200; // ms
+            this.doubleClkTime = 250; // ms
         }
         return Note;
     })(Music);
@@ -203,11 +204,13 @@ var CONSTANTS;
     var StationeryButton = (function () {
         function StationeryButton() {
             this.selector = "";
+            this.scoreSelector = "#" + new MelOn().renderer;
             this.imageAddress = new MelOn().imageAddress + "stationeryButton/";
             this.class = {
                 stationery: "stationery",
                 buttonImage: "buttonImage",
             };
+            this.cursorSize = 32;
             this.onColor = "crimson";
             this.offColor = "royalblue";
         }
@@ -222,6 +225,8 @@ var CONSTANTS;
             this.name = new Stationery().writeStationery;
             this.images = {
                 image: this.imageAddress + "pencil.png",
+                pngCursor: this.imageAddress + "pencilCursor.png",
+                curCursor: this.imageAddress + "pencilCursor.cur",
             };
         }
         return Pencil;
@@ -235,6 +240,8 @@ var CONSTANTS;
             this.name = new Stationery().eraseStationery;
             this.images = {
                 image: this.imageAddress + "eraser.png",
+                pngCursor: this.imageAddress + "eraserCursor.png",
+                curCursor: this.imageAddress + "eraserCursor.cur",
             };
         }
         return Eraser;
@@ -276,7 +283,7 @@ var CONSTANTS;
             this.noteHeight = new MeasureSheet().noteHeight;
             this.pitch = new Music().pitch;
             this.initPitch = "C4"; // is the highest in display!
-            this.doubleTapTime = 150; // ms
+            this.doubleTapTime = 170; // ms
         }
         return ScrollButton;
     })();
@@ -517,7 +524,7 @@ var CONSTANTS;
             };
             this.loadConfirmMsg = {
                 "English": "The music you are making will be disposed. Is it OK?",
-                "Japanese": "今楽譜にある音楽が消えてしまいます。よろしいですか？",
+                "Japanese": "今、楽ふにある音楽が消えてしまいます。よろしいですか？",
                 "Finnish": "Musiikki jota teet poistetaan. Sopiiko se?",
             };
             this.loadFailMsg = {
@@ -529,5 +536,25 @@ var CONSTANTS;
         return StorageModal;
     })();
     CONSTANTS.StorageModal = StorageModal;
+    var ReturnTopButton = (function () {
+        function ReturnTopButton() {
+            this.selector = "#returnTop";
+            this.language = new MelOn().language;
+            this.destination = "index.html";
+            this.shadowColor = "lavender";
+            this.text = {
+                "English": "Return to Top",
+                "Japanese": "トップへ戻る",
+                "Finnish": "Takaisin alkuun",
+            };
+            this.confirmMsg = {
+                "English": "The music you are making will be disposed. Is it OK to return the Top page?",
+                "Japanese": "今、楽ふにある音楽が消えてしまいます。トップページへもどっても良いですか？",
+                "Finnish": "Musiikki jota teet poistetaan. Palataanko takaisin aloitus sivulle?",
+            };
+        }
+        return ReturnTopButton;
+    })();
+    CONSTANTS.ReturnTopButton = ReturnTopButton;
 })(CONSTANTS || (CONSTANTS = {}));
 //# sourceMappingURL=Constants.js.map

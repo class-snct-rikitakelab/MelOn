@@ -2,6 +2,7 @@
     var locations = {
         Libraries: "storage/lib/",
         Constants: "script/Constants/",
+        Model: "script/Model/",
         View: "script/View/",
         HTMLView: "script/HTMLView/",
         Main: "script/Main/",
@@ -10,6 +11,9 @@
         Libraries: [
             "jquery-1.11.3",
             "underscore",
+        ],
+        Model: [
+            "Language",
         ],
         View: [
             "HTMLView",
@@ -20,6 +24,7 @@
         ],
         HTMLView: [
             "HTMLLogo",
+            "languageSelector",
             "ModeButton",
         ],
         Main: [

@@ -17,23 +17,28 @@ class StationeryButton extends DOMView {
 
     private setEvent() {
         if (!this.game.device.touch) this.setSelectEffect();
-        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", () => { this.changeStationery(); });
-        this.stationery.onChangeStationery.add(() => { this.changeImage(); });
+        this.$.on(this.pushEvent(), () => this.changeStationery());
+        this.stationery.onChangeStationery.add(() => this.changeImage());
     }
 
     private setSelectEffect() {
-        this.$.on("mouseenter", () => { this.$.css("box-shadow", "0 0 20px 6px darkorange"); this.game.sound.play("select"); })
-            .on("mouseleave", () => { this.$.css("box-shadow", "none"); });        
+        this.$.hover(() => { this.$.css("box-shadow", "0 0 20px 6px darkorange"); this.game.sound.play("select"); },
+			() => this.$.css("box-shadow", "none"));        
     }
 
     private changeImage(): void {
         this.$.css("background-color", this.constants.onColor);
-        if (this.stationery.getStationery === this.constants.name) return;
+        if (this.stationery.getStationery === this.constants.name) return this.changeCursor();
         this.$.css("background-color", this.constants.offColor);
     }
 
+	private changeCursor() {
+		$(this.constants.scoreSelector).css("cursor",
+			`url(${this.constants.images[this.IECheck() ? "curCursor" : "pngCursor"]}) 0 ${this.constants.cursorSize}, pointer`);
+	}
+
     private changeStationery(): void {
         this.game.sound.play("decide");
-        this.stationery.changeStationery(this.constants.name);
+		this.stationery.changeStationery(this.constants.name);
     }
 }

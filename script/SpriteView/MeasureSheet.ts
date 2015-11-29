@@ -4,6 +4,7 @@ class MeasureSheet extends SpriteView {
 
     private music: Music = this.models["music"];
     private stationery: Stationery = this.models["stationery"];
+	private musicPlayer: MusicPlayer = this.models["musicPlayer"];
     private pointer: Phaser.Pointer = this.game.device.touch ? this.game.input.pointer1 : this.game.input.activePointer;
 
     constructor(game: Phaser.Game, private constants: CONSTANTS.MeasureSheet, models: Object, private measure: number) {
@@ -13,13 +14,12 @@ class MeasureSheet extends SpriteView {
 
     protected setInput() {
         this.inputEnabled = true;
-        this.input.useHandCursor = true;
-        this.events.onInputDown.add((self, pointer:Phaser.Pointer) => { this.createNote(pointer);});
-        this.events.onInputUp.add(() => { this.music.refresh(); });
+        this.events.onInputDown.add((self, pointer: Phaser.Pointer) => this.createNote(pointer));
+        this.events.onInputUp.add(() => this.music.refresh());
     }
 
     private createNote(pointer: Phaser.Pointer) {
-        if (pointer.rightButton.isDown) return;
+        if (this.musicPlayer.isPlaying || pointer.rightButton.isDown) return;
         var start: number = Math.floor( (this.pointer.x + this.game.camera.x) / this.constants.noteWidth);
         var pitch: string = this.constants.pitch[Math.floor( (this.pointer.y + this.game.camera.y) / this.constants.noteHeight )];
         if (this.stationery.getStationery === this.constants.writeStationery)

@@ -22,18 +22,18 @@ var LessonModal = (function (_super) {
     LessonModal.prototype.finish = function () {
         this.game.sound.stopAll();
         this.game.sound.play("load");
-        this.alert(this.constants.TryMsg[this.lang]);
+        this.alert(this.constants.TryMsg);
     };
     LessonModal.prototype.playAlert = function () {
-        this.alert(this.constants.playMsg[this.lang]);
+        this.alert(this.constants.playMsg);
     };
     LessonModal.prototype.stopAlert = function () {
-        this.alert(this.constants.stopMsg[this.lang]);
+        this.alert(this.constants.stopMsg);
     };
     LessonModal.prototype.active = function () {
         this.game.sound.stopAll();
         this.game.sound.play("save");
-        this.alert(this.constants.goNextMsg[this.lang]);
+        this.alert(this.constants.goNextMsg);
     };
     return LessonModal;
 })(ModalWindow);

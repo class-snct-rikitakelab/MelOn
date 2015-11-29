@@ -22,19 +22,21 @@ var StationeryButton = (function (_super) {
         var _this = this;
         if (!this.game.device.touch)
             this.setSelectEffect();
-        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.changeStationery(); });
-        this.stationery.onChangeStationery.add(function () { _this.changeImage(); });
+        this.$.on(this.pushEvent(), function () { return _this.changeStationery(); });
+        this.stationery.onChangeStationery.add(function () { return _this.changeImage(); });
     };
     StationeryButton.prototype.setSelectEffect = function () {
         var _this = this;
-        this.$.on("mouseenter", function () { _this.$.css("box-shadow", "0 0 20px 6px darkorange"); _this.game.sound.play("select"); })
-            .on("mouseleave", function () { _this.$.css("box-shadow", "none"); });
+        this.$.hover(function () { _this.$.css("box-shadow", "0 0 20px 6px darkorange"); _this.game.sound.play("select"); }, function () { return _this.$.css("box-shadow", "none"); });
     };
     StationeryButton.prototype.changeImage = function () {
         this.$.css("background-color", this.constants.onColor);
         if (this.stationery.getStationery === this.constants.name)
-            return;
+            return this.changeCursor();
         this.$.css("background-color", this.constants.offColor);
+    };
+    StationeryButton.prototype.changeCursor = function () {
+        $(this.constants.scoreSelector).css("cursor", "url(" + this.constants.images[this.IECheck() ? "curCursor" : "pngCursor"] + ") 0 " + this.constants.cursorSize + ", pointer");
     };
     StationeryButton.prototype.changeStationery = function () {
         this.game.sound.play("decide");

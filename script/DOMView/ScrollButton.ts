@@ -7,6 +7,7 @@ class ScrollButton extends DOMView {
     private isPushed: boolean = false;
     private isOn: boolean = false;
     private isAlerted: boolean = false;
+	private clickStatus: any = null;
 
     constructor(game: Phaser.Game, private constants: CONSTANTS.ScrollButton, models: Object) {
         super(game, constants, models);
@@ -21,15 +22,9 @@ class ScrollButton extends DOMView {
 
     private setEvent() {
         if(!this.game.device.touch) this.setSelectEffect();
-        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", () => { this.push(); })
-            .on(this.game.device.touch ? "touchend" : "mouseup", () => { this.pull(); })
+        this.$.on(this.pushEvent(), () => this.checkDouble())
+            .on(this.pullEvent(), () => this.pull() )
             .on("mouseleave", () => { this.isOn = false; this.pull(); })
-            .on("dblclick", () => { if (!this.isLimit()) this.double(); })
-            .data("dblTap", false).click(() => {
-                if (this.$.data("dblTap")) this.$.data("dblTap", false);
-                else this.$.data("dblTap", true);
-                setTimeout(() => { this.$.data("dblTap", false); }, this.constants.doubleTapTime);
-            })
             .append(`<div id=${this.constants.direction + "Triangle"}></div>`);
     }
 
@@ -40,6 +35,15 @@ class ScrollButton extends DOMView {
             this.game.sound.play("select");
         }).on("mouseleave", () => { this.isOn = false; this.$.css("box-shadow", "none"); });
     }
+
+	private checkDouble() {
+		if (this.clickStatus === null) {
+			this.clickStatus = setTimeout(() => this.clickStatus = null, this.constants.doubleTapTime);
+			return this.push();
+		}
+		this.clickStatus = null;
+		if (!this.isLimit()) this.double();
+	}
 
     private push() {
         this.isPushed = true;

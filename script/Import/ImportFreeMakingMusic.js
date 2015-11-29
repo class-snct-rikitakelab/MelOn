@@ -43,6 +43,7 @@
             "ContactManager",
         ],
         DOMView: [
+            "ReturnButton",
             "Logo",
             "StationeryToggler",
             "StationeryButton",

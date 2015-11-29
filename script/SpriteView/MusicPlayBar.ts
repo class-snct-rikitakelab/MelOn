@@ -8,15 +8,15 @@ class MusicPlayBar extends SpriteView {
     private speed: Speed = this.models["speed"];
     private noteOverlapManager: NoteOverlapManager = this.models["noteOverlapManager"];
     private stopPosition: number = 0;
-    private beatNum: number = 0;
+	private pastPosition: number;
     private beatSound: Phaser.Sound;
 
     constructor(game: Phaser.Game, private constants: CONSTANTS.MusicPlayBar, models: Object) {
         super(game, constants, models);
-        this.music.onRefresh.add(() => { this.updateStopPosition(); });
-        this.musicPlayer.onStop.add(() => { this.musicStop(); });
-        this.musicPlayer.onPlay.add(() => { this.musicPlay(); });
-        this.speed.onChangeSpeed.add(() => { this.changeSpeed(); });
+        this.music.onRefresh.add(() => this.updateStopPosition());
+        this.musicPlayer.onStop.add(() => this.musicStop());
+        this.musicPlayer.onPlay.add(() => this.musicPlay());
+        this.speed.onChangeSpeed.add(() => this.changeSpeed());
         this.noteOverlapManager.setMusicPlayBar(this);
         this.anchor.setTo(1.0, 0.0);
     }
@@ -44,8 +44,7 @@ class MusicPlayBar extends SpriteView {
 
     private musicPlay() {
         this.changeSpeed();
-        this.x = - this.constants.width;
-        this.beatNum = 0;
+        this.x = this.game.camera.x - this.constants.width;
     }
 
     private changeSpeed() {
@@ -58,15 +57,21 @@ class MusicPlayBar extends SpriteView {
     }
 
     private beat() {
-        if (this.beatNum == 0) { this.ring(); this.beatNum++; return; }
-        var pastBeat = Math.floor(this.x / (this.constants.beatWidth * (this.beatNum)));
-        if (pastBeat > 0) _.times(pastBeat, (n) => { this.ring(); this.beatNum++;});
+		var pastQuotient = Math.floor(this.pastPosition / this.constants.beatWidth);
+		var currentQuotient = Math.floor(this.x / this.constants.beatWidth);
+		if (pastQuotient < currentQuotient) this.ring();
+        this.pastPosition = this.x;
     }
+
+	private checkCenter() {
+		if (this.x >= this.game.camera.x + this.game.width / 2)
+			this.game.camera.focusOnXY(this.x, this.game.camera.y + this.game.camera.view.halfHeight);
+	}
 
     update() {
         if (this.musicPlayer.isPlaying) {
             this.beat();
-            this.game.camera.focusOnXY(this.x, this.game.camera.y + this.game.camera.view.halfHeight);
+            this.checkCenter();
             if (this.x > this.stopPosition) this.musicPlayer.stop();
         }
     }

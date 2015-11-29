@@ -17,6 +17,10 @@ class DOMView {
         return this.game.device.touch ? "touchstart" : "mousedown";
     }
 
+	protected pullEvent(): string {
+        return this.game.device.touch ? "touchend" : "mouseup";
+    }
+
     protected toId(name: string): string {
         return "#" + name;
     }
@@ -24,4 +28,10 @@ class DOMView {
     protected makeDiv(id: string): JQuery {
         return $(`<div id=${id}></div>`);
     }
+
+	protected IECheck(): boolean {
+		var userAgent = window.navigator.userAgent.toLowerCase();
+		if (userAgent.indexOf('msie') == -1 && userAgent.indexOf('trident') != -1 || userAgent.indexOf('msie') != -1) return true;
+		return false;
+	}
 }

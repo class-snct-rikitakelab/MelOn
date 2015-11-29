@@ -6,8 +6,35 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var INDEX;
 (function (INDEX) {
-    INDEX.defaultLanguage = "Finnish";
     ;
+    var Language = (function () {
+        function Language() {
+            this.defaultLanguage = "English";
+            this.nationarities = {
+                "en-US": "English",
+                "en": "English",
+                "ja-JP": "Japanese",
+                "ja": "Japanese",
+                "fi": "Finnish",
+            };
+        }
+        return Language;
+    })();
+    INDEX.Language = Language;
+    var LanguageSelector = (function () {
+        function LanguageSelector() {
+            this.selector = "#languageSelector";
+            this.options = {
+                "English": "English", "Finnish": "Suomeksi", "Japanese": "日本語"
+            };
+            this.images = {};
+            this.audios = {
+                decide: "storage/assets/sound/se/decide.mp3",
+            };
+        }
+        return LanguageSelector;
+    })();
+    INDEX.LanguageSelector = LanguageSelector;
     var HTMLLogo = (function () {
         function HTMLLogo() {
             this.selector = "#logo";
@@ -26,7 +53,7 @@ var INDEX;
             this.selector = "";
             this.baseUrl = "";
             this.shadowColor = "";
-            this.defaultLanguage = INDEX.defaultLanguage;
+            this.defaultLanguage = new Language().defaultLanguage;
             this.images = {};
             this.audios = {
                 select: "storage/assets/sound/se/select.mp3",

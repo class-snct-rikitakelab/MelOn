@@ -28,7 +28,6 @@ var Note = (function (_super) {
     Note.prototype.setInput = function () {
         var _this = this;
         this.inputEnabled = true;
-        this.input.useHandCursor = true;
         this.events.onInputUp.add(function () { return _this.music.refresh(); });
         this.events.onInputDown.add(function (self, pointer) { return _this.touchNote(pointer); });
         this.events.onInputOver.add(function () {
@@ -150,6 +149,7 @@ var Note = (function (_super) {
             _.times(Math.ceil(juttingOut / this.constants.width), function () { _this.music.lengthen(_this.data); });
         if (juttingIn > 0)
             _.times(Math.floor(juttingIn / this.constants.width), function () { _this.music.shorten(_this.data); });
+        this.body.width = this.width - this.constants.tailShortening;
     };
     return Note;
 })(SpriteView);

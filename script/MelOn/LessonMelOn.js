@@ -16,12 +16,12 @@ var LessonMelOn = (function (_super) {
         _super.prototype.create.call(this);
         this.targetNotes = new TargetNotes(this.game, new LESSON.TargetNotes, { music: this.music, lessonData: this.lessonData, achievement: this.achievement });
         this.nextButton = new NextButton(this.game, new LESSON.NextButton, { lessonData: this.lessonData, achievement: this.achievement, musicPlayer: this.musicPlayer });
-        this.lecture = new Lecture(this.game, new LESSON.Lecture, { lessonData: this.lessonData });
         this.lessonModal = new LessonModal(this.game, new LESSON.LessonModal, { achievement: this.achievement, lessonData: this.lessonData });
         if (this.lessonData.getMode === "filling")
             this.blanks = new Blanks(this.game, new LESSON.Blanks, { music: this.music, lessonData: this.lessonData, achievement: this.achievement });
         if (this.lessonData.getInherit)
             this.loadButton.setMusic(this.lessonData.getInherit);
+        this.musicPlayBar.bringToTop();
     };
     return LessonMelOn;
 })(MelOn);

@@ -19,20 +19,20 @@ class LessonModal extends ModalWindow {
     private finish() {
         this.game.sound.stopAll();
         this.game.sound.play("load");
-        this.alert(this.constants.TryMsg[this.lang]);
+        this.alert(this.constants.TryMsg);
     }
 
     private playAlert() {
-        this.alert(this.constants.playMsg[this.lang]);
+        this.alert(this.constants.playMsg);
     }
 
     private stopAlert() {
-        this.alert(this.constants.stopMsg[this.lang]);
+        this.alert(this.constants.stopMsg);
     }
 
     private active() {
         this.game.sound.stopAll();
         this.game.sound.play("save");
-        this.alert(this.constants.goNextMsg[this.lang]);
+        this.alert(this.constants.goNextMsg);
     }
 }

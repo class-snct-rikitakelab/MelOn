@@ -22,13 +22,13 @@ var StorageModal = (function (_super) {
     StorageModal.prototype.saveConfirm = function () {
         var _this = this;
         this.game.sound.play("decide");
-        this.confirm(this.constants.saveConfirmMsg[this.lang]);
+        this.confirm(this.constants.saveConfirmMsg);
         this.onYes.addOnce(function () { _this.musicStorage.save(); });
         this.onNo.addOnce(function () { _this.game.sound.play("close"); });
     };
     StorageModal.prototype.save = function () {
         this.game.sound.play("save");
-        this.alert(this.constants.saveMsg[this.lang]);
+        this.alert(this.constants.saveMsg);
     };
     StorageModal.prototype.loadConfirm = function (exist) {
         var _this = this;
@@ -37,13 +37,13 @@ var StorageModal = (function (_super) {
             this.loadFailed();
             return;
         }
-        this.confirm(this.constants.loadConfirmMsg[this.lang]);
+        this.confirm(this.constants.loadConfirmMsg);
         this.onYes.addOnce(function () { _this.musicStorage.load(); });
         this.onNo.addOnce(function () { _this.game.sound.play("close"); });
     };
     StorageModal.prototype.loadFailed = function () {
         this.game.sound.play("boo");
-        this.alert(this.constants.loadFailMsg[this.lang]);
+        this.alert(this.constants.loadFailMsg);
     };
     StorageModal.prototype.load = function () {
         this.game.sound.play("load");

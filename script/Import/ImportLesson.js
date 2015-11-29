@@ -41,6 +41,7 @@
             "MusicStorage",
         ],
         View: [
+            "HTMLView",
             "DOMView",
             "GroupView",
             "SpriteView",
@@ -66,6 +67,7 @@
             "ModalWindow",
             "StorageModal",
             "LessonModal",
+            "ReturnButton",
         ],
         GroupView: [
             "ScoreSheet",

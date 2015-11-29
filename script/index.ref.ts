@@ -8,11 +8,15 @@
 /// <reference path="Constants/Constants.ts"/>
 /// <reference path="Constants/index.const.ts"/>
 
+// Model
+/// <reference path="Model/Language.ts"/>
+
 // View
 /// <reference path="View/HTMLView.ts"/>
 
 // DOMView
 /// <reference path="HTMLView/HTMLLogo.ts"/>
+/// <reference path="HTMLView/LanguageSelector.ts"/>
 /// <reference path="HTMLView/ModeButton.ts"/>
 
 // Main

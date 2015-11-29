@@ -124,10 +124,11 @@ namespace CONSTANTS {
         images: { [name: string]: string } = {
             note: "note",
         }
+		tailShortening: number = 20;
         ringDuration: number = 500;   // ms
-        fadeDuration: number = 200;   // ms
+        fadeDuration: number = 250;   // ms
         tweenDuration: number = 150;  // ms
-        doubleClkTime: number = 200;  // ms
+        doubleClkTime: number = 250;  // ms
     }
 
     export class MeasureSheet extends Music implements SpriteView {
@@ -195,6 +196,7 @@ namespace CONSTANTS {
 
     export class StationeryButton implements DOMView {
         selector = "";
+		scoreSelector = "#" + new MelOn().renderer;
         name: string;
         protected imageAddress: string = new MelOn().imageAddress + "stationeryButton/";
         class: { [name: string]: string } = {
@@ -202,6 +204,7 @@ namespace CONSTANTS {
             buttonImage: "buttonImage",
         };
         images: { [name: string]: string };
+		cursorSize: number = 32;
         onColor: string = "crimson";
         offColor: string = "royalblue";
     }
@@ -211,6 +214,8 @@ namespace CONSTANTS {
         name = new Stationery().writeStationery;
         images: { [name: string]: string } = {
             image: this.imageAddress + "pencil.png",
+			pngCursor: this.imageAddress + "pencilCursor.png",
+			curCursor: this.imageAddress + "pencilCursor.cur",
         }
     }
 
@@ -219,6 +224,8 @@ namespace CONSTANTS {
         name = new Stationery().eraseStationery;
         images: { [name: string]: string } = {
             image: this.imageAddress + "eraser.png",
+			pngCursor: this.imageAddress + "eraserCursor.png",
+			curCursor: this.imageAddress + "eraserCursor.cur",
         }
     }
 
@@ -251,7 +258,7 @@ namespace CONSTANTS {
         noteHeight: number = new MeasureSheet().noteHeight;
         pitch: string[] = new Music().pitch;
         initPitch: string = "C4"; // is the highest in display!
-        doubleTapTime: number = 150; // ms
+        doubleTapTime: number = 170; // ms
     }
 
     export class UpButton extends ScrollButton {
@@ -423,7 +430,7 @@ namespace CONSTANTS {
         };
         loadConfirmMsg = {
             "English": "The music you are making will be disposed. Is it OK?",
-            "Japanese": "今楽譜にある音楽が消えてしまいます。よろしいですか？",
+            "Japanese": "今、楽ふにある音楽が消えてしまいます。よろしいですか？",
             "Finnish": "Musiikki jota teet poistetaan. Sopiiko se?",
         };
         loadFailMsg = {
@@ -432,4 +439,30 @@ namespace CONSTANTS {
             "Finnish": "Musiikkia ei lödetty!",
         };
     }
+
+	export interface ReturnButton {
+		selector: string;
+		language: string;
+		destination: string;
+		shadowColor: string;
+		text: Object;
+		confirmMsg: Object;
+	}
+
+	export class ReturnTopButton implements ReturnButton {
+		selector = "#returnTop";
+		language = new MelOn().language;
+		destination = "index.html";
+		shadowColor = "lavender";
+		text = {
+			"English": "Return to Top",
+			"Japanese": "トップへ戻る",
+			"Finnish": "Takaisin alkuun",
+		};
+		confirmMsg = {
+			"English": "The music you are making will be disposed. Is it OK to return the Top page?",
+			"Japanese": "今、楽ふにある音楽が消えてしまいます。トップページへもどっても良いですか？",
+			"Finnish": "Musiikki jota teet poistetaan. Palataanko takaisin aloitus sivulle?",
+		};
+	}
 }

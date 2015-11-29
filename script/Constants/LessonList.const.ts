@@ -16,7 +16,7 @@ namespace LESSON_LIST {
     export class choose {
         script = {
             English: "Choose a lesson!",
-            Japanese: "おけいこをえらぼう！",
+            Japanese: "レッスンをえらぼう！",
             Finnish: "Valitse oppitunti!",
         };
     }

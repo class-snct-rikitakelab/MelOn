@@ -12,7 +12,7 @@ class HTMLView {
     }
 
     protected setImage(image: string) {
-        this.$.remove("img");
+        this.$.empty();
         this.$.append(this.images[image]);
     }
 

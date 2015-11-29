@@ -52,7 +52,7 @@ var ModalWindow = (function (_super) {
             .on(this.pushEvent(), function () { _this.close(); });
     };
     ModalWindow.prototype.makeMessage = function (text) {
-        return this.makeDiv(this.modalConstants.modalIds.message).text(text);
+        return this.makeDiv(this.modalConstants.modalIds.message).append(text);
     };
     ModalWindow.prototype.makeWindow = function () {
         return this.makeDiv(this.modalConstants.modalIds.window);
@@ -81,12 +81,12 @@ var ModalWindow = (function (_super) {
     };
     ModalWindow.prototype.alert = function (text) {
         this.open();
-        this.$.append(this.alertAssemble(text).fadeIn());
+        this.$.append(this.alertAssemble(text[this.lang]).fadeIn());
     };
     // Add the events after open!!
     ModalWindow.prototype.confirm = function (text) {
         this.open();
-        this.$.append(this.confirmAssemble(text).fadeIn());
+        this.$.append(this.confirmAssemble(text[this.lang]).fadeIn());
     };
     return ModalWindow;
 })(DOMView);

@@ -20,8 +20,8 @@ var JSONList = (function (_super) {
     };
     JSONList.prototype.makeHeader = function () {
         var header = $("<tr></tr>");
-        header.append($("<th></th>").text(this.constants.title[this.constants.language]));
-        header.append($("<th></th>").text(this.constants.description[this.constants.language]));
+        header.append($("<th></th>").append(this.constants.title[this.constants.language]));
+        header.append($("<th></th>").append(this.constants.description[this.constants.language]));
         this.$.append(header);
     };
     JSONList.prototype.makeRow = function (lesson, title) {
@@ -30,7 +30,7 @@ var JSONList = (function (_super) {
         var row = $("<tr></tr>");
         row.append($("<td><a href=" + (this.constants.practiceModeUrl + title) + ">" + title + "</a></td>")
             .addClass(this.constants.childClasses["title"]));
-        row.append($("<td>" + lesson["description"] + "</td>")
+        row.append($("<td></td>").append(lesson["description"])
             .addClass(this.constants.childClasses["description"]));
         this.$.append(row);
     };

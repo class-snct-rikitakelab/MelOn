@@ -16,11 +16,10 @@ var MusicPlayBar = (function (_super) {
         this.speed = this.models["speed"];
         this.noteOverlapManager = this.models["noteOverlapManager"];
         this.stopPosition = 0;
-        this.beatNum = 0;
-        this.music.onRefresh.add(function () { _this.updateStopPosition(); });
-        this.musicPlayer.onStop.add(function () { _this.musicStop(); });
-        this.musicPlayer.onPlay.add(function () { _this.musicPlay(); });
-        this.speed.onChangeSpeed.add(function () { _this.changeSpeed(); });
+        this.music.onRefresh.add(function () { return _this.updateStopPosition(); });
+        this.musicPlayer.onStop.add(function () { return _this.musicStop(); });
+        this.musicPlayer.onPlay.add(function () { return _this.musicPlay(); });
+        this.speed.onChangeSpeed.add(function () { return _this.changeSpeed(); });
         this.noteOverlapManager.setMusicPlayBar(this);
         this.anchor.setTo(1.0, 0.0);
     }
@@ -46,8 +45,7 @@ var MusicPlayBar = (function (_super) {
     };
     MusicPlayBar.prototype.musicPlay = function () {
         this.changeSpeed();
-        this.x = -this.constants.width;
-        this.beatNum = 0;
+        this.x = this.game.camera.x - this.constants.width;
     };
     MusicPlayBar.prototype.changeSpeed = function () {
         if (this.musicPlayer.isPlaying)
@@ -58,20 +56,20 @@ var MusicPlayBar = (function (_super) {
         this.beatSound.fadeOut(400);
     };
     MusicPlayBar.prototype.beat = function () {
-        var _this = this;
-        if (this.beatNum == 0) {
+        var pastQuotient = Math.floor(this.pastPosition / this.constants.beatWidth);
+        var currentQuotient = Math.floor(this.x / this.constants.beatWidth);
+        if (pastQuotient < currentQuotient)
             this.ring();
-            this.beatNum++;
-            return;
-        }
-        var pastBeat = Math.floor(this.x / (this.constants.beatWidth * (this.beatNum)));
-        if (pastBeat > 0)
-            _.times(pastBeat, function (n) { _this.ring(); _this.beatNum++; });
+        this.pastPosition = this.x;
+    };
+    MusicPlayBar.prototype.checkCenter = function () {
+        if (this.x >= this.game.camera.x + this.game.width / 2)
+            this.game.camera.focusOnXY(this.x, this.game.camera.y + this.game.camera.view.halfHeight);
     };
     MusicPlayBar.prototype.update = function () {
         if (this.musicPlayer.isPlaying) {
             this.beat();
-            this.game.camera.focusOnXY(this.x, this.game.camera.y + this.game.camera.view.halfHeight);
+            this.checkCenter();
             if (this.x > this.stopPosition)
                 this.musicPlayer.stop();
         }

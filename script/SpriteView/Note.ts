@@ -25,7 +25,6 @@ class Note extends SpriteView {
 
     protected setInput() {
         this.inputEnabled = true;
-        this.input.useHandCursor = true;
         this.events.onInputUp.add(() => this.music.refresh());
         this.events.onInputDown.add((self, pointer: Phaser.Pointer) => this.touchNote(pointer));
         this.events.onInputOver.add(() => {
@@ -108,7 +107,7 @@ class Note extends SpriteView {
     }
 
     onOverlap() {
-        if (this.musicPlayer.isPlaying) this.sound = this.game.sound.play(this.instrument.getInstrument + this.data.pitch);
+		if (this.musicPlayer.isPlaying) this.sound = this.game.sound.play(this.instrument.getInstrument + this.data.pitch);
     }
 
     offOverlap() {
@@ -138,5 +137,6 @@ class Note extends SpriteView {
         var juttingIn = right - left;
         if (juttingOut > 0) _.times(Math.ceil(juttingOut / this.constants.width), () => { this.music.lengthen(this.data); });
         if (juttingIn > 0) _.times(Math.floor(juttingIn / this.constants.width), () => { this.music.shorten(this.data); });
+		this.body.width = this.width - this.constants.tailShortening;
     }
 }

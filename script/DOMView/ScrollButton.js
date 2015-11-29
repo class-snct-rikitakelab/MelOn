@@ -13,6 +13,7 @@ var ScrollButton = (function (_super) {
         this.isPushed = false;
         this.isOn = false;
         this.isAlerted = false;
+        this.clickStatus = null;
         this.initCamera();
         this.setView();
         this.setEvent();
@@ -24,18 +25,9 @@ var ScrollButton = (function (_super) {
         var _this = this;
         if (!this.game.device.touch)
             this.setSelectEffect();
-        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.push(); })
-            .on(this.game.device.touch ? "touchend" : "mouseup", function () { _this.pull(); })
+        this.$.on(this.pushEvent(), function () { return _this.checkDouble(); })
+            .on(this.pullEvent(), function () { return _this.pull(); })
             .on("mouseleave", function () { _this.isOn = false; _this.pull(); })
-            .on("dblclick", function () { if (!_this.isLimit())
-            _this.double(); })
-            .data("dblTap", false).click(function () {
-            if (_this.$.data("dblTap"))
-                _this.$.data("dblTap", false);
-            else
-                _this.$.data("dblTap", true);
-            setTimeout(function () { _this.$.data("dblTap", false); }, _this.constants.doubleTapTime);
-        })
             .append("<div id=" + (this.constants.direction + "Triangle") + "></div>");
     };
     ScrollButton.prototype.setSelectEffect = function () {
@@ -45,6 +37,16 @@ var ScrollButton = (function (_super) {
             _this.$.css("box-shadow", "0 0 8px 2px lawngreen, 0 0 8px 2px lawngreen inset");
             _this.game.sound.play("select");
         }).on("mouseleave", function () { _this.isOn = false; _this.$.css("box-shadow", "none"); });
+    };
+    ScrollButton.prototype.checkDouble = function () {
+        var _this = this;
+        if (this.clickStatus === null) {
+            this.clickStatus = setTimeout(function () { return _this.clickStatus = null; }, this.constants.doubleTapTime);
+            return this.push();
+        }
+        this.clickStatus = null;
+        if (!this.isLimit())
+            this.double();
     };
     ScrollButton.prototype.push = function () {
         this.isPushed = true;

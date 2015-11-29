@@ -73,15 +73,17 @@ var LESSON;
                 teacher: "lightgreen",
                 child: "orange",
             };
-            this.image = {
-                teacher: "storage/assets/image/person/teacher.png",
-                child: "storage/assets/image/person/child.png",
-            };
             this.commonClass = {
                 balloon: "balloon",
                 triangle: "triangle",
                 person: "person",
             };
+            this.baseImageAddress = "storage/assets/image/person/";
+            this.images = {
+                teacher: this.baseImageAddress + "teacher.png",
+                child: this.baseImageAddress + "child.png",
+            };
+            this.audios = {};
         }
         return Lecture;
     })();
@@ -113,5 +115,25 @@ var LESSON;
         return LessonModal;
     })();
     LESSON.LessonModal = LessonModal;
+    var ReturnLessonListButton = (function () {
+        function ReturnLessonListButton() {
+            this.selector = "#returnLessonList";
+            this.language = LESSON.language;
+            this.destination = "LessonList.html?lang=" + this.language;
+            this.shadowColor = "lavender";
+            this.text = {
+                "English": "Select Lesson",
+                "Japanese": "レッスンをえらぶ",
+                "Finnish": "Valitse oppitunti",
+            };
+            this.confirmMsg = {
+                "English": "The music you are making will be disposed. Is it OK to return the Lesson List page?",
+                "Japanese": "今、楽ふにある音楽が消えてしまいます。レッスンせんたくページへもどっても良いですか？",
+                "Finnish": "Musiikki jota teet poistetaan. Palataanko takaisin oppitunnit sivulle?",
+            };
+        }
+        return ReturnLessonListButton;
+    })();
+    LESSON.ReturnLessonListButton = ReturnLessonListButton;
 })(LESSON || (LESSON = {}));
 //# sourceMappingURL=Lesson.const.js.map

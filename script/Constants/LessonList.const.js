@@ -18,7 +18,7 @@ var LESSON_LIST;
         function choose() {
             this.script = {
                 English: "Choose a lesson!",
-                Japanese: "おけいこをえらぼう！",
+                Japanese: "レッスンをえらぼう！",
                 Finnish: "Valitse oppitunti!",
             };
         }
