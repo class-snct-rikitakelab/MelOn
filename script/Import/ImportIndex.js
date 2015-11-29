@@ -24,7 +24,7 @@
         ],
         HTMLView: [
             "HTMLLogo",
-            "languageSelector",
+            "LanguageSelector",
             "ModeButton",
         ],
         Main: [
