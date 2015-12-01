@@ -111,3 +111,12 @@ class ScrollButton extends DOMView {
         }
     }
 }
+
+class LessonScrollButton extends ScrollButton {
+	private achievement: Achievement = this.models["achievement"];
+
+	constructor(game: Phaser.Game, constants: CONSTANTS.ScrollButton, models: Object) {
+		super(game, constants, models);
+		this.achievement.onFinish.add(() => this.game.camera.x = 0);
+	}
+}

@@ -47,16 +47,14 @@ class Achievement extends Model {
         var ret = true;
         _.each(target, (line) => {
             _.each(line, (targetNote) => {
-                ret = ret && _.some(music[targetNote.pitch], (musicNote) => {
-                    return _.isEqual(targetNote, musicNote);
-                });
+                ret = ret && _.some(music[targetNote.pitch], (musicNote) => { return _.isEqual(targetNote, musicNote); });
             });
         });
         return ret;
     }
 
     checkTrace(target: MusicData, music: MusicData) {
-        if (this.mode === "filling") {
+		if (this.mode === "filling") {
             this.traced = !this.finished && this.includeTrace(this.sortMusic(target), this.sortMusic(music));
         }
         else this.traced = !this.finished && _.isEqual(this.sortMusic(target), this.sortMusic(music));
@@ -65,6 +63,7 @@ class Achievement extends Model {
     
 
     private scanBlanks(blanks: [number, number][], unitNote: number, music: Music) {
+		// TODO: Perfect complete
         var ret = true;
         blanks.forEach((blank) => {
             var oneBlank = false;

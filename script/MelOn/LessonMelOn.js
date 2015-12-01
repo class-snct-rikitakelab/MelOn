@@ -14,6 +14,7 @@ var LessonMelOn = (function (_super) {
     }
     LessonMelOn.prototype.create = function () {
         _super.prototype.create.call(this);
+        this.leftButton = new LessonScrollButton(this.game, new CONSTANTS.LeftButton, { music: this.music, achievement: this.achievement });
         this.targetNotes = new TargetNotes(this.game, new LESSON.TargetNotes, { music: this.music, lessonData: this.lessonData, achievement: this.achievement });
         this.nextButton = new NextButton(this.game, new LESSON.NextButton, { lessonData: this.lessonData, achievement: this.achievement, musicPlayer: this.musicPlayer });
         this.lessonModal = new LessonModal(this.game, new LESSON.LessonModal, { achievement: this.achievement, lessonData: this.lessonData });

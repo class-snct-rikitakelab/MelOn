@@ -147,4 +147,14 @@ var ScrollButton = (function (_super) {
     };
     return ScrollButton;
 })(DOMView);
+var LessonScrollButton = (function (_super) {
+    __extends(LessonScrollButton, _super);
+    function LessonScrollButton(game, constants, models) {
+        var _this = this;
+        _super.call(this, game, constants, models);
+        this.achievement = this.models["achievement"];
+        this.achievement.onFinish.add(function () { return _this.game.camera.x = 0; });
+    }
+    return LessonScrollButton;
+})(ScrollButton);
 //# sourceMappingURL=ScrollButton.js.map

@@ -48,9 +48,7 @@ var Achievement = (function (_super) {
         var ret = true;
         _.each(target, function (line) {
             _.each(line, function (targetNote) {
-                ret = ret && _.some(music[targetNote.pitch], function (musicNote) {
-                    return _.isEqual(targetNote, musicNote);
-                });
+                ret = ret && _.some(music[targetNote.pitch], function (musicNote) { return _.isEqual(targetNote, musicNote); });
             });
         });
         return ret;
@@ -65,6 +63,7 @@ var Achievement = (function (_super) {
     };
     Achievement.prototype.scanBlanks = function (blanks, unitNote, music) {
         var _this = this;
+        // TODO: Perfect complete
         var ret = true;
         blanks.forEach(function (blank) {
             var oneBlank = false;
