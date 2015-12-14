@@ -7,7 +7,6 @@ var __extends = (this && this.__extends) || function (d, b) {
 var MusicPlayBar = (function (_super) {
     __extends(MusicPlayBar, _super);
     function MusicPlayBar(game, constants, models) {
-        var _this = this;
         _super.call(this, game, constants, models);
         this.constants = constants;
         this.music = this.models["music"];
@@ -16,13 +15,17 @@ var MusicPlayBar = (function (_super) {
         this.speed = this.models["speed"];
         this.noteOverlapManager = this.models["noteOverlapManager"];
         this.stopPosition = 0;
+        this.setEvent();
+        this.noteOverlapManager.setMusicPlayBar(this);
+        this.anchor.setTo(1.0, 0.0);
+    }
+    MusicPlayBar.prototype.setEvent = function () {
+        var _this = this;
         this.music.onRefresh.add(function () { return _this.updateStopPosition(); });
         this.musicPlayer.onStop.add(function () { return _this.musicStop(); });
         this.musicPlayer.onPlay.add(function () { return _this.musicPlay(); });
         this.speed.onChangeSpeed.add(function () { return _this.changeSpeed(); });
-        this.noteOverlapManager.setMusicPlayBar(this);
-        this.anchor.setTo(1.0, 0.0);
-    }
+    };
     MusicPlayBar.prototype.setPhysical = function () {
         this.game.physics.arcade.enable(this);
     };
@@ -76,4 +79,17 @@ var MusicPlayBar = (function (_super) {
     };
     return MusicPlayBar;
 })(SpriteView);
+var LessonMusicPlayBar = (function (_super) {
+    __extends(LessonMusicPlayBar, _super);
+    function LessonMusicPlayBar() {
+        _super.apply(this, arguments);
+    }
+    LessonMusicPlayBar.prototype.setEvent = function () {
+        var _this = this;
+        _super.prototype.setEvent.call(this);
+        this.achievement = this.models["achievement"];
+        this.achievement.onFinish.add(function () { _this.x = _this.constants.x; _this.checkCenter(); });
+    };
+    return LessonMusicPlayBar;
+})(MusicPlayBar);
 //# sourceMappingURL=MusicPlayBar.js.map

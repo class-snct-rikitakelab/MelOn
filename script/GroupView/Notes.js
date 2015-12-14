@@ -37,6 +37,8 @@ var Notes = (function (_super) {
         this.noteOverlapManager.addNote(this.selectedNote);
     };
     Notes.prototype.removeNote = function () {
+        if (!this.selectedNote)
+            return;
         this.noteOverlapManager.removeNote(this.selectedNote);
         this.selectedNote.destroy();
     };
@@ -50,11 +52,44 @@ var LessonNotes = (function (_super) {
     __extends(LessonNotes, _super);
     function LessonNotes() {
         _super.apply(this, arguments);
+        this.achievement = this.models["achievement"];
+        this.lessonData = this.models["lessonData"];
+        this.redFlag = false;
     }
+    LessonNotes.prototype.setEvent = function () {
+        var _this = this;
+        _super.prototype.setEvent.call(this);
+        var redCheck = function () { return _this.redFlag = true; };
+        this.music.onWrite.add(redCheck);
+        this.music.onErase.add(redCheck);
+        this.music.onChangeExtension.add(redCheck);
+        this.music.onMove.add(redCheck);
+        this.music.onEraseAll.add(redCheck);
+    };
+    LessonNotes.prototype.countRed = function () {
+        return _.filter(this.children, function (note) { return note.key === "red"; }).length;
+    };
     LessonNotes.prototype.addNote = function () {
         this.selectedNote = this.add(new LessonNote(this.game, new CONSTANTS.Note, this.models, this.music.getSelectedNote));
         this.noteOverlapManager.addNote(this.selectedNote);
     };
+    LessonNotes.prototype.update = function () {
+        _super.prototype.update.call(this);
+        if (this.redFlag) {
+            this.achievement.changeRedNum = this.countRed();
+            this.redFlag = false;
+        }
+    };
     return LessonNotes;
 })(Notes);
+//var count: number = 0;
+//_.each(this.music.getMusic, (line: NoteData[], pitch: string) => {
+//	_.each(line, (note: NoteData) => {
+//		if (this.lessonData.existsInTargetBlank(note)) return;
+//		if (!_.some(this.lessonData.getTargetMusic[pitch], (targetNote: NoteData) => {
+//			return note.start === targetNote.start && note.start + note.extension === targetNote.start + targetNote.extension
+//		})) count++;
+//	});
+//});
+//return count; 
 //# sourceMappingURL=Notes.js.map

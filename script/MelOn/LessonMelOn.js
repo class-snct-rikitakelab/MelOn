@@ -20,14 +20,14 @@ var LessonMelOn = (function (_super) {
         this.speedDisplay = new SpeedDisplay(this.game, new CONSTANTS.SpeedDisplay, { speed: this.speed });
         this.speedUpButton = new SpeedButton(this.game, new CONSTANTS.SpeedUpButton, { speed: this.speed });
         this.speedDownButton = new SpeedButton(this.game, new CONSTANTS.SpeedDownButton, { speed: this.speed });
-        this.playButton = new PlayButton(this.game, new CONSTANTS.PlayButton, { musicPlayer: this.musicPlayer });
+        this.playButton = new LessonPlayButton(this.game, new CONSTANTS.PlayButton, { musicPlayer: this.musicPlayer, achievement: this.achievement });
         this.saveButton = new SaveButton(this.game, new CONSTANTS.SaveButton, { music: this.music, musicStorage: this.musicStorage });
         this.loadButton = new LoadButton(this.game, new CONSTANTS.LoadButton, { music: this.music, musicStorage: this.musicStorage });
         this.instrumentMenu = new InstrumentMenu(this.game, new CONSTANTS.InstrumentMenu, { instrument: this.instrument, musicPlayer: this.musicPlayer });
         this.soundButtonContainer = new SoundButtonContainer(this.game, new CONSTANTS.SoundButtonContainer, { instrument: this.instrument });
         this.scoreSheet = new LessonScoreSheet(this.game, new CONSTANTS.ScoreSheet, { music: this.music, stationery: this.stationery, musicPlayer: this.musicPlayer, lessonData: this.lessonData, achievement: this.achievement });
         this.notes = new LessonNotes(this.game, new CONSTANTS.Notes, { music: this.music, musicPlayer: this.musicPlayer, instrument: this.instrument, stationery: this.stationery, noteOverlapManager: this.noteOverlapManager, lessonData: this.lessonData, achievement: this.achievement });
-        this.musicPlayBar = new MusicPlayBar(this.game, new CONSTANTS.MusicPlayBar, { music: this.music, instrument: this.instrument, musicPlayer: this.musicPlayer, noteOverlapManager: this.noteOverlapManager, speed: this.speed });
+        this.musicPlayBar = new LessonMusicPlayBar(this.game, new CONSTANTS.MusicPlayBar, { music: this.music, instrument: this.instrument, musicPlayer: this.musicPlayer, noteOverlapManager: this.noteOverlapManager, speed: this.speed, achievement: this.achievement });
         this.upButton = new ScrollButton(this.game, new CONSTANTS.UpButton, { music: this.music, });
         this.downButton = new ScrollButton(this.game, new CONSTANTS.DownButton, { music: this.music, });
         this.rightButton = new ScrollButton(this.game, new CONSTANTS.RightButton, { music: this.music, });
@@ -40,6 +40,7 @@ var LessonMelOn = (function (_super) {
             this.blanks = new Blanks(this.game, new LESSON.Blanks, { music: this.music, lessonData: this.lessonData, achievement: this.achievement });
         if (this.lessonData.getInherit)
             this.loadButton.setMusic(this.lessonData.getInherit);
+        this.musicPlayBar.bringToTop();
     };
     return LessonMelOn;
 })(MelOn);

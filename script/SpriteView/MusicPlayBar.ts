@@ -11,15 +11,19 @@ class MusicPlayBar extends SpriteView {
 	private pastPosition: number;
     private beatSound: Phaser.Sound;
 
-    constructor(game: Phaser.Game, private constants: CONSTANTS.MusicPlayBar, models: Object) {
+    constructor(game: Phaser.Game, protected constants: CONSTANTS.MusicPlayBar, models: Object) {
         super(game, constants, models);
-        this.music.onRefresh.add(() => this.updateStopPosition());
-        this.musicPlayer.onStop.add(() => this.musicStop());
-        this.musicPlayer.onPlay.add(() => this.musicPlay());
-        this.speed.onChangeSpeed.add(() => this.changeSpeed());
+		this.setEvent();
         this.noteOverlapManager.setMusicPlayBar(this);
         this.anchor.setTo(1.0, 0.0);
     }
+
+	protected setEvent() {
+		this.music.onRefresh.add(() => this.updateStopPosition());
+        this.musicPlayer.onStop.add(() => this.musicStop());
+        this.musicPlayer.onPlay.add(() => this.musicPlay());
+        this.speed.onChangeSpeed.add(() => this.changeSpeed());
+	}
 
     protected setPhysical() {
         this.game.physics.arcade.enable(this);
@@ -63,7 +67,7 @@ class MusicPlayBar extends SpriteView {
         this.pastPosition = this.x;
     }
 
-	private checkCenter() {
+	checkCenter() {
 		if (this.x >= this.game.camera.x + this.game.width / 2)
 			this.game.camera.focusOnXY(this.x, this.game.camera.y + this.game.camera.view.halfHeight);
 	}
@@ -75,4 +79,14 @@ class MusicPlayBar extends SpriteView {
             if (this.x > this.stopPosition) this.musicPlayer.stop();
         }
     }
+}
+
+class LessonMusicPlayBar extends MusicPlayBar {
+	private achievement: Achievement;
+
+	setEvent() {
+		super.setEvent();
+		this.achievement = this.models["achievement"];
+		this.achievement.onFinish.add(() => { this.x = this.constants.x; this.checkCenter(); });
+	}
 }

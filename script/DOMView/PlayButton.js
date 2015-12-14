@@ -20,9 +20,9 @@ var PlayButton = (function (_super) {
     PlayButton.prototype.setEvent = function () {
         var _this = this;
         this.setSelectEffect();
-        this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () { _this.changePlayingState(); });
-        this.musicPlayer.onPlay.add(function () { _this.changeImage(true); });
-        this.musicPlayer.onStop.add(function () { _this.changeImage(false); });
+        this.$.on(this.pushEvent(), function () { return _this.changePlayingState(); });
+        this.musicPlayer.onPlay.add(function () { return _this.changeImage(true); });
+        this.musicPlayer.onStop.add(function () { return _this.changeImage(false); });
     };
     PlayButton.prototype.setSelectEffect = function () {
         var _this = this;
@@ -45,4 +45,17 @@ var PlayButton = (function (_super) {
     };
     return PlayButton;
 })(DOMView);
+var LessonPlayButton = (function (_super) {
+    __extends(LessonPlayButton, _super);
+    function LessonPlayButton() {
+        _super.apply(this, arguments);
+        this.achievement = this.models["achievement"];
+    }
+    LessonPlayButton.prototype.changePlayingState = function () {
+        if (this.achievement.isFinished && !this.achievement.isActivated && this.musicPlayer.isPlaying)
+            return;
+        _super.prototype.changePlayingState.call(this);
+    };
+    return LessonPlayButton;
+})(PlayButton);
 //# sourceMappingURL=PlayButton.js.map

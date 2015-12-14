@@ -14,10 +14,16 @@ var Achievement = (function (_super) {
         this.filled = (this.mode === this.constants.mode.filling) ? false : true;
         this.finished = false;
         this.activated = false;
+        this.restTrace = 0;
+        this.restFilling = 0;
+        this.red = 0;
         this.onFinish = new Phaser.Signal;
         this.onPlayAlert = new Phaser.Signal;
         this.onStopAlert = new Phaser.Signal;
         this.onActivate = new Phaser.Signal;
+        this.onChangeRestTraceNum = new Phaser.Signal;
+        this.onChangeRestFillingNum = new Phaser.Signal;
+        this.onChangeRedNum = new Phaser.Signal;
     }
     Object.defineProperty(Achievement.prototype, "isAchieved", {
         get: function () {
@@ -36,6 +42,35 @@ var Achievement = (function (_super) {
     Object.defineProperty(Achievement.prototype, "isActivated", {
         get: function () {
             return this.activated;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Achievement.prototype, "redNum", {
+        get: function () {
+            return this.red;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Achievement.prototype, "restTraceNum", {
+        get: function () {
+            return this.restTrace;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Achievement.prototype, "restFillingNum", {
+        get: function () {
+            return this.restFilling;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Achievement.prototype, "changeRedNum", {
+        set: function (num) {
+            this.red = num;
+            this.onChangeRedNum.dispatch();
         },
         enumerable: true,
         configurable: true

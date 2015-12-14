@@ -6,11 +6,17 @@ class Achievement extends Model {
     private filled: boolean = (this.mode === this.constants.mode.filling) ? false : true;
     private finished: boolean = false;
 	private activated: boolean = false;
+	private restTrace: number = 0;
+	private restFilling: number = 0;
+	private red: number = 0;
 
     onFinish: Phaser.Signal = new Phaser.Signal;
     onPlayAlert: Phaser.Signal = new Phaser.Signal;
     onStopAlert: Phaser.Signal = new Phaser.Signal;
     onActivate: Phaser.Signal = new Phaser.Signal;
+	onChangeRestTraceNum: Phaser.Signal = new Phaser.Signal;
+	onChangeRestFillingNum: Phaser.Signal = new Phaser.Signal;
+	onChangeRedNum: Phaser.Signal = new Phaser.Signal;
 
     constructor(private constants: LESSON.Achievement, private mode: string) {
         super(constants);
@@ -27,6 +33,23 @@ class Achievement extends Model {
 	get isActivated(): boolean {
         return this.activated;
     }
+
+	get redNum(): number {
+        return this.red;
+    }
+
+	get restTraceNum(): number {
+        return this.restTrace;
+    }
+
+	get restFillingNum(): number {
+        return this.restFilling;
+    }
+
+	set changeRedNum(num: number) {
+		this.red = num;
+		this.onChangeRedNum.dispatch();
+	}
 
 	playAlertCheck(): boolean {
 		if (this.isFinished && !this.isActivated) {
