@@ -159,8 +159,6 @@ var LessonNote = (function (_super) {
         _super.call(this, game, constants, models, data);
         this.lessonData = this.models["lessonData"];
         this.achievement = this.models["achievement"];
-        this.target = this.lessonData.getTargetMusic;
-        this.blank = this.lessonData.getBlanks;
         this.judgeTexture();
     }
     LessonNote.prototype.judgeTexture = function () {

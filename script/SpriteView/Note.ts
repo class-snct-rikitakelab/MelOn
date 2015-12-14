@@ -145,8 +145,6 @@ class LessonNote extends Note {
 
 	private lessonData: LessonData = this.models["lessonData"];
 	private achievement: Achievement = this.models["achievement"];
-	private target = this.lessonData.getTargetMusic;
-	private blank = this.lessonData.getBlanks;
 
 	constructor(game: Phaser.Game, constants: CONSTANTS.Note, models: Object, data: NoteData) {
         super(game, constants, models, data);
