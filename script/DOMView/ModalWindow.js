@@ -9,6 +9,7 @@ var ModalWindow = (function (_super) {
     function ModalWindow(game, modalConstants, models) {
         _super.call(this, game, modalConstants, models);
         this.modalConstants = modalConstants;
+        this.onOpen = new Phaser.Signal();
         this.onClose = new Phaser.Signal();
         this.onOk = new Phaser.Signal();
         this.onYes = new Phaser.Signal();
@@ -18,8 +19,8 @@ var ModalWindow = (function (_super) {
     ModalWindow.prototype.open = function () {
         this.refleshEvents();
         this.close();
-        var scrollY = window.scrollY;
-        window.onscroll = function () { window.scrollTo(window.scrollX, scrollY); };
+        this.onOpen.dispatch();
+        window.onscroll = function () { return window.scrollTo(window.scrollX, window.scrollY); };
         $(window).on('touchmove.noScroll', function (e) { e.preventDefault(); });
     };
     ModalWindow.prototype.close = function () {

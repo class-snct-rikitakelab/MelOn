@@ -62,4 +62,29 @@ class LessonData extends Model {
     get getBlanks(): [number, number][] { return this.blanks; }
     get getInherit(): MusicData { return this.inherit; }
     get getLecture(): { [prop: string]: string }[] { return this.lecture; }
+
+	isInTargetBlank(position: number): boolean {
+		return _.some(this.blanks, (blank: [number, number]) => {
+			return blank[0] <= position && position <= blank[1];
+		});
+	}
+
+	existsInTargetBlank(note: NoteData): boolean {
+		var end = note.start + note.extension;
+		for (var i = note.start; i <= end; i++) if (!this.isInTargetBlank(i)) return false;
+		return true;
+	}
+
+	isInTargetMusic(pitch: string, position: number): boolean {
+		return _.some(this.target[pitch], (note: NoteData) => {
+			return note.start <= position && position <= note.start + note.extension;
+		});
+	}
+	
+	existsInTargetMusic(note: NoteData): boolean {
+		if (this.blanks && this.existsInTargetBlank(note)) return true;
+		return _.some(this.target[note.pitch], (targetNote: NoteData) => {
+			return targetNote.start === note.start && targetNote.start + targetNote.extension === note.start + note.extension;
+		});		
+	}
 }

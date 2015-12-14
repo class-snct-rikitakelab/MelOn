@@ -120,9 +120,11 @@ namespace CONSTANTS {
         height = new MeasureSheet().height / this.pitchNum;
         x = 0;
         y = 0;
-        initImage = "note";
+        initImage = "green";
+		prohibitedImage = "red";
         images: { [name: string]: string } = {
-            note: "note",
+            green: "green",
+			red: "red",
         }
 		tailShortening: number = 20;
         ringDuration: number = 500;   // ms

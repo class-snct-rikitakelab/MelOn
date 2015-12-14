@@ -20,7 +20,9 @@ var MelOnAssets = (function (_super) {
         this.images = {
             score: [
                 ["musicPlayBar", "playBar.png"],
-                ["note", "note.png"],
+                ["green", "green.png"],
+                ["red", "red.png"],
+                ["clear", "clear.png"],
                 ["blank", "blank.png"],
                 ["score", "score.png"],
             ]

@@ -4,6 +4,7 @@ class ModalWindow extends DOMView {
 
     protected lang: string;
 
+	onOpen: Phaser.Signal = new Phaser.Signal();
     onClose: Phaser.Signal = new Phaser.Signal();
     onOk: Phaser.Signal = new Phaser.Signal();
     onYes: Phaser.Signal = new Phaser.Signal();
@@ -17,8 +18,8 @@ class ModalWindow extends DOMView {
     private open() {
         this.refleshEvents();
         this.close();
-        var scrollY = window.scrollY;
-        window.onscroll = () => { window.scrollTo(window.scrollX, scrollY); };
+		this.onOpen.dispatch();
+		window.onscroll = () => window.scrollTo(window.scrollX, window.scrollY);
         $(window).on('touchmove.noScroll', (e) => { e.preventDefault(); });
     }
 

@@ -17,9 +17,9 @@ class NextButton extends DOMView {
     }
 
     private setEvents() {
-        this.achievement.onFinish.add(() => { this.$.on(this.pushEvent(), () => { this.alert(); }); });
+        this.achievement.onFinish.add(() => { this.$.on(this.pushEvent(), () => this.alert()); });
         this.musicPlayer.onStop.add(() => { if (this.achievement.isFinished) this.onActive(); });
-        this.$.on(this.pushEvent(), () => { this.game.sound.play("boo"); });
+        this.$.on(this.pushEvent(), () => { if (!this.achievement.isFinished) this.game.sound.play("boo"); });
         this.$.select(() => { return false; });
     }
 
@@ -30,7 +30,7 @@ class NextButton extends DOMView {
 
     private setSelectEffect() {
         this.$.hover(() => { this.$.css("box-shadow", "0 0 20px 6px lawngreen"); this.game.sound.play("select") },
-            () => { this.$.css("box-shadow", "none"); });
+            () => this.$.css("box-shadow", "none"));
     }
 
     private move() {
@@ -40,7 +40,7 @@ class NextButton extends DOMView {
 
     private onActive = _.once(() => {
         this.setSelectEffect();
-        this.$.css("background-color", "orange").unbind(this.pushEvent()).on(this.pushEvent(), () => { this.move(); });
-        this.achievement.active();
+        this.$.css("background-color", "orange").unbind(this.pushEvent()).on(this.pushEvent(), () => this.move());
+        this.achievement.activate();
     });
 }

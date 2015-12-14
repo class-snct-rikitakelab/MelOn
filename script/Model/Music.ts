@@ -55,8 +55,8 @@ class Music extends Model {
 
     erase(note: NoteData) {
         this.music[note.pitch].splice(this.music[note.pitch].indexOf(note), 1);
-        this.refresh();
-        this.onErase.dispatch();
+		this.onErase.dispatch();
+		this.refresh();
     }
 
     moveHorizontally(note: NoteData, right: boolean) {

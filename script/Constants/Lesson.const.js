@@ -1,8 +1,14 @@
 /// <reference path="../Lesson.ref.ts"/>
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var LESSON;
 (function (LESSON) {
     var ScoreData = CONSTANTS.MeasureSheet;
     var ModalWindow = CONSTANTS.ModalWindow;
+    var MeasureSheet = CONSTANTS.MeasureSheet;
     LESSON.language = new LESSON_LIST.Language().language;
     var LessonData = (function () {
         function LessonData() {
@@ -21,18 +27,42 @@ var LESSON;
     var Achievement = (function () {
         function Achievement() {
             this.pitch = new ScoreData().pitch;
+            this.mode = {
+                tracing: "tracing",
+                filling: "filling",
+            };
         }
         return Achievement;
     })();
     LESSON.Achievement = Achievement;
+    var LessonMeasureSheet = (function (_super) {
+        __extends(LessonMeasureSheet, _super);
+        function LessonMeasureSheet() {
+            _super.apply(this, arguments);
+            this.mode = new Achievement().mode;
+            this.traceMsg = {
+                "English": "Let's trace only white notes.",
+                "Japanese": "白い音符だけををなぞろう。",
+                "Finnish": "Katsotaanpa jäljittää vain valkoinen muistiinpanoja.",
+            };
+            this.fillingMsg = {
+                "English": "Let's trace white notes or put notes inside blue parts.",
+                "Japanese": "白い音符をなぞるか、<br/>青い部分の中に音符を置こう。",
+                "Finnish": "Katsotaanpa jäljittää valkoinen muistiinpanoja tai laittaa muistiinpanoja sisällä sininen osia.",
+            };
+        }
+        return LessonMeasureSheet;
+    })(MeasureSheet);
+    LESSON.LessonMeasureSheet = LessonMeasureSheet;
     var TargetNotes = (function () {
         function TargetNotes() {
-            this.images = { note: "note", };
+            this.initImage = "clear";
+            this.images = { clear: "clear", };
             this.measureWidth = new ScoreData().width;
             this.noteHeight = new ScoreData().noteHeight;
             this.pitch = new ScoreData().pitch;
-            this.opacity = 1.0;
-            this.color = 0x7777ff;
+            this.opacity = 0.7;
+            this.color = 0xaaaaaa;
         }
         return TargetNotes;
     })();

@@ -11,13 +11,21 @@ var Achievement = (function (_super) {
         this.constants = constants;
         this.mode = mode;
         this.traced = false;
-        this.filled = (this.mode === "filling") ? false : true;
+        this.filled = (this.mode === this.constants.mode.filling) ? false : true;
         this.finished = false;
+        this.activated = false;
         this.onFinish = new Phaser.Signal;
         this.onPlayAlert = new Phaser.Signal;
         this.onStopAlert = new Phaser.Signal;
-        this.onActive = new Phaser.Signal;
+        this.onActivate = new Phaser.Signal;
     }
+    Object.defineProperty(Achievement.prototype, "isAchieved", {
+        get: function () {
+            return this.traced && this.filled;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(Achievement.prototype, "isFinished", {
         get: function () {
             return this.finished;
@@ -25,8 +33,19 @@ var Achievement = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Achievement.prototype.isAchieved = function () {
-        return this.traced && this.filled;
+    Object.defineProperty(Achievement.prototype, "isActivated", {
+        get: function () {
+            return this.activated;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Achievement.prototype.playAlertCheck = function () {
+        if (this.isFinished && !this.isActivated) {
+            this.playAlert();
+            return false;
+        }
+        return true;
     };
     Achievement.prototype.playAlert = function () {
         this.onPlayAlert.dispatch();
@@ -34,8 +53,9 @@ var Achievement = (function (_super) {
     Achievement.prototype.stopAlert = function () {
         this.onStopAlert.dispatch();
     };
-    Achievement.prototype.active = function () {
-        this.onActive.dispatch();
+    Achievement.prototype.activate = function () {
+        this.activated = true;
+        this.onActivate.dispatch();
     };
     Achievement.prototype.sortMusic = function (music) {
         return _.each(music, function (line, pitch, music) {
@@ -54,7 +74,7 @@ var Achievement = (function (_super) {
         return ret;
     };
     Achievement.prototype.checkTrace = function (target, music) {
-        if (this.mode === "filling") {
+        if (this.mode === this.constants.mode.filling) {
             this.traced = !this.finished && this.includeTrace(this.sortMusic(target), this.sortMusic(music));
         }
         else
@@ -63,7 +83,6 @@ var Achievement = (function (_super) {
     };
     Achievement.prototype.scanBlanks = function (blanks, unitNote, music) {
         var _this = this;
-        // TODO: Perfect complete
         var ret = true;
         blanks.forEach(function (blank) {
             var oneBlank = false;
@@ -81,7 +100,7 @@ var Achievement = (function (_super) {
         this.checkFinish();
     };
     Achievement.prototype.checkFinish = function () {
-        if (!this.finished && this.isAchieved()) {
+        if (!this.finished && this.isAchieved) {
             this.finished = true;
             this.onFinish.dispatch();
         }

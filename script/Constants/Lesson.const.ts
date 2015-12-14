@@ -8,6 +8,7 @@ namespace LESSON {
     import ModalWindow = CONSTANTS.ModalWindow;
 	import ReturnButton = CONSTANTS.ReturnButton;
 	import HTMLView = INDEX.HTMLView;
+	import MeasureSheet = CONSTANTS.MeasureSheet;
     
     export var language: string = new LESSON_LIST.Language().language;
 
@@ -24,15 +25,34 @@ namespace LESSON {
 
     export class Achievement implements Model {
         pitch = new ScoreData().pitch;
+		mode = {
+			tracing: "tracing",
+			filling: "filling",
+		};
     }
 
+	export class LessonMeasureSheet extends MeasureSheet {
+		mode = new Achievement().mode;
+		traceMsg = {
+            "English": "Let's trace only white notes.",
+            "Japanese": "白い音符だけををなぞろう。",
+            "Finnish": "Katsotaanpa jäljittää vain valkoinen muistiinpanoja.",
+        };
+		fillingMsg = {
+            "English": "Let's trace white notes or put notes inside blue parts.",
+            "Japanese": "白い音符をなぞるか、<br/>青い部分の中に音符を置こう。",
+            "Finnish": "Katsotaanpa jäljittää valkoinen muistiinpanoja tai laittaa muistiinpanoja sisällä sininen osia.",
+        };
+	}
+
     export class TargetNotes implements GroupView {
-        images: { [name: string]: string } = { note: "note", };
+		initImage: string = "clear";
+        images: { [name: string]: string } = { clear: "clear", };
         measureWidth: number = new ScoreData().width;
         noteHeight: number = new ScoreData().noteHeight;
         pitch: string[] = new ScoreData().pitch;
-        opacity: number = 1.0;
-        color = 0x7777ff;
+        opacity: number = 0.7;
+        color = 0xaaaaaa;
     }
 
     export class Blanks implements GroupView {

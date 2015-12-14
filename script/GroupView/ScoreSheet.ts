@@ -1,4 +1,5 @@
 ﻿/// <reference path="../FreeMakingMusic.ref.ts"/>
+/// <reference path="../Lesson.ref.ts"/>
 
 class ScoreSheet extends GroupView {
     
@@ -27,4 +28,13 @@ class ScoreSheet extends GroupView {
         this.game.camera.bounds.height = this.constants.height;
         this.game.world.bounds.height = this.constants.height;
     }
+}
+
+class LessonScoreSheet extends ScoreSheet {
+	LessonData: LessonData = this.models["lessonData"];
+
+	addMeasure() {
+		this.add(new LessonMeasureSheet(this.game, new LESSON.LessonMeasureSheet, this.models, this.children.length));
+        this.updateScoreWidth();
+	}
 }

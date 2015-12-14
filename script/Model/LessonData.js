@@ -90,6 +90,30 @@ var LessonData = (function (_super) {
         enumerable: true,
         configurable: true
     });
+    LessonData.prototype.isInTargetBlank = function (position) {
+        return _.some(this.blanks, function (blank) {
+            return blank[0] <= position && position <= blank[1];
+        });
+    };
+    LessonData.prototype.existsInTargetBlank = function (note) {
+        var end = note.start + note.extension;
+        for (var i = note.start; i <= end; i++)
+            if (!this.isInTargetBlank(i))
+                return false;
+        return true;
+    };
+    LessonData.prototype.isInTargetMusic = function (pitch, position) {
+        return _.some(this.target[pitch], function (note) {
+            return note.start <= position && position <= note.start + note.extension;
+        });
+    };
+    LessonData.prototype.existsInTargetMusic = function (note) {
+        if (this.blanks && this.existsInTargetBlank(note))
+            return true;
+        return _.some(this.target[note.pitch], function (targetNote) {
+            return targetNote.start === note.start && targetNote.start + targetNote.extension === note.start + note.extension;
+        });
+    };
     return LessonData;
 })(Model);
 //# sourceMappingURL=LessonData.js.map

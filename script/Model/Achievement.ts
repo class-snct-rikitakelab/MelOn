@@ -3,25 +3,38 @@
 class Achievement extends Model {
 
     private traced: boolean = false;
-    private filled: boolean = (this.mode === "filling") ? false : true;
+    private filled: boolean = (this.mode === this.constants.mode.filling) ? false : true;
     private finished: boolean = false;
+	private activated: boolean = false;
 
     onFinish: Phaser.Signal = new Phaser.Signal;
     onPlayAlert: Phaser.Signal = new Phaser.Signal;
     onStopAlert: Phaser.Signal = new Phaser.Signal;
-    onActive: Phaser.Signal = new Phaser.Signal;
+    onActivate: Phaser.Signal = new Phaser.Signal;
 
     constructor(private constants: LESSON.Achievement, private mode: string) {
         super(constants);
     }
 
-    get isFinished(): boolean {
+    get isAchieved(): boolean {
+        return this.traced && this.filled;
+    }
+
+	get isFinished(): boolean {
         return this.finished;
     }
 
-    private isAchieved(): boolean {
-        return this.traced && this.filled;
+	get isActivated(): boolean {
+        return this.activated;
     }
+
+	playAlertCheck(): boolean {
+		if (this.isFinished && !this.isActivated) {
+			this.playAlert();
+			return false;
+		}
+		return true;
+	}
 
     playAlert() {
         this.onPlayAlert.dispatch();
@@ -31,8 +44,9 @@ class Achievement extends Model {
         this.onStopAlert.dispatch();
     }
 
-    active() {
-        this.onActive.dispatch();
+    activate() {
+		this.activated = true;
+        this.onActivate.dispatch();
     }
 
     private sortMusic(music: MusicData): MusicData {
@@ -54,7 +68,7 @@ class Achievement extends Model {
     }
 
     checkTrace(target: MusicData, music: MusicData) {
-		if (this.mode === "filling") {
+		if (this.mode === this.constants.mode.filling) {
             this.traced = !this.finished && this.includeTrace(this.sortMusic(target), this.sortMusic(music));
         }
         else this.traced = !this.finished && _.isEqual(this.sortMusic(target), this.sortMusic(music));
@@ -63,8 +77,7 @@ class Achievement extends Model {
     
 
     private scanBlanks(blanks: [number, number][], unitNote: number, music: Music) {
-		// TODO: Perfect complete
-        var ret = true;
+	    var ret = true;
         blanks.forEach((blank) => {
             var oneBlank = false;
             for (var i = blank[0]; i <= blank[1]; i++) {
@@ -83,7 +96,7 @@ class Achievement extends Model {
     }
 
     checkFinish() {
-        if (!this.finished && this.isAchieved()) {
+        if (!this.finished && this.isAchieved) {
             this.finished = true;
             this.onFinish.dispatch();
         }

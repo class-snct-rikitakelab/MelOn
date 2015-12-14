@@ -22,12 +22,12 @@ class TargetNotes extends GroupView {
         var unitWidth = this.constants.measureWidth / note.unitNote;
         var x = unitWidth * note.start;
         var y = this.constants.pitch.indexOf(note.pitch) * this.constants.noteHeight;
-        var instance: Phaser.Sprite = this.create(x, y, this.constants.images["note"]);
+        var instance: Phaser.Sprite = this.create(x, y, this.constants.images[this.constants.initImage]);
         instance.width = unitWidth * (note.extension + 1);
         instance.height = this.constants.noteHeight;
-        instance.blendMode = PIXI.blendModes.ADD;
-        instance.alpha = this.constants.opacity;
-        instance.tint = this.constants.color;
+		instance.blendMode = PIXI.blendModes.ADD;
+		instance.alpha = this.constants.opacity;
+		instance.tint = this.constants.color;
     }
 
     private checkMatch() {

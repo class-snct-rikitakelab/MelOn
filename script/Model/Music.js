@@ -50,8 +50,8 @@ var Music = (function (_super) {
     };
     Music.prototype.erase = function (note) {
         this.music[note.pitch].splice(this.music[note.pitch].indexOf(note), 1);
-        this.refresh();
         this.onErase.dispatch();
+        this.refresh();
     };
     Music.prototype.moveHorizontally = function (note, right) {
         var checkPosition = note.start + (right ? note.extension + 1 : -1);

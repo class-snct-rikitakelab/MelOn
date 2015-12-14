@@ -125,9 +125,11 @@ var CONSTANTS;
             this.height = new MeasureSheet().height / this.pitchNum;
             this.x = 0;
             this.y = 0;
-            this.initImage = "note";
+            this.initImage = "green";
+            this.prohibitedImage = "red";
             this.images = {
-                note: "note",
+                green: "green",
+                red: "red",
             };
             this.tailShortening = 20;
             this.ringDuration = 500; // ms

@@ -15,7 +15,9 @@ class MelOnAssets extends AssetLoader {
     protected images: { [dir: string]: [string, string][] } = {
         score: [
             ["musicPlayBar", "playBar.png"],
-            ["note", "note.png"],
+            ["green", "green.png"],
+			["red", "red.png"],
+			["clear", "clear.png"],
             ["blank", "blank.png"],
             ["score", "score.png"],
         ]

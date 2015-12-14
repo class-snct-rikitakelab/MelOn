@@ -1,4 +1,5 @@
 /// <reference path="../FreeMakingMusic.ref.ts"/>
+/// <reference path="../Lesson.ref.ts"/>
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -31,4 +32,16 @@ var ScoreSheet = (function (_super) {
     };
     return ScoreSheet;
 })(GroupView);
+var LessonScoreSheet = (function (_super) {
+    __extends(LessonScoreSheet, _super);
+    function LessonScoreSheet() {
+        _super.apply(this, arguments);
+        this.LessonData = this.models["lessonData"];
+    }
+    LessonScoreSheet.prototype.addMeasure = function () {
+        this.add(new LessonMeasureSheet(this.game, new LESSON.LessonMeasureSheet, this.models, this.children.length));
+        this.updateScoreWidth();
+    };
+    return LessonScoreSheet;
+})(ScoreSheet);
 //# sourceMappingURL=ScoreSheet.js.map
