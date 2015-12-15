@@ -2,11 +2,11 @@
 
 class Note extends SpriteView {
     
-    private music: Music = this.models["music"];
-    private stationery: Stationery = this.models["stationery"];
-    private instrument: Instrument = this.models["instrument"];
-    private musicPlayer: MusicPlayer = this.models["musicPlayer"];
-    private pointer: Phaser.Pointer = this.game.device.touch ? this.game.input.pointer1 : this.game.input.activePointer;
+    protected music: Music = this.models["music"];
+    protected stationery: Stationery = this.models["stationery"];
+    protected instrument: Instrument = this.models["instrument"];
+    protected musicPlayer: MusicPlayer = this.models["musicPlayer"];
+    protected pointer: Phaser.Pointer = this.game.device.touch ? this.game.input.pointer1 : this.game.input.activePointer;
     private sound: Phaser.Sound;
     private isStreching: boolean = true;
     private isMoving: boolean = false;
@@ -67,6 +67,7 @@ class Note extends SpriteView {
     }
 
     private startMoving() {
+		if (this.musicPlayer.isPlaying) return;
         this.isMoving = true;
         this.isStreching = false;
         this.touchPosition = Math.floor(((this.pointer.x + this.game.camera.x) - this.x) / this.constants.width);
@@ -74,6 +75,7 @@ class Note extends SpriteView {
     }
 
     private startStreching() {
+		if (this.musicPlayer.isPlaying) return;
         this.isMoving = false;
         this.isStreching = true;
         this.ring();
@@ -157,7 +159,7 @@ class LessonNote extends Note {
 	}
 
 	protected touchNote(pointer: Phaser.Pointer) {
-		if (pointer.leftButton.isDown && !this.achievement.playAlertCheck()) return;
+		if (pointer.leftButton.isDown && !this.musicPlayer.isPlaying && !this.achievement.playAlertCheck()) return;
 		super.touchNote(pointer);
 	}
 	

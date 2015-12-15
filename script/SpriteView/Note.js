@@ -74,12 +74,16 @@ var Note = (function (_super) {
         }
     };
     Note.prototype.startMoving = function () {
+        if (this.musicPlayer.isPlaying)
+            return;
         this.isMoving = true;
         this.isStreching = false;
         this.touchPosition = Math.floor(((this.pointer.x + this.game.camera.x) - this.x) / this.constants.width);
         this.ring();
     };
     Note.prototype.startStreching = function () {
+        if (this.musicPlayer.isPlaying)
+            return;
         this.isMoving = false;
         this.isStreching = true;
         this.ring();
@@ -166,7 +170,7 @@ var LessonNote = (function (_super) {
         this.loadTexture(this.constants.images[name]);
     };
     LessonNote.prototype.touchNote = function (pointer) {
-        if (pointer.leftButton.isDown && !this.achievement.playAlertCheck())
+        if (pointer.leftButton.isDown && !this.musicPlayer.isPlaying && !this.achievement.playAlertCheck())
             return;
         _super.prototype.touchNote.call(this, pointer);
     };

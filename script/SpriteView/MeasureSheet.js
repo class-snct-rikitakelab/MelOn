@@ -60,7 +60,7 @@ var LessonMeasureSheet = (function (_super) {
         this.events.onInputUp.add(function (self, pointer) { return _this.inputSheetUp(pointer); });
     };
     LessonMeasureSheet.prototype.inputSheetDown = function (pointer) {
-        if (pointer.leftButton.isDown && !this.achievement.playAlertCheck())
+        if (pointer.leftButton.isDown && !this.musicPlayer.isPlaying && !this.achievement.playAlertCheck())
             return;
         if (!this.checkLessonData(pointer))
             return;

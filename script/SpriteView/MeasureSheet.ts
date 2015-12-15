@@ -59,7 +59,7 @@ class LessonMeasureSheet extends MeasureSheet {
 	}
 
 	inputSheetDown(pointer: Phaser.Pointer) {
-		if (pointer.leftButton.isDown && !this.achievement.playAlertCheck()) return;
+		if (pointer.leftButton.isDown && !this.musicPlayer.isPlaying && !this.achievement.playAlertCheck()) return;
 		if (!this.checkLessonData(pointer)) return;
 		this.createNote(pointer);
 	}
