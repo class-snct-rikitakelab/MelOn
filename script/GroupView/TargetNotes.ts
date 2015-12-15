@@ -9,7 +9,6 @@ class TargetNotes extends GroupView {
     constructor(game: Phaser.Game, private constants: LESSON.TargetNotes, models: Object) {
         super(game, constants, models);
         this.setNotes();
-        this.music.onRefresh.add(() => { this.checkMatch(); });
     }
 
     private setNotes() {
@@ -28,9 +27,5 @@ class TargetNotes extends GroupView {
 		instance.blendMode = PIXI.blendModes.ADD;
 		instance.alpha = this.constants.opacity;
 		instance.tint = this.constants.color;
-    }
-
-    private checkMatch() {
-        this.achievement.checkTrace(this.lessonData.getTargetMusic, this.music.getMusic);
     }
 }

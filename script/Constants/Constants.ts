@@ -178,6 +178,7 @@ namespace CONSTANTS {
     }
 
     export class Notes extends MeasureSheet implements GroupView {
+		prohibitedImage: string = new Note().prohibitedImage;
     }
 
 

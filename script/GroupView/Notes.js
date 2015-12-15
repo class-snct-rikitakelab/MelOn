@@ -54,45 +54,21 @@ var LessonNotes = (function (_super) {
         _super.apply(this, arguments);
         this.achievement = this.models["achievement"];
         this.lessonData = this.models["lessonData"];
-        this.checkFlag = false;
+        this.countFlag = false;
     }
     LessonNotes.prototype.setEvent = function () {
         var _this = this;
         _super.prototype.setEvent.call(this);
-        var check = function () { return _this.checkFlag = true; };
-        this.music.onWrite.add(check);
-        this.music.onErase.add(check);
-        this.music.onChangeExtension.add(check);
-        this.music.onMove.add(check);
-        this.music.onEraseAll.add(check);
+        var count = function () { return _this.countFlag = true; };
+        this.music.onWrite.add(count);
+        this.music.onErase.add(count);
+        this.music.onChangeExtension.add(count);
+        this.music.onMove.add(count);
+        this.music.onEraseAll.add(count);
     };
     LessonNotes.prototype.countRed = function () {
-        return _.filter(this.children, function (note) { return note.key === "red"; }).length;
-    };
-    LessonNotes.prototype.countRestTrace = function () {
         var _this = this;
-        var count = 0;
-        _.each(this.lessonData.getTargetMusic, function (targetLine, pitch) {
-            _.each(targetLine, function (targetNote) {
-                if (!_.some(_this.music.getMusic[pitch], function (note) {
-                    return targetNote.start === note.start && targetNote.start + targetNote.extension === note.start + note.extension;
-                }))
-                    count++;
-            });
-        });
-        return count;
-    };
-    LessonNotes.prototype.countRestFilling = function () {
-        var _this = this;
-        var count = 0;
-        var unitNote = this.lessonData.getUnitNote;
-        _.each(this.lessonData.getBlanks, function (blank) {
-            for (var i = blank[0]; i <= blank[1]; i++)
-                if (_.some(_this.constants.pitch, function (pitch) { return _this.music.checkExist(pitch, unitNote, i); }))
-                    return;
-            count++;
-        });
-        return count;
+        return _.filter(this.children, function (note) { return note.key === _this.constants.prohibitedImage; }).length;
     };
     LessonNotes.prototype.addNote = function () {
         this.selectedNote = this.add(new LessonNote(this.game, new CONSTANTS.Note, this.models, this.music.getSelectedNote));
@@ -100,12 +76,12 @@ var LessonNotes = (function (_super) {
     };
     LessonNotes.prototype.update = function () {
         _super.prototype.update.call(this);
-        if (this.checkFlag) {
+        if (this.countFlag) {
             this.achievement.changeRedNum = this.countRed();
-            this.achievement.changeRestTraceNum = this.countRestTrace();
-            this.achievement.changeRestFillingNum = this.countRestFilling();
-            console.log(this.achievement.redNum, this.achievement.restTraceNum, this.achievement.restFillingNum);
-            this.checkFlag = false;
+            this.achievement.changeRestTraceNum = this.achievement.countRestTrace(this.lessonData.getTargetMusic, this.music.getMusic);
+            this.achievement.changeRestFillingNum = this.achievement.countRestFilling(this.lessonData.getBlanks, this.lessonData.getUnitNote, this.music);
+            this.achievement.checkFinish();
+            this.countFlag = false;
         }
     };
     return LessonNotes;

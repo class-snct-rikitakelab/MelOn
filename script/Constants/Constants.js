@@ -192,6 +192,7 @@ var CONSTANTS;
         __extends(Notes, _super);
         function Notes() {
             _super.apply(this, arguments);
+            this.prohibitedImage = new Note().prohibitedImage;
         }
         return Notes;
     })(MeasureSheet);

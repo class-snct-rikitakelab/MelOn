@@ -1,29 +1,25 @@
 ﻿/// <reference path="../Lesson.ref.ts"/>
 
 class Achievement extends Model {
-
-    private traced: boolean = false;
-    private filled: boolean = (this.mode === this.constants.mode.filling) ? false : true;
+	
     private finished: boolean = false;
 	private activated: boolean = false;
-	private restTrace: number = 0;
-	private restFilling: number = 0;
-	private red: number = 0;
+	private restTrace: number;
+	private restFilling: number;
+	private red: number;
 
     onFinish: Phaser.Signal = new Phaser.Signal;
     onPlayAlert: Phaser.Signal = new Phaser.Signal;
     onStopAlert: Phaser.Signal = new Phaser.Signal;
     onActivate: Phaser.Signal = new Phaser.Signal;
-	onChangeRestTraceNum: Phaser.Signal = new Phaser.Signal;
-	onChangeRestFillingNum: Phaser.Signal = new Phaser.Signal;
-	onChangeRedNum: Phaser.Signal = new Phaser.Signal;
+	onChangeNum: Phaser.Signal = new Phaser.Signal;
 
     constructor(private constants: LESSON.Achievement, private mode: string) {
         super(constants);
     }
 
     get isAchieved(): boolean {
-        return this.traced && this.filled;
+        return this.restTrace === 0 && this.restFilling === 0 && this.redNum === 0;
     }
 
 	get isFinished(): boolean {
@@ -48,17 +44,17 @@ class Achievement extends Model {
 
 	set changeRedNum(num: number) {
 		this.red = num;
-		this.onChangeRedNum.dispatch();
+		this.onChangeNum.dispatch();
 	}
 
 	set changeRestTraceNum(num: number) {
 		this.restTrace = num;
-		this.onChangeRestTraceNum.dispatch();
+		this.onChangeNum.dispatch();
 	}
 
 	set changeRestFillingNum(num: number) {
 		this.restFilling = num;
-		this.onChangeRestFillingNum.dispatch();
+		this.onChangeNum.dispatch();
 	}
 
 	playAlertCheck(): boolean {
@@ -82,54 +78,31 @@ class Achievement extends Model {
         this.onActivate.dispatch();
     }
 
-    private sortMusic(music: MusicData): MusicData {
-        return _.each(music, (line, pitch, music) => {
-            music[pitch] = _.sortBy(line, (note) => {
-                return note.start / note.unitNote;
-            });
-        });
-    }
+	countRestTrace(target: MusicData, music: MusicData): number {
+		var count: number = 0;
+		_.each(target, (targetLine: NoteData[], pitch: string) => {
+			_.each(targetLine, (targetNote: NoteData) => {
+				if (!_.some(music[pitch], (note: NoteData) => {
+					return targetNote.start === note.start && targetNote.start + targetNote.extension === note.start + note.extension;
+				})) count++;
+			});
+		});
+		return count;
+	}
 
-    private includeTrace(target: MusicData, music: MusicData): boolean {
-        var ret = true;
-        _.each(target, (line) => {
-            _.each(line, (targetNote) => {
-                ret = ret && _.some(music[targetNote.pitch], (musicNote) => { return _.isEqual(targetNote, musicNote); });
-            });
-        });
-        return ret;
-    }
-
-    checkTrace(target: MusicData, music: MusicData) {
-		if (this.mode === this.constants.mode.filling) {
-            this.traced = !this.finished && this.includeTrace(this.sortMusic(target), this.sortMusic(music));
-        }
-        else this.traced = !this.finished && _.isEqual(this.sortMusic(target), this.sortMusic(music));
-        this.checkFinish();
-    }
-    
-
-    private scanBlanks(blanks: [number, number][], unitNote: number, music: Music) {
-	    var ret = true;
-        blanks.forEach((blank) => {
-            var oneBlank = false;
-            for (var i = blank[0]; i <= blank[1]; i++) {
-                oneBlank = oneBlank || this.constants.pitch.some((pitch) => {
-                    return music.checkExist(pitch, unitNote, i);
-                });
-            }
-            ret = ret && oneBlank;
-        });
-        return ret;
-    }
-
-    checkFill(blanks: [number, number][], unitNote: number, music: Music) {
-        this.filled = !this.finished && this.scanBlanks(blanks, unitNote, music);
-        this.checkFinish();
-    }
+	countRestFilling(blanks: [number, number][], unitNote: number, music: Music): number {
+		var count: number = 0;
+		_.each(blanks, (blank: [number, number]) => {
+			for (var i = blank[0]; i <= blank[1]; i++)
+				if (_.some(this.constants.pitch, (pitch) => { return music.checkExist(pitch, unitNote, i) })) return;
+			count++;
+		});
+		return count;
+	}
 
     checkFinish() {
-        if (!this.finished && this.isAchieved && this.red === 0) {
+		console.log(this.redNum, this.restTraceNum, this.restFillingNum);
+        if (!this.finished && this.isAchieved) {
             this.finished = true;
             this.onFinish.dispatch();
         }

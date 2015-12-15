@@ -7,14 +7,12 @@ var __extends = (this && this.__extends) || function (d, b) {
 var TargetNotes = (function (_super) {
     __extends(TargetNotes, _super);
     function TargetNotes(game, constants, models) {
-        var _this = this;
         _super.call(this, game, constants, models);
         this.constants = constants;
         this.music = this.models["music"];
         this.lessonData = this.models["lessonData"];
         this.achievement = this.models["achievement"];
         this.setNotes();
-        this.music.onRefresh.add(function () { _this.checkMatch(); });
     }
     TargetNotes.prototype.setNotes = function () {
         var _this = this;
@@ -32,9 +30,6 @@ var TargetNotes = (function (_super) {
         instance.blendMode = PIXI.blendModes.ADD;
         instance.alpha = this.constants.opacity;
         instance.tint = this.constants.color;
-    };
-    TargetNotes.prototype.checkMatch = function () {
-        this.achievement.checkTrace(this.lessonData.getTargetMusic, this.music.getMusic);
     };
     return TargetNotes;
 })(GroupView);

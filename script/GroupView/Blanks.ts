@@ -9,7 +9,6 @@ class Blanks extends GroupView {
     constructor(game: Phaser.Game, private constants: LESSON.Blanks, models: Object) {
         super(game, constants, models);
         this.setNotes();
-        this.music.onRefresh.add(() => { this.checkFill(); });
     }
 
     private setNotes() {
@@ -22,9 +21,5 @@ class Blanks extends GroupView {
         instance.width = unitWidth * (blank[1] - blank[0] + 1)
         instance.height = this.constants.height;
         instance.alpha = this.constants.opacity;
-    }
-
-    private checkFill() {
-        this.achievement.checkFill(this.lessonData.getBlanks, this.lessonData.getUnitNote, this.music);
     }
 }

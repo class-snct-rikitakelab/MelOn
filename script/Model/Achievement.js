@@ -10,24 +10,17 @@ var Achievement = (function (_super) {
         _super.call(this, constants);
         this.constants = constants;
         this.mode = mode;
-        this.traced = false;
-        this.filled = (this.mode === this.constants.mode.filling) ? false : true;
         this.finished = false;
         this.activated = false;
-        this.restTrace = 0;
-        this.restFilling = 0;
-        this.red = 0;
         this.onFinish = new Phaser.Signal;
         this.onPlayAlert = new Phaser.Signal;
         this.onStopAlert = new Phaser.Signal;
         this.onActivate = new Phaser.Signal;
-        this.onChangeRestTraceNum = new Phaser.Signal;
-        this.onChangeRestFillingNum = new Phaser.Signal;
-        this.onChangeRedNum = new Phaser.Signal;
+        this.onChangeNum = new Phaser.Signal;
     }
     Object.defineProperty(Achievement.prototype, "isAchieved", {
         get: function () {
-            return this.traced && this.filled;
+            return this.restTrace === 0 && this.restFilling === 0 && this.redNum === 0;
         },
         enumerable: true,
         configurable: true
@@ -70,7 +63,7 @@ var Achievement = (function (_super) {
     Object.defineProperty(Achievement.prototype, "changeRedNum", {
         set: function (num) {
             this.red = num;
-            this.onChangeRedNum.dispatch();
+            this.onChangeNum.dispatch();
         },
         enumerable: true,
         configurable: true
@@ -78,7 +71,7 @@ var Achievement = (function (_super) {
     Object.defineProperty(Achievement.prototype, "changeRestTraceNum", {
         set: function (num) {
             this.restTrace = num;
-            this.onChangeRestTraceNum.dispatch();
+            this.onChangeNum.dispatch();
         },
         enumerable: true,
         configurable: true
@@ -86,7 +79,7 @@ var Achievement = (function (_super) {
     Object.defineProperty(Achievement.prototype, "changeRestFillingNum", {
         set: function (num) {
             this.restFilling = num;
-            this.onChangeRestFillingNum.dispatch();
+            this.onChangeNum.dispatch();
         },
         enumerable: true,
         configurable: true
@@ -108,50 +101,32 @@ var Achievement = (function (_super) {
         this.activated = true;
         this.onActivate.dispatch();
     };
-    Achievement.prototype.sortMusic = function (music) {
-        return _.each(music, function (line, pitch, music) {
-            music[pitch] = _.sortBy(line, function (note) {
-                return note.start / note.unitNote;
+    Achievement.prototype.countRestTrace = function (target, music) {
+        var count = 0;
+        _.each(target, function (targetLine, pitch) {
+            _.each(targetLine, function (targetNote) {
+                if (!_.some(music[pitch], function (note) {
+                    return targetNote.start === note.start && targetNote.start + targetNote.extension === note.start + note.extension;
+                }))
+                    count++;
             });
         });
+        return count;
     };
-    Achievement.prototype.includeTrace = function (target, music) {
-        var ret = true;
-        _.each(target, function (line) {
-            _.each(line, function (targetNote) {
-                ret = ret && _.some(music[targetNote.pitch], function (musicNote) { return _.isEqual(targetNote, musicNote); });
-            });
-        });
-        return ret;
-    };
-    Achievement.prototype.checkTrace = function (target, music) {
-        if (this.mode === this.constants.mode.filling) {
-            this.traced = !this.finished && this.includeTrace(this.sortMusic(target), this.sortMusic(music));
-        }
-        else
-            this.traced = !this.finished && _.isEqual(this.sortMusic(target), this.sortMusic(music));
-        this.checkFinish();
-    };
-    Achievement.prototype.scanBlanks = function (blanks, unitNote, music) {
+    Achievement.prototype.countRestFilling = function (blanks, unitNote, music) {
         var _this = this;
-        var ret = true;
-        blanks.forEach(function (blank) {
-            var oneBlank = false;
-            for (var i = blank[0]; i <= blank[1]; i++) {
-                oneBlank = oneBlank || _this.constants.pitch.some(function (pitch) {
-                    return music.checkExist(pitch, unitNote, i);
-                });
-            }
-            ret = ret && oneBlank;
+        var count = 0;
+        _.each(blanks, function (blank) {
+            for (var i = blank[0]; i <= blank[1]; i++)
+                if (_.some(_this.constants.pitch, function (pitch) { return music.checkExist(pitch, unitNote, i); }))
+                    return;
+            count++;
         });
-        return ret;
-    };
-    Achievement.prototype.checkFill = function (blanks, unitNote, music) {
-        this.filled = !this.finished && this.scanBlanks(blanks, unitNote, music);
-        this.checkFinish();
+        return count;
     };
     Achievement.prototype.checkFinish = function () {
-        if (!this.finished && this.isAchieved && this.red === 0) {
+        console.log(this.redNum, this.restTraceNum, this.restFillingNum);
+        if (!this.finished && this.isAchieved) {
             this.finished = true;
             this.onFinish.dispatch();
         }
