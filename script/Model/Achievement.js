@@ -75,6 +75,22 @@ var Achievement = (function (_super) {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(Achievement.prototype, "changeRestTraceNum", {
+        set: function (num) {
+            this.restTrace = num;
+            this.onChangeRestTraceNum.dispatch();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Achievement.prototype, "changeRestFillingNum", {
+        set: function (num) {
+            this.restFilling = num;
+            this.onChangeRestFillingNum.dispatch();
+        },
+        enumerable: true,
+        configurable: true
+    });
     Achievement.prototype.playAlertCheck = function () {
         if (this.isFinished && !this.isActivated) {
             this.playAlert();
@@ -135,7 +151,7 @@ var Achievement = (function (_super) {
         this.checkFinish();
     };
     Achievement.prototype.checkFinish = function () {
-        if (!this.finished && this.isAchieved) {
+        if (!this.finished && this.isAchieved && this.red === 0) {
             this.finished = true;
             this.onFinish.dispatch();
         }

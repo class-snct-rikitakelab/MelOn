@@ -7,7 +7,7 @@ class Notes extends GroupView {
     protected noteOverlapManager: NoteOverlapManager = this.models["noteOverlapManager"];
     protected selectedNote: Note = null;
 
-    constructor(game: Phaser.Game, private constants: CONSTANTS.Notes, models: Object) {
+    constructor(game: Phaser.Game, protected constants: CONSTANTS.Notes, models: Object) {
         super(game, constants, models);
 		this.setEvent();
     }
@@ -50,20 +50,43 @@ class Notes extends GroupView {
 class LessonNotes extends Notes {
 	private achievement: Achievement = this.models["achievement"];
 	private lessonData: LessonData = this.models["lessonData"];
-	private redFlag: boolean = false;
+	private checkFlag: boolean = false;
 
 	protected setEvent() {
 		super.setEvent();
-		var redCheck = () => this.redFlag = true;
-        this.music.onWrite.add(redCheck);
-        this.music.onErase.add(redCheck);
-		this.music.onChangeExtension.add(redCheck);
-		this.music.onMove.add(redCheck);
-		this.music.onEraseAll.add(redCheck);
+		var check = () => this.checkFlag = true;
+        this.music.onWrite.add(check);
+        this.music.onErase.add(check);
+		this.music.onChangeExtension.add(check);
+		this.music.onMove.add(check);
+		this.music.onEraseAll.add(check);
 	}
 
 	private countRed(): number {
 		return _.filter(this.children, (note: Note) => { return note.key === "red" }).length;
+	}
+
+	private countRestTrace(): number {
+		var count: number = 0;
+		_.each(this.lessonData.getTargetMusic, (targetLine: NoteData[], pitch: string) => {
+			_.each(targetLine, (targetNote: NoteData) => {
+				if (!_.some(this.music.getMusic[pitch], (note: NoteData) => {
+					return targetNote.start === note.start && targetNote.start + targetNote.extension === note.start + note.extension;
+				})) count++;
+			});
+		});
+		return count;
+	}
+
+	private countRestFilling(): number {
+		var count: number = 0;
+		var unitNote: number = this.lessonData.getUnitNote;
+		_.each(this.lessonData.getBlanks, (blank: [number, number]) => {
+			for (var i = blank[0]; i <= blank[1]; i++)
+				if (_.some(this.constants.pitch, (pitch) => { return this.music.checkExist(pitch, unitNote, i) })) return;
+			count++;
+		});
+		return count;
 	}
 
 	protected addNote() {
@@ -73,20 +96,12 @@ class LessonNotes extends Notes {
 
 	update() {
 		super.update();
-		if (this.redFlag) {
+		if (this.checkFlag) {
 			this.achievement.changeRedNum = this.countRed();
-			this.redFlag = false;
+			this.achievement.changeRestTraceNum = this.countRestTrace();
+			this.achievement.changeRestFillingNum = this.countRestFilling();
+			console.log(this.achievement.redNum, this.achievement.restTraceNum, this.achievement.restFillingNum);
+			this.checkFlag = false;
 		}
 	}
 }
-
-//var count: number = 0;
-//_.each(this.music.getMusic, (line: NoteData[], pitch: string) => {
-//	_.each(line, (note: NoteData) => {
-//		if (this.lessonData.existsInTargetBlank(note)) return;
-//		if (!_.some(this.lessonData.getTargetMusic[pitch], (targetNote: NoteData) => {
-//			return note.start === targetNote.start && note.start + note.extension === targetNote.start + targetNote.extension
-//		})) count++;
-//	});
-//});
-//return count;

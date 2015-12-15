@@ -51,6 +51,16 @@ class Achievement extends Model {
 		this.onChangeRedNum.dispatch();
 	}
 
+	set changeRestTraceNum(num: number) {
+		this.restTrace = num;
+		this.onChangeRestTraceNum.dispatch();
+	}
+
+	set changeRestFillingNum(num: number) {
+		this.restFilling = num;
+		this.onChangeRestFillingNum.dispatch();
+	}
+
 	playAlertCheck(): boolean {
 		if (this.isFinished && !this.isActivated) {
 			this.playAlert();
@@ -119,7 +129,7 @@ class Achievement extends Model {
     }
 
     checkFinish() {
-        if (!this.finished && this.isAchieved) {
+        if (!this.finished && this.isAchieved && this.red === 0) {
             this.finished = true;
             this.onFinish.dispatch();
         }
