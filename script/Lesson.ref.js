@@ -11,5 +11,6 @@
 /// <reference path="GroupView/Blanks.ts"/>
 // DOMView
 /// <reference path="DOMView/NextButton.ts"/>
-/// <reference path="DOMView/Lecture.ts"/> 
+/// <reference path="DOMView/Lecture.ts"/>
+/// <reference path="DOMView/RestDisplay.ts"/> 
 //# sourceMappingURL=Lesson.ref.js.map

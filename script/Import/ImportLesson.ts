@@ -74,6 +74,7 @@
 			"StorageModal",
 			"LessonModal",
 			"ReturnButton",
+			"RestDisplay",
         ],
 
         GroupView: [

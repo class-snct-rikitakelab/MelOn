@@ -54,17 +54,11 @@ var LessonNotes = (function (_super) {
         _super.apply(this, arguments);
         this.achievement = this.models["achievement"];
         this.lessonData = this.models["lessonData"];
-        this.countFlag = false;
     }
-    LessonNotes.prototype.setEvent = function () {
-        var _this = this;
-        _super.prototype.setEvent.call(this);
-        var count = function () { return _this.countFlag = true; };
-        this.music.onWrite.add(count);
-        this.music.onErase.add(count);
-        this.music.onChangeExtension.add(count);
-        this.music.onMove.add(count);
-        this.music.onEraseAll.add(count);
+    LessonNotes.prototype.refreshSelect = function () {
+        _super.prototype.refreshSelect.call(this);
+        this.checkNum();
+        this.achievement.checkFinish();
     };
     LessonNotes.prototype.countRed = function () {
         var _this = this;
@@ -74,15 +68,10 @@ var LessonNotes = (function (_super) {
         this.selectedNote = this.add(new LessonNote(this.game, new CONSTANTS.Note, this.models, this.music.getSelectedNote));
         this.noteOverlapManager.addNote(this.selectedNote);
     };
-    LessonNotes.prototype.update = function () {
-        _super.prototype.update.call(this);
-        if (this.countFlag) {
-            this.achievement.changeRedNum = this.countRed();
-            this.achievement.changeRestTraceNum = this.achievement.countRestTrace(this.lessonData.getTargetMusic, this.music.getMusic);
-            this.achievement.changeRestFillingNum = this.achievement.countRestFilling(this.lessonData.getBlanks, this.lessonData.getUnitNote, this.music);
-            this.achievement.checkFinish();
-            this.countFlag = false;
-        }
+    LessonNotes.prototype.checkNum = function () {
+        this.achievement.changeRedNum = this.countRed();
+        this.achievement.changeRestTraceNum = this.achievement.countRestTrace(this.lessonData.getTargetMusic, this.music.getMusic);
+        this.achievement.changeRestFillingNum = this.achievement.countRestFilling(this.lessonData.getBlanks, this.lessonData.getUnitNote, this.music);
     };
     return LessonNotes;
 })(Notes);

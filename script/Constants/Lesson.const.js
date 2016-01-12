@@ -8,6 +8,7 @@ var LESSON;
 (function (LESSON) {
     var ScoreData = CONSTANTS.MeasureSheet;
     var ModalWindow = CONSTANTS.ModalWindow;
+    var LoadButton = CONSTANTS.LoadButton;
     var MeasureSheet = CONSTANTS.MeasureSheet;
     LESSON.language = new LESSON_LIST.Language().language;
     var LessonData = (function () {
@@ -78,6 +79,15 @@ var LESSON;
         return Blanks;
     })();
     LESSON.Blanks = Blanks;
+    var LessonLoadButton = (function (_super) {
+        __extends(LessonLoadButton, _super);
+        function LessonLoadButton() {
+            _super.apply(this, arguments);
+            this.playMsg = new LessonModal().playMsg;
+        }
+        return LessonLoadButton;
+    })(LoadButton);
+    LESSON.LessonLoadButton = LessonLoadButton;
     var NextButton = (function () {
         function NextButton() {
             this.selector = "#nextButton";
@@ -165,5 +175,42 @@ var LESSON;
         return ReturnLessonListButton;
     })();
     LESSON.ReturnLessonListButton = ReturnLessonListButton;
+    var RestDisplay = (function () {
+        function RestDisplay() {
+            this.selector = "";
+            this.cssClass = "restDisplay";
+            this.completeFont = "restDisplayCompleteFont";
+            this.incompleteFont = "restDisplayIncompleteFont";
+        }
+        return RestDisplay;
+    })();
+    LESSON.RestDisplay = RestDisplay;
+    var ProhibitedDisplay = (function (_super) {
+        __extends(ProhibitedDisplay, _super);
+        function ProhibitedDisplay() {
+            _super.apply(this, arguments);
+            this.selector = "#prohibitedDisplay";
+        }
+        return ProhibitedDisplay;
+    })(RestDisplay);
+    LESSON.ProhibitedDisplay = ProhibitedDisplay;
+    var TraceDisplay = (function (_super) {
+        __extends(TraceDisplay, _super);
+        function TraceDisplay() {
+            _super.apply(this, arguments);
+            this.selector = "#traceDisplay";
+        }
+        return TraceDisplay;
+    })(RestDisplay);
+    LESSON.TraceDisplay = TraceDisplay;
+    var FillingDisplay = (function (_super) {
+        __extends(FillingDisplay, _super);
+        function FillingDisplay() {
+            _super.apply(this, arguments);
+            this.selector = "#fillingDisplay";
+        }
+        return FillingDisplay;
+    })(RestDisplay);
+    LESSON.FillingDisplay = FillingDisplay;
 })(LESSON || (LESSON = {}));
 //# sourceMappingURL=Lesson.const.js.map

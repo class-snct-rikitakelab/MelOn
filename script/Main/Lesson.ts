@@ -12,9 +12,16 @@ class Lesson extends FreeMakingMusic {
     protected createElements(parentSelector: string, elementIds: string[]) {
 		this.lessonData = new LessonData(new LESSON.LessonData);
 		new Lecture(new LESSON.Lecture, { lessonData: this.lessonData });
-		elementIds.push("nextButton");
+		this.addIDs(elementIds);
         super.createElements(parentSelector, elementIds);
     }
+
+	private addIDs(elementIds: string[]) {
+		elementIds.push("nextButton");
+		elementIds.push("prohibitedDisplay");
+		elementIds.push("traceDisplay");
+		elementIds.push("fillingDisplay");
+	}
 
     protected setStates() {
         this.state.add('Boot', Boot, false);

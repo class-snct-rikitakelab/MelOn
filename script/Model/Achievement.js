@@ -12,12 +12,18 @@ var Achievement = (function (_super) {
         this.mode = mode;
         this.finished = false;
         this.activated = false;
+        this.restTrace = 0;
+        this.restFilling = 0;
+        this.red = 0;
         this.onFinish = new Phaser.Signal;
         this.onPlayAlert = new Phaser.Signal;
         this.onStopAlert = new Phaser.Signal;
         this.onActivate = new Phaser.Signal;
         this.onChangeNum = new Phaser.Signal;
     }
+    Achievement.prototype.startLesson = function () {
+        this.onChangeNum.dispatch();
+    };
     Object.defineProperty(Achievement.prototype, "isAchieved", {
         get: function () {
             return this.restTrace === 0 && this.restFilling === 0 && this.redNum === 0;
@@ -125,7 +131,6 @@ var Achievement = (function (_super) {
         return count;
     };
     Achievement.prototype.checkFinish = function () {
-        console.log(this.redNum, this.restTraceNum, this.restFillingNum);
         if (!this.finished && this.isAchieved) {
             this.finished = true;
             this.onFinish.dispatch();

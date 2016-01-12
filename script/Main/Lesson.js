@@ -13,8 +13,14 @@ var Lesson = (function (_super) {
     Lesson.prototype.createElements = function (parentSelector, elementIds) {
         this.lessonData = new LessonData(new LESSON.LessonData);
         new Lecture(new LESSON.Lecture, { lessonData: this.lessonData });
-        elementIds.push("nextButton");
+        this.addIDs(elementIds);
         _super.prototype.createElements.call(this, parentSelector, elementIds);
+    };
+    Lesson.prototype.addIDs = function (elementIds) {
+        elementIds.push("nextButton");
+        elementIds.push("prohibitedDisplay");
+        elementIds.push("traceDisplay");
+        elementIds.push("fillingDisplay");
     };
     Lesson.prototype.setStates = function () {
         this.state.add('Boot', Boot, false);

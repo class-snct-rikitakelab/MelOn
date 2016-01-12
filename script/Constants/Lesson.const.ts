@@ -6,6 +6,7 @@ namespace LESSON {
     import GroupView = CONSTANTS.GroupView;
     import DOMView = CONSTANTS.DOMView;
     import ModalWindow = CONSTANTS.ModalWindow;
+	import LoadButton = CONSTANTS.LoadButton;
 	import ReturnButton = CONSTANTS.ReturnButton;
 	import HTMLView = INDEX.HTMLView;
 	import MeasureSheet = CONSTANTS.MeasureSheet;
@@ -62,6 +63,10 @@ namespace LESSON {
         height: number = new ScoreData().noteHeight * this.pitch.length;
         opacity: number = 0.3;
     }
+
+	export class LessonLoadButton extends LoadButton {
+		playMsg = new LessonModal().playMsg;
+	}
 
     export class NextButton implements DOMView {
         selector = "#nextButton";
@@ -136,5 +141,24 @@ namespace LESSON {
 			"Japanese": "今、楽ふにある音楽が消えてしまいます。レッスンせんたくページへもどっても良いですか？",
 			"Finnish": "Musiikki jota teet poistetaan. Palataanko takaisin oppitunnit sivulle?",
 		};
+	}
+
+	export class RestDisplay implements DOMView {
+		selector = "";
+		cssClass = "restDisplay";
+		completeFont = "restDisplayCompleteFont";
+		incompleteFont = "restDisplayIncompleteFont";
+	}
+
+	export class ProhibitedDisplay extends RestDisplay {
+		selector = "#prohibitedDisplay";
+	}
+
+	export class TraceDisplay extends RestDisplay {
+		selector = "#traceDisplay";
+	}
+
+	export class FillingDisplay extends RestDisplay {
+		selector = "#fillingDisplay";
 	}
 }

@@ -4,9 +4,9 @@ class Achievement extends Model {
 	
     private finished: boolean = false;
 	private activated: boolean = false;
-	private restTrace: number;
-	private restFilling: number;
-	private red: number;
+	private restTrace: number = 0;
+	private restFilling: number = 0;
+	private red: number = 0;
 
     onFinish: Phaser.Signal = new Phaser.Signal;
     onPlayAlert: Phaser.Signal = new Phaser.Signal;
@@ -17,6 +17,10 @@ class Achievement extends Model {
     constructor(private constants: LESSON.Achievement, private mode: string) {
         super(constants);
     }
+
+	startLesson() {
+		this.onChangeNum.dispatch();
+	}
 
     get isAchieved(): boolean {
         return this.restTrace === 0 && this.restFilling === 0 && this.redNum === 0;
@@ -101,7 +105,6 @@ class Achievement extends Model {
 	}
 
     checkFinish() {
-		console.log(this.redNum, this.restTraceNum, this.restFillingNum);
         if (!this.finished && this.isAchieved) {
             this.finished = true;
             this.onFinish.dispatch();

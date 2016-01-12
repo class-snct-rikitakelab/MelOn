@@ -27,7 +27,7 @@ class Notes extends GroupView {
         this.selectedNote = <Note>_.find(this.children, (note: Note) => { return _.isEqual(note.getNoteData, this.music.getSelectedNote); });
     }
 
-    private refreshSelect() {
+    protected refreshSelect() {
         this.selectedNote = null;
     }
 
@@ -50,17 +50,12 @@ class Notes extends GroupView {
 class LessonNotes extends Notes {
 	private achievement: Achievement = this.models["achievement"];
 	private lessonData: LessonData = this.models["lessonData"];
-	private countFlag: boolean = false;
 
-	protected setEvent() {
-		super.setEvent();
-		var count = () => this.countFlag = true;
-        this.music.onWrite.add(count);
-        this.music.onErase.add(count);
-		this.music.onChangeExtension.add(count);
-		this.music.onMove.add(count);
-		this.music.onEraseAll.add(count);
-	}
+	protected refreshSelect() {
+		super.refreshSelect();
+		this.checkNum();
+		this.achievement.checkFinish();
+	} 
 
 	private countRed(): number {
 		return _.filter(this.children, (note: Note) => { return note.key === this.constants.prohibitedImage}).length;
@@ -71,14 +66,9 @@ class LessonNotes extends Notes {
         this.noteOverlapManager.addNote(this.selectedNote);
 	}
 
-	update() {
-		super.update();
-		if (this.countFlag) {
-			this.achievement.changeRedNum = this.countRed();
-			this.achievement.changeRestTraceNum = this.achievement.countRestTrace(this.lessonData.getTargetMusic, this.music.getMusic);
-			this.achievement.changeRestFillingNum = this.achievement.countRestFilling(this.lessonData.getBlanks, this.lessonData.getUnitNote, this.music);
-			this.achievement.checkFinish()
-			this.countFlag = false;
-		}
+	private checkNum() {
+		this.achievement.changeRedNum = this.countRed();
+		this.achievement.changeRestTraceNum = this.achievement.countRestTrace(this.lessonData.getTargetMusic, this.music.getMusic);
+		this.achievement.changeRestFillingNum = this.achievement.countRestFilling(this.lessonData.getBlanks, this.lessonData.getUnitNote, this.music);
 	}
 }

@@ -68,6 +68,7 @@
             "StorageModal",
             "LessonModal",
             "ReturnButton",
+            "RestDisplay",
         ],
         GroupView: [
             "ScoreSheet",

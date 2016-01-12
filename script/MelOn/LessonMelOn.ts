@@ -10,6 +10,9 @@ class LessonMelOn extends MelOn {
     private nextButton: NextButton;
     private blanks: Blanks;
     private lessonModal: LessonModal;
+	private prohibitedDisplay: ProhibitedDisplay;
+	private traceDisplay: TraceDisplay;
+	private fillingDisplay: FillingDisplay;
 
     create() {
 		this.noteOverlapManager = new NoteOverlapManager(this.game);
@@ -21,7 +24,7 @@ class LessonMelOn extends MelOn {
         this.speedDownButton = new SpeedButton(this.game, new CONSTANTS.SpeedDownButton, { speed: this.speed });
         this.playButton = new LessonPlayButton(this.game, new CONSTANTS.PlayButton, { musicPlayer: this.musicPlayer, achievement: this.achievement });
         this.saveButton = new SaveButton(this.game, new CONSTANTS.SaveButton, { music: this.music, musicStorage: this.musicStorage });
-        this.loadButton = new LoadButton(this.game, new CONSTANTS.LoadButton, { music: this.music, musicStorage: this.musicStorage });
+        this.loadButton = new LessonLoadButton(this.game, new LESSON.LessonLoadButton, { music: this.music, musicStorage: this.musicStorage, achievement: this.achievement });
         this.instrumentMenu = new InstrumentMenu(this.game, new CONSTANTS.InstrumentMenu, { instrument: this.instrument, musicPlayer: this.musicPlayer });
         this.soundButtonContainer = new SoundButtonContainer(this.game, new CONSTANTS.SoundButtonContainer, { instrument: this.instrument });
         this.scoreSheet = new LessonScoreSheet(this.game, new CONSTANTS.ScoreSheet, { music: this.music, stationery: this.stationery, musicPlayer: this.musicPlayer, lessonData: this.lessonData, achievement: this.achievement });
@@ -34,9 +37,13 @@ class LessonMelOn extends MelOn {
         this.storageModal = new StorageModal(this.game, new CONSTANTS.StorageModal, { musicStorage: this.musicStorage });
 		this.targetNotes = new TargetNotes(this.game, new LESSON.TargetNotes, { music: this.music, lessonData: this.lessonData, achievement: this.achievement });
 		this.nextButton = new NextButton(this.game, new LESSON.NextButton, { lessonData: this.lessonData, achievement: this.achievement, musicPlayer: this.musicPlayer });
-        this.lessonModal = new LessonModal(this.game, new LESSON.LessonModal, { music: this.music, achievement: this.achievement, lessonData: this.lessonData });
+		this.prohibitedDisplay = new ProhibitedDisplay(this.game, new LESSON.ProhibitedDisplay, { achievement: this.achievement });
+		this.traceDisplay = new TraceDisplay(this.game, new LESSON.TraceDisplay, { achievement: this.achievement });
+		this.fillingDisplay = new FillingDisplay(this.game, new LESSON.FillingDisplay, { achievement: this.achievement });
+		this.lessonModal = new LessonModal(this.game, new LESSON.LessonModal, { music: this.music, achievement: this.achievement, lessonData: this.lessonData });
 		if (this.lessonData.getMode === new LESSON.Achievement().mode.filling) this.blanks = new Blanks(this.game, new LESSON.Blanks, { music: this.music, lessonData: this.lessonData, achievement: this.achievement });
         if (this.lessonData.getInherit) this.loadButton.setMusic(this.lessonData.getInherit);
 		this.musicPlayBar.bringToTop();
+		this.music.refresh();
 	}
 }
