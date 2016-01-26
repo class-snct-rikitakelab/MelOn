@@ -1,11 +1,14 @@
 <?php
+
+    ini_set("display_errors", On);
+    error_reporting(E_ALL);
+
     require_once "connectDB.php";
 
     // Receive input datas
     $name=$_POST['name'];
     $pass=$_POST['password'];
     $conf=$_POST['confirm'];
-    $lang=$_POST['lang'];
 
     // Check input datas
     $error = "";
