@@ -37,8 +37,8 @@
             $stmt->bindValue(':pass', $pass);
             $stmt->execute();
 
-            // Get ID
-            $stmt = $pdo->prepare("SELECT id, name from ${TABLE_USER} where name = :name");
+            // Get Name
+            $stmt = $pdo->prepare("SELECT name from ${TABLE_USER} where name = :name");
             $stmt->bindValue(':name', $name);
             $stmt->execute();
 
@@ -53,8 +53,8 @@
     $pdo = null;
 
     // Set user name in cookie
-    setcookie($COOKIE_USER_NAME, "name");
+    setcookie("MelOnUserName", "name");
 
     // Move to index.html
-    header("location:../index.html?name=${$user['name']}");
+    header("location:../index.html?name=" + $name);
 ?>
