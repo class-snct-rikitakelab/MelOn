@@ -17,4 +17,8 @@
 
     //Cookie key
     $COOKIE_USER_NAME = "MelOnUserName";
+
+    // Display error
+    ini_set("display_errors", On);
+    error_reporting(E_ALL);
 ?>

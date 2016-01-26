@@ -1,8 +1,4 @@
 <?php
-
-    ini_set("display_errors", On);
-    error_reporting(E_ALL);
-
     require_once "connectDB.php";
 
     // Receive input datas
@@ -60,5 +56,5 @@
     $_COOKIE[$COOKIE_USER_NAME] = $user['name'];
 
     // Move to index.html
-    header('location:index.html');
+    header('location:../index.html');
 ?>
