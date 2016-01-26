@@ -56,5 +56,5 @@
     setcookie("MelOnUserName", "name");
 
     // Move to index.html
-    header("location:../index.html?name=" + $name);
+    header("location:../index.html?name=".$name);
 ?>
