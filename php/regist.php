@@ -53,8 +53,8 @@
     $pdo = null;
 
     // Set user name in cookie
-    setcookie($COOKIE_USER_NAME, $user['name']);
+    setcookie($COOKIE_USER_NAME, "name");
 
     // Move to index.html
-    header('location:../index.html');
+    header("location:../index.html?name=${$user['name']}");
 ?>
