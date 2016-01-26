@@ -12,6 +12,8 @@
 /// <reference path="View/HTMLView.ts"/>
 // DOMView
 /// <reference path="HTMLView/HTMLLogo.ts"/>
+/// <reference path="HTMLView/RegistButton.ts"/>
+/// <reference path="HTMLView/LogInAndOutButton.ts"/>
 /// <reference path="HTMLView/LanguageSelector.ts"/>
 /// <reference path="HTMLView/ModeButton.ts"/>
 // Main

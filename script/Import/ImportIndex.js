@@ -10,6 +10,8 @@
     var scripts = {
         Libraries: [
             "jquery-1.11.3",
+            "jquery-uvg",
+            "jquery-cookie",
             "underscore",
         ],
         Model: [
@@ -24,6 +26,8 @@
         ],
         HTMLView: [
             "HTMLLogo",
+            "LogInAndOutButton",
+            "RegistButton",
             "LanguageSelector",
             "ModeButton",
         ],

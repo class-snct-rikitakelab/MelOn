@@ -31,7 +31,7 @@
 	height: 35px;
 }
 
-.returnButton {
+.navButton {
 	position: absolute;
 	top: 0;
 	bottom: 0;
@@ -51,12 +51,20 @@
 	cursor: pointer;
 }
 
-#returnTop{
-	right: 30px;
+#logInAndOut{
+	right: 390px;
+}
+
+#regist{
+	right: 180px;
 }
 
 #returnLessonList{
 	right: 240px;
+}
+
+#returnTop{
+	right: 30px;
 }
 
 section {

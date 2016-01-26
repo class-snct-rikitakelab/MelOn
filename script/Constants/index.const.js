@@ -35,6 +35,50 @@ var INDEX;
         return LanguageSelector;
     })();
     INDEX.LanguageSelector = LanguageSelector;
+    var LogInAndOutButton = (function () {
+        function LogInAndOutButton() {
+            this.selector = "#logInAndOut";
+            this.baseUrl = "Login.html?lang=";
+            this.userNameKey = new CONSTANTS.MelOn().userNameKey;
+            this.images = {};
+            this.audios = {
+                select: "storage/assets/sound/se/select.mp3",
+                decide: "storage/assets/sound/se/decide.mp3",
+            };
+            this.shadowColor = "lavender";
+            this.logInText = {
+                "English": "Login",
+                "Finnish": "Kirjaudu sisään",
+                "Japanese": "ログイン"
+            };
+            this.logOutText = {
+                "English": "Logout",
+                "Finnish": "Kirjaudu ulos",
+                "Japanese": "ログアウト"
+            };
+        }
+        return LogInAndOutButton;
+    })();
+    INDEX.LogInAndOutButton = LogInAndOutButton;
+    var RegistButton = (function () {
+        function RegistButton() {
+            this.selector = "#regist";
+            this.baseUrl = "Regist.html?lang=";
+            this.images = {};
+            this.audios = {
+                select: "storage/assets/sound/se/select.mp3",
+                decide: "storage/assets/sound/se/decide.mp3",
+            };
+            this.shadowColor = "lavender";
+            this.registText = {
+                "English": "User registration",
+                "Finnish": "Ilmoittautua",
+                "Japanese": "ユーザーとうろく"
+            };
+        }
+        return RegistButton;
+    })();
+    INDEX.RegistButton = RegistButton;
     var HTMLLogo = (function () {
         function HTMLLogo() {
             this.selector = "#logo";

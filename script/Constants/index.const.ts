@@ -29,6 +29,44 @@ namespace INDEX {
 			};
 	}
 
+	export class LogInAndOutButton implements HTMLView {
+		selector = "#logInAndOut";
+		baseUrl: string = "Login.html?lang=";
+		userNameKey: string = new CONSTANTS.MelOn().userNameKey;
+		images: { [name: string]: string } = { };
+		audios: { [name: string]: string } = {
+			select: "storage/assets/sound/se/select.mp3",
+			decide: "storage/assets/sound/se/decide.mp3",
+		};
+		shadowColor: string = "lavender";
+		logInText: { [name: string]: string } = {
+			"English": "Login",
+			"Finnish": "Kirjaudu sisään",
+			"Japanese": "ログイン"
+		}
+		logOutText: { [name: string]: string } = {
+			"English": "Logout",
+			"Finnish": "Kirjaudu ulos",
+			"Japanese": "ログアウト"
+		}
+	}
+
+	export class RegistButton implements HTMLView {
+		selector = "#regist";
+		baseUrl: string = "Regist.html?lang=";
+		images: { [name: string]: string } = {};
+		audios: { [name: string]: string } = {
+			select: "storage/assets/sound/se/select.mp3",
+			decide: "storage/assets/sound/se/decide.mp3",
+		};
+		shadowColor: string = "lavender";
+		registText: { [name: string]: string } = {
+			"English": "User registration",
+			"Finnish": "Ilmoittautua",
+			"Japanese": "ユーザーとうろく"
+		}
+	}
+
     export class HTMLLogo implements HTMLView {
         selector = "#logo";
         images: { [name: string]: string } = {

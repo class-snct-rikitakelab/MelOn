@@ -11,12 +11,14 @@
     let scripts = {
         Libraries: [
             "jquery-1.11.3",
+			"jquery-uvg",
+			"jquery-cookie",
             "underscore",
         ],
 
-				Model: [
-						"Language",
-				],
+		Model: [
+				"Language",
+		],
 
         View: [
             "HTMLView",
@@ -29,6 +31,8 @@
 
         HTMLView: [
             "HTMLLogo",
+			"LogInAndOutButton",
+			"RegistButton",
 			"LanguageSelector",
             "ModeButton",
         ],
