@@ -28,7 +28,7 @@
 
     if( $error!="" ) {
         $pdo = null;
-        header('location:../Regist.html?name='.$name.$error);
+        header('location:../Regist.php?name='.$name.$error);
         exit();
     }
     else {

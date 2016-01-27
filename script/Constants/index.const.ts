@@ -49,7 +49,7 @@ namespace INDEX {
 
 	export class LogInAndOutButton implements HTMLView {
 		selector = "#logInAndOut";
-		baseUrl: string = "Login.html?lang=";
+		baseUrl: string = "Login.php?lang=";
 		sessionGetUserName: string = "php/sessionGetUserName.php";
 		sessionLogOut: string = "php/sessionLogOut.php";
 		images: { [name: string]: string } = { };
@@ -72,7 +72,7 @@ namespace INDEX {
 
 	export class RegistButton implements HTMLView {
 		selector = "#regist";
-		baseUrl: string = "Regist.html?lang=";
+		baseUrl: string = "Regist.php?lang=";
 		images: { [name: string]: string } = {};
 		audios: { [name: string]: string } = {
 			select: "storage/assets/sound/se/select.mp3",

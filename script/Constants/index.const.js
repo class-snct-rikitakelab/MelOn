@@ -58,7 +58,7 @@ var INDEX;
     var LogInAndOutButton = (function () {
         function LogInAndOutButton() {
             this.selector = "#logInAndOut";
-            this.baseUrl = "Login.html?lang=";
+            this.baseUrl = "Login.php?lang=";
             this.sessionGetUserName = "php/sessionGetUserName.php";
             this.sessionLogOut = "php/sessionLogOut.php";
             this.images = {};
@@ -84,7 +84,7 @@ var INDEX;
     var RegistButton = (function () {
         function RegistButton() {
             this.selector = "#regist";
-            this.baseUrl = "Regist.html?lang=";
+            this.baseUrl = "Regist.php?lang=";
             this.images = {};
             this.audios = {
                 select: "storage/assets/sound/se/select.mp3",
