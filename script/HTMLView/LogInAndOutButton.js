@@ -16,7 +16,7 @@ var LogInAndOutButton = (function (_super) {
     }
     LogInAndOutButton.prototype.checkNameInSession = function () {
         var name = "";
-        $.get("./php/session.php", function (data) { if (data)
+        $.get("../php/session.php", function (data) { if (data)
             name = data; });
         console.log("name=", name);
         return name;
