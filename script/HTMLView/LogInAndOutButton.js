@@ -16,9 +16,13 @@ var LogInAndOutButton = (function (_super) {
     }
     LogInAndOutButton.prototype.checkNameInSession = function () {
         var name = "";
-        $.get(this.constants.sessionAccessUrl, function (data) { if (data)
-            name = data; });
-        console.log("name=", name);
+        var status = "";
+        console.log(this.constants.sessionAccessUrl);
+        $.get(this.constants.sessionAccessUrl, function (data, textStatus) {
+            name = data;
+            status = textStatus;
+            console.log("name=", name, status);
+        });
         return name;
     };
     LogInAndOutButton.prototype.setView = function () {
