@@ -39,7 +39,7 @@ var INDEX;
         function LogInAndOutButton() {
             this.selector = "#logInAndOut";
             this.baseUrl = "Login.html?lang=";
-            this.sessionAccessUrl = "../php/session.php";
+            this.sessionAccessUrl = "php/session.php";
             this.userNameKey = new CONSTANTS.MelOn().userNameKey;
             this.images = {};
             this.audios = {
