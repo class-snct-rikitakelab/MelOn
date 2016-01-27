@@ -15,7 +15,7 @@ class LogInAndOutButton extends HTMLView {
 		var name: string = "";
 		var status: string = "";
 		console.log(this.constants.sessionAccessUrl);
-		$.get(this.constants.sessionAccessUrl, (data: string, textStatus: string) => {
+		$.get("../php/session.php", (data: string, textStatus: string) => {
 			name = data;
 			status = textStatus;
 			console.log("name=", name, status);
