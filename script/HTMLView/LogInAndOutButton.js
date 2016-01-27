@@ -18,7 +18,7 @@ var LogInAndOutButton = (function (_super) {
         var name = "";
         var status = "";
         console.log(this.constants.sessionAccessUrl);
-        $.get("../php/session.php", function (data, textStatus) {
+        $.get("php/session.php", function (data, textStatus) {
             name = data;
             status = textStatus;
             console.log("name=", name, status);
