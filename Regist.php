@@ -6,7 +6,7 @@
 		<title>MelOn User Registration</title>
 		<link rel="shortcut icon" href="storage/assets/image/game/favicon.ico">
 		<link rel="stylesheet" href="css/FixedNav.css" type="text/css" />
-		<link rel="stylesheet" href="css/Regist.css" type="text/css" />
+		<link rel="stylesheet" href="css/Login.css" type="text/css" />
 </head>
 
 <body>
@@ -32,6 +32,7 @@
 								<input type="submit" value="OK">
 						</div>
 				</form>
+				<div><?php echo "Hello World"; ?> </div>
 		</section>
 </body>
 
