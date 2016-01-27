@@ -1,14 +1,10 @@
 ﻿/// <reference path="../index.ref.ts"/>
 
 class RegistButton extends HTMLView {
-
-	private destination: string;
-
 	constructor(private constants: INDEX.RegistButton, private language: Language) {
 		super(constants);
 		this.setView();
 		this.setEvent();
-		this.setUrl(this.language.getLanguage);
 	}
 
 	private setView() {
@@ -32,10 +28,6 @@ class RegistButton extends HTMLView {
 
 	private click() {
         this.audioPlay(this.audios["decide"]);
-        setTimeout(() => { document.location = <any>this.destination; }, 500);
-    }
-
-	private setUrl(language: string) {
-        this.destination = this.constants.baseUrl + language;
+        setTimeout(() => { document.location = <any>(this.constants.baseUrl + this.language.getLanguage); }, 500);
     }
 }

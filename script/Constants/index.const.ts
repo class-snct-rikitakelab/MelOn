@@ -29,11 +29,29 @@ namespace INDEX {
 			};
 	}
 
+	export class UserName implements HTMLView {
+		selector = "#userName";
+		sessionGetUserName: string = "php/sessionGetUserName.php";
+		images: { [name: string]: string } = {};
+		audios: { [name: string]: string } = {
+		};
+		welcomeText: { [name: string]: string } = {
+			"English": "Welcome!: ",
+			"Finnish": "Tervetuloa!: ",
+			"Japanese": "ようこそ！: "
+		}
+		guestText: { [name: string]: string } = {
+			"English": "Guest",
+			"Finnish": "Vieras",
+			"Japanese": "ゲストさん"
+		}
+	}
+
 	export class LogInAndOutButton implements HTMLView {
 		selector = "#logInAndOut";
 		baseUrl: string = "Login.html?lang=";
-		sessionUrl: string = "php/sessionGetUserName.php";
-		userNameKey: string = new CONSTANTS.MelOn().userNameKey;
+		sessionGetUserName: string = "php/sessionGetUserName.php";
+		sessionLogOut: string = "php/sessionLogOut.php";
 		images: { [name: string]: string } = { };
 		audios: { [name: string]: string } = {
 			select: "storage/assets/sound/se/select.mp3",

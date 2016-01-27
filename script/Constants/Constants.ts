@@ -14,7 +14,6 @@ namespace CONSTANTS {
         width: number = new MeasureSheet().width * new ScoreSheet().displayMeasureNum;
         height: number = new Note().height * new ScoreSheet().displayPitchNum;
         renderer: string = "score";
-		userNameKey: string = "MelOnUserName";
         imageAddress: string = "storage/assets/image/";
         languageList: string[] = ["English", "Japanese", "Finnish"];
         defaultLanguage: string = "English";

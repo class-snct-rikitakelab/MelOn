@@ -11,8 +11,6 @@
     let scripts = {
         Libraries: [
             "jquery-1.11.3",
-			"jquery-uvg",
-			"jquery-cookie",
             "underscore",
         ],
 
@@ -31,6 +29,7 @@
 
         HTMLView: [
             "HTMLLogo",
+			"UserName",
 			"LogInAndOutButton",
 			"RegistButton",
 			"LanguageSelector",

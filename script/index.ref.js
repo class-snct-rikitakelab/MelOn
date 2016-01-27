@@ -10,8 +10,9 @@
 /// <reference path="Model/Language.ts"/>
 // View
 /// <reference path="View/HTMLView.ts"/>
-// DOMView
+// HTMLView
 /// <reference path="HTMLView/HTMLLogo.ts"/>
+/// <reference path="HTMLView/UserName.ts"/>
 /// <reference path="HTMLView/RegistButton.ts"/>
 /// <reference path="HTMLView/LogInAndOutButton.ts"/>
 /// <reference path="HTMLView/LanguageSelector.ts"/>

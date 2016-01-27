@@ -35,12 +35,32 @@ var INDEX;
         return LanguageSelector;
     })();
     INDEX.LanguageSelector = LanguageSelector;
+    var UserName = (function () {
+        function UserName() {
+            this.selector = "#userName";
+            this.sessionGetUserName = "php/sessionGetUserName.php";
+            this.images = {};
+            this.audios = {};
+            this.welcomeText = {
+                "English": "Welcome!: ",
+                "Finnish": "Tervetuloa!: ",
+                "Japanese": "ようこそ！: "
+            };
+            this.guestText = {
+                "English": "Guest",
+                "Finnish": "Vieras",
+                "Japanese": "ゲストさん"
+            };
+        }
+        return UserName;
+    })();
+    INDEX.UserName = UserName;
     var LogInAndOutButton = (function () {
         function LogInAndOutButton() {
             this.selector = "#logInAndOut";
             this.baseUrl = "Login.html?lang=";
-            this.sessionUrl = "php/sessionGetUserName.php";
-            this.userNameKey = new CONSTANTS.MelOn().userNameKey;
+            this.sessionGetUserName = "php/sessionGetUserName.php";
+            this.sessionLogOut = "php/sessionLogOut.php";
             this.images = {};
             this.audios = {
                 select: "storage/assets/sound/se/select.mp3",

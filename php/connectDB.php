@@ -12,6 +12,4 @@
     catch(PDOException $e) {
         exit($e->getMessage());
     }
-
-	session_start();
 ?>

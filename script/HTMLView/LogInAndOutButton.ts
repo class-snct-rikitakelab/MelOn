@@ -2,21 +2,20 @@
 
 class LogInAndOutButton extends HTMLView {
 
-	private destination: string;
+	private loggingIn: boolean = false;
 
 	constructor(private constants: INDEX.LogInAndOutButton, private language: Language) {
 		super(constants);
 		this.setView();
 		this.setEvent();
-		this.setUrl(this.language.getLanguage);
 	}
 
 	private checkNameInSession(): string {
 		var name: string = "";
 		$.ajax({
-			url: this.constants.sessionUrl,
+			url: this.constants.sessionGetUserName,
 			async: false,
-			success: (data: string) => { name = data; }
+			success: (data: string) => { if (data != "") name = data; }
 		});
 		return name;
 	}
@@ -24,9 +23,11 @@ class LogInAndOutButton extends HTMLView {
 	private setView() {
 		if (this.checkNameInSession() == "") {
 			this.$.text(this.constants.logInText[this.language.getLanguage]);
+			this.loggingIn = false;
 			return;
 		}
 		this.$.text(this.constants.logOutText[this.language.getLanguage]);
+		this.loggingIn = true;
 	}
 
 	private setEvent() {
@@ -44,12 +45,20 @@ class LogInAndOutButton extends HTMLView {
         this.$.css("box-shadow", "none");
     }
 
+	private logOut() {
+		$.ajax({
+			url: this.constants.sessionLogOut,
+			async: false,
+		});
+	}
+
 	private click() {
         this.audioPlay(this.audios["decide"]);
-        setTimeout(() => { document.location = <any>this.destination; }, 500);
-    }
-
-	private setUrl(language: string) {
-        this.destination = this.constants.baseUrl + language;
+		if (this.loggingIn) {
+			this.logOut();
+			setTimeout(() => document.location.reload(), 500);
+			return;
+		}
+        setTimeout(() => { document.location = <any>(this.constants.baseUrl + this.language.getLanguage); }, 500);
     }
 }

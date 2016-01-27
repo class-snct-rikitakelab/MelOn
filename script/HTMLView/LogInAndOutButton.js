@@ -10,25 +10,28 @@ var LogInAndOutButton = (function (_super) {
         _super.call(this, constants);
         this.constants = constants;
         this.language = language;
+        this.loggingIn = false;
         this.setView();
         this.setEvent();
-        this.setUrl(this.language.getLanguage);
     }
     LogInAndOutButton.prototype.checkNameInSession = function () {
         var name = "";
         $.ajax({
-            url: this.constants.sessionUrl,
+            url: this.constants.sessionGetUserName,
             async: false,
-            success: function (data) { name = data; }
+            success: function (data) { if (data != "")
+                name = data; }
         });
         return name;
     };
     LogInAndOutButton.prototype.setView = function () {
         if (this.checkNameInSession() == "") {
             this.$.text(this.constants.logInText[this.language.getLanguage]);
+            this.loggingIn = false;
             return;
         }
         this.$.text(this.constants.logOutText[this.language.getLanguage]);
+        this.loggingIn = true;
     };
     LogInAndOutButton.prototype.setEvent = function () {
         var _this = this;
@@ -43,13 +46,21 @@ var LogInAndOutButton = (function (_super) {
     LogInAndOutButton.prototype.leave = function () {
         this.$.css("box-shadow", "none");
     };
+    LogInAndOutButton.prototype.logOut = function () {
+        $.ajax({
+            url: this.constants.sessionLogOut,
+            async: false,
+        });
+    };
     LogInAndOutButton.prototype.click = function () {
         var _this = this;
         this.audioPlay(this.audios["decide"]);
-        setTimeout(function () { document.location = _this.destination; }, 500);
-    };
-    LogInAndOutButton.prototype.setUrl = function (language) {
-        this.destination = this.constants.baseUrl + language;
+        if (this.loggingIn) {
+            this.logOut();
+            setTimeout(function () { return document.location.reload(); }, 500);
+            return;
+        }
+        setTimeout(function () { document.location = (_this.constants.baseUrl + _this.language.getLanguage); }, 500);
     };
     return LogInAndOutButton;
 })(HTMLView);

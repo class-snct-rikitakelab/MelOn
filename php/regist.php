@@ -1,6 +1,8 @@
 <?php
     require_once "connectDB.php";
 
+    session_start();
+
     // Receive input datas
     $name=$_POST['name'];
     $pass=$_POST['password'];

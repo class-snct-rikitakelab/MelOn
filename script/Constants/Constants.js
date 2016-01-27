@@ -18,7 +18,6 @@ var CONSTANTS;
             this.width = new MeasureSheet().width * new ScoreSheet().displayMeasureNum;
             this.height = new Note().height * new ScoreSheet().displayPitchNum;
             this.renderer = "score";
-            this.userNameKey = "MelOnUserName";
             this.imageAddress = "storage/assets/image/";
             this.languageList = ["English", "Japanese", "Finnish"];
             this.defaultLanguage = "English";
