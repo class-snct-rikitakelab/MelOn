@@ -32,6 +32,7 @@ namespace INDEX {
 	export class LogInAndOutButton implements HTMLView {
 		selector = "#logInAndOut";
 		baseUrl: string = "Login.html?lang=";
+		sessionAccessUrl: string = "../php/session.php";
 		userNameKey: string = new CONSTANTS.MelOn().userNameKey;
 		images: { [name: string]: string } = { };
 		audios: { [name: string]: string } = {
