@@ -18,7 +18,7 @@ var LogInAndOutButton = (function (_super) {
         var name = "";
         $.get("./php/session.php", function (data) { if (data)
             name = data; });
-        console.log(name);
+        console.log("name=", name);
         return name;
     };
     LogInAndOutButton.prototype.setView = function () {
