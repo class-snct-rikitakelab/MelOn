@@ -16,12 +16,10 @@ var LogInAndOutButton = (function (_super) {
     }
     LogInAndOutButton.prototype.checkNameInSession = function () {
         var name = "";
-        var status = "";
-        console.log(this.constants.sessionAccessUrl);
-        $.get("php/session.php", function (data, textStatus) {
-            name = data;
-            status = textStatus;
-            console.log("name=", name, status);
+        $.ajax({
+            url: "php/session.php",
+            async: false,
+            success: function (data) { name = data; }
         });
         return name;
     };
