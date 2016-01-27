@@ -2,6 +2,7 @@
 var index = (function () {
     function index() {
         this.language = new Language(new INDEX.Language);
+        this.userName = new UserName(new INDEX.UserName, this.language);
         this.languageSelector = new LanguageSelector(new INDEX.LanguageSelector, this.language);
         this.logInAndOutButton = new LogInAndOutButton(new INDEX.LogInAndOutButton, this.language);
         this.registButton = new RegistButton(new INDEX.RegistButton, this.language);

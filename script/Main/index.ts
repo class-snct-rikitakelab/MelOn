@@ -3,6 +3,7 @@
 class index
 {
 	private language: Language = new Language(new INDEX.Language);
+	private userName: UserName = new UserName(new INDEX.UserName, this.language);
 	private languageSelector: LanguageSelector = new LanguageSelector(new INDEX.LanguageSelector, this.language);
 	private logInAndOutButton: LogInAndOutButton = new LogInAndOutButton(new INDEX.LogInAndOutButton, this.language);
 	private registButton: RegistButton = new RegistButton(new INDEX.RegistButton, this.language);
