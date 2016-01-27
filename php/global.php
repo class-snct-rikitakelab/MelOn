@@ -15,8 +15,8 @@
 	$TABLE_USER = 'melon_user';	// User table
 	$TABLE_MUSIC = 'melon_music';	// Music table
 
-    //Cookie key
-    $COOKIE_USER_NAME = "MelOnUserName";
+    //Session key
+    $SESSION_USER_NAME = "MelOnUserName";
 
     // Display error
     ini_set("display_errors", On);

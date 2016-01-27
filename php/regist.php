@@ -52,11 +52,9 @@
     // Disconnect database
     $pdo = null;
 
-    // Set user name in cookie
-    setcookie("MelOnUserName", $name);
-
-    $n = $_COOKIE["MelOnUserName"];
+    // Set user name in session
+    $_SESSION[$SESSION_USER_NAME] = $name;
 
     // Move to index.html
-    header("location:../index.html?name=".$n);
+    header("location:../index.html?name=".$_SESSION[$SESSION_USER_NAME]);
 ?>

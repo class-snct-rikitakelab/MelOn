@@ -14,13 +14,19 @@ var LogInAndOutButton = (function (_super) {
         this.setEvent();
         this.setUrl(this.language.getLanguage);
     }
+    LogInAndOutButton.prototype.checkNameInSession = function () {
+        var name = "";
+        $.get("./php/session.php", function (data) { if (data)
+            name = data; });
+        console.log(name);
+        return name;
+    };
     LogInAndOutButton.prototype.setView = function () {
-        if ($.cookie(this.constants.userNameKey)) {
-            this.$.text(this.constants.logOutText[this.language.getLanguage]);
+        if (this.checkNameInSession() == "") {
+            this.$.text(this.constants.logInText[this.language.getLanguage]);
             return;
         }
-        else
-            this.$.text(this.constants.logInText[this.language.getLanguage]);
+        this.$.text(this.constants.logOutText[this.language.getLanguage]);
     };
     LogInAndOutButton.prototype.setEvent = function () {
         var _this = this;

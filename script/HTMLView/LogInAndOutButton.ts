@@ -11,12 +11,19 @@ class LogInAndOutButton extends HTMLView {
 		this.setUrl(this.language.getLanguage);
 	}
 
+	private checkNameInSession(): string {
+		var name: string = "";
+		$.get("./php/session.php", (data: string) => { if (data) name = data; });
+		console.log(name);
+		return name;
+	}
+
 	private setView() {
-		if ($.cookie(this.constants.userNameKey)) {
-			this.$.text(this.constants.logOutText[this.language.getLanguage]);
+		if (this.checkNameInSession() == "") {
+			this.$.text(this.constants.logInText[this.language.getLanguage]);
 			return;
 		}
-		else this.$.text(this.constants.logInText[this.language.getLanguage]);
+		this.$.text(this.constants.logOutText[this.language.getLanguage]);
 	}
 
 	private setEvent() {
