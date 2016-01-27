@@ -33,17 +33,15 @@
 
 #userName {
 	position: absolute;
-	top: 0;
 	left: 140px;
 	bottom: 0;
 	margin: auto;
-	width: 180px;
+	width: 500px;
 	height: 35px;
 	color: white;
 	font-size: 20px;
 	font-weight: bold;
 	text-shadow: 1px 1px 1px gray;
-	text-align: center;
 }
 
 .navButton {

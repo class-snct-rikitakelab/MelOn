@@ -19,7 +19,7 @@ class UserName extends HTMLView {
 
 	private setView() {
 		var name: string = this.checkNameInSession();
-		if(name == "") this.constants.guestText[this.language.getLanguage];
+		if(name == "") name = this.constants.guestText[this.language.getLanguage];
 		this.$.text(this.constants.welcomeText[this.language.getLanguage] + name);
 	}
 

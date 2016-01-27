@@ -26,7 +26,7 @@ var UserName = (function (_super) {
     UserName.prototype.setView = function () {
         var name = this.checkNameInSession();
         if (name == "")
-            this.constants.guestText[this.language.getLanguage];
+            name = this.constants.guestText[this.language.getLanguage];
         this.$.text(this.constants.welcomeText[this.language.getLanguage] + name);
     };
     UserName.prototype.setEvent = function () {
