@@ -27,7 +27,7 @@
 
     if( $error != "" ) {
         $pdo = null;
-        header('location:Login.html?name='.$name.$error);
+        header('location:../Login.html?name='.$name.$error);
         exit();
     }
 
