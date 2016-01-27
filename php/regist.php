@@ -58,5 +58,5 @@
     $_SESSION[$SESSION_USER_NAME] = $name;
 
     // Move to index.html
-    header("location:../index.html?name=".$_SESSION[$SESSION_USER_NAME]);
+    header("location:../index.html");
 ?>
