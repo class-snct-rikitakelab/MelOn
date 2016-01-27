@@ -6,7 +6,7 @@
 		<title>MelOn User Login</title>
 		<link rel="shortcut icon" href="storage/assets/image/game/favicon.ico">
 		<link rel="stylesheet" href="css/FixedNav.css" type="text/css" />
-		<link rel="stylesheet" href="css/Login.css" type="text/css" />
+		<link rel="stylesheet" href="css/Authentication.css" type="text/css" />
 </head>
 
 <body>

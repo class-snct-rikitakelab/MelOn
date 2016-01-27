@@ -6,7 +6,7 @@
 		<title>MelOn User Registration</title>
 		<link rel="shortcut icon" href="storage/assets/image/game/favicon.ico">
 		<link rel="stylesheet" href="css/FixedNav.css" type="text/css" />
-		<link rel="stylesheet" href="css/Login.css" type="text/css" />
+		<link rel="stylesheet" href="css/Authentication.css" type="text/css" />
 </head>
 
 <body>
@@ -15,6 +15,7 @@
 				<button class="navButton" id="returnTop" onclick="document.location = 'index.html';">Return Top</button>
 		</nav>
 		<section>
+				<div><?php $a = "apple"; echo $a; ?>
 				<form action="php/regist.php" method="post">
 						<div>
 								<span id="name">Name: </span>
@@ -32,7 +33,7 @@
 								<input type="submit" value="OK">
 						</div>
 				</form>
-				<div><?php echo "Hello World"; ?> </div>
+				<div><?php echo $a; ?> </div>
 		</section>
 </body>
 
