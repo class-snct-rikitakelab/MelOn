@@ -17,7 +17,7 @@ var LogInAndOutButton = (function (_super) {
     LogInAndOutButton.prototype.checkNameInSession = function () {
         var name = "";
         $.ajax({
-            url: "php/session.php",
+            url: this.constants.sessionUrl,
             async: false,
             success: function (data) { name = data; }
         });

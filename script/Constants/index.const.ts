@@ -21,18 +21,18 @@ namespace INDEX {
 	export class LanguageSelector implements HTMLView {
 			selector = "#languageSelector";
 			options: { [value: string]: string } = {
-					"English": "English", "Finnish": "Suomeksi", "Japanese": "日本語"
+				"English": "English", "Finnish": "Suomeksi", "Japanese": "日本語"
 			};
 			images: { [name: string]: string } = {};
 			audios: { [name: string]: string } = {
-					decide: "storage/assets/sound/se/decide.mp3",
+				decide: "storage/assets/sound/se/decide.mp3",
 			};
 	}
 
 	export class LogInAndOutButton implements HTMLView {
 		selector = "#logInAndOut";
 		baseUrl: string = "Login.html?lang=";
-		sessionAccessUrl: string = "php/session.php";
+		sessionUrl: string = "php/sessionGetUserName.php";
 		userNameKey: string = new CONSTANTS.MelOn().userNameKey;
 		images: { [name: string]: string } = { };
 		audios: { [name: string]: string } = {

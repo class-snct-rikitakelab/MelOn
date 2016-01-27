@@ -14,7 +14,7 @@ class LogInAndOutButton extends HTMLView {
 	private checkNameInSession(): string {
 		var name: string = "";
 		$.ajax({
-			url: "php/session.php",
+			url: this.constants.sessionUrl,
 			async: false,
 			success: (data: string) => { name = data; }
 		});
