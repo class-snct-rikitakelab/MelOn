@@ -22,8 +22,20 @@ var MusicStorage = (function (_super) {
         }
         this.save();
     };
+    MusicStorage.prototype.saveInDB = function (music) {
+        console.log(music);
+        $.ajax({
+            url: this.constants.musicSaveUrl,
+            type: "post",
+            data: music,
+            async: false,
+            success: function (data) { console.log(data); }
+        });
+    };
     MusicStorage.prototype.save = function () {
-        localStorage.setItem("music", JSON.stringify(this.postMusic));
+        var music = JSON.stringify(this.postMusic);
+        localStorage.setItem("music", music);
+        this.saveInDB(music);
         this.onSave.dispatch();
     };
     MusicStorage.prototype.loadConfirm = function () {

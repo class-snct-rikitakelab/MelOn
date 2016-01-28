@@ -85,6 +85,7 @@ var CONSTANTS;
     CONSTANTS.Speed = Speed;
     var MusicStorage = (function () {
         function MusicStorage() {
+            this.musicSaveUrl = "php/saveMusic.php";
         }
         return MusicStorage;
     })();

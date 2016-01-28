@@ -15,7 +15,6 @@
 				<button class="navButton" id="returnTop" onclick="document.location = 'index.html';">Return Top</button>
 		</nav>
 		<section>
-				<div><?php $a = "apple"; echo $a; ?>
 				<form action="php/regist.php" method="post">
 						<div>
 								<span id="name">Name: </span>
@@ -33,7 +32,6 @@
 								<input type="submit" value="OK">
 						</div>
 				</form>
-				<div><?php echo $a; ?> </div>
 		</section>
 </body>
 

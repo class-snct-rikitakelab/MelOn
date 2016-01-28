@@ -18,8 +18,21 @@ class MusicStorage extends Model {
         this.save();
     }
 
+	saveInDB(music: string) {
+		console.log(music);
+		$.ajax({
+			url: this.constants.musicSaveUrl,
+			type: "post",
+			data: music,
+			async: false,
+			success: (data: string) => { console.log(data); }
+		});
+	}
+
     save() {
-        localStorage.setItem("music", JSON.stringify(this.postMusic));
+		var music: string = JSON.stringify(this.postMusic);
+        localStorage.setItem("music", music);
+		this.saveInDB(music);
         this.onSave.dispatch();
     }
 
