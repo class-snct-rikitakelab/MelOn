@@ -19,8 +19,8 @@ var MusicStorage = (function (_super) {
         $.ajax({
             url: this.constants.userNameUrl,
             async: false,
-            success: function (data, state) { if (data != "")
-                isLogIn = true; console.log(data); }
+            success: function (name, state) { if (name != "")
+                isLogIn = true; }
         });
         return isLogIn;
     };

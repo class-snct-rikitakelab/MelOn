@@ -7,6 +7,8 @@ class MusicStorage extends Model {
     onSave: Phaser.Signal = new Phaser.Signal();
     onLoad: Phaser.Signal = new Phaser.Signal();
     private postMusic: MusicData;
+	private instrument: Instrument;
+	private speed: Speed;
 
     constructor(private constants: CONSTANTS.MusicStorage) {
         super(constants);
@@ -17,7 +19,7 @@ class MusicStorage extends Model {
 		$.ajax({
 			url: this.constants.userNameUrl,
 			async: false,
-			success: (data: string, state: string) => { if (data != "") isLogIn = true; console.log(data);}
+			success: (name: string, state: string) => { if (name != "") isLogIn = true;}
 		});
 		return isLogIn;
 	}
