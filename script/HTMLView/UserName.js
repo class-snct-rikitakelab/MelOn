@@ -24,10 +24,11 @@ var UserName = (function (_super) {
         return name;
     };
     UserName.prototype.setView = function () {
-        var name = this.checkNameInSession();
+        var lang = this.language.getLanguage;
+        var name = this.checkNameInSession() + this.constants.honorText[lang];
         if (name == "")
-            name = this.constants.guestText[this.language.getLanguage];
-        this.$.text(this.constants.welcomeText[this.language.getLanguage] + name);
+            name = this.constants.guestText[lang];
+        this.$.text(this.constants.welcomeText[lang] + name);
     };
     UserName.prototype.setEvent = function () {
         var _this = this;

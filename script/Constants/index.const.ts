@@ -43,7 +43,12 @@ namespace INDEX {
 		guestText: { [name: string]: string } = {
 			"English": "Guest",
 			"Finnish": "Vieras",
-			"Japanese": "ゲストさん"
+			"Japanese": "ゲスト"
+		}
+		honorText: { [name: string]: string } = {
+			"English": "",
+			"Finnish": "",
+			"Japanese": "さん"
 		}
 	}
 

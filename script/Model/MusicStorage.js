@@ -27,7 +27,7 @@ var MusicStorage = (function (_super) {
         $.ajax({
             url: this.constants.musicSaveUrl,
             type: "post",
-            data: music,
+            data: "music=" + music,
             async: false,
             success: function (data) { console.log(data); }
         });

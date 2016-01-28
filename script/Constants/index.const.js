@@ -49,7 +49,12 @@ var INDEX;
             this.guestText = {
                 "English": "Guest",
                 "Finnish": "Vieras",
-                "Japanese": "ゲストさん"
+                "Japanese": "ゲスト"
+            };
+            this.honorText = {
+                "English": "",
+                "Finnish": "",
+                "Japanese": "さん"
             };
         }
         return UserName;

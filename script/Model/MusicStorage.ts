@@ -23,7 +23,7 @@ class MusicStorage extends Model {
 		$.ajax({
 			url: this.constants.musicSaveUrl,
 			type: "post",
-			data: music,
+			data: "music=" + music,
 			async: false,
 			success: (data: string) => { console.log(data); }
 		});
