@@ -26,6 +26,7 @@
 
         HTMLView: [
             "HTMLLogo",
+			"UserName",
             "JSONList", 
         ],
 

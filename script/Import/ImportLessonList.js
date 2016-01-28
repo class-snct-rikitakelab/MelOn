@@ -22,6 +22,7 @@
         ],
         HTMLView: [
             "HTMLLogo",
+            "UserName",
             "JSONList",
         ],
         Main: [

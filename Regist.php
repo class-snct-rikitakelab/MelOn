@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -16,6 +16,7 @@
 		</nav>
 		<section>
 				<form action="php/regist.php" method="post">
+                        <div class="error"><?php if($_GET["error"]) echo "Error occured. Check input contents."; ?></div>
 						<div>
 								<span id="name">Name: </span>
 								<input type="text" name="name" size="30" />

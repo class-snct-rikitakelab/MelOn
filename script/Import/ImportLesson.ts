@@ -7,6 +7,7 @@
         Preloader: "script/Preloader/",
         Model: "script/Model/",
         View: "script/View/",
+		HTMLView: "script/HTMLView",
         DOMView: "script/DOMView/",
         GroupView: "script/GroupView/",
         SpriteView: "script/SpriteView/",
@@ -52,6 +53,10 @@
 			"SpriteView",
 			"ContactManager",
         ],
+
+		HTMLView: [
+			"UserName",
+		],
 
         DOMView: [
 			"Logo",

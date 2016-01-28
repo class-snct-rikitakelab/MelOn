@@ -74,8 +74,9 @@ namespace CONSTANTS {
     }
 
     export class MusicStorage implements Model {
+		userNameUrl: string = "php/sessionGetUserName.php";
+		musicExistUrl: string = "php/musicExist.php";
 		musicSaveUrl: string = "php/saveMusic.php";
-		musicSaveCheckUrl: string = "php/musicCheck.php";
 		musicLoadUrl: string = "php/loadMusic.php";
     }
 

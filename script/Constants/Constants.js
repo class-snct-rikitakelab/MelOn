@@ -85,8 +85,9 @@ var CONSTANTS;
     CONSTANTS.Speed = Speed;
     var MusicStorage = (function () {
         function MusicStorage() {
+            this.userNameUrl = "php/sessionGetUserName.php";
+            this.musicExistUrl = "php/musicExist.php";
             this.musicSaveUrl = "php/saveMusic.php";
-            this.musicSaveCheckUrl = "php/musicCheck.php";
             this.musicLoadUrl = "php/loadMusic.php";
         }
         return MusicStorage;

@@ -25,10 +25,12 @@ var UserName = (function (_super) {
     };
     UserName.prototype.setView = function () {
         var lang = this.language.getLanguage;
-        var name = this.checkNameInSession() + this.constants.honorText[lang];
-        if (name == "")
-            name = this.constants.guestText[lang];
-        this.$.text(this.constants.welcomeText[lang] + name);
+        var name = this.checkNameInSession();
+        if (name == "") {
+            name = this.constants.guestText[lang] + this.constants.honorText[lang];
+            this.$.css("color", "white");
+        }
+        this.$.text(this.constants.welcomeText[lang] + name + this.constants.honorText[lang]);
     };
     UserName.prototype.setEvent = function () {
         var _this = this;
@@ -56,10 +58,12 @@ var UserNameWithMelOn = (function (_super) {
     };
     UserNameWithMelOn.prototype.setView = function () {
         var lang = this.language;
-        var name = this.checkNameInSession() + this.constants.honorText[lang];
-        if (name == "")
-            name = this.constants.guestText[lang];
-        this.$.text(this.constants.welcomeText[lang] + name);
+        var name = this.checkNameInSession();
+        if (name == "") {
+            name = this.constants.guestText[lang] + this.constants.honorText[lang];
+            this.$.css("color", "white");
+        }
+        this.$.text(this.constants.welcomeText[lang] + name + this.constants.honorText[lang]);
     };
     return UserNameWithMelOn;
 })(HTMLView);

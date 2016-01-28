@@ -19,9 +19,12 @@ class UserName extends HTMLView {
 
 	private setView() {
 		var lang: string = this.language.getLanguage;
-		var name: string = this.checkNameInSession() + this.constants.honorText[lang];
-		if(name == "") name = this.constants.guestText[lang];
-		this.$.text(this.constants.welcomeText[lang] + name);
+		var name: string = this.checkNameInSession();
+		if (name == "") {
+			name = this.constants.guestText[lang] + this.constants.honorText[lang];
+			this.$.css("color", "white");
+		}
+		this.$.text(this.constants.welcomeText[lang] + name + this.constants.honorText[lang]);
 	}
 
 	private setEvent() {
@@ -47,8 +50,11 @@ class UserNameWithMelOn extends HTMLView {
 
 	private setView() {
 		var lang: string = this.language;
-		var name: string = this.checkNameInSession() + this.constants.honorText[lang];
-		if (name == "") name = this.constants.guestText[lang];
-		this.$.text(this.constants.welcomeText[lang] + name);
+		var name: string = this.checkNameInSession();
+		if (name == "") {
+			name = this.constants.guestText[lang] + this.constants.honorText[lang];
+			this.$.css("color", "white");
+		}
+		this.$.text(this.constants.welcomeText[lang] + name + this.constants.honorText[lang]);
 	}
 }

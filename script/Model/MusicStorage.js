@@ -14,10 +14,20 @@ var MusicStorage = (function (_super) {
         this.onSave = new Phaser.Signal();
         this.onLoad = new Phaser.Signal();
     }
-    MusicStorage.prototype.saveCheckInDB = function () {
+    MusicStorage.prototype.isLogIn = function () {
+        var isLogIn = false;
+        $.ajax({
+            url: this.constants.userNameUrl,
+            async: false,
+            success: function (data, state) { if (data != "")
+                isLogIn = true; }
+        });
+        return isLogIn;
+    };
+    MusicStorage.prototype.musicExistInDB = function () {
         var existMusic = false;
         $.ajax({
-            url: this.constants.musicSaveUrl,
+            url: this.constants.musicExistUrl,
             async: false,
             success: function (data, state) { if (data == "true")
                 existMusic = true; }
@@ -26,9 +36,17 @@ var MusicStorage = (function (_super) {
     };
     MusicStorage.prototype.saveConfirm = function (music) {
         this.postMusic = music;
-        if (this.saveCheckInDB()) {
-            this.onSaveConfirm.dispatch();
-            return;
+        if (this.isLogIn()) {
+            if (this.musicExistInDB()) {
+                this.onSaveConfirm.dispatch();
+                return;
+            }
+        }
+        else {
+            if (localStorage.getItem("music")) {
+                this.onSaveConfirm.dispatch();
+                return;
+            }
         }
         this.save();
     };
@@ -48,10 +66,22 @@ var MusicStorage = (function (_super) {
         this.onSave.dispatch();
     };
     MusicStorage.prototype.loadConfirm = function () {
+        if (this.isLogIn()) {
+            this.onLoadConfirm.dispatch(this.musicExistInDB());
+            return;
+        }
         this.postMusic = JSON.parse(localStorage.getItem("music"));
         this.onLoadConfirm.dispatch(this.postMusic ? true : false);
     };
     MusicStorage.prototype.load = function () {
+        var _this = this;
+        if (this.isLogIn()) {
+            $.ajax({
+                url: this.constants.musicLoadUrl,
+                async: false,
+                success: function (music, state) { _this.postMusic = JSON.parse(music); console.log("success", music); }
+            });
+        }
         this.onLoad.dispatch(this.postMusic);
     };
     return MusicStorage;

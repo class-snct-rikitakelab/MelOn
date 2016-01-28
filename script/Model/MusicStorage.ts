@@ -12,10 +12,20 @@ class MusicStorage extends Model {
         super(constants);
     }
 
-	saveCheckInDB(): boolean {
+	isLogIn(): boolean {
+		var isLogIn: boolean = false;
+		$.ajax({
+			url: this.constants.userNameUrl,
+			async: false,
+			success: (data: string, state: string) => { if (data != "") isLogIn = true; }
+		});
+		return isLogIn;
+	}
+
+	musicExistInDB(): boolean {
 		var existMusic: boolean = false;
 		$.ajax({
-			url: this.constants.musicSaveUrl,
+			url: this.constants.musicExistUrl,
 			async: false,
 			success: (data: string, state: string) => { if (data == "true") existMusic = true; }
 		});
@@ -24,7 +34,11 @@ class MusicStorage extends Model {
 
     saveConfirm(music: MusicData) {
         this.postMusic = music;
-        if (this.saveCheckInDB()) { this.onSaveConfirm.dispatch(); return; }
+		if (this.isLogIn()) {
+			if (this.musicExistInDB()) { this.onSaveConfirm.dispatch(); return; }
+		} else {
+			if (localStorage.getItem("music")) { this.onSaveConfirm.dispatch(); return; }
+		}
         this.save();
     }
 
@@ -46,11 +60,22 @@ class MusicStorage extends Model {
     }
 
     loadConfirm() {
-        this.postMusic = JSON.parse(localStorage.getItem("music"));
-        this.onLoadConfirm.dispatch(this.postMusic ? true : false);
+		if (this.isLogIn()) {
+			this.onLoadConfirm.dispatch(this.musicExistInDB());
+			return;
+		}
+		this.postMusic = JSON.parse(localStorage.getItem("music"));
+		this.onLoadConfirm.dispatch(this.postMusic ? true : false);
     }
 
     load() {
+		if (this.isLogIn()) {
+			$.ajax({
+				url: this.constants.musicLoadUrl,
+				async: false,
+				success: (music: string, state: string) => { this.postMusic = JSON.parse(music); console.log("success", music); }
+			});
+		}
         this.onLoad.dispatch(this.postMusic);
     }
 }
