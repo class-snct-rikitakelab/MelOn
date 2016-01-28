@@ -26,6 +26,7 @@
             "MelOnAssets",
         ],
         Constants: [
+            "index.const",
             "Constants",
         ],
         Model: [
