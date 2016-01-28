@@ -7,7 +7,6 @@ session_start();
 $music=$_POST['music'];
 
 try {
-
     // Get id
     $stmt = $pdo->prepare("SELECT id from ${TABLE_USER} where name = :name");
     $stmt->bindValue(':name', $_SESSION[$SESSION_USER_NAME]);
@@ -19,8 +18,6 @@ try {
     $stmt->bindValue(':id', $user["id"]);
     $stmt->bindValue(':music', $music);
     $stmt->execute();
-
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 catch(PDOException $e) {
     exit($e->getMessage());
