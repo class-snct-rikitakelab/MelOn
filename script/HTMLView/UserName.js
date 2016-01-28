@@ -27,7 +27,7 @@ var UserName = (function (_super) {
         var lang = this.language.getLanguage;
         var name = this.checkNameInSession();
         if (name == "") {
-            name = this.constants.guestText[lang] + this.constants.honorText[lang];
+            name = this.constants.guestText[lang];
             this.$.css("color", "white");
         }
         this.$.text(this.constants.welcomeText[lang] + name + this.constants.honorText[lang]);
@@ -44,6 +44,7 @@ var UserNameWithMelOn = (function (_super) {
         _super.call(this, constants);
         this.constants = constants;
         this.language = language;
+        console.log(language);
         this.setView();
     }
     UserNameWithMelOn.prototype.checkNameInSession = function () {

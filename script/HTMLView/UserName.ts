@@ -21,7 +21,7 @@ class UserName extends HTMLView {
 		var lang: string = this.language.getLanguage;
 		var name: string = this.checkNameInSession();
 		if (name == "") {
-			name = this.constants.guestText[lang] + this.constants.honorText[lang];
+			name = this.constants.guestText[lang];
 			this.$.css("color", "white");
 		}
 		this.$.text(this.constants.welcomeText[lang] + name + this.constants.honorText[lang]);
@@ -35,6 +35,7 @@ class UserName extends HTMLView {
 class UserNameWithMelOn extends HTMLView {
 	constructor(private constants: INDEX.UserName, private language: string) {
 		super(constants);
+		console.log(language);
 		this.setView();
 	}
 
