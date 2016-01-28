@@ -18,7 +18,9 @@
         $stmt->execute();
         $musicResult = $stmt->fetch(PDO::FETCH_ASSOC);
         
-        if($musicResult['id']) $exist = "true";
+        if($musicResult['id']) {
+            $exist = "true";
+        }
     }
     catch(PDOException $e) {
         exit($e->getMessage());

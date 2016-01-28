@@ -20,7 +20,7 @@ var MusicStorage = (function (_super) {
             url: this.constants.userNameUrl,
             async: false,
             success: function (data, state) { if (data != "")
-                isLogIn = true; }
+                isLogIn = true; console.log(data); }
         });
         return isLogIn;
     };

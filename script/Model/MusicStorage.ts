@@ -17,7 +17,7 @@ class MusicStorage extends Model {
 		$.ajax({
 			url: this.constants.userNameUrl,
 			async: false,
-			success: (data: string, state: string) => { if (data != "") isLogIn = true; }
+			success: (data: string, state: string) => { if (data != "") isLogIn = true; console.log(data);}
 		});
 		return isLogIn;
 	}
