@@ -11,7 +11,7 @@ var FreeMakingMusic = (function (_super) {
         this.assets = assets;
         this.returnTopButton = new ReturnButton(this, new CONSTANTS.ReturnTopButton);
         this.logo = new Logo(this, new CONSTANTS.Logo, {});
-        this.userName = new UserNameWithMelOn(new CONSTANTS.UserName, $.getUrlVar["lang"]);
+        this.userName = new UserNameWithMelOn(new CONSTANTS.UserName, $.getUrlVar("lang"));
         this.setMelOn(constants.selector);
         this.createElements(constants.selector, constants.elements);
         this.setStates();

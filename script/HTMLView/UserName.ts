@@ -35,7 +35,6 @@ class UserName extends HTMLView {
 class UserNameWithMelOn extends HTMLView {
 	constructor(private constants: INDEX.UserName, private language: string) {
 		super(constants);
-		console.log(language);
 		this.setView();
 	}
 
