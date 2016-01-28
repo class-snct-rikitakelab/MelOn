@@ -10,9 +10,8 @@ try {
 
     // Get id
     $stmt = $pdo->prepare("SELECT id from ${TABLE_USER} where name = :name");
-    $stmt->bindValue(':name', $name);
+    $stmt->bindValue(':name', $_SESSION[$SESSION_USER_NAME]);
     $stmt->execute();
-
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     // Save music
