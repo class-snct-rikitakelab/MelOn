@@ -189,7 +189,34 @@ namespace CONSTANTS {
 	// ========== HTML View ==========
     //
 
-	export import UserName = INDEX.UserName;
+	interface HTMLView {
+        selector: string;
+        images: { [name: string]: string };
+        audios: { [name: string]: string };
+    };
+
+	export class UserName implements HTMLView {
+		selector = "#userName";
+		sessionGetUserName: string = "php/sessionGetUserName.php";
+		images: { [name: string]: string } = {};
+		audios: { [name: string]: string } = {
+		};
+		welcomeText: { [name: string]: string } = {
+			"English": "Welcome!: ",
+			"Finnish": "Tervetuloa!: ",
+			"Japanese": "ようこそ！: "
+		}
+		guestText: { [name: string]: string } = {
+			"English": "Guest",
+			"Finnish": "Vieras",
+			"Japanese": "ゲスト"
+		}
+		honorText: { [name: string]: string } = {
+			"English": "",
+			"Finnish": "",
+			"Japanese": " さん"
+		}
+	}
 
 
 

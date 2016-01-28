@@ -201,10 +201,32 @@ var CONSTANTS;
         return Notes;
     })(MeasureSheet);
     CONSTANTS.Notes = Notes;
-    //
-    // ========== HTML View ==========
-    //
-    CONSTANTS.UserName = INDEX.UserName;
+    ;
+    var UserName = (function () {
+        function UserName() {
+            this.selector = "#userName";
+            this.sessionGetUserName = "php/sessionGetUserName.php";
+            this.images = {};
+            this.audios = {};
+            this.welcomeText = {
+                "English": "Welcome!: ",
+                "Finnish": "Tervetuloa!: ",
+                "Japanese": "ようこそ！: "
+            };
+            this.guestText = {
+                "English": "Guest",
+                "Finnish": "Vieras",
+                "Japanese": "ゲスト"
+            };
+            this.honorText = {
+                "English": "",
+                "Finnish": "",
+                "Japanese": " さん"
+            };
+        }
+        return UserName;
+    })();
+    CONSTANTS.UserName = UserName;
     var Logo = (function () {
         function Logo() {
             this.selector = "#logo";

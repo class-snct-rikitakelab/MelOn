@@ -60,7 +60,7 @@ var UserNameWithMelOn = (function (_super) {
         var lang = this.language;
         var name = this.checkNameInSession();
         if (name == "") {
-            name = this.constants.guestText[lang] + this.constants.honorText[lang];
+            name = this.constants.guestText[lang];
             this.$.css("color", "white");
         }
         this.$.text(this.constants.welcomeText[lang] + name + this.constants.honorText[lang]);

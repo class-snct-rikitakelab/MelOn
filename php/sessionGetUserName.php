@@ -3,5 +3,9 @@
     
     session_start();
 
-    echo $_SESSION[$SESSION_USER_NAME];
+    if(isset($_SESSION[$SESSION_USER_NAME])) {
+        echo $_SESSION[$SESSION_USER_NAME];
+    } else {
+        echo "";
+    }
 ?>
