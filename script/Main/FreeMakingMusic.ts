@@ -2,7 +2,7 @@
 
 class FreeMakingMusic extends Phaser.Game {
 
-	private userName: UserName = new UserName(new INDEX.UserName, $.getUrlVar["lang"]);
+	private userName: UserNameWithMelOn = new UserNameWithMelOn(new INDEX.UserName, $.getUrlVar["lang"]);
 	private returnTopButton: ReturnButton = new ReturnButton(this, new CONSTANTS.ReturnTopButton);
     private logo: Logo = new Logo(this, new CONSTANTS.Logo, {});
 
