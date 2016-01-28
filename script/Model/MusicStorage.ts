@@ -12,20 +12,29 @@ class MusicStorage extends Model {
         super(constants);
     }
 
+	saveCheckInDB(): boolean {
+		var existMusic: boolean = false;
+		$.ajax({
+			url: this.constants.musicSaveUrl,
+			async: false,
+			success: (data: string, state: string) => { if (data == "true") existMusic = true; }
+		});
+		return existMusic;
+	}
+
     saveConfirm(music: MusicData) {
         this.postMusic = music;
-        if (localStorage.getItem("music")) { this.onSaveConfirm.dispatch(); return; }
+        if (this.saveCheckInDB()) { this.onSaveConfirm.dispatch(); return; }
         this.save();
     }
 
 	saveInDB(music: string) {
-		console.log(music);
 		$.ajax({
 			url: this.constants.musicSaveUrl,
 			type: "post",
 			data: "music=" + music,
 			async: false,
-			success: (data: string) => { console.log(data); }
+			success: (data: string, state: string) => { console.log(data, state); }
 		});
 	}
 

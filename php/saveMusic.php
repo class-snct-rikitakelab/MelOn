@@ -4,7 +4,7 @@ require_once "connectDB.php";
 session_start();
 
 // Receive input datas
-$music=$_POST['music'];
+$music = $_POST['music'];
 
 try {
     // Get id
@@ -13,11 +13,26 @@ try {
     $stmt->execute();
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // Save music
-    $stmt = $pdo->prepare("INSERT INTO ${TABLE_MUSIC}(id, music) VALUES (:id, :music)");
+    // Check if there is already music data
+    $stmt = $pdo->prepare("SELECT id from ${TABLE_MUSIC} where id = :id");
     $stmt->bindValue(':id', $user["id"]);
-    $stmt->bindValue(':music', $music);
     $stmt->execute();
+    $musicResult = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // Save music
+    if($musicResult['id']) {
+        // Update music
+        $stmt = $pdo->prepare("UPDATE ${TABLE_MUSIC} SET music = :music WHERE id = :id");
+        $stmt->bindValue(':id', $user["id"]);
+        $stmt->bindValue(':music', $music);
+        $stmt->execute();
+    } else {
+        // Newly save music
+        $stmt = $pdo->prepare("INSERT INTO ${TABLE_MUSIC}(id, music) VALUES (:id, :music)");
+        $stmt->bindValue(':id', $user["id"]);
+        $stmt->bindValue(':music', $music);
+        $stmt->execute();
+    }
 }
 catch(PDOException $e) {
     exit($e->getMessage());

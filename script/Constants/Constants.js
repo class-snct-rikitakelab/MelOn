@@ -86,6 +86,8 @@ var CONSTANTS;
     var MusicStorage = (function () {
         function MusicStorage() {
             this.musicSaveUrl = "php/saveMusic.php";
+            this.musicSaveCheckUrl = "php/musicCheck.php";
+            this.musicLoadUrl = "php/loadMusic.php";
         }
         return MusicStorage;
     })();

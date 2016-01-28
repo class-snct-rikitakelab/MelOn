@@ -7,6 +7,7 @@
         Preloader: "script/Preloader/",
         Model: "script/Model/",
         View: "script/View/",
+		HTMLView: "script/HTMLView/",
         DOMView: "script/DOMView/",
         GroupView: "script/GroupView/",
         SpriteView: "script/SpriteView/",
@@ -42,11 +43,16 @@
         ],
 
         View: [
+			"HTMLView",
             "DOMView",
             "GroupView",
             "SpriteView",
             "ContactManager",
         ],
+
+		HTMLView: [
+			"UserName",
+		],
 
         DOMView: [
 			"ReturnButton",

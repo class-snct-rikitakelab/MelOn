@@ -36,4 +36,31 @@ var UserName = (function (_super) {
     };
     return UserName;
 })(HTMLView);
+var UserNameWithMelOn = (function (_super) {
+    __extends(UserNameWithMelOn, _super);
+    function UserNameWithMelOn(constants, language) {
+        _super.call(this, constants);
+        this.constants = constants;
+        this.language = language;
+        this.setView();
+    }
+    UserNameWithMelOn.prototype.checkNameInSession = function () {
+        var name = "";
+        $.ajax({
+            url: this.constants.sessionGetUserName,
+            async: false,
+            success: function (data) { if (data != "")
+                name = data; }
+        });
+        return name;
+    };
+    UserNameWithMelOn.prototype.setView = function () {
+        var lang = this.language;
+        var name = this.checkNameInSession() + this.constants.honorText[lang];
+        if (name == "")
+            name = this.constants.guestText[lang];
+        this.$.text(this.constants.welcomeText[lang] + name);
+    };
+    return UserNameWithMelOn;
+})(HTMLView);
 //# sourceMappingURL=UserName.js.map

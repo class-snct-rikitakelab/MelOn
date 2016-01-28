@@ -48,7 +48,7 @@ namespace INDEX {
 		honorText: { [name: string]: string } = {
 			"English": "",
 			"Finnish": "",
-			"Japanese": "さん"
+			"Japanese": " さん"
 		}
 	}
 

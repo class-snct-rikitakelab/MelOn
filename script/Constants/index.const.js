@@ -54,7 +54,7 @@ var INDEX;
             this.honorText = {
                 "English": "",
                 "Finnish": "",
-                "Japanese": "さん"
+                "Japanese": " さん"
             };
         }
         return UserName;

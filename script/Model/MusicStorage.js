@@ -14,22 +14,31 @@ var MusicStorage = (function (_super) {
         this.onSave = new Phaser.Signal();
         this.onLoad = new Phaser.Signal();
     }
+    MusicStorage.prototype.saveCheckInDB = function () {
+        var existMusic = false;
+        $.ajax({
+            url: this.constants.musicSaveUrl,
+            async: false,
+            success: function (data, state) { if (data == "true")
+                existMusic = true; }
+        });
+        return existMusic;
+    };
     MusicStorage.prototype.saveConfirm = function (music) {
         this.postMusic = music;
-        if (localStorage.getItem("music")) {
+        if (this.saveCheckInDB()) {
             this.onSaveConfirm.dispatch();
             return;
         }
         this.save();
     };
     MusicStorage.prototype.saveInDB = function (music) {
-        console.log(music);
         $.ajax({
             url: this.constants.musicSaveUrl,
             type: "post",
             data: "music=" + music,
             async: false,
-            success: function (data) { console.log(data); }
+            success: function (data, state) { console.log(data, state); }
         });
     };
     MusicStorage.prototype.save = function () {

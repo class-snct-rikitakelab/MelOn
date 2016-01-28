@@ -75,6 +75,8 @@ namespace CONSTANTS {
 
     export class MusicStorage implements Model {
 		musicSaveUrl: string = "php/saveMusic.php";
+		musicSaveCheckUrl: string = "php/musicCheck.php";
+		musicLoadUrl: string = "php/loadMusic.php";
     }
 
 
