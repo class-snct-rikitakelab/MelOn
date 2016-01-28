@@ -201,6 +201,10 @@ var CONSTANTS;
         return Notes;
     })(MeasureSheet);
     CONSTANTS.Notes = Notes;
+    //
+    // ========== HTML View ==========
+    //
+    CONSTANTS.UserName = INDEX.UserName;
     var Logo = (function () {
         function Logo() {
             this.selector = "#logo";

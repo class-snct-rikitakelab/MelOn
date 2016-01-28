@@ -16,8 +16,8 @@
             "HTMLView",
         ],
         Constants: [
-            "Constants",
             "index.const",
+            "Constants",
             "LessonList.const",
         ],
         HTMLView: [

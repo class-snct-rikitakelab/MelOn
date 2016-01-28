@@ -19,8 +19,8 @@
         ],
 
         Constants: [
+			"index.const",
             "Constants",
-            "index.const",
             "LessonList.const",
         ],
 

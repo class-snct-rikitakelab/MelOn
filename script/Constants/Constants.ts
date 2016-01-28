@@ -26,8 +26,6 @@ namespace CONSTANTS {
 
 
 
-
-
     //
     // ========== Model ==========
     //
@@ -184,6 +182,16 @@ namespace CONSTANTS {
     export class Notes extends MeasureSheet implements GroupView {
 		prohibitedImage: string = new Note().prohibitedImage;
     }
+
+
+
+	//
+	// ========== HTML View ==========
+    //
+
+	export import UserName = INDEX.UserName;
+
+
 
     //
     // ========== DOM View ==========

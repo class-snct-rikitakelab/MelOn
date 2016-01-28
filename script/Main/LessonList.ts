@@ -7,7 +7,7 @@ class LessonList {
 
     constructor() {
 		var language = new LESSON_LIST.Language().language;
-		var userName: UserNameWithMelOn = new UserNameWithMelOn(new INDEX.UserName, language);
+		var userName: UserNameWithMelOn = new UserNameWithMelOn(new LESSON_LIST.UserName, language);
         $("#choose").text(new LESSON_LIST.choose().script[language]);
 		$(this.returnTop).text(new CONSTANTS.ReturnTopButton().text[language])
 			.hover(() => this.enter(), () => this.leave())

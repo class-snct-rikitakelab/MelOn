@@ -6,7 +6,7 @@ var LessonList = (function () {
         this.logo = new HTMLLogo(new INDEX.HTMLLogo());
         this.list = new JSONList(new LESSON_LIST.JSONList());
         var language = new LESSON_LIST.Language().language;
-        var userName = new UserNameWithMelOn(new INDEX.UserName, language);
+        var userName = new UserNameWithMelOn(new LESSON_LIST.UserName, language);
         $("#choose").text(new LESSON_LIST.choose().script[language]);
         $(this.returnTop).text(new CONSTANTS.ReturnTopButton().text[language])
             .hover(function () { return _this.enter(); }, function () { return _this.leave(); })

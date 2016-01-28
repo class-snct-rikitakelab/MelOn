@@ -23,6 +23,8 @@ namespace LESSON_LIST {
 
     import HTMLView = INDEX.HTMLView;
 
+	export import UserName = INDEX.UserName;
+
     export class JSONList implements HTMLView {
         selector = "#lessonList";
         language = new Language().language;

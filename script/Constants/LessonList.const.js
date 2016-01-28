@@ -25,6 +25,7 @@ var LESSON_LIST;
         return choose;
     })();
     LESSON_LIST.choose = choose;
+    LESSON_LIST.UserName = INDEX.UserName;
     var JSONList = (function () {
         function JSONList() {
             this.selector = "#lessonList";
