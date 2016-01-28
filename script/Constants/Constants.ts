@@ -185,10 +185,6 @@ namespace CONSTANTS {
 		prohibitedImage: string = new Note().prohibitedImage;
     }
 
-
-
-
-
     //
     // ========== DOM View ==========
     //

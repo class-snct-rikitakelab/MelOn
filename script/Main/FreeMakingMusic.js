@@ -9,9 +9,9 @@ var FreeMakingMusic = (function (_super) {
     function FreeMakingMusic(assets, constants) {
         _super.call(this, constants.width, constants.height, Phaser.AUTO, constants.renderer);
         this.assets = assets;
-        this.userName = new UserNameWithMelOn(new INDEX.UserName, $.getUrlVar["lang"]);
         this.returnTopButton = new ReturnButton(this, new CONSTANTS.ReturnTopButton);
         this.logo = new Logo(this, new CONSTANTS.Logo, {});
+        this.userName = new UserNameWithMelOn(new INDEX.UserName, $.getUrlVar["lang"]);
         this.setMelOn(constants.selector);
         this.createElements(constants.selector, constants.elements);
         this.setStates();

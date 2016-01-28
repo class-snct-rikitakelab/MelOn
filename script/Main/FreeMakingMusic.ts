@@ -2,13 +2,13 @@
 
 class FreeMakingMusic extends Phaser.Game {
 
-	private userName: UserNameWithMelOn = new UserNameWithMelOn(new INDEX.UserName, $.getUrlVar["lang"]);
+	private userName: UserNameWithMelOn;
 	private returnTopButton: ReturnButton = new ReturnButton(this, new CONSTANTS.ReturnTopButton);
     private logo: Logo = new Logo(this, new CONSTANTS.Logo, {});
 
     constructor(private assets: AssetLoader, constants: CONSTANTS.MelOn) {
         super(constants.width, constants.height, Phaser.AUTO, constants.renderer);
-		
+		this.userName = new UserNameWithMelOn(new CONSTANTS.UserName, $.getUrlVar["lang"]);
         this.setMelOn(constants.selector);
         this.createElements(constants.selector, constants.elements);
         this.setStates();
