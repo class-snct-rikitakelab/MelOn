@@ -18,6 +18,13 @@ class Speed extends Model {
     get getSpeedGrade(): number {
         return this.constants.speeds.indexOf(this.speed);
     }
+
+	setSpeedGrade(speedGrade: number) {
+		for (var i = speedGrade - this.getSpeedGrade; i != 0; i += (i < 0 ? 1 : -1)) {
+			console.log(i);
+			this.changeSpeed(i < 0);
+		}
+	}
     
     changeSpeed(up: boolean) {
         var newSpeed = this.constants.speeds[this.getSpeedGrade + (up ? 1 : -1)];

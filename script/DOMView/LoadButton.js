@@ -11,6 +11,8 @@ var LoadButton = (function (_super) {
         this.constants = constants;
         this.music = this.models["music"];
         this.musicStorage = this.models["musicStorage"];
+        this.instrument = this.models["instrument"];
+        this.speed = this.models["speed"];
         this.setView();
         this.setEvent();
     }
@@ -27,7 +29,11 @@ var LoadButton = (function (_super) {
         if (!this.game.device.touch)
             this.setSelectEffect();
         this.$.on(this.pushEvent(), function () { return _this.musicStorage.loadConfirm(); });
-        this.musicStorage.onLoad.add(function (loadMusic) { return _this.setMusic(loadMusic); });
+        this.musicStorage.onLoad.add(function (instrument, speedGrade, music) {
+            _this.instrument.changeInstrument(instrument);
+            _this.speed.setSpeedGrade(speedGrade);
+            _this.setMusic(music);
+        });
     };
     LoadButton.prototype.setMusic = function (music) {
         this.game.sound.mute = true;
@@ -49,7 +55,11 @@ var LessonLoadButton = (function (_super) {
         if (!this.game.device.touch)
             this.setSelectEffect();
         this.$.on(this.pushEvent(), function () { return _this.loadConfirmWithCheck(); });
-        this.musicStorage.onLoad.add(function (loadMusic) { return _this.setMusic(loadMusic); });
+        this.musicStorage.onLoad.add(function (instrument, speedGrade, music) {
+            _this.instrument.changeInstrument(instrument);
+            _this.speed.setSpeedGrade(speedGrade);
+            _this.setMusic(music);
+        });
     };
     LessonLoadButton.prototype.loadConfirmWithCheck = function () {
         if (this.achievement.isFinished == true && this.achievement.isActivated == false) {

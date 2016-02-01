@@ -11,6 +11,8 @@ var SaveButton = (function (_super) {
         this.constants = constants;
         this.music = this.models["music"];
         this.musicStorage = this.models["musicStorage"];
+        this.instrument = this.models["instrument"];
+        this.speed = this.models["speed"];
         this.setView();
         this.setEvent();
     }
@@ -28,7 +30,7 @@ var SaveButton = (function (_super) {
         if (!this.game.device.touch)
             this.setSelectEffect();
         this.$.on(this.game.device.touch ? "touchstart" : "mousedown", function () {
-            _this.musicStorage.saveConfirm(_this.music.getMusic);
+            _this.musicStorage.saveConfirm(_this.music.getMusic, _this.instrument.getInstrument, _this.speed.getSpeedGrade);
         });
     };
     return SaveButton;

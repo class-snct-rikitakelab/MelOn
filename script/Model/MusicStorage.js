@@ -34,8 +34,19 @@ var MusicStorage = (function (_super) {
         });
         return existMusic;
     };
-    MusicStorage.prototype.saveConfirm = function (music) {
-        this.postMusic = music;
+    MusicStorage.prototype.saveInDB = function () {
+        $.ajax({
+            url: this.constants.musicSaveUrl,
+            type: "post",
+            data: "instrument=" + this.postInstrument + "speed=" + this.postSpeedGrade.toString() + "music=" + this.postMusic,
+            async: false,
+            success: function (data, state) { console.log(data, state); }
+        });
+    };
+    MusicStorage.prototype.saveConfirm = function (music, instrument, speedGrade) {
+        this.postMusic = JSON.stringify(music);
+        this.postInstrument = instrument;
+        this.postSpeedGrade = speedGrade;
         if (this.isLogIn()) {
             if (this.musicExistInDB()) {
                 this.onSaveConfirm.dispatch();
@@ -50,19 +61,11 @@ var MusicStorage = (function (_super) {
         }
         this.save();
     };
-    MusicStorage.prototype.saveInDB = function (music) {
-        $.ajax({
-            url: this.constants.musicSaveUrl,
-            type: "post",
-            data: "music=" + music,
-            async: false,
-            success: function (data, state) { console.log(data, state); }
-        });
-    };
     MusicStorage.prototype.save = function () {
-        var music = JSON.stringify(this.postMusic);
-        localStorage.setItem("music", music);
-        this.saveInDB(music);
+        localStorage.setItem("music", this.postMusic);
+        localStorage.setItem("instrument", this.postInstrument);
+        localStorage.setItem("speed", this.postSpeedGrade.toString());
+        this.saveInDB();
         this.onSave.dispatch();
     };
     MusicStorage.prototype.loadConfirm = function () {
@@ -70,6 +73,8 @@ var MusicStorage = (function (_super) {
             this.onLoadConfirm.dispatch(this.musicExistInDB());
             return;
         }
+        this.postInstrument = localStorage.getItem("instrument");
+        this.postSpeedGrade = Number(localStorage.getItem("speed"));
         this.postMusic = JSON.parse(localStorage.getItem("music"));
         this.onLoadConfirm.dispatch(this.postMusic ? true : false);
     };
@@ -79,10 +84,16 @@ var MusicStorage = (function (_super) {
             $.ajax({
                 url: this.constants.musicLoadUrl,
                 async: false,
-                success: function (music, state) { _this.postMusic = JSON.parse(music); console.log("success", music); }
+                success: function (data, state) {
+                    var jsonData = JSON.parse(data);
+                    _this.postInstrument = jsonData["instrument"];
+                    _this.postSpeedGrade = Number(jsonData["speed"]);
+                    _this.postMusic = jsonData["music"];
+                    console.log("success", data);
+                }
             });
         }
-        this.onLoad.dispatch(this.postMusic);
+        this.onLoad.dispatch(this.postInstrument, this.postSpeedGrade, JSON.parse(this.postMusic));
     };
     return MusicStorage;
 })(Model);

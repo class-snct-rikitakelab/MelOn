@@ -4,6 +4,8 @@ class SaveButton extends DOMView {
 
     private music: Music = this.models["music"];
     private musicStorage: MusicStorage = this.models["musicStorage"];
+	private instrument: Instrument = this.models["instrument"];
+	private speed: Speed = this.models["speed"];
 
     constructor(game: Phaser.Game, private constants: CONSTANTS.SaveButton, models: Object) {
         super(game, constants, models);
@@ -24,7 +26,7 @@ class SaveButton extends DOMView {
     private setEvent() {
         if (!this.game.device.touch) this.setSelectEffect();
         this.$.on(this.game.device.touch ? "touchstart" : "mousedown", () => {
-            this.musicStorage.saveConfirm(this.music.getMusic);
+            this.musicStorage.saveConfirm(this.music.getMusic, this.instrument.getInstrument, this.speed.getSpeedGrade);
         });
     }
 }

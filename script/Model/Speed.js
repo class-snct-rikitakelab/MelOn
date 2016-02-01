@@ -27,6 +27,12 @@ var Speed = (function (_super) {
         enumerable: true,
         configurable: true
     });
+    Speed.prototype.setSpeedGrade = function (speedGrade) {
+        for (var i = speedGrade - this.getSpeedGrade; i != 0; i += (i < 0 ? 1 : -1)) {
+            console.log(i);
+            this.changeSpeed(i < 0);
+        }
+    };
     Speed.prototype.changeSpeed = function (up) {
         var newSpeed = this.constants.speeds[this.getSpeedGrade + (up ? 1 : -1)];
         if (newSpeed)

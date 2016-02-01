@@ -11,7 +11,7 @@
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         // Check if there is already music data
-        $stmt = $pdo->prepare("SELECT music from ${TABLE_MUSIC} where id = :id");
+        $stmt = $pdo->prepare("SELECT instrument, speed, music from ${TABLE_MUSIC} where id = :id");
         $stmt->bindValue(':id', $user["id"]);
         $stmt->execute();
         $musicResult = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -22,5 +22,5 @@
     // Disconnect database
     $pdo = null;
 
-    echo $musicResult["music"];
+    echo json_encode($musicResult);
 ?>

@@ -4,6 +4,8 @@ class LoadButton extends DOMView {
 
     protected music: Music = this.models["music"];
     protected musicStorage: MusicStorage = this.models["musicStorage"];
+	protected instrument: Instrument = this.models["instrument"];
+	protected speed: Speed = this.models["speed"];
 
     constructor(game: Phaser.Game, private constants: CONSTANTS.LoadButton, models: Object) {
         super(game, constants, models);
@@ -24,7 +26,11 @@ class LoadButton extends DOMView {
     protected setEvent() {
         if (!this.game.device.touch) this.setSelectEffect();
         this.$.on(this.pushEvent(), () => this.musicStorage.loadConfirm());
-        this.musicStorage.onLoad.add((loadMusic) => this.setMusic(loadMusic));
+        this.musicStorage.onLoad.add((instrument: string, speedGrade: number, music: MusicData) => {
+			this.instrument.changeInstrument(instrument);
+			this.speed.setSpeedGrade(speedGrade);
+			this.setMusic(music);
+		});
     }
 
     setMusic(music: MusicData) {
@@ -48,7 +54,11 @@ class LessonLoadButton extends LoadButton {
 	protected setEvent() {
         if (!this.game.device.touch) this.setSelectEffect();
         this.$.on(this.pushEvent(), () => this.loadConfirmWithCheck());
-        this.musicStorage.onLoad.add((loadMusic) => this.setMusic(loadMusic));
+        this.musicStorage.onLoad.add((instrument: string, speedGrade: number, music: MusicData) => {
+			this.instrument.changeInstrument(instrument);
+			this.speed.setSpeedGrade(speedGrade);
+			this.setMusic(music);
+		});
 	}
 
 	private loadConfirmWithCheck() {

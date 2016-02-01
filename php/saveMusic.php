@@ -4,7 +4,9 @@
     session_start();
 
     // Receive input datas
-    $music =$_POST['music'];
+    $instrument = $_POST['instrument'];
+    $speed = $_POST['speed'];
+    $music = $_POST['music'];
 
     try {
         // Get id
@@ -22,14 +24,18 @@
         // Save music
         if($musicResult['id']) {
             // Update music
-            $stmt = $pdo->prepare("UPDATE ${TABLE_MUSIC} SET music = :music WHERE id = :id");
+            $stmt = $pdo->prepare("UPDATE ${TABLE_MUSIC} SET instrument = :instrument, speed = :speed, music = :music WHERE id = :id");
             $stmt->bindValue(':id', $user["id"]);
+            $stmt->bindValue(':instrument', $instrument);
+            $stmt->bindValue(':speed', $speed);
             $stmt->bindValue(':music', $music);
             $stmt->execute();
         } else {
             // Newly save music
-            $stmt = $pdo->prepare("INSERT INTO ${TABLE_MUSIC}(id, music) VALUES (:id, :music)");
+            $stmt = $pdo->prepare("INSERT INTO ${TABLE_MUSIC}(id, instrument, speed, music) VALUES (:id, :instrument, :speed, :music)");
             $stmt->bindValue(':id', $user["id"]);
+            $stmt->bindValue(':instrument', $instrument);
+            $stmt->bindValue(':speed', $speed);
             $stmt->bindValue(':music', $music);
             $stmt->execute();
         }

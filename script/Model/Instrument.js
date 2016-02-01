@@ -20,6 +20,10 @@ var Instrument = (function (_super) {
         configurable: true
     });
     Instrument.prototype.changeInstrument = function (instrument) {
+        if (instrument == this.instrument)
+            return;
+        if (!this.constants.instruments.indexOf(instrument))
+            return;
         this.instrument = instrument;
         this.onChangeInstrument.dispatch();
     };
