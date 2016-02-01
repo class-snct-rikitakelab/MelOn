@@ -16,22 +16,24 @@
 		</nav>
 		<section>
 				<div id="registTypo">Register</div>
-				<form action="php/regist.php" method="post">
-                        <div class="error"><?php if($_GET["error"]) echo "Errors are occured. Check input contents."; ?></div>
-						<div class="input">
-								<span id="name">Name: </span>
-								<input type="text" name="name" size="30" />
-						</div><br/>
-						<div class="input">
-								<span id="password">Password: </span>
-								<input type="password" name="password" size="30" />
-						</div><br/>
-						<div class="input">
-								<span id="confirm">Confirm password: </span>
-								<input type="password" name="confirm" size="30" />
-						</div><br/>
-						<input type="submit" value="OK">
-				</form>
+                <div id="authContainer">
+				    <form action="php/regist.php" method="post">
+                            <div class="error"><?php if($_GET["error"]) echo "Errors are occured. Check input contents."; ?></div>
+						    <div class="input">
+								    <span id="name">Name: </span>
+								    <input type="text" name="name" size="30" />
+						    </div><br/>
+						    <div class="input">
+								    <span id="password">Password: </span>
+								    <input type="password" name="password" size="30" />
+						    </div><br/>
+						    <div class="input">
+								    <span id="confirm">Confirm password: </span>
+								    <input type="password" name="confirm" size="30" />
+						    </div><br/>
+						    <input type="submit" value="OK">
+				    </form>
+                </div>
 		</section>
 </body>
 
