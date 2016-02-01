@@ -73,7 +73,7 @@ class MusicStorage extends Model {
 		}
 		this.postInstrument = localStorage.getItem("instrument");
 		this.postSpeedGrade = Number(localStorage.getItem("speed"));
-		this.postMusic = JSON.parse(localStorage.getItem("music"));
+		this.postMusic = localStorage.getItem("music");
 		this.onLoadConfirm.dispatch(this.postMusic ? true : false);
     }
 
