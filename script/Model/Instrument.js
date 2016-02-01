@@ -22,7 +22,7 @@ var Instrument = (function (_super) {
     Instrument.prototype.changeInstrument = function (instrument) {
         if (this.instrument && instrument == this.instrument)
             return;
-        if (!this.constants.instruments.indexOf(instrument))
+        if (!_.include(this.constants.instruments, instrument))
             return;
         this.instrument = instrument;
         this.onChangeInstrument.dispatch();
