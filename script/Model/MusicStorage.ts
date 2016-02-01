@@ -2,6 +2,7 @@
 
 class MusicStorage extends Model {
 
+	private loginState: boolean = false;
 	private postMusic: string;
 	private postInstrument: string;
 	private postSpeedGrade: number;
@@ -13,6 +14,7 @@ class MusicStorage extends Model {
 
     constructor(private constants: CONSTANTS.MusicStorage) {
         super(constants);
+		this.loginState = this.isLogIn();
     }
 
 	private isLogIn(): boolean {
@@ -44,25 +46,28 @@ class MusicStorage extends Model {
 		});
 	}
 
+	private saveInLocalStorage() {
+		localStorage.setItem("music", this.postMusic);
+		localStorage.setItem("instrument", this.postInstrument);
+		localStorage.setItem("speed", this.postSpeedGrade.toString());
+	}
+
     saveConfirm(music: MusicData, instrument: string, speedGrade: number) {
         this.postMusic = JSON.stringify(music);
 		this.postInstrument = instrument;
 		this.postSpeedGrade = speedGrade;
-		if (this.isLogIn()) { if (this.musicExistInDB()) { this.onSaveConfirm.dispatch(); return; } }
+		if (this.loginState) { if (this.musicExistInDB()) { this.onSaveConfirm.dispatch(); return; } }
 		else { if (localStorage.getItem("music")) { this.onSaveConfirm.dispatch(); return; } }
         this.save();
     }
 
     save() {
-        localStorage.setItem("music", this.postMusic);
-		localStorage.setItem("instrument", this.postInstrument);
-		localStorage.setItem("speed", this.postSpeedGrade.toString());
-		this.saveInDB();
+		this.loginState ? this.saveInDB() : this.saveInLocalStorage();
         this.onSave.dispatch();
     }
 
     loadConfirm() {
-		if (this.isLogIn()) {
+		if (this.loginState) {
 			this.onLoadConfirm.dispatch(this.musicExistInDB());
 			return;
 		}
@@ -73,7 +78,7 @@ class MusicStorage extends Model {
     }
 
     load() {
-		if (this.isLogIn()) {
+		if (this.loginState) {
 			$.ajax({
 				url: this.constants.musicLoadUrl,
 				async: false,

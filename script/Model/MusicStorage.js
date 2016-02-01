@@ -9,10 +9,12 @@ var MusicStorage = (function (_super) {
     function MusicStorage(constants) {
         _super.call(this, constants);
         this.constants = constants;
+        this.loginState = false;
         this.onSaveConfirm = new Phaser.Signal();
         this.onLoadConfirm = new Phaser.Signal();
         this.onSave = new Phaser.Signal();
         this.onLoad = new Phaser.Signal();
+        this.loginState = this.isLogIn();
     }
     MusicStorage.prototype.isLogIn = function () {
         var isLogIn = false;
@@ -42,11 +44,16 @@ var MusicStorage = (function (_super) {
             async: false,
         });
     };
+    MusicStorage.prototype.saveInLocalStorage = function () {
+        localStorage.setItem("music", this.postMusic);
+        localStorage.setItem("instrument", this.postInstrument);
+        localStorage.setItem("speed", this.postSpeedGrade.toString());
+    };
     MusicStorage.prototype.saveConfirm = function (music, instrument, speedGrade) {
         this.postMusic = JSON.stringify(music);
         this.postInstrument = instrument;
         this.postSpeedGrade = speedGrade;
-        if (this.isLogIn()) {
+        if (this.loginState) {
             if (this.musicExistInDB()) {
                 this.onSaveConfirm.dispatch();
                 return;
@@ -61,14 +68,11 @@ var MusicStorage = (function (_super) {
         this.save();
     };
     MusicStorage.prototype.save = function () {
-        localStorage.setItem("music", this.postMusic);
-        localStorage.setItem("instrument", this.postInstrument);
-        localStorage.setItem("speed", this.postSpeedGrade.toString());
-        this.saveInDB();
+        this.loginState ? this.saveInDB() : this.saveInLocalStorage();
         this.onSave.dispatch();
     };
     MusicStorage.prototype.loadConfirm = function () {
-        if (this.isLogIn()) {
+        if (this.loginState) {
             this.onLoadConfirm.dispatch(this.musicExistInDB());
             return;
         }
@@ -79,7 +83,7 @@ var MusicStorage = (function (_super) {
     };
     MusicStorage.prototype.load = function () {
         var _this = this;
-        if (this.isLogIn()) {
+        if (this.loginState) {
             $.ajax({
                 url: this.constants.musicLoadUrl,
                 async: false,
