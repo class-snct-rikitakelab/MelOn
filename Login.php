@@ -27,9 +27,7 @@
 								<span id="password">Password: </span>
 								<input type="password" name="password" size="30" />
 						</div><br/>
-						<div>
-								<input type="submit" value="Login">
-						</div>
+						<input type="submit" value="Login">
 				</form>
             </div>
 		</section>
