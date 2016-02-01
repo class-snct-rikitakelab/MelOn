@@ -19,11 +19,11 @@
             <div id="authContainer">
 				<form action="php/login.php" method="post">
                         <div class="error"><?php if($_GET["name"]) echo "Error occured. Check input contents."; ?></div>
-						<div class="center">
+						<div class="input">
 								<span id="name">Name: </span>
 								<input type="text" name="name" size="30" />
 						</div><br/>
-						<div class="center">
+						<div class="input">
 								<span id="password">Password: </span>
 								<input type="password" name="password" size="30" />
 						</div><br/>

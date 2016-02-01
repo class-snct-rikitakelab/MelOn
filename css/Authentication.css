@@ -16,9 +16,8 @@
     cursor: pointer;
 }
 
-.center {
-	display: block;
-	margin: 0 auto;
+.input{
+	margin-left: 50px
 }
 
 #loginTypo {
