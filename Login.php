@@ -15,6 +15,8 @@
 				<button class="navButton" id="returnTop" onclick="document.location = 'index.html';">Return Top</button>
 		</nav>
 		<section>
+			<div id="loginTypo">Login</div>
+            <div id="authContainer">
 				<form action="php/login.php" method="post">
                         <div class="error"><?php if($_GET["name"]) echo "Error occured. Check input contents."; ?></div>
 						<div>
@@ -29,6 +31,7 @@
 								<input type="submit" value="Login">
 						</div>
 				</form>
+            </div>
 		</section>
 </body>
 
