@@ -15,23 +15,22 @@
 				<button class="navButton" id="returnTop" onclick="document.location = 'index.html';">Return Top</button>
 		</nav>
 		<section>
+				<div id="registTypo">Register</div>
 				<form action="php/regist.php" method="post">
-                        <div class="error"><?php if($_GET["name"]) echo "Error occured. Check input contents."; ?></div>
-						<div>
+                        <div class="error"><?php if($_GET["error"]) echo "Errors are occured. Check input contents."; ?></div>
+						<div class="input">
 								<span id="name">Name: </span>
 								<input type="text" name="name" size="30" />
 						</div><br/>
-						<div>
+						<div class="input">
 								<span id="password">Password: </span>
 								<input type="password" name="password" size="30" />
 						</div><br/>
-						<div>
+						<div class="input">
 								<span id="confirm">Confirm password: </span>
 								<input type="password" name="confirm" size="30" />
 						</div><br/>
-						<div>
-								<input type="submit" value="OK">
-						</div>
+						<input type="submit" value="OK">
 				</form>
 		</section>
 </body>
