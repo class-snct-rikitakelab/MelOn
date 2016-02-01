@@ -38,7 +38,7 @@ var MusicStorage = (function (_super) {
         $.ajax({
             url: this.constants.musicSaveUrl,
             type: "post",
-            data: "instrument=" + this.postInstrument + "speed=" + this.postSpeedGrade.toString() + "music=" + this.postMusic,
+            data: "instrument=" + this.postInstrument + "&speed=" + this.postSpeedGrade.toString() + "&music=" + this.postMusic,
             async: false,
             success: function (data, state) { console.log(data, state); }
         });
