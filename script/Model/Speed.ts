@@ -22,7 +22,7 @@ class Speed extends Model {
 	setSpeedGrade(speedGrade: number) {
 		for (var i = speedGrade - this.getSpeedGrade; i != 0; i += (i < 0 ? 1 : -1)) {
 			console.log(i);
-			this.changeSpeed(i < 0);
+			this.changeSpeed(i > 0);
 		}
 	}
     

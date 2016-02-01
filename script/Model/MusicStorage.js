@@ -40,7 +40,6 @@ var MusicStorage = (function (_super) {
             type: "post",
             data: "instrument=" + this.postInstrument + "&speed=" + this.postSpeedGrade.toString() + "&music=" + this.postMusic,
             async: false,
-            success: function (data, state) { console.log(data, state); }
         });
     };
     MusicStorage.prototype.saveConfirm = function (music, instrument, speedGrade) {
@@ -89,7 +88,6 @@ var MusicStorage = (function (_super) {
                     _this.postInstrument = jsonData["instrument"];
                     _this.postSpeedGrade = Number(jsonData["speed"]);
                     _this.postMusic = jsonData["music"];
-                    console.log("success", data);
                 }
             });
         }

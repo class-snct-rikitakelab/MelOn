@@ -41,7 +41,6 @@ class MusicStorage extends Model {
 			type: "post",
 			data: "instrument=" + this.postInstrument + "&speed=" + this.postSpeedGrade.toString() + "&music=" + this.postMusic,
 			async: false,
-			success: (data: string, state: string) => { console.log(data, state); }
 		});
 	}
 
@@ -83,7 +82,6 @@ class MusicStorage extends Model {
 					this.postInstrument = jsonData["instrument"];
 					this.postSpeedGrade = Number(jsonData["speed"]);
 					this.postMusic = jsonData["music"];
-					console.log("success", data);
 				}
 			});
 		}
