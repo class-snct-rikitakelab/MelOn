@@ -29,8 +29,8 @@ class StorageModal extends ModalWindow {
     }
 
     loadConfirm(exist: boolean) {
-        this.game.sound.play("decide");
         if (!exist) { this.loadFailed(); return; }
+		this.game.sound.play("decide");
         this.confirm(this.constants.loadConfirmMsg);
         this.onYes.addOnce(() => { this.musicStorage.load(); });
         this.onNo.addOnce(() => { this.game.sound.play("close"); });

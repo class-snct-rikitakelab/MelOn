@@ -32,11 +32,11 @@ var StorageModal = (function (_super) {
     };
     StorageModal.prototype.loadConfirm = function (exist) {
         var _this = this;
-        this.game.sound.play("decide");
         if (!exist) {
             this.loadFailed();
             return;
         }
+        this.game.sound.play("decide");
         this.confirm(this.constants.loadConfirmMsg);
         this.onYes.addOnce(function () { _this.musicStorage.load(); });
         this.onNo.addOnce(function () { _this.game.sound.play("close"); });
