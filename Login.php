@@ -18,7 +18,7 @@
 			<div id="loginTypo">Login</div>
             <div id="authContainer">
 				<form action="php/login.php" method="post">
-                        <div class="error"><?php if($_GET["error"]) echo "Errors ate occured. Check input contents."; ?></div>
+                        <?php if($_GET["error"]) echo "<div class='error'>Errors are occured. Check input contents.</div>"; ?>
 						<div class="input">
 								<span id="name">Name: </span>
 								<input type="text" name="name" size="30" />
