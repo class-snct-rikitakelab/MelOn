@@ -15,7 +15,7 @@ class Instrument extends Model{
     }
 
     changeInstrument(instrument: string) {
-		if (instrument && instrument == this.instrument) return;
+		if (this.instrument && instrument == this.instrument) return;
 		if (!this.constants.instruments.indexOf(instrument)) return;
         this.instrument = instrument;
         this.onChangeInstrument.dispatch();
