@@ -36,22 +36,18 @@
 								  </div><br/>
 
 								  <div class="input">
-										  <?php
-											if(isset($_GET["pass_range"])) $error->passRange();
-										  ?>
+										  <?php if(isset($_GET["pass_range"])) $error->passRange(); ?>
 										  <span id="password">Password: </span>
 										  <input type="password" name="password" size="30" />
 								  </div><br/>
 								  
 								  <div class="input">
-										  <?php
-											if(isset($_GET["confirm"])) $error->confirm();
-										  ?>
+										  <?php if(isset($_GET["confirm"])) $error->confirm(); ?>
 										  <span id="confirm">Confirm password: </span>
 										  <input type="password" name="confirm" size="30" />
 								  </div><br/>
 
-								  <input type="hidden" name="language" value=<?php echo $lang; ?>>"
+								  <input type="hidden" name="language" value=<?php echo $lang; ?>>
 
 								  <input type="submit" value="OK">
 						  </form>

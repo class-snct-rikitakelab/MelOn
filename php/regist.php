@@ -29,7 +29,7 @@
 
     if( $error!="" ) {
         $pdo = null;
-        header("location:../Regist.php?lang=${$_POST['lang']}error=true&name=".$name.$error);
+        header("location:../Regist.php?lang=${$_POST['lang']}&error=true&name=".$name.$error);
         exit();
     }
     else {

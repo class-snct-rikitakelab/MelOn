@@ -52,5 +52,13 @@
 			  "English" => "Someone uses the same name. Please input another name.");
 			$this->echoDivTag($msg[$this->lang]);
 		}
+
+		function match() {
+			$msg = array(
+			  "Japanese" => "そのなまえとパスワードの組み合わせはとうろくされていません。",
+			  "Finnish" => "Yhdistelmänimi jasalasana ei ole olemassa.",
+			  "English" => "The combination of the name and the password doesn't exist.");
+			$this->echoDivTag($msg[$this->lang]);
+		}
     }
 ?>

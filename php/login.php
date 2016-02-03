@@ -6,10 +6,11 @@
     // Receive input datas
     $name=$_POST['name'];
     $pass=$_POST['password'];
+	$lang=$_POST['language'];
 
     // Check input datas
     $error = "";
-    if ( $name=="" or mb_strlen($name)>$MAX_TEXT_NUM )$error .= "&name_range=error";
+    if ( mb_strlen($name)<$MIN_NAME_NUM or mb_strlen($name)>$MAX_NAME_NUM )$error .= "&name_range=error";
     if ( mb_strlen($pass)<$MIN_PASS_NUM or mb_strlen($pass)>$MAX_PASS_NUM )$error .= "&pass_range=error";
 
     try {
@@ -27,7 +28,7 @@
 
     if( $error != "" ) {
         $pdo = null;
-        header('location:../Login.php?error=true&name='.$name.$error);
+        header("location:../Login.php?lang=${$lang}&error=true&name=".$name.$error);
         exit();
     }
 
