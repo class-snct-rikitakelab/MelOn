@@ -37,7 +37,7 @@
 			$this->echoDivTag($msg[$this->lang]);
 		}
 
-		function match() {
+		function matchConfirm() {
 			$msg = array(
 			  "Japanese" => "パスワードとかくにん用パスワードは、同じものを入力してください。",
 			  "Finnish" => "Salasana ja salasana vahvistetaan pitäisi olla sama.",

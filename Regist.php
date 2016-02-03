@@ -12,7 +12,6 @@
 <body>
 	<?php
 	  require_once "php/languageCheck.php";
-	  require_once "php/errorMessage.php";
 	?>
 		  <nav>
 				  <img id="headerLogo" src="storage/assets/image/game/MelOnLogo.png" />
@@ -24,8 +23,10 @@
 						  <form action="php/regist.php" method="post">
 						  <?php
 								  if(isset($_GET["error"])){
-								  $error = new ErrorMessage($lang);
-								  $error->error();
+									  require_once "php/errorMessage.php";
+									  $error = new ErrorMessage($lang);
+									  $error->error();
+								  }
 						  ?>
 								  <div class="input">
 										  <span id="name">Name: </span>
