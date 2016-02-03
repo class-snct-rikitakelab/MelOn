@@ -7,7 +7,6 @@
 .error {
 	color: red;
 	text-align: center;
-	margin-bottom: 20px;
 }
 
 #logo {
@@ -18,7 +17,7 @@
     cursor: pointer;
 }
 
-.input{
+.input {
 	margin-left: 80px;
 }
 
@@ -59,7 +58,7 @@
 #authContainer {
 	margin: 20px auto;
 	padding: 20px;
-	width: 500px;
+	width: 700px;
 	color: greenyellow;
 	text-shadow: 1px 1px 1px gray;
 	border-style: solid;

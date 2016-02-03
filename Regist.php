@@ -26,6 +26,7 @@
 										  require_once "php/errorMessage.php";
 										  $error = new ErrorMessage($lang, "error");
 										  $error->error();
+										  echo "<br/>";
 								  }
 							  ?>
 

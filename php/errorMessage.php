@@ -15,9 +15,9 @@
 
 		function error() {
 			$msg = array(
-			  "Japanese" => "エラーが発生しました。入力内容を確認してください。",
+			  "Japanese" => "エラーが発生しました。入力ないようをかくにんしてください。",
 			  "Finnish" => "Virheet tapahtui . Tarkista tulo sisältö.",
-			  "English" => "Errors are occured. Please check input contents.");
+			  "English" => "Error(s) occured. Please check input contents.");
 			$this->echoDivTag($msg[$this->lang]);
 		}
 
@@ -47,7 +47,7 @@
 
 		function identifical() {
 			$msg = array(
-			  "Japanese" => "そのなまえを使っている人がいます。別のなまえを入力してください。",
+			  "Japanese" => "その名前を使っている人がいます。他の名前を入力してください。",
 			  "Finnish" => "Joku käyttää samaa nimeä . Ole hyvä ja syötä toinen nimi.",
 			  "English" => "Someone uses the same name. Please input another name.");
 			$this->echoDivTag($msg[$this->lang]);
@@ -55,7 +55,7 @@
 
 		function match() {
 			$msg = array(
-			  "Japanese" => "そのなまえとパスワードの組み合わせはとうろくされていません。",
+			  "Japanese" => "その名前とパスワードの組み合わせはとうろくされていません。",
 			  "Finnish" => "Yhdistelmänimi jasalasana ei ole olemassa.",
 			  "English" => "The combination of the name and the password doesn't exist.");
 			$this->echoDivTag($msg[$this->lang]);

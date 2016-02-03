@@ -28,7 +28,7 @@
 
     if( $error != "" ) {
         $pdo = null;
-        header("location:../Login.php?lang=${$lang}&error=true&name=".$name.$error);
+        header("location:../Login.php?lang=${lang}&error=true&name=".$name.$error);
         exit();
     }
 
@@ -39,5 +39,5 @@
     $_SESSION[$SESSION_USER_NAME] = $data["name"];
 
     // Move to index.html
-    header("location:../index.html?lang=${$lang}");
+    header("location:../index.html?lang=${lang}");
 ?>
