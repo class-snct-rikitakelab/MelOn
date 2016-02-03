@@ -13,36 +13,39 @@
 	<?php require_once "php/languageCheck.php"; ?>
 		  <nav>
 				  <img id="headerLogo" src="storage/assets/image/game/MelOnLogo.png" />
-				  <button class="navButton" id="returnTop" onclick="document.location = 'index.html';">Return Top</button>
+				  <button class="navButton" id="returnTop" onclick="document.location = 'index.html?lang=<?php echo $lang; ?>';">
+					Return Top
+				  </button>
 		  </nav>
 		  <section>
 				  <div id="registTypo">Register</div>
 					<div id="authContainer">
 						  <form action="php/regist.php" method="post">
-						  <?php
+							  <?php
 								  if(isset($_GET["error"])){
-									  require_once "php/errorMessage.php";
-									  $error = new ErrorMessage($lang, "error");
-									  $error->error();
+										  require_once "php/errorMessage.php";
+										  $error = new ErrorMessage($lang, "error");
+										  $error->error();
 								  }
-						  ?>
+							  ?>
+
+							  <?php
+								  if(isset($_GET["name_range"])) $error->nameRange();
+								  if(isset($_GET["identifical"])) $error->identifical();
+							  ?>
 								  <div class="input">
-										  <?php
-											if(isset($_GET["name_range"])) $error->nameRange();
-											if(isset($_GET["identifical"])) $error->identifical();
-										  ?>
 										  <span id="name">Name: </span>
 										  <input type="text" name="name" size="30" />
 								  </div><br/>
 
+							  <?php if(isset($_GET["pass_range"])) $error->passRange(); ?>
 								  <div class="input">
-										  <?php if(isset($_GET["pass_range"])) $error->passRange(); ?>
 										  <span id="password">Password: </span>
 										  <input type="password" name="password" size="30" />
 								  </div><br/>
-								  
+		    
+							  <?php if(isset($_GET["confirm"])) $error->confirm(); ?>
 								  <div class="input">
-										  <?php if(isset($_GET["confirm"])) $error->confirm(); ?>
 										  <span id="confirm">Confirm password: </span>
 										  <input type="password" name="confirm" size="30" />
 								  </div><br/>

@@ -39,5 +39,5 @@
     $_SESSION[$SESSION_USER_NAME] = $data["name"];
 
     // Move to index.html
-    header("location:../index.html");
+    header("location:../index.html?lang=${$lang}");
 ?>

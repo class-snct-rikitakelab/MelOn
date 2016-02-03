@@ -13,7 +13,9 @@
 		<?php require_once "php/languageCheck.php"; ?>
 		<nav>
 				<img id="headerLogo" src="storage/assets/image/game/MelOnLogo.png" />
-				<button class="navButton" id="returnTop" onclick="document.location = 'index.html';">Return Top</button>
+				<button class="navButton" id="returnTop" onclick="document.location = 'index.html?lang=<?php echo $lang; ?>';">
+					Return Top
+				</button>
 		</nav>
 		<section>
 			<div id="loginTypo">Login</div>
@@ -25,26 +27,28 @@
 				  $error->error();
 				  }
 			?>
+
 				<form action="php/login.php" method="post">
-						<div class="input">
-								<?php
-									if(isset($_GET["name_range"])) $error->nameRange();
-									if(isset($_GET["match"])) $error->match();
-								?>
-								<span id="name">Name: </span>
-								<input type="text" name="name" size="30" />
-						</div><br/>
+                
+					<?php
+						  if(isset($_GET["name_range"])) $error->nameRange();
+						  if(isset($_GET["match"])) $error->match();
+					?>
+					<div class="input">
+						  <span id="name">Name: </span>
+						  <input type="text" name="name" size="30" />
+					</div><br/>
+            
+					<?php if(isset($_GET["pass_range"])) $error->passRange(); ?>
+					<div class="input">
+						  <span id="password">Password: </span>
+						  <input type="password" name="password" size="30" />
+					</div><br/>
 
-						<div class="input">
-								<?php if(isset($_GET["pass_range"])) $error->passRange(); ?>
-								<span id="password">Password: </span>
-								<input type="password" name="password" size="30" />
-						</div><br/>
+					<input type="hidden" name="language" value=<?php echo $lang; ?>>
 
-						<input type="hidden" name="language" value=<?php echo $lang; ?>>
-
-						<input type="submit" value="Login">
-				</form>
+					<input type="submit" value="Login">
+				  </form>
             </div>
 		</section>
 </body>
