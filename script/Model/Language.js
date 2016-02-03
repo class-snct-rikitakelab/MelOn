@@ -10,6 +10,8 @@ var Language = (function () {
         if (this.constants.nationarities[nationarity])
             return this.language = this.constants.nationarities[nationarity];
         this.language = this.constants.defaultLanguage;
+        if ($.getUrlVar("lang"))
+            this.language = $.getUrlVar("lang");
     };
     Language.prototype.IECheck = function () {
         var userAgent = window.navigator.userAgent.toLowerCase();

@@ -10,31 +10,42 @@
 </head>
 
 <body>
-		<nav>
-				<img id="headerLogo" src="storage/assets/image/game/MelOnLogo.png" />
-				<button class="navButton" id="returnTop" onclick="document.location = 'index.html';">Return Top</button>
-		</nav>
-		<section>
-				<div id="registTypo">Register</div>
-                <div id="authContainer">
-				    <form action="php/regist.php" method="post">
-                           <?php if($_GET["error"]) echo "<div class='error'>Errors are occured. Check input contents.</div>"; ?>
-						    <div class="input">
-								    <span id="name">Name: </span>
-								    <input type="text" name="name" size="30" />
-						    </div><br/>
-						    <div class="input">
-								    <span id="password">Password: </span>
-								    <input type="password" name="password" size="30" />
-						    </div><br/>
-						    <div class="input">
-								    <span id="confirm">Confirm password: </span>
-								    <input type="password" name="confirm" size="30" />
-						    </div><br/>
-						    <input type="submit" value="OK">
-				    </form>
-                </div>
-		</section>
+	<?php
+	  require_once "php/languageCheck.php";
+	  require_once "php/errorMessage.php";
+	?>
+		  <nav>
+				  <img id="headerLogo" src="storage/assets/image/game/MelOnLogo.png" />
+				  <button class="navButton" id="returnTop" onclick="document.location = 'index.html';">Return Top</button>
+		  </nav>
+		  <section>
+				  <div id="registTypo">Register</div>
+					<div id="authContainer">
+						  <form action="php/regist.php" method="post">
+						  <?php
+								  if(isset($_GET["error"])){
+								  $error = new ErrorMessage($lang);
+								  $error->error();
+						  ?>
+								  <div class="input">
+										  <span id="name">Name: </span>
+										  <input type="text" name="name" size="30" />
+								  </div><br/>
+
+								  <div class="input">
+										  <span id="password">Password: </span>
+										  <input type="password" name="password" size="30" />
+								  </div><br/>
+								  
+								  <div class="input">
+										  <span id="confirm">Confirm password: </span>
+										  <input type="password" name="confirm" size="30" />
+								  </div><br/>
+
+								  <input type="submit" value="OK">
+						  </form>
+					</div>
+		  </section>
 </body>
 
 </html>

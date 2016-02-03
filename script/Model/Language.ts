@@ -12,6 +12,7 @@
 		var nationarity = this.IECheck() ? window.navigator.browserLanguage : navigator.browserLanguage || navigator.language || navigator.userLanguage;
 		if (this.constants.nationarities[nationarity]) return this.language = this.constants.nationarities[nationarity];
 		this.language = this.constants.defaultLanguage;
+		if ($.getUrlVar("lang")) this.language = $.getUrlVar("lang");
 	}
 
 	private IECheck(): boolean {
