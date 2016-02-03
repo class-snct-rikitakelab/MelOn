@@ -7,12 +7,13 @@
     $name=$_POST['name'];
     $pass=$_POST['password'];
     $conf=$_POST['confirm'];
+	$lang=$_POST['language'];
 
     // Check input datas
     $error = "";
     if ( mb_strlen($name)<$MIN_NAME_NUM or mb_strlen($name)>$MAX_NAME_NUM )$error .= "&name_range=error";
     if ( mb_strlen($pass)<$MIN_PASS_NUM or mb_strlen($pass)>$MAX_PASS_NUM )$error .= "&pass_range=error";
-    if ( $pass != $conf )$error .= "&match=error";
+    if ( $pass != $conf )$error .= "&confirm=error";
 
     try {
         // Check if there is same name
@@ -28,7 +29,7 @@
 
     if( $error!="" ) {
         $pdo = null;
-        header('location:../Regist.php?error=true&name='.$name.$error);
+        header("location:../Regist.php?lang=${$_POST['lang']}error=true&name=".$name.$error);
         exit();
     }
     else {
