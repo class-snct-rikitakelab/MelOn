@@ -61,7 +61,6 @@ class LogInAndOutButton extends HTMLView {
 			setTimeout(() => document.location.reload(), 500);
 			return;
 		}
-		console.log(this.destination);
         setTimeout(() => { document.location = <any>this.destination; }, 500);
     }
 }

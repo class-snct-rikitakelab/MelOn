@@ -61,7 +61,6 @@ var LogInAndOutButton = (function (_super) {
             setTimeout(function () { return document.location.reload(); }, 500);
             return;
         }
-        console.log(this.destination);
         setTimeout(function () { document.location = _this.destination; }, 500);
     };
     return LogInAndOutButton;
