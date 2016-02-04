@@ -33,10 +33,10 @@
 							  <?php
 								  if(isset($_GET["name_range"])) $error->nameRange();
 								  if(isset($_GET["identifical"])) $error->identifical();
-							  ?>
+								?>
 								  <div class="input">
 										  <span id="name">Name: </span>
-										  <input type="text" name="name" size="30" />
+                                  <input type="text" name="name" size="30" value="<?php if(isset($_GET["name"])) echo $_GET["name"]; ?>"/>
 								  </div><br/>
 
 							  <?php if(isset($_GET["pass_range"])) $error->passRange(); ?>
