@@ -57,7 +57,7 @@
 
 								  <input type="hidden" name="language" value=<?php echo $lang; ?>>
 
-								  <input type="submit" value="<?php $label-ok(); ?>"/>
+								  <input type="submit" value="<?php $label->ok(); ?>"/>
 						  </form>
 					</div>
 		  </section>
