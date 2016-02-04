@@ -10,15 +10,19 @@
 </head>
 
 <body>
-		<?php require_once "php/languageCheck.php"; ?>
+		<?php 
+            require_once "php/languageCheck.php";
+            require_once "php/label.php";
+            $label = new Label($lang);
+        ?>
 		<nav>
 				<img id="headerLogo" src="storage/assets/image/game/MelOnLogo.png" />
 				<button class="navButton" id="returnTop" onclick="document.location = 'index.html?lang=<?php echo $lang; ?>';">
-					Return Top
+					<?php $label->returnTop(); ?>
 				</button>
 		</nav>
 		<section>
-			<div id="loginTypo">Login</div>
+			<div id="loginTypo"><?php $label->login(); ?></div>
             <div id="authContainer">
 			<?php
 				  if(isset($_GET["error"])){
@@ -36,19 +40,19 @@
 						  if(isset($_GET["match"])) $error->match();
 					?>
 					<div class="input">
-						  <span id="name">Name: </span>
+						  <span id="name"><?php $label->name(); ?>: </span>
 						  <input type="text" name="name" size="30" value="<?php if(isset($_GET["name"])) echo $_GET["name"]; ?>"/>
 					</div><br/>
             
 					<?php if(isset($_GET["pass_range"])) $error->passRange(); ?>
 					<div class="input">
-						  <span id="password">Password: </span>
+						  <span id="password"><?php $label->password(); ?>: </span>
 						  <input type="password" name="password" size="30" />
 					</div><br/>
 
 					<input type="hidden" name="language" value=<?php echo $lang; ?>>
 
-					<input type="submit" value="Login">
+					<input type="submit" value="<?php $label->login(); ?>">
 				  </form>
             </div>
 		</section>
