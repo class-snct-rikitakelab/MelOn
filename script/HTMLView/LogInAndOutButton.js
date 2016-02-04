@@ -25,13 +25,13 @@ var LogInAndOutButton = (function (_super) {
         return name;
     };
     LogInAndOutButton.prototype.setView = function () {
+        this.destination = this.constants.baseUrl + this.language.getLanguage;
         if (this.checkNameInSession() == "") {
             this.$.text(this.constants.logInText[this.language.getLanguage]);
             this.loggingIn = false;
             return;
         }
         this.$.text(this.constants.logOutText[this.language.getLanguage]);
-        this.destination = this.constants.baseUrl + this.language.getLanguage;
         this.loggingIn = true;
     };
     LogInAndOutButton.prototype.setEvent = function () {
