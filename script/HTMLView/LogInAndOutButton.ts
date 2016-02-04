@@ -3,6 +3,7 @@
 class LogInAndOutButton extends HTMLView {
 
 	private loggingIn: boolean = false;
+	private destination: string;
 
 	constructor(private constants: INDEX.LogInAndOutButton, private language: Language) {
 		super(constants);
@@ -27,6 +28,7 @@ class LogInAndOutButton extends HTMLView {
 			return;
 		}
 		this.$.text(this.constants.logOutText[this.language.getLanguage]);
+		this.destination = this.constants.baseUrl + this.language.getLanguage;
 		this.loggingIn = true;
 	}
 
@@ -59,6 +61,7 @@ class LogInAndOutButton extends HTMLView {
 			setTimeout(() => document.location.reload(), 500);
 			return;
 		}
-        setTimeout(() => { document.location = <any>(this.constants.baseUrl + this.language.getLanguage); }, 500);
+		console.log(this.destination);
+        setTimeout(() => { document.location = <any>this.destination; }, 500);
     }
 }

@@ -31,6 +31,7 @@ var LogInAndOutButton = (function (_super) {
             return;
         }
         this.$.text(this.constants.logOutText[this.language.getLanguage]);
+        this.destination = this.constants.baseUrl + this.language.getLanguage;
         this.loggingIn = true;
     };
     LogInAndOutButton.prototype.setEvent = function () {
@@ -60,7 +61,8 @@ var LogInAndOutButton = (function (_super) {
             setTimeout(function () { return document.location.reload(); }, 500);
             return;
         }
-        setTimeout(function () { document.location = (_this.constants.baseUrl + _this.language.getLanguage); }, 500);
+        console.log(this.destination);
+        setTimeout(function () { document.location = _this.destination; }, 500);
     };
     return LogInAndOutButton;
 })(HTMLView);

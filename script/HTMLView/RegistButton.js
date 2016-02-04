@@ -15,6 +15,7 @@ var RegistButton = (function (_super) {
     }
     RegistButton.prototype.setView = function () {
         this.$.text(this.constants.registText[this.language.getLanguage]);
+        this.destination = this.constants.baseUrl + this.language.getLanguage;
     };
     RegistButton.prototype.setEvent = function () {
         var _this = this;
@@ -32,8 +33,7 @@ var RegistButton = (function (_super) {
     RegistButton.prototype.click = function () {
         var _this = this;
         this.audioPlay(this.audios["decide"]);
-        console.log(this.language.getLanguage);
-        setTimeout(function () { document.location = (_this.constants.baseUrl + _this.language.getLanguage); }, 500);
+        setTimeout(function () { document.location = _this.destination; }, 500);
     };
     return RegistButton;
 })(HTMLView);
