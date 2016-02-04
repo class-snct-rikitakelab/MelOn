@@ -13,7 +13,7 @@ class LanguageSelector extends HTMLView {
 		}
 
 		private changeLanguage() {
-				this.audioPlay(this.audios["decide"]);
-				this.language.changeLanguage(this.$.val());
+			this.audioPlay(this.audios["decide"]);
+			this.language.changeLanguage(this.$.val());
 		}
 }

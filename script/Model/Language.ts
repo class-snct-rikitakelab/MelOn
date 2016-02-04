@@ -27,7 +27,7 @@
 
 	changeLanguage(language: string) {
 		this.language = language;
-		this.jq.trigger(this.CHANGE_LANGUAGE);
+		this.jq.triggerHandler(this.CHANGE_LANGUAGE);
 	}
 
 	onChangeLanguage(handler: () => any) {

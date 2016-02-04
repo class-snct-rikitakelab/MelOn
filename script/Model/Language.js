@@ -28,7 +28,7 @@ var Language = (function () {
     });
     Language.prototype.changeLanguage = function (language) {
         this.language = language;
-        this.jq.trigger(this.CHANGE_LANGUAGE);
+        this.jq.triggerHandler(this.CHANGE_LANGUAGE);
     };
     Language.prototype.onChangeLanguage = function (handler) {
         this.jq.bind(this.CHANGE_LANGUAGE, handler);
