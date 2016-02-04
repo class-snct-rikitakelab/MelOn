@@ -32,6 +32,7 @@ var RegistButton = (function (_super) {
     RegistButton.prototype.click = function () {
         var _this = this;
         this.audioPlay(this.audios["decide"]);
+        console.log(this.language.getLanguage);
         setTimeout(function () { document.location = (_this.constants.baseUrl + _this.language.getLanguage); }, 500);
     };
     return RegistButton;

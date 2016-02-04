@@ -28,6 +28,7 @@ class RegistButton extends HTMLView {
 
 	private click() {
         this.audioPlay(this.audios["decide"]);
+		console.log(this.language.getLanguage);
         setTimeout(() => { document.location = <any>(this.constants.baseUrl + this.language.getLanguage); }, 500);
     }
 }
