@@ -1,4 +1,4 @@
-﻿<?php
+<?php
     class ErrorMessage {
 
 		private $lang;
@@ -29,7 +29,7 @@
 			$this->echoDivTag($msg[$this->lang]);
 		}
 
-		function passRenge() {
+		function passRange() {
 			$msg = array(
 			  "Japanese" => "パスワードは3文字以上30文字以内で入力してください。",
 			  "Finnish" => "Salasanan on oltava 3 kirjainta tai enemmän ja vähemmän kuin 30 kirjainta.",
