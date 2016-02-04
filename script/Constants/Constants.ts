@@ -129,7 +129,7 @@ namespace CONSTANTS {
 			red: "red",
         }
 		tailShortening: number = 20;
-        ringDuration: number = 500;   // ms
+        ringDuration: number = 1000;   // ms
         fadeDuration: number = 250;   // ms
         tweenDuration: number = 150;  // ms
         doubleClkTime: number = 250;  // ms
@@ -161,6 +161,8 @@ namespace CONSTANTS {
             bar: "musicPlayBar",
         }
         playSpeed: number = 120;    // in Phaser Speed
+		measureHeadVolume: number = 1.0;
+		measureNotHeadVolume: number = 0.3;
     }
 
 

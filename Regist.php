@@ -3,7 +3,7 @@
 
 <head>
 		<meta charset="utf-8" />
-		<title>MelOn User Registration</title>
+		<title>MelOn - User Registration -</title>
 		<link rel="shortcut icon" href="storage/assets/image/game/favicon.ico">
 		<link rel="stylesheet" href="css/FixedNav.css" type="text/css" />
 		<link rel="stylesheet" href="css/Authentication.css" type="text/css" />

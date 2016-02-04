@@ -7,6 +7,7 @@ class MusicPlayBar extends SpriteView {
     private instrument: Instrument = this.models["instrument"];
     private speed: Speed = this.models["speed"];
     private noteOverlapManager: NoteOverlapManager = this.models["noteOverlapManager"];
+	private currentMeasure: number = 0;
     private stopPosition: number = 0;
 	private pastPosition: number;
     private beatSound: Phaser.Sound;
@@ -49,21 +50,33 @@ class MusicPlayBar extends SpriteView {
     private musicPlay() {
         this.changeSpeed();
         this.x = this.game.camera.x - this.constants.width;
+		this.currentMeasure = Math.ceil(this.x / this.constants.measureWidth);
+		console.log(this.currentMeasure);
     }
 
     private changeSpeed() {
         if (this.musicPlayer.isPlaying) this.body.velocity.x = this.speed.getSpeed;
     }
 
-    private ring() {
+    private ring(volume: number) {
         this.beatSound = this.game.sound.play(this.constants.beatSound);
+		this.beatSound.volume = volume;
         this.beatSound.fadeOut(400);
     }
+
+	private checkMeasureHead(): boolean {
+		if (this.x > this.currentMeasure * this.constants.measureWidth) {
+			this.currentMeasure++;
+			return true;
+		}
+		return false;
+	}
 
     private beat() {
 		var pastQuotient = Math.floor(this.pastPosition / this.constants.beatWidth);
 		var currentQuotient = Math.floor(this.x / this.constants.beatWidth);
-		if (pastQuotient < currentQuotient) this.ring();
+		if (pastQuotient < currentQuotient)
+			this.ring(this.checkMeasureHead() ? this.constants.measureHeadVolume : this.constants.measureNotHeadVolume);
         this.pastPosition = this.x;
     }
 

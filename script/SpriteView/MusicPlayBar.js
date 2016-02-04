@@ -14,6 +14,7 @@ var MusicPlayBar = (function (_super) {
         this.instrument = this.models["instrument"];
         this.speed = this.models["speed"];
         this.noteOverlapManager = this.models["noteOverlapManager"];
+        this.currentMeasure = 0;
         this.stopPosition = 0;
         this.setEvent();
         this.noteOverlapManager.setMusicPlayBar(this);
@@ -49,20 +50,30 @@ var MusicPlayBar = (function (_super) {
     MusicPlayBar.prototype.musicPlay = function () {
         this.changeSpeed();
         this.x = this.game.camera.x - this.constants.width;
+        this.currentMeasure = Math.ceil(this.x / this.constants.measureWidth);
+        console.log(this.currentMeasure);
     };
     MusicPlayBar.prototype.changeSpeed = function () {
         if (this.musicPlayer.isPlaying)
             this.body.velocity.x = this.speed.getSpeed;
     };
-    MusicPlayBar.prototype.ring = function () {
+    MusicPlayBar.prototype.ring = function (volume) {
         this.beatSound = this.game.sound.play(this.constants.beatSound);
+        this.beatSound.volume = volume;
         this.beatSound.fadeOut(400);
+    };
+    MusicPlayBar.prototype.checkMeasureHead = function () {
+        if (this.x > this.currentMeasure * this.constants.measureWidth) {
+            this.currentMeasure++;
+            return true;
+        }
+        return false;
     };
     MusicPlayBar.prototype.beat = function () {
         var pastQuotient = Math.floor(this.pastPosition / this.constants.beatWidth);
         var currentQuotient = Math.floor(this.x / this.constants.beatWidth);
         if (pastQuotient < currentQuotient)
-            this.ring();
+            this.ring(this.checkMeasureHead() ? this.constants.measureHeadVolume : this.constants.measureNotHeadVolume);
         this.pastPosition = this.x;
     };
     MusicPlayBar.prototype.checkCenter = function () {
