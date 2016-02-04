@@ -40,9 +40,7 @@
 						  <input type="text" name="name" size="30" value="<?php if(isset($_GET["name"])) echo $_GET["name"]; ?>"/>
 					</div><br/>
             
-					<?php
-                        if(isset($_GET["pass_range"])) { $error->passRange(); }
-                    ?>
+					<?php if(isset($_GET["pass_range"])) $error->nameRange(); ?>
 					<div class="input">
 						  <span id="password">Password: </span>
 						  <input type="password" name="password" size="30" />
