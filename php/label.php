@@ -10,7 +10,7 @@
         function returnTop() {
             $msg = array(
               "Japanese" => "トップに戻る",
-              "Finnish" => "Takaisin alkuun",
+              "Finnish" => "Takaisin Alkuun",
               "English" => "Return Top");
             echo $msg[$this->lang];
         }
@@ -26,7 +26,7 @@
         function registration() {
             $msg = array(
               "Japanese" => "ユーザーとうろく",
-              "Finnish" => "käyttäjän rekisteröintiä",
+              "Finnish" => "Käyttäjän Rekisteröintiä",
               "English" => "User Registration");
             echo $msg[$this->lang];
         }
