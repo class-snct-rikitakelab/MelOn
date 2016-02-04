@@ -162,7 +162,7 @@ namespace CONSTANTS {
         }
         playSpeed: number = 120;    // in Phaser Speed
 		measureHeadVolume: number = 1.0;
-		measureNotHeadVolume: number = 0.3;
+		measureNotHeadVolume: number = 0.5;
     }
 
 

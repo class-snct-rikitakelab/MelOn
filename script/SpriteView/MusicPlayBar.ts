@@ -51,7 +51,6 @@ class MusicPlayBar extends SpriteView {
         this.changeSpeed();
         this.x = this.game.camera.x - this.constants.width;
 		this.currentMeasure = Math.ceil(this.x / this.constants.measureWidth);
-		console.log(this.currentMeasure);
     }
 
     private changeSpeed() {

@@ -51,7 +51,6 @@ var MusicPlayBar = (function (_super) {
         this.changeSpeed();
         this.x = this.game.camera.x - this.constants.width;
         this.currentMeasure = Math.ceil(this.x / this.constants.measureWidth);
-        console.log(this.currentMeasure);
     };
     MusicPlayBar.prototype.changeSpeed = function () {
         if (this.musicPlayer.isPlaying)

@@ -179,7 +179,7 @@ var CONSTANTS;
             };
             this.playSpeed = 120; // in Phaser Speed
             this.measureHeadVolume = 1.0;
-            this.measureNotHeadVolume = 0.3;
+            this.measureNotHeadVolume = 0.5;
         }
         return MusicPlayBar;
     })(Music);
