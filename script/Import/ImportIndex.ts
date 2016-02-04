@@ -16,7 +16,7 @@
         ],
 
 		Model: [
-				"Language",
+			"Language",
 		],
 
         View: [
