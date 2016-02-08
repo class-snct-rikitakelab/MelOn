@@ -25,6 +25,7 @@
 			<div id="loginTypo"><?php $label->login(); ?></div>
             <div id="authContainer">
 			<?php
+                  $label->loginDesc();
 				  if(isset($_GET["error"])){
 					  require_once "php/errorMessage.php";
 					  $error = new ErrorMessage($lang, "error");

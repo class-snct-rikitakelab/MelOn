@@ -136,7 +136,7 @@ var CONSTANTS;
                 red: "red",
             };
             this.tailShortening = 20;
-            this.ringDuration = 1000; // ms
+            this.ringDuration = 500; // ms
             this.fadeDuration = 250; // ms
             this.tweenDuration = 150; // ms
             this.doubleClkTime = 250; // ms

@@ -129,7 +129,7 @@ namespace CONSTANTS {
 			red: "red",
         }
 		tailShortening: number = 20;
-        ringDuration: number = 1000;   // ms
+        ringDuration: number = 500;   // ms
         fadeDuration: number = 250;   // ms
         tweenDuration: number = 150;  // ms
         doubleClkTime: number = 250;  // ms

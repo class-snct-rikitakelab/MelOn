@@ -26,6 +26,7 @@
 					<div id="authContainer">
 						  <form action="php/regist.php" method="post">
 							  <?php
+                                  $label->registrationDesc();
 								  if(isset($_GET["error"])){
 										  require_once "php/errorMessage.php";
 										  $error = new ErrorMessage($lang, "error");
