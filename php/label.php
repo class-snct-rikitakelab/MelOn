@@ -41,7 +41,7 @@
 
         function registrationDesc() {
             $msg = array(
-              "Japanese" => "新しいユーザーのなまえとパスワード、そして同じパスワードをもう一回入力して、ユーザーとうろくをしてね。ユーザーとしてログインすると、ほかのパソコンからもきみの音楽を保存・読み込みすることができるよ。",
+              "Japanese" => "　新しいユーザーのなまえとパスワード、そして同じパスワードをもう一回入力して、ユーザーとうろくをしてね。ユーザーとしてログインすると、ほかのパソコンからもきみの音楽を保存・読み込みすることができるよ。",
               "Finnish" => "Kirjoita nimi, salasana, ja sama salasana rekisteröityä uusi käyttäjä. Voit tallentaa ja ladata musiikkia muista tietokoneesta kirjautumalla kuinkäyttäjä.",
               "English" => "Input name, password, and same password to register as new user. You can save and load your music from other computer by logging in as an user.");
             echo $msg[$this->lang];
