@@ -25,7 +25,7 @@
 
         function loginDesc() {
             $msg = array(
-              "Japanese" => "とうろくされたユーザーのなまえとパスワードを入力して、ログインしてね。ログインすると、ほかのパソコンからもきみの音楽を「ほぞん」・「よみこみ」することができるよ。",
+              "Japanese" => "　とうろくされたユーザーのなまえとパスワードを入力して、ログインしてね。ログインすると、ほかのパソコンからもきみの音楽を「ほぞん」・「よみこみ」することができるよ。",
               "Finnish" => "Kirjoittaa rekisteröityy käyttäjätunnuksen ja salasanan kirjautua. Voit tallentaa ja ladata musiikkia muista tietokoneesta kirjautumalla sisään.",
               "English" => "Input registrated user name and password to login. You can save and load your music from other computer by logging in.");
             echo $msg[$this->lang];
