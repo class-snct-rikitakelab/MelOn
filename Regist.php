@@ -27,7 +27,7 @@
 						  <form action="php/regist.php" method="post">
 							  <?php
                                   $label->registrationDesc();
-                                  echo "<br/>";
+                                  echo "<br/><br/>";
 								  if(isset($_GET["error"])){
 										  require_once "php/errorMessage.php";
 										  $error = new ErrorMessage($lang, "error");
