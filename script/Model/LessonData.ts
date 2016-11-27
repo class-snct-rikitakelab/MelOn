@@ -3,6 +3,7 @@
 class LessonData extends Model {
     
     private title: string;
+	private video: string;
     private target: MusicData;
     private mode: string;
     private nextUrl: string;
@@ -17,7 +18,7 @@ class LessonData extends Model {
     }
 
     private getLessonData() {
-        $.ajaxSetup({ error: () => { this.ajaxError(); } });
+        $.ajaxSetup({ error: () => {this.ajaxError();} });
         $.getJSON(this.constants.listUrl, (list) => {
             var lessonInfo = list[$.getUrlVar("lesson")];
             if (!lessonInfo) this.ajaxError();
@@ -30,11 +31,12 @@ class LessonData extends Model {
 
     private ajaxError() {
         alert(this.constants.errorMsg[this.constants.language]);
-        document.location = <any>this.constants.defaultUrl;
+        // document.location = <any>this.constants.defaultUrl;
     }
 
     private importLessonData(data: Object) {
         this.title = data["title"];
+		this.video = data["video"];
         this.target = data["music"];
         this.mode = data["mode"];
         this.lecture = data["lecture"];
@@ -55,6 +57,7 @@ class LessonData extends Model {
     }
 
     get getTitle(): string { return this.title; }
+	get getVideoSrc(): string { return this.video; }
     get getMode(): string { return this.mode; }
     get getTargetMusic(): MusicData { return this.target; }
     get getNextUrl(): string { return this.nextUrl; }

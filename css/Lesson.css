@@ -116,3 +116,12 @@
 	border: 40px solid transparent;
     border-top: 30px solid;
 }
+
+#video {
+	text-align: center;
+}
+
+#video video {
+	width: 800px;
+	height: 450px;
+}

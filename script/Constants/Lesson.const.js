@@ -128,6 +128,16 @@ var LESSON;
         return Lecture;
     })();
     LESSON.Lecture = Lecture;
+    var VideoLecture = (function () {
+        function VideoLecture() {
+            this.selector = "#video";
+            this.titleId = "title";
+            this.images = {};
+            this.audios = {};
+        }
+        return VideoLecture;
+    })();
+    LESSON.VideoLecture = VideoLecture;
     var LessonModal = (function () {
         function LessonModal() {
             this.modalConstants = new ModalWindow();

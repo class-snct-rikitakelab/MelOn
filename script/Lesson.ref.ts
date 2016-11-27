@@ -16,4 +16,5 @@
 // DOMView
 /// <reference path="DOMView/NextButton.ts"/>
 /// <reference path="DOMView/Lecture.ts"/>
+/// <reference path="DOMView/VideoLecture.ts"/>
 /// <reference path="DOMView/RestDisplay.ts"/>

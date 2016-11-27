@@ -26,10 +26,11 @@ var LessonData = (function (_super) {
     };
     LessonData.prototype.ajaxError = function () {
         alert(this.constants.errorMsg[this.constants.language]);
-        document.location = this.constants.defaultUrl;
+        // document.location = <any>this.constants.defaultUrl;
     };
     LessonData.prototype.importLessonData = function (data) {
         this.title = data["title"];
+        this.video = data["video"];
         this.target = data["music"];
         this.mode = data["mode"];
         this.lecture = data["lecture"];
@@ -52,6 +53,11 @@ var LessonData = (function (_super) {
     };
     Object.defineProperty(LessonData.prototype, "getTitle", {
         get: function () { return this.title; },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(LessonData.prototype, "getVideoSrc", {
+        get: function () { return this.video; },
         enumerable: true,
         configurable: true
     });

@@ -69,6 +69,7 @@
             "ScrollButton",
             "NextButton",
             "Lecture",
+            "VideoLecture",
             "ModalWindow",
             "StorageModal",
             "LessonModal",

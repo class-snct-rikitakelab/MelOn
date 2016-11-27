@@ -3,18 +3,21 @@
 class Lesson extends FreeMakingMusic {
 
 	private returnLessonListButton = new ReturnButton(this, new LESSON.ReturnLessonListButton);
-	private lessonData: LessonData;
-
+	
     constructor(assets: AssetLoader, constants: CONSTANTS.MelOn) {
         super(assets, constants);
     }
 
     protected createElements(parentSelector: string, elementIds: string[]) {
-		this.lessonData = new LessonData(new LESSON.LessonData);
-		new Lecture(new LESSON.Lecture, { lessonData: this.lessonData });
+		var lessonData = new LessonData(new LESSON.LessonData);
+		this.createLesson(lessonData);
 		this.addIDs(elementIds);
         super.createElements(parentSelector, elementIds);
     }
+
+	protected createLesson(lessonData: LessonData) {
+		new Lecture(new LESSON.Lecture, { lessonData: lessonData });
+	}
 
 	private addIDs(elementIds: string[]) {
 		elementIds.push("nextButton");
@@ -30,8 +33,20 @@ class Lesson extends FreeMakingMusic {
     }
 }
 
+class VideoLesson extends Lesson {
+
+	constructor(assets: AssetLoader, constants: CONSTANTS.MelOn) {
+        super(assets, constants);
+    }
+
+	protected createLesson(lessonData: LessonData) {
+		new VideoLecture(new LESSON.VideoLecture, { lessonData: lessonData });
+    }
+}
+
+
 // Do it after loading HTML, and use jQuery
 window.onload = () => {
     $.ajaxSetup({ async: false, cache: false });
-    $(() => { new Lesson(new MelOnAssets, new CONSTANTS.MelOn); });
+    $(() => { new VideoLesson(new MelOnAssets, new CONSTANTS.MelOn); });
 }

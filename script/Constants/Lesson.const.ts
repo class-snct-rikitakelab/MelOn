@@ -102,6 +102,13 @@ namespace LESSON {
 		audios: { [name: string]: string } = {};
     }
 
+	export class VideoLecture implements HTMLView {
+		selector = "#video";
+		titleId = "title";
+		images: { [name: string]: string } = {};
+		audios: { [name: string]: string } = {};
+	}
+
     export class LessonModal {
         modalConstants: ModalWindow = new ModalWindow();
         playMsg = {
