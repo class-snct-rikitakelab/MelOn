@@ -16,7 +16,7 @@ var LessonData = (function (_super) {
         //$.ajaxSetup({ error: function () { _this.ajaxError(); } });
         $.getJSON(this.constants.listUrl, function (list) {
             var lessonInfo = list[$.getUrlVar("lesson")];
-            if (!lessonInfo)
+            //if (!lessonInfo)
                 _this.ajaxError();
             $.getJSON(lessonInfo["url"], function (data, status) { _this.importLessonData(data); });
             if ($.getUrlVar("inherit")) {
