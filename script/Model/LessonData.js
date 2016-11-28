@@ -13,7 +13,7 @@ var LessonData = (function (_super) {
     }
     LessonData.prototype.getLessonData = function () {
         var _this = this;
-        $.ajaxSetup({ error: function () { _this.ajaxError(); } });
+        //$.ajaxSetup({ error: function () { _this.ajaxError(); } });
         $.getJSON(this.constants.listUrl, function (list) {
             var lessonInfo = list[$.getUrlVar("lesson")];
             if (!lessonInfo)
