@@ -6,9 +6,9 @@ test:
  override:
   - echo "test"
 
-deployment
+deployment:
  production:
   branch: yml
   commands: 
-   - aws s3 sync  s3:melonwithoutphp3/ --delete
+   - aws s3 sync . s3://melonwithoutphp3/ --delete
 
