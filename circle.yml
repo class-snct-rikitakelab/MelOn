@@ -1,0 +1,13 @@
+machine:
+ timezone:
+  Asia/Tokyo
+
+test:
+ override:
+  - echo "test"
+
+deployment
+ production:
+  branch: yml
+  commands: 
+   - aws s3 sync  s3:melonwithoutphp3/ --delete
