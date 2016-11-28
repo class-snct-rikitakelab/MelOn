@@ -8,7 +8,11 @@ test:
 
 deployment:
  production:
-  branch: yml
+  branch: master 
   commands: 
    - aws s3 sync . s3://melonwithoutphp2/ --delete
+ yml:
+  branch: yml
+  commands:
+   - aws s3 sync . s3://melonwithoutphp3/ --delete
 
